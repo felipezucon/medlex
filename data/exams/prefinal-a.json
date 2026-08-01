@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "id": "prefinal-a",
+  "title": "Práctica Pre-final A",
+  "theme": "Malnutrición en países de ingresos bajos y medios",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "More than one in three low- and middle-income countries face both extremes of malnutrition",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "16 December 2019 – Geneva. A new approach is needed to help reduce undernutrition and obesity at the same time, as the issues become increasingly connected due to rapid changes in countries’ food systems. This is especially important in low- and middle-income countries, according to a new four-paper report published in The Lancet. More than a third of such countries had overlapping forms of malnutrition (45 of 123 countries in the 1990s, and 48 of 126 countries in the 2010s), particularly in sub-Saharan Africa, south Asia, and East Asia and the Pacific."
+      },
+      {
+        "number": 2,
+        "text": "Undernutrition and obesity can lead to effects across generations as both maternal undernutrition and obesity are associated with poor health in offspring. However, because of the speed of change in food systems, more people are being exposed to both forms of malnutrition at different points in their lifetimes, which further increases harmful health effects."
+      },
+      {
+        "number": 3,
+        "text": "“We are facing a new nutrition reality,” said lead author of the report Dr. Francesco Branca, Director of the Department of Nutrition for Health and Development, World Health Organization. “We can no longer characterize countries as low-income and undernourished, or high-income and only concerned with obesity. All forms of malnutrition have a common denominator – food systems that fail to provide all people with healthy, safe, affordable, and sustainable diets. Changing this will require action across food systems – from production and processing, through trade and distribution, pricing, marketing, and labelling, to consumption and waste. All relevant policies and investments must be radically re-examined.”"
+      },
+      {
+        "number": 4,
+        "text": "Globally, estimates suggest that almost 2.3 billion children and adults are overweight and more than 150 million children are stunted. However, in low- and middle-income countries these emerging issues overlap in individuals, families, communities and countries. The new report explores the trends behind this intersection – known as the double burden of malnutrition – as well as the societal and food system changes that may be causing it, its biological explanation and effects, and policy measures that may help address malnutrition in all its forms."
+      },
+      {
+        "number": 5,
+        "text": "The authors used survey data from low- and middle-income countries in the 1990s and 2010s to estimate which countries faced a double burden of malnutrition (i.e., in the population, more than 15% of people had wasting, more than 30% were stunted, more than 20% of women had thinness, and more than 20% of people were overweight)."
+      },
+      {
+        "number": 6,
+        "text": "High-quality diets reduce the risk of malnutrition in all its forms by promoting healthy growth, development, and immunity, and preventing obesity and non-communicable diseases (NCDs) throughout life. The components of healthy diets are: optimal breastfeeding practices in the first two years; a diversity and abundance of fruits and vegetables, wholegrains, fibre, nuts, and seeds; modest amounts of animal source foods; minimal amounts of processed meats, and minimal amounts of foods and beverages high in energy and added amounts of sugar, saturated fat, trans fat, and salt."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {
+          "id": "a1",
+          "statement": "Acciones futuras tendientes a modificar la situación nutricional actual.",
+          "developed": true,
+          "paragraph": 3
+        },
+        {
+          "id": "a2",
+          "statement": "Origen de la información obtenida para el informe.",
+          "developed": true,
+          "paragraph": 5
+        },
+        {
+          "id": "a3",
+          "statement": "Ventajas y desventajas del nuevo enfoque para reducir la malnutrición.",
+          "developed": false,
+          "paragraph": null
+        },
+        {
+          "id": "a4",
+          "statement": "Regiones en las cuales se presentan diferentes formas de malnutrición a la vez.",
+          "developed": true,
+          "paragraph": 1
+        },
+        {
+          "id": "a5",
+          "statement": "Importancia de la alimentación saludable para la prevención de la malnutrición.",
+          "developed": true,
+          "paragraph": 6
+        },
+        {
+          "id": "a6",
+          "statement": "Formas de evitar la desnutrición materna.",
+          "developed": false,
+          "paragraph": null
+        }
+      ]
+    },
+    "b": {
+      "title": "B. Preguntas abiertas",
+      "instructions": "Responda estas preguntas con información del texto y su propia redacción de la forma más completa posible.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Qué reveló este informe en relación a la desnutrición en países de ingresos bajos y medios?",
+          "suggestedAnswer": "El informe reveló la necesidad de un nuevo enfoque para reducir tanto la desnutrición como la obesidad (al mismo tiempo) ya que en la mayoría de estos países se superponen debido a que están cada vez más conectadas por los rápidos cambios en los sistemas de alimentación/alimentarios de estos países. (Esta realidad se presenta particularmente en África subsahariana, sur y este de Asia y en el Pacífico)",
+          "rubric": [
+            { "id": "b1-1", "label": "Mencioné la necesidad de un nuevo enfoque.", "points": 1 },
+            { "id": "b1-2", "label": "Expliqué que debe reducir simultáneamente la desnutrición y la obesidad.", "points": 1 },
+            { "id": "b1-3", "label": "Relacioné la superposición con los rápidos cambios en los sistemas alimentarios.", "points": 1 },
+            { "id": "b1-4", "label": "Identifiqué las regiones especialmente afectadas.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Qué podría hacerse para modificar la situación nutricional en el mundo?",
+          "suggestedAnswer": "Se podría cambiar esta realidad si se trabaja con los sistemas alimentarios y también se deberían reexaminar todas las políticas e inversiones relevantes.",
+          "rubric": [
+            { "id": "b2-1", "label": "Propuse actuar sobre los sistemas alimentarios.", "points": 2 },
+            { "id": "b2-2", "label": "Mencioné que deben reexaminarse las políticas relevantes.", "points": 1 },
+            { "id": "b2-3", "label": "Mencioné que deben reexaminarse las inversiones relevantes.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿Qué aspectos de la desnutrición examina este informe? Explique.",
+          "suggestedAnswer": "Este informe explora las tendencias detrás de la intersección entre la desnutrición y la obesidad en los países de bajos ingresos e ingresos medios/países en vías de desarrollo, como también los cambios en los sistemas alimentarios y sociales que pueden estar causando esta superposición, sus efectos, la explicación biológica y las políticas que pueden ayudar a manejar la malnutrición en todas sus formas.",
+          "rubric": [
+            { "id": "b3-1", "label": "Expliqué las tendencias detrás de la intersección entre desnutrición y obesidad.", "points": 1 },
+            { "id": "b3-2", "label": "Mencioné los cambios sociales y de los sistemas alimentarios que pueden causarla.", "points": 1 },
+            { "id": "b3-3", "label": "Incluí la explicación biológica y los efectos.", "points": 1 },
+            { "id": "b3-4", "label": "Incluí las políticas para abordar la malnutrición en todas sus formas.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Cómo ha cambiado la realidad sobre la nutrición según la OMS? Explique.",
+          "suggestedAnswer": "La OMS considera que la situación ha cambiado debido a que ya no se puede asociar la desnutrición con los países de bajos ingresos o el problema de la obesidad con los países de altos ingresos, sino que todas las formas de malnutrición se dan cuando fallan los sistemas alimentarios/cuando los sistemas alimentarios no proporcionan a todas las personas las dietas saludables, seguras, accesibles y sustentables que necesitan.",
+          "rubric": [
+            { "id": "b4-1", "label": "Expliqué que la desnutrición ya no se asocia solo con países de bajos ingresos.", "points": 1 },
+            { "id": "b4-2", "label": "Expliqué que la obesidad ya no se asocia solo con países de altos ingresos.", "points": 1 },
+            { "id": "b4-3", "label": "Identifiqué la falla de los sistemas alimentarios como denominador común.", "points": 1 },
+            { "id": "b4-4", "label": "Mencioné dietas saludables, seguras, accesibles y sustentables.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿A qué se refiere el autor con “the double burden of malnutrition”? ¿Dónde se produce esta situación?",
+          "suggestedAnswer": "El autor se refiere a la intersección entre/coexistencia de desnutrición y obesidad en las personas, familias, comunidades y países. (También se podría aceptar: se refiere a poblaciones en las cuales más del 15% de las personas presentaba delgadez excesiva/emaciación, más del 30% retraso en el crecimiento, más del 20% de las mujeres eran delgadas y más del 20% de la población tenía sobrepeso) Esta situación se presenta en la mayoría (más de un tercio) de los países en vías de desarrollo/de ingresos medios y bajos, especialmente en África subsahariana, sur y este de Asia y en el Pacífico.",
+          "rubric": [
+            { "id": "b5-1", "label": "Definí el concepto como intersección o coexistencia de desnutrición y obesidad.", "points": 1 },
+            { "id": "b5-2", "label": "Mencioné que ocurre en personas, familias, comunidades y países.", "points": 1 },
+            { "id": "b5-3", "label": "Indiqué que afecta a más de un tercio de los países de ingresos medios y bajos.", "points": 1 },
+            { "id": "b5-4", "label": "Identifiqué las regiones especialmente afectadas.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "Mencione algunos de los beneficios de una dieta saludable.",
+          "suggestedAnswer": "Una dieta saludable reduce el riesgo de malnutrición en todas sus formas promoviendo un crecimiento y desarrollo saludables, e inmunidad y evitando la obesidad y las enfermedades no transmisibles durante toda la vida.",
+          "rubric": [
+            { "id": "b6-1", "label": "Mencioné la reducción del riesgo de malnutrición en todas sus formas.", "points": 1 },
+            { "id": "b6-2", "label": "Mencioné el crecimiento y desarrollo saludables.", "points": 1 },
+            { "id": "b6-3", "label": "Mencioné el fortalecimiento de la inmunidad.", "points": 1 },
+            { "id": "b6-4", "label": "Mencioné la prevención de obesidad y enfermedades no transmisibles.", "points": 1 }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Versión del título",
+      "instructions": "Elabore una adecuada versión del título de este texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "Mas de uno cada tres países con ingresos bajos y medios enfrenta ambos extremos de malnutrición."
+    }
+  }
+}

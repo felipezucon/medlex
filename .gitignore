@@ -1,0 +1,13 @@
+# Materiais utilizados apenas para preparar o banco de questões
+/materiais-fonte/
+
+# Arquivos locais do sistema
+.DS_Store
+Thumbs.db
+
+# Configurações locais
+.vscode/settings.json
+
+# Codigos IA
+AGENTS.md
+/docs/

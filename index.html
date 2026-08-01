@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17324d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="MedLex">
+  <title>MedLex Cards</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>MedLex Cards</h1>
+      <p>Inglês médico para leitura de prova</p>
+    </div>
+    <button id="themeBtn" class="icon-btn" aria-label="Alternar tema">◐</button>
+  </header>
+
+  <main class="shell">
+    <nav class="tabs" aria-label="Navegação">
+      <button class="tab active" data-view="study">Estudar</button>
+      <button class="tab" data-view="exam">Simulado</button>
+      <button class="tab" data-view="practice">Formas -ing</button>
+      <button class="tab" data-view="cards">Cartões</button>
+      <button class="tab" data-view="import">Importar</button>
+      <button class="tab" data-view="stats">Progresso</button>
+    </nav>
+
+    <section id="studyView" class="view active">
+      <div class="dashboard">
+        <div><strong id="dueCount">0</strong><span>para revisar</span></div>
+        <div><strong id="newCount">0</strong><span>novos</span></div>
+        <div><strong id="masteredCount">0</strong><span>maduros</span></div>
+      </div>
+
+      <div id="emptyState" class="panel hidden">
+        <h2>Fila concluída ✨</h2>
+        <p>Você terminou as revisões disponíveis agora.</p>
+        <button id="studyNewBtn" class="primary">Estudar cartões novos</button>
+      </div>
+
+      <article id="studyCard" class="flashcard">
+        <div class="card-meta">
+          <span id="cardTag" class="pill">geral</span>
+          <span id="queuePosition">1/1</span>
+        </div>
+        <div id="frontSide" class="card-side">
+          <p class="eyebrow">INGLÊS</p>
+          <h2 id="frontWord">trial</h2>
+          <p class="hint">Pense na tradução e toque para revelar.</p>
+          <button id="revealBtn" class="primary big">Mostrar resposta</button>
+        </div>
+
+        <div id="backSide" class="card-side hidden">
+          <p class="eyebrow">TRADUÇÕES</p>
+          <div class="translations">
+            <div><span>ES</span><strong id="spanishText"></strong></div>
+            <div><span>PT</span><strong id="portugueseText"></strong></div>
+          </div>
+          <div class="example">
+            <p class="eyebrow">EXEMPLO NO ESTILO DA PROVA</p>
+            <p id="exampleEn" class="example-en"></p>
+            <details>
+              <summary>Ver tradução do exemplo</summary>
+              <p><b>ES:</b> <span id="exampleEs"></span></p>
+              <p><b>PT:</b> <span id="examplePt"></span></p>
+            </details>
+            <small id="sourceText"></small>
+          </div>
+          <p class="rating-title">Como foi lembrar?</p>
+          <div class="ratings">
+            <button data-rating="again" class="again">Errei<small>1 min</small></button>
+            <button data-rating="hard" class="hard">Difícil<small id="hardInterval">6 min</small></button>
+            <button data-rating="good" class="good">Bom<small id="goodInterval">1 dia</small></button>
+            <button data-rating="easy" class="easy">Fácil<small id="easyInterval">4 dias</small></button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="examView" class="view">
+      <div id="examApp">
+        <div class="panel exam-loading">Carregando simulados…</div>
+      </div>
+    </section>
+
+    <section id="practiceView" class="view">
+      <div id="practiceApp">
+        <div class="panel exam-loading">Carregando práticas…</div>
+      </div>
+    </section>
+
+    <section id="cardsView" class="view">
+      <div class="panel">
+        <div class="toolbar">
+          <label class="sr-only" for="searchInput">Buscar cartões</label>
+          <input id="searchInput" type="search" placeholder="Buscar palavra, tradução ou etiqueta">
+          <label class="sr-only" for="tagFilter">Filtrar por etiqueta</label>
+          <select id="tagFilter"><option value="">Todas as etiquetas</option></select>
+        </div>
+        <p id="cardCountLabel"></p>
+        <div id="cardList" class="card-list"></div>
+      </div>
+    </section>
+
+    <section id="importView" class="view">
+      <div class="panel">
+        <h2>Importar e fazer backup</h2>
+        <p>O CSV deve usar as colunas do arquivo-modelo incluído no projeto.</p>
+        <label class="file-label">
+          <input id="csvInput" type="file" accept=".csv,text/csv">
+          Importar CSV
+        </label>
+        <div class="actions">
+          <button id="exportCardsBtn">Exportar cartões em CSV</button>
+          <button id="exportBackupBtn">Exportar backup completo</button>
+          <label class="file-label secondary">
+            <input id="backupInput" type="file" accept=".json,application/json">
+            Restaurar backup
+          </label>
+        </div>
+        <hr>
+        <button id="resetBtn" class="danger-outline">Apagar progresso e restaurar baralho inicial</button>
+        <p id="importStatus" class="status"></p>
+      </div>
+    </section>
+
+    <section id="statsView" class="view">
+      <div class="panel">
+        <h2>Seu progresso</h2>
+        <div id="statsGrid" class="stats-grid"></div>
+        <h3>Revisões nos últimos 7 dias</h3>
+        <div id="weekChart" class="week-chart"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Dados salvos neste navegador. Exporte um backup regularmente.</footer>
+  <script src="./app.js"></script>
+  <script type="module" src="./js/exam.mjs"></script>
+  <script type="module" src="./js/practice.mjs"></script>
+</body>
+</html>

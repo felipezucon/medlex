@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "ing-forms",
+  "title": "Práctica de formas en -ing",
+  "description": "Traducción, asociación y respuestas en español a partir de textos médicos en inglés.",
+  "units": [
+    {
+      "id": "blood",
+      "title": "Who can give blood?",
+      "source": "Give Blood web site: www.blood.co.uk",
+      "blocks": [
+        {
+          "id": "blood-translation",
+          "type": "translation",
+          "instructions": "Complete con la traducción de las partes destacadas.",
+          "items": [
+            {
+              "id": "blood-a",
+              "segments": [
+                { "text": "We need to estimate " },
+                { "text": "your blood volume before donating", "target": true },
+                { "text": "." }
+              ],
+              "expectedAnswer": "Es necesario calcular el volumen sanguíneo del donante antes de la donación.",
+              "rubric": [{ "id": "blood-a-1", "label": "Mi traducción expresa el volumen sanguíneo del donante y el momento anterior a la donación.", "points": 1 }]
+            },
+            {
+              "id": "blood-b",
+              "segments": [
+                { "text": "However, our current donation chairs are designed to safely accommodate " },
+                { "text": "a person weighing up to 158 kg", "target": true },
+                { "text": "." }
+              ],
+              "expectedAnswer": "Sin embargo, nuestras sillas para donación están diseñadas para que se acomode con seguridad una persona que pese hasta 158 kg.",
+              "rubric": [{ "id": "blood-b-1", "label": "Mi traducción conserva la idea de una persona que pesa hasta 158 kg.", "points": 1 }]
+            },
+            {
+              "id": "blood-c",
+              "segments": [
+                { "text": "Donated blood is a lifeline for " },
+                { "text": "many people needing long-term treatments, not just in emergencies", "target": true },
+                { "text": "." }
+              ],
+              "expectedAnswer": "La sangre donada constituye un sustento para muchas personas que necesitan tratamientos a largo plazo, no solo en casos de emergencia.",
+              "rubric": [{ "id": "blood-c-1", "label": "Mi traducción incluye a las personas que necesitan tratamientos prolongados y no solo emergencias.", "points": 1 }]
+            },
+            {
+              "id": "blood-d",
+              "segments": [
+                { "text": "Plasma provides " },
+                { "text": "proteins, nutrients and a clotting agent that is vital to stop bleeding", "target": true },
+                { "text": "." }
+              ],
+              "expectedAnswer": "El plasma provee proteínas, nutrientes y un agente coagulante (factor de coagulación) que es importante para detener las hemorragias.",
+              "rubric": [{ "id": "blood-d-1", "label": "Mi traducción incluye proteínas, nutrientes y el agente coagulante que detiene las hemorragias.", "points": 1 }]
+            },
+            {
+              "id": "blood-e",
+              "segments": [
+                { "text": "Maintaining a regular supply of blood to all the people who need it", "target": true },
+                { "text": " is not easy." }
+              ],
+              "expectedAnswer": "No es fácil mantener un suministro regular de sangre para todas las personas que lo necesitan.",
+              "rubric": [{ "id": "blood-e-1", "label": "Mi traducción expresa la dificultad de mantener un suministro regular para quienes lo necesitan.", "points": 1 }]
+            },
+            {
+              "id": "blood-f",
+              "segments": [
+                { "text": "Blood components have a short shelf life and " },
+                { "text": "predicting demand", "target": true },
+                { "text": " can de difficult." }
+              ],
+              "expectedAnswer": "Los componentes de la sangre tienen una vida útil corta y puede ser difícil predecir la demanda.",
+              "rubric": [{ "id": "blood-f-1", "label": "Mi traducción expresa correctamente la dificultad de predecir la demanda.", "points": 1 }]
+            },
+            {
+              "id": "blood-g",
+              "segments": [
+                { "text": "By giving blood", "target": true },
+                { "text": ", every donor " },
+                { "text": "is contributing", "target": true },
+                { "text": " to a nation-wide challenge to provide " },
+                { "text": "life-saving products", "target": true },
+                { "text": " whenever and wherever they are needed." }
+              ],
+              "expectedAnswer": "Al donar sangre, cada donante está contribuyendo con un desafío nacional para proveer productos protectores de la vida cuando y donde sean necesarios.",
+              "rubric": [{ "id": "blood-g-1", "label": "Mi traducción incluye la donación, la contribución y los productos que protegen la vida.", "points": 1 }]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tuberculosis",
+      "title": "Pregnancy and Tuberculosis",
+      "source": "Health Protection Agency web site: www.hpa.org.uk",
+      "blocks": [
+        {
+          "id": "tuberculosis-matching",
+          "type": "matching",
+          "instructions": "¿Qué punto responde a cada pregunta? Seleccione la letra correspondiente y escriba su traducción antes de finalizar.",
+          "options": [
+            { "id": "a", "text": "TB can affect any organ, and extra pulmonary disease such as lymph node swelling is also frequently seen.", "expectedTranslation": "La TB puede afectar cualquier órgano y muchas veces está acompañada por enfermedad extrapulmonar, como la inflamación de los nódulos linfáticos." },
+            { "id": "b", "text": "The chance of the baby getting infected with TB whilst in the womb is very small.", "expectedTranslation": "La probabilidad de que el bebé se contagie TB en el vientre materno es muy baja." },
+            { "id": "c", "text": "Recommended tests include assessment of BCG status followed by tuberculin testing and/or other TB-specific immune-based (interferon-gamma) blood tests.", "expectedTranslation": "Las pruebas recomendadas incluyen una evaluación del estado de la BCG seguida por una prueba de tuberculina (o test/reacción de Mantoux) y/u otros análisis de sangre inmunológicos específicos para TB (interferón gamma o inmunitario)." },
+            { "id": "d", "text": "Taking tuberculosis treatment will cure TB and prevent its spread to others.", "expectedTranslation": "Recibir tratamiento contra la TB curará la enfermedad y evitará que se contagie a otras personas." },
+            { "id": "e", "text": "Breastfeeding should always be encouraged for women being treated with first-line anti-tuberculosis drugs.", "expectedTranslation": "Siempre debe fomentarse el amamantamiento por parte de las mujeres que están siendo tratadas con fármacos antituberculosos de primera línea." }
+          ],
+          "questions": [
+            { "id": "tb-tests", "question": "¿Qué estudios es necesario realizar para detectar la TB?", "correctOption": "c" },
+            { "id": "tb-organs", "question": "¿Solo los pulmones se ven afectados en la tuberculosis?", "correctOption": "a" },
+            { "id": "tb-breastfeeding", "question": "¿Se puede amamantar mientras se está tomando medicación antituberculosa?", "correctOption": "e" },
+            { "id": "tb-womb", "question": "¿Se contagia el bebé en el vientre materno?", "correctOption": "b" },
+            { "id": "tb-treatment", "question": "¿Cuál es la importancia del tratamiento para la TB?", "correctOption": "d" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trauma",
+      "title": "Prophylaxis and Treatment of Infections Associated with Penetrating Traumatic Injury",
+      "source": "Medscape Multispecialty web site: www.medscape.com",
+      "blocks": [
+        {
+          "id": "trauma-open",
+          "type": "open",
+          "instructions": "Responda las preguntas en español con información de cada texto en inglés.",
+          "items": [
+            { "id": "trauma-a", "text": "Accidents or violence can result in penetrating trauma in the adult population.", "question": "¿Cuál es el resultado de los accidentes o los actos de violencia?", "expectedAnswer": "Pueden causar traumatismos abiertos/penetrantes.", "rubric": [{ "id": "trauma-a-1", "label": "Mi respuesta indica que pueden causar traumatismos abiertos o penetrantes.", "points": 1 }] },
+            { "id": "trauma-b", "text": "Contaminated penetrating foreign bodies introduced at the time of wounding cause infection, especially high velocity projectiles.", "question": "¿Qué elementos producen una infección?", "expectedAnswer": "Cuerpos extraños penetrantes contaminados.", "rubric": [{ "id": "trauma-b-1", "label": "Mi respuesta identifica los cuerpos extraños penetrantes contaminados.", "points": 1 }] },
+            { "id": "trauma-c", "text": "However, perioperative antibiotics are usually indicated due to studies demonstrating high rates of sepsis in the pre-antibiotic era.", "question": "¿En base a qué estudios se indican los antibióticos perioperatorios?", "expectedAnswer": "A estudios que demuestran altos grados de sepsis.", "rubric": [{ "id": "trauma-c-1", "label": "Mi respuesta menciona estudios que demuestran altos grados de sepsis.", "points": 1 }] },
+            { "id": "trauma-d", "text": "We review infections of the CNS, thorax, abdomen and extremities following penetrating trauma injury, as well as the data supporting a reasonable antimicrobial approach.", "question": "¿Qué elementos revisan los autores en este trabajo?", "expectedAnswer": "Revisan las infecciones del SNC, del tórax, del abdomen y las extremidades luego de una lesión penetrante/abierta por traumatismo penetrante. Además, revisan los datos que justifican un tratamiento antimicrobiano adecuado.", "rubric": [{ "id": "trauma-d-1", "label": "Incluí las infecciones del SNC, tórax, abdomen y extremidades tras una lesión penetrante.", "points": 1 }, { "id": "trauma-d-2", "label": "Incluí los datos que justifican un tratamiento antimicrobiano adecuado.", "points": 1 }] },
+            { "id": "trauma-e", "text": "This differentiation is important as the resulting wound from each weapon is unique.", "question": "¿Por qué es importante marcar la diferencia mencionada?", "expectedAnswer": "Porque la lesión resultante es específica para cada tipo de arma.", "rubric": [{ "id": "trauma-e-1", "label": "Mi respuesta explica que la lesión es específica para cada tipo de arma.", "points": 1 }] },
+            { "id": "trauma-f", "text": "Conversely, these factors can also increase infection susceptibility at the penetrating injury site requiring antibiotic treatment.", "question": "¿Cuáles son los efectos de los factores involucrados?", "expectedAnswer": "Pueden aumentar la suceptibilidad a la infección en el sitio de la lesión penetrante/abierta que requiere tratamiento.", "rubric": [{ "id": "trauma-f-1", "label": "Mi respuesta menciona el aumento de la susceptibilidad a la infección en la lesión penetrante.", "points": 1 }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "prefinal-f",
+  "title": "Práctica Pre-final F",
+  "theme": "Respuesta de anticuerpos neutralizantes después de la vacunación contra ómicron",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Three-dose vaccination elicits neutralising antibodies against omicron",
+    "paragraphs": [
+      { "number": 1, "text": "Omicron, the SARS-CoV-2 B.1.1.529 variant of concern (VOC), was first detected in southern Africa in November, 2021, and its BA.1 sub-lineage is now dominant in the UK. It is unclear to what extent its spread is driven by an intrinsic increase in transmissibility or escape from previous infection-induced and vaccine-induced immunity." },
+      { "number": 2, "text": "In the UK, the Pfizer–BioNTech and Oxford–AstraZeneca COVID-19 vaccines were administered as part of a primary two-dose course. A subsequent third dose of either Pfizer–BioNTech or Moderna vaccine has been administered since September, 2021. The aims of this study was to determine the ability of vaccine-induced antibodies to neutralise omicron, and to compare this to our previous measurements of VOC neutralisation by Pfizer–BioNTech and Oxford–AstraZeneca, we carried out a third analysis of the Legacy study cohort." },
+      { "number": 3, "text": "Using a high-throughput live SARS-CoV-2 neutralisation assay, we determined neutralising antibody (NAb) titres (NAbTs) against omicron in 620 serum samples from 364 unique participants and compared these to NAbTs against alpha and delta VOCs, for which there is significant vaccine efficacy data correlated with NAbTs." },
+      { "number": 4, "text": "In participants sampled 2–6 weeks after two-dose vaccination with Pfizer–BioNTech, most (83%) had a quantifiable NAbT against omicron (median 50% inhibitory concentration [IC50] 122), which was seven fold lower than NAbTs against alpha (median IC50 600) and three fold lower than NAbTs against delta (median IC50 301). However, when sampled 12–16 weeks after two-dose vaccination with Pfizer–BioNTech, only around half of participants (51%) had a quantifiable NAbT against omicron, whereas nearly all still had a quantifiable NAbT against alpha (96%) and delta (97%). The drop in omicron NAbT in the 10 weeks after the second dose was significant." },
+      { "number": 5, "text": "The same analysis of participants following two-dose vaccination with Oxford–AstraZeneca showed that less than half had a quantifiable NAbT against omicron 2–6 weeks after second dose (37%), dropping further (19%) 12–16 weeks after second dose, whereas most participants had a quantifiable NAbT against alpha (87%) and delta (76%) 2–6 weeks after second dose of Oxford–AstraZeneca." },
+      { "number": 6, "text": "In September, 2021, the UK initiated a targeted third-dose booster campaign. These groups included health-care workers, individuals older than 50 years, and clinically vulnerable people. All participants received Pfizer–BioNTech for all three doses. Before receiving their third dose, 42% participants had detectable NAbTs against omicron, whereas nearly all participants (96%) neutralised omicron after a third dose, with a median IC50 of 332. After a third dose of Pfizer–BioNTech, NAbTs against omicron at roughly 3 weeks post-vaccination were only four-fold lower than against alpha and only two fold lower than against delta." },
+      { "number": 7, "text": "Our results show that two vaccine doses, of Oxford–AstraZeneca in particular, are insufficient to generate a strong NAb response against omicron. Participants who experienced a COVID-19 infection before or after two-dose vaccination generated higher NAbTs than those who did not experience a COVID-19 infection, as did those who received a third dose of Pfizer–BioNTech, who produced consistently high NAbTs against omicron (and alpha and delta)." },
+      { "number": 8, "text": "Overall, our results suggest that NAbTs against omicron after a third vaccine dose of Pfizer–BioNTech are on a similar order to NAbTs against delta after a second dose of Pfizer–BioNTech. The broad neutralising response observed suggests urgent global action to deliver three-dose vaccination might increase population immunity against current VOCs (including omicron) and help prevent the emergence of new variants." }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        { "id": "a1", "statement": "Prevención del surgimiento de nuevas variantes.", "developed": true, "paragraph": 8 },
+        { "id": "a2", "statement": "Posibles motivos de la rápida propagación de ómicron.", "developed": true, "paragraph": 1 },
+        { "id": "a3", "statement": "Comparación de los anticuerpos contra las distintas variantes de COVID-19 tras haber recibido dos dosis de Pfizer–BioNTech.", "developed": true, "paragraph": 3 },
+        { "id": "a4", "statement": "Eficacia de la combinación de vacunas con drogas antivirales", "developed": false, "paragraph": null },
+        { "id": "a5", "statement": "Grupos de personas que recibieron una tercera dosis en el Reino Unido.", "developed": true, "paragraph": 6 },
+        { "id": "a6", "statement": "Comparación de los anticuerpos contra las distintas variantes de COVID-19 tras haber recibido dos dosis de Oxford–AstraZeneca.", "developed": true, "paragraph": 5 }
+      ]
+    },
+    "b": {
+      "title": "B. Preguntas abiertas",
+      "instructions": "Responda estas preguntas con información del texto y su propia redacción, de la forma más completa posible.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "Explique el plan de vacunación del Reino Unido y el objetivo principal de este estudio.",
+          "suggestedAnswer": "En el Reino Unido, en primer lugar, se aplicaron dos dosis de las vacunas Pfizer–BioNTech y Oxford–AstraZeneca contra el COVID-19. Más tarde, desde septiembre de 2021, se aplicó una tercera dosis ya sea de Pfizer–BioNTech o de Moderna. El objetivo de este estudio fue determinar la capacidad de los anticuerpos inducidos por las vacunas para neutralizar la variante omicron y compararlos con mediciones anteriores de la neutralización de otras variantes de preocupación lograda con Pfizer–BioNTech y Oxford–AstraZeneca.",
+          "rubric": [
+            { "id": "b1-1", "label": "Describí el esquema inicial de dos dosis de Pfizer–BioNTech u Oxford–AstraZeneca.", "points": 1 },
+            { "id": "b1-2", "label": "Mencioné la tercera dosis de Pfizer–BioNTech o Moderna desde septiembre de 2021.", "points": 1 },
+            { "id": "b1-3", "label": "Expliqué el objetivo de medir la neutralización de ómicron.", "points": 1 },
+            { "id": "b1-4", "label": "Incluí la comparación con mediciones previas de otras variantes.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "Mencione cómo se seleccionó la muestra y el método utilizado.",
+          "suggestedAnswer": "Se utilizó un ensayo de neutralización de SARS-CoV-2 vivo de alto rendimiento para determinar títulos de anticuerpos neutralizantes (NAb) (NAbT) contra omicron en 620 muestras de suero de 364 participantes únicos que fueron comparados con NAbT contra COV alfa y delta.",
+          "rubric": [
+            { "id": "b2-1", "label": "Identifiqué el ensayo de neutralización de SARS-CoV-2 vivo de alto rendimiento.", "points": 1 },
+            { "id": "b2-2", "label": "Mencioné los títulos de anticuerpos neutralizantes contra ómicron.", "points": 1 },
+            { "id": "b2-3", "label": "Incluí las 620 muestras de suero de 364 participantes.", "points": 1 },
+            { "id": "b2-4", "label": "Mencioné la comparación con las variantes alfa y delta.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "Compare la protección lograda contra cada variante después de recibir dos dosis de Pfizer–BioNTech.",
+          "suggestedAnswer": "A las 2-6 semanas de la segunda dosis de Pfizer–BioNTech, la mayoría (el 83 %) de los participantes tenían títulos/cantidades cuantificables de anticuerpos neutralizantes contra ómicron, que eran siete veces menores que los anticuerpos contra alfa y tres veces menores que los anticuerpos contra delta. Sin embargo, a las 12-16 semanas, solo la mitad de los participantes (51 %) tenían títulos/cantidades cuantificables de anticuerpos neutralizantes contra ómicron, pero casi todos los seguían teniendo contra alfa (96 %) y contra delta (97 %).",
+          "rubric": [
+            { "id": "b3-1", "label": "Incluí el 83 % contra ómicron a las 2-6 semanas.", "points": 1 },
+            { "id": "b3-2", "label": "Comparé ómicron con alfa y delta a las 2-6 semanas.", "points": 1 },
+            { "id": "b3-3", "label": "Incluí la caída al 51 % contra ómicron a las 12-16 semanas.", "points": 1 },
+            { "id": "b3-4", "label": "Contrasté esa caída con el 96 % contra alfa y el 97 % contra delta.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "Compare la protección conseguida frente a cada variante tras recibir dos dosis de Oxford–AstraZeneca.",
+          "suggestedAnswer": "Tras una segunda dosis de Oxford–AstraZeneca, menos de la mitad (el 37 %) de los participantes tenían títulos/cantidades cuantificables de anticuerpos neutralizantes contra ómicron a las 2-6 semanas, cifra que caía aún más a las 12-16 semanas (19 %), mientras que la mayoría de los participantes tenían títulos/cantidades cuantificables de anticuerpos neutralizantes contra al alfa (87 %) y contra delta (76 %) a las 2-6 semanas.",
+          "rubric": [
+            { "id": "b4-1", "label": "Incluí el 37 % contra ómicron a las 2-6 semanas.", "points": 1 },
+            { "id": "b4-2", "label": "Mencioné la caída al 19 % a las 12-16 semanas.", "points": 1 },
+            { "id": "b4-3", "label": "Incluí el 87 % contra alfa.", "points": 1 },
+            { "id": "b4-4", "label": "Incluí el 76 % contra delta y comparé los resultados.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Cuáles fueron los resultados antes y después de aplicar una tercera dosis de la vacuna?",
+          "suggestedAnswer": "Antes de la aplicación de una tercera dosis de Pfizer–BioNTech, el 42 % de los participantes tenían títulos detectables de anticuerpos contra ómicron, mientras que casi todos (el 96 %) neutralizaron ómicron después de la tercera dosis. A las tres semanas de esa tercera dosis, los títulos de anticuerpos contra ómicron eran solo cuatro veces menores que los anticuerpos contra alfa y dos veces menores que aquellos contra delta.",
+          "rubric": [
+            { "id": "b5-1", "label": "Incluí el 42 % antes de la tercera dosis.", "points": 1 },
+            { "id": "b5-2", "label": "Incluí el 96 % después de la tercera dosis.", "points": 1 },
+            { "id": "b5-3", "label": "Comparé los títulos contra ómicron y alfa a las tres semanas.", "points": 1 },
+            { "id": "b5-4", "label": "Comparé los títulos contra ómicron y delta a las tres semanas.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Cómo se protegió a los pacientes contra las diferentes variantes después de recibir dos o tres dosis de vacuna? ¿Qué implica esto?",
+          "suggestedAnswer": "Los pacientes que tuvieron COVID-19 antes o después de las dos dosis de la vacuna generaron mayores títulos/cantidades de anticuerpos que aquellos que no tuvieron la infección, al igual que los que recibieron una tercera dosis de Pfizer–BioNTech, quienes produjeron sistemáticamente altas cantidades de anticuerpos contra ómicron (y contra alfa y delta). Esto implica que dos dosis de vacuna, en particular, de Oxford–AstraZeneca, no son suficientes para generar una respuesta fuerte de anticuerpos contra ómicron.",
+          "rubric": [
+            { "id": "b6-1", "label": "Mencioné la mayor respuesta en quienes tuvieron COVID-19 antes o después de dos dosis.", "points": 1 },
+            { "id": "b6-2", "label": "Mencioné la alta respuesta tras una tercera dosis de Pfizer–BioNTech.", "points": 1 },
+            { "id": "b6-3", "label": "Incluí la respuesta contra ómicron, alfa y delta.", "points": 1 },
+            { "id": "b6-4", "label": "Concluí que dos dosis, especialmente de Oxford–AstraZeneca, no bastan contra ómicron.", "points": 1 }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Versión del título",
+      "instructions": "Elabore una adecuada versión del título de este texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "La vacunación con tres dosis/Tres dosis de vacunación genera anticuerpos neutralizantes contra ómicron."
+    }
+  }
+}

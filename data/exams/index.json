@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "exams": [
+    {
+      "id": "prefinal-a",
+      "file": "./prefinal-a.json",
+      "available": true
+    },
+    {
+      "id": "prefinal-b",
+      "file": "./prefinal-b.json",
+      "available": true
+    },
+    {
+      "id": "prefinal-c",
+      "file": "./prefinal-c.json",
+      "available": true
+    },
+    {
+      "id": "prefinal-d",
+      "file": "./prefinal-d.json",
+      "available": true
+    },
+    {
+      "id": "prefinal-e",
+      "file": "./prefinal-e.json",
+      "available": true
+    },
+    {
+      "id": "prefinal-f",
+      "file": "./prefinal-f.json",
+      "available": true
+    }
+  ]
+}

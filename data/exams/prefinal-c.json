@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "prefinal-c",
+  "title": "Práctica Pre-final C",
+  "theme": "Referencias descriptivas y estándares prescriptivos de crecimiento",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Measuring growth: descriptive or prescriptive?",
+    "paragraphs": [
+      { "number": 1, "text": "In this issue of The Lancet Digital Health, Barbara Heude and colleagues describe the creation of paediatric growth charts by taking the novel approach of leveraging a massive and up-to-date dataset recorded in the course of routine clinical practice by French primary care physicians." },
+      { "number": 2, "text": "Growth is a reflection of health and the balance between the supply and demand for macronutrients and micronutrients. An observed value for body size (i.e., anthropometry) or rate of growth is at its most useful when it is compared with reference data indicating how individuals normally grow with age or how different measurements relate to each other (e.g., body-mass index [BMI] in kg/m²). However, how individuals normally grow is not easy to define. It can mean either how individuals usually grow (i.e., descriptive references) or how individuals should grow (i.e., prescriptive standards)." },
+      { "number": 3, "text": "Prescriptive standards aim to be derived from measurements from optimally healthy individuals without nutritional limitations, disease, or exposures known to adversely influence growth. The leading example is the WHO Multicentre Growth Reference Study (MGRS). In this logistically challenging study, well controlled and standardised longitudinal and cross-sectional assessment was undertaken of infants and children from birth to 71 months of age. Participants were identified in affluent neighbourhoods in the USA, Norway, Brazil, Ghana, and India. Inclusion criteria included that mothers were or had followed WHO breastfeeding and complementary feeding recommendations, and there were no known health or environmental factors that could constrain growth such as maternal smoking. For the longitudinal assessment, 83% of screened participants were excluded. Remarkably, within these different locations and ethnic groups, growth was virtually identical." },
+      { "number": 4, "text": "More recently, a similar approach was taken by the INTERGROWTH-21st study to create standards for fetal growth and growth of preterm infants using carefully standardised, prospectively collected data from advantaged populations in the UK, USA, Italy, India, China, Pakistan, Brazil, Kenya, and Oman. Again, growth was observed to be the same across all sites." },
+      { "number": 5, "text": "These two studies strongly suggest that without environmental, nutritional, and socioeconomic restrictions (including intergenerational factors), the vast majority of human populations grow in the same way. Hence, the standards created are regarded as prescriptive for how children should grow and can be used as a target for attainment worldwide. No similar study has been done among school-aged children and adolescents—such a study would be complex and expensive." },
+      { "number": 6, "text": "Concerns regarding prescriptive growth standards include uncertainty as to whether they apply to all populations. We know that substantial differences in adult height and weight exist, including between high-income countries. There have been varying gains in height in the past 100 years, with gains in many countries continuing after the WHO MGRS data were collected in 1997–2003." },
+      { "number": 7, "text": "Descriptive studies aim to accurately represent the population of a country or region. They also generally apply criteria to exclude individuals with chronic disease or genetic variations affecting body size." }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        { "id": "a1", "statement": "Dudas en relación a la validez de los estándares prescriptivos de crecimiento.", "developed": true, "paragraph": 6 },
+        { "id": "a2", "statement": "Detalles de un estudio basado en estándares prescriptivos.", "developed": true, "paragraph": 3 },
+        { "id": "a3", "statement": "Descripción de estudios del crecimiento entre adolescentes.", "developed": false, "paragraph": null },
+        { "id": "a4", "statement": "Conclusiones obtenidas de estudios del crecimiento en niños.", "developed": true, "paragraph": 5 },
+        { "id": "a5", "statement": "Utilidad de contar con un índice de crecimiento establecido.", "developed": true, "paragraph": 2 },
+        { "id": "a6", "statement": "Nueva fuente de datos para la construcción de tablas de crecimiento en niños.", "developed": true, "paragraph": 1 }
+      ]
+    },
+    "b": {
+      "title": "B. Preguntas abiertas",
+      "instructions": "Responda estas preguntas con información del texto y su propia redacción de la forma más completa posible.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿En qué radica la utilidad de contar con datos de crecimiento de referencia y cómo se pueden clasificar?",
+          "suggestedAnswer": "Los datos de crecimiento de referencia se utilizan para compararlos con valores observados de tamaños del cuerpo o de índices/tasas de crecimiento. Se pueden clasificar en referencias descriptivas, si indican cómo crece normalmente un individuo; o estándares prescriptivos, si indican cómo debería hacerlo.",
+          "rubric": [
+            { "id": "b1-1", "label": "Expliqué la comparación con valores observados del tamaño corporal.", "points": 1 },
+            { "id": "b1-2", "label": "Incluí la comparación con índices o tasas de crecimiento.", "points": 1 },
+            { "id": "b1-3", "label": "Definí las referencias descriptivas como el modo en que normalmente se crece.", "points": 1 },
+            { "id": "b1-4", "label": "Definí los estándares prescriptivos como el modo en que se debería crecer.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Cómo se obtienen los estándares prescriptivos de crecimiento?",
+          "suggestedAnswer": "Los estándares prescriptivos de crecimiento se obtienen de mediciones hechas a niños en condiciones óptimas de salud, sin limitaciones nutricionales, sin enfermedades ni exposiciones a factores que impacten negativamente en el crecimiento.",
+          "rubric": [
+            { "id": "b2-1", "label": "Mencioné que se obtienen mediante mediciones en niños.", "points": 1 },
+            { "id": "b2-2", "label": "Incluí las condiciones óptimas de salud.", "points": 1 },
+            { "id": "b2-3", "label": "Aclaré que no existen limitaciones nutricionales ni enfermedades.", "points": 1 },
+            { "id": "b2-4", "label": "Excluí exposiciones que afecten negativamente el crecimiento.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿Quiénes participaron del estudio MGRS? ¿Qué criterios de inclusión se utilizaron?",
+          "suggestedAnswer": "Participaron niños recién nacidos hasta 71 meses de edad de barrios sin carencias económicas en E.E.U.U., Noruega, Brasil, Ghana e India. Los criterios de inclusión fueron: madres que estaban siguiendo o habían seguido las recomendaciones de amamantamiento y de alimentación complementaria de la OMS y inexistencia de factores que pudieron limitar el crecimiento de los niños (por ejemplo, madres fumadoras).",
+          "rubric": [
+            { "id": "b3-1", "label": "Identifiqué a niños desde el nacimiento hasta los 71 meses.", "points": 1 },
+            { "id": "b3-2", "label": "Mencioné los barrios sin carencias económicas y los países participantes.", "points": 1 },
+            { "id": "b3-3", "label": "Incluí las recomendaciones de la OMS sobre amamantamiento y alimentación complementaria.", "points": 1 },
+            { "id": "b3-4", "label": "Mencioné la ausencia de factores que limitaran el crecimiento, como el tabaquismo materno.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "Describa las similitudes y diferencias existentes entre el estudio MGRS y el estudio INTERGROWTH-21st.",
+          "suggestedAnswer": "Ambos estudios se realizaron para crear estándares prescriptivos de crecimiento, en ambos se comprobó que el crecimiento era igual en todos los sitios del estudio. Ambos se realizaron con individuos de poblaciones sin carencias socioeconómicas/que viven en una situación económica favorable de Estados Unidos, India y Brasil pero el resto de los países difieren. El estudio MGRS se realizó con niños de hasta 71 meses de edad, mientras que el otro se hizo con bebés por nacer o prematuros.",
+          "rubric": [
+            { "id": "b4-1", "label": "Expliqué que ambos buscaban crear estándares prescriptivos.", "points": 1 },
+            { "id": "b4-2", "label": "Mencioné que el crecimiento fue igual en todos los sitios.", "points": 1 },
+            { "id": "b4-3", "label": "Comparé las poblaciones y los países incluidos.", "points": 1 },
+            { "id": "b4-4", "label": "Diferencié a los niños de hasta 71 meses de los fetos y prematuros.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "En base a los estudios mencionados en el artículo, ¿cuáles son las conclusiones que se pueden inferir?",
+          "suggestedAnswer": "Se puede sugerir que la inmensa mayoría de las poblaciones humanas crecen de igual forma siempre que no existan restricciones de tipo ambientales, nutricionales o socioeconómicas.",
+          "rubric": [
+            { "id": "b5-1", "label": "Me referí a la inmensa mayoría de las poblaciones humanas.", "points": 1 },
+            { "id": "b5-2", "label": "Expliqué que crecen de igual forma en condiciones comparables.", "points": 1 },
+            { "id": "b5-3", "label": "Mencioné la ausencia de restricciones ambientales y nutricionales.", "points": 1 },
+            { "id": "b5-4", "label": "Mencioné la ausencia de restricciones socioeconómicas.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Qué resulta poco claro aún sobre la aplicación de los estándares prescriptivos de crecimiento? ¿Por qué?",
+          "suggestedAnswer": "No queda claro si es posible aplicar estos estándares a todas las poblaciones debido a las diferencias sustanciales que existen en cuanto a peso y altura entre los adultos e incluso entre países de ingresos altos.",
+          "rubric": [
+            { "id": "b6-1", "label": "Señalé la incertidumbre sobre su aplicación a todas las poblaciones.", "points": 1 },
+            { "id": "b6-2", "label": "Relacioné la duda con diferencias sustanciales entre adultos.", "points": 1 },
+            { "id": "b6-3", "label": "Incluí las diferencias de peso y altura.", "points": 1 },
+            { "id": "b6-4", "label": "Aclaré que existen diferencias incluso entre países de ingresos altos.", "points": 1 }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Versión del título",
+      "instructions": "Elabore una adecuada versión del título de este texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "Medición del crecimiento: ¿descriptiva o prescriptiva?"
+    }
+  }
+}

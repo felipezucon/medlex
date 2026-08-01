@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "prefinal-d",
+  "title": "Práctica Pre-final D",
+  "theme": "Anticoagulación en pacientes con COVID-19 y contribución del estudio MICHELLE",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Anticoagulation in COVID-19",
+    "paragraphs": [
+      { "number": 1, "text": "Thrombotic complications (arterial and venous) are common in patients admitted to hospital with COVID-19 and are an independent predictor of poor outcome. Microvascular thrombi also contribute to organ dysfunction, including acute respiratory distress syndrome. The pathogenesis of thrombosis in COVID-19 is intimately linked with the inflammatory response to the virus, endothelial infection, activation, and injury as well as hypercoagulability. Recognition that thrombosis is a key contributor to clinical deterioration and death has led to global interest in whether escalated anticoagulation dose or extended duration improves patient outcomes." },
+      { "number": 2, "text": "Early in the COVID-19 pandemic, published guidelines were heterogeneous with some, in the absence of evidence, recommending increased anticoagulation doses (particularly in critical care), stratifying dose by D-dimer results, or extended post-discharge thromboprophylaxis, or both. Since then, randomised controlled trials have focused on all phases of illness, so that high-quality evidence is now informing clinical practice. From these trials, it has become clear that efficacy and safety of antithrombotic treatments depend on timing with respect to illness severity and dose, and that the mechanism of action might also be important." },
+      { "number": 3, "text": "For non-critically ill patients hospitalised with COVID-19, therapeutic-dose heparin appears beneficial, with a high probability of reducing the need for organ support and the progression to intubation and death, regardless of D-dimer results. Results from two subsequent randomised controlled trials have also supported the role of therapeutic-dose heparin in this cohort. By contrast, in critically ill patients, therapeutic-dose heparin did not improve outcomes and there was a high probability of harm. An area of ongoing uncertainty is the role of extended duration of anticoagulation post-hospital discharge. For this phase of treatment, if required, an oral anticoagulant is preferable to parenteral anticoagulant to facilitate timely hospital discharge and for patient convenience." },
+      { "number": 4, "text": "Now in The Lancet, Eduardo Ramacciotti and colleagues report the results of the MICHELLE trial, which addresses the role of extended duration rivaroxaban post discharge. The eligibility criteria meant only patients at high VTE (venous thromboembolism) risk were included in this trial. Patients with risk factors for bleeding, such as thrombocytopenia and severe renal failure, were excluded. The MICHELLE trial specifically evaluates the efficacy and safety of extended thromboprophylaxis after hospitalisation for COVID-19 (at prophylactic rather than therapeutic dose). The trial has a number of strengths, including the randomised design and enrolment across 14 sites, increasing the generalisability of the findings and the use of low-dose rivaroxaban appropriate for this phase of treatment. The eligibility criteria selected patients at low bleeding risk and high VTE risk, with symptomatic and fatal VTE reported in eight (5%) of 159 patients in the control group. The limitations of this trial include that it was an open-label study. Finally, the sample size was relatively small." },
+      { "number": 5, "text": "Before this trial, evidence to inform the use of thromboprophylaxis post-hospital discharge was mostly limited to observational studies. The MICHELLE trial has reported that in patients estimated to be at high VTE risk and low bleeding risk, post-discharge low-dose rivaroxaban is effective at reducing thrombotic events and thrombotic-related death with a low risk of major bleeding. These results are encouraging, but in view of the small size of this trial, clinicians are likely to wait for results from other ongoing trials evaluating post-discharge thromboprophylaxis before changing standard practice and guideline recommendations." }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        { "id": "a1", "statement": "Uso de heparinas en pacientes internados con COVID-19.", "developed": true, "paragraph": 3 },
+        { "id": "a2", "statement": "Factores que influyen en el éxito de las terapias antitrombóticas.", "developed": true, "paragraph": 2 },
+        { "id": "a3", "statement": "Descripción de las fases del estudio MICHELLE.", "developed": false, "paragraph": null },
+        { "id": "a4", "statement": "Contribución del estudio MICHELLE al tratamiento de los pacientes con COVID-19.", "developed": true, "paragraph": 5 },
+        { "id": "a5", "statement": "Relación entre la enfermedad por COVID-19 y los episodios trombóticos.", "developed": true, "paragraph": 1 },
+        { "id": "a6", "statement": "Criterios de inclusión de pacientes en el estudio MICHELLE.", "developed": true, "paragraph": 4 }
+      ]
+    },
+    "b": {
+      "title": "B. Preguntas abiertas",
+      "instructions": "Responda estas preguntas con información del texto y su propia redacción, de la forma más completa posible.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Por qué podría considerarse anticoagular a los pacientes con COVID-19?",
+          "suggestedAnswer": "Porque las complicaciones trombóticas (tanto arteriales como venosas) son comunes en los pacientes internados por COVID-19 y constituyen un predictor de malos resultados. Los trombos microvasculares también contribuyen a la disfunción orgánica, incluido el síndrome de distrés respiratorio agudo. (Saber que la trombosis contribuye al deterioro clínico y la muerte ha despertado el interés por averiguar si ciertas dosis o la duración prolongada de la anticoagulación mejoran los resultados para el paciente).",
+          "rubric": [
+            { "id": "b1-1", "label": "Mencioné que las complicaciones trombóticas arteriales y venosas son comunes.", "points": 1 },
+            { "id": "b1-2", "label": "Las identifiqué como predictor de malos resultados.", "points": 1 },
+            { "id": "b1-3", "label": "Relacioné los trombos microvasculares con la disfunción orgánica.", "points": 1 },
+            { "id": "b1-4", "label": "Expliqué el interés por la dosis o duración de la anticoagulación.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Qué criterios debían cumplir los pacientes para participar del estudio MICHELLE?",
+          "suggestedAnswer": "Solo se incluyó a pacientes con alto riesgo de TEV y bajo riesgo de sangrado, por lo que aquellos con factores de riesgo de sangrado, como la trombocitopenia y la insuficiencia renal grave fueron excluidos.",
+          "rubric": [
+            { "id": "b2-1", "label": "Identifiqué el alto riesgo de TEV como criterio de inclusión.", "points": 1 },
+            { "id": "b2-2", "label": "Identifiqué el bajo riesgo de sangrado como criterio de inclusión.", "points": 1 },
+            { "id": "b2-3", "label": "Mencioné la exclusión por trombocitopenia.", "points": 1 },
+            { "id": "b2-4", "label": "Mencioné la exclusión por insuficiencia renal grave.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿Cuál fue la principal contribución del estudio MICHELLE y qué importancia tiene en relación con las estrategias de tratamiento de los pacientes con COVID-19?",
+          "suggestedAnswer": "El estudio demostró que, en pacientes con alto riesgo de TEV y bajo riesgo de sangrado, la administración de dosis bajas de rivaroxabán después del alta fue efectiva para reducir los episodios trombóticos y la muerte, sin aumentar el riesgo de sangrado. Es una contribución importante porque, antes de este estudio, la evidencia en la cual se basaba la tromboprofilaxis después del alta hospitalaria se limitaba a estudios observacionales.",
+          "rubric": [
+            { "id": "b3-1", "label": "Identifiqué a los pacientes con alto riesgo de TEV y bajo riesgo de sangrado.", "points": 1 },
+            { "id": "b3-2", "label": "Mencioné las dosis bajas de rivaroxabán después del alta.", "points": 1 },
+            { "id": "b3-3", "label": "Expliqué la reducción de trombosis y muerte sin mayor sangrado.", "points": 1 },
+            { "id": "b3-4", "label": "Contrasté el hallazgo con la evidencia observacional previa.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Qué resultados dio la anticoagulación durante la internación y posterior al alta en los pacientes con COVID-19?",
+          "suggestedAnswer": "En pacientes internados con COVID-19 no críticos, las dosis terapéuticas de heparina se mostraron beneficiosas y redujeron la necesidad de soporte orgánico y la posterior intubación y muerte, independientemente de los resultados del dímero D. En el caso de los pacientes críticos, las dosis terapéuticas de heparina no mejoraron los resultados y hubo más probabilidad de daño. Aún se desconoce la utilidad de la anticoagulación prolongada posterior al alta hospitalaria.",
+          "rubric": [
+            { "id": "b4-1", "label": "Expliqué los beneficios de la heparina terapéutica en pacientes no críticos.", "points": 1 },
+            { "id": "b4-2", "label": "Incluí la reducción del soporte orgánico, la intubación y la muerte.", "points": 1 },
+            { "id": "b4-3", "label": "Aclaré la falta de beneficio y posible daño en pacientes críticos.", "points": 1 },
+            { "id": "b4-4", "label": "Mencioné la incertidumbre sobre la anticoagulación prolongada posterior al alta.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "Describa las recomendaciones de las primeras directrices para el tratamiento del COVID-19 al inicio de la pandemia. ¿En qué sentido cambiaron después de los primeros ensayos?",
+          "suggestedAnswer": "Las primeras directrices tenían recomendaciones heterogéneas: al no haber evidencias, indicaban aumentar las dosis de anticoagulación (especialmente en pacientes críticos; las dosis se estratificaban según los resultados del dímero D), o se indicaba una tromboprofilaxis prolongada posterior al alta, o ambas. Posteriormente, hubo ensayos controlados aleatorizados que se centraron en todas las fases de la enfermedad y brindaron evidencia de calidad para guiar los tratamientos (las prácticas clínicas). Ahora se sabe que la eficacia y la seguridad de los tratamientos antitrombóticos depende del momento en que se los administra según la gravedad de la enfermedad y la dosis, y también puede depender del mecanismo de acción.",
+          "rubric": [
+            { "id": "b5-1", "label": "Describí las recomendaciones iniciales heterogéneas y sin evidencia.", "points": 1 },
+            { "id": "b5-2", "label": "Incluí el aumento de dosis, el dímero D o la profilaxis prolongada.", "points": 1 },
+            { "id": "b5-3", "label": "Mencioné la evidencia posterior de ensayos aleatorizados en todas las fases.", "points": 1 },
+            { "id": "b5-4", "label": "Relacioné eficacia y seguridad con momento, gravedad, dosis y mecanismo.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "Mencione algunas fortalezas y algunas limitaciones del estudio MICHELLE.",
+          "suggestedAnswer": "Entre las fortalezas, se puede mencionar que fue un estudio aleatorizado y llevado a cabo en 14 lugares, lo cual favorece la generalización de los resultados y el uso de bajas dosis de rivaroxabán apropiadas para esta fase del tratamiento. Las limitaciones fueron que es un estudio sin ocultación y realizado en una muestra pequeña.",
+          "rubric": [
+            { "id": "b6-1", "label": "Mencioné el diseño aleatorizado como fortaleza.", "points": 1 },
+            { "id": "b6-2", "label": "Incluí los 14 sitios, la generalización y la dosis apropiada de rivaroxabán.", "points": 1 },
+            { "id": "b6-3", "label": "Identifiqué el diseño sin ocultación como limitación.", "points": 1 },
+            { "id": "b6-4", "label": "Identifiqué el tamaño pequeño de la muestra como limitación.", "points": 1 }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Subtítulo",
+      "instructions": "Complete el siguiente espacio con un subtítulo en español para este texto (en una o dos líneas). Anticoagulación en pacientes con COVID-19: ______________________________________",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "Anticoagulación en pacientes con COVID-19: La contribución del estudio MICHELLE / Nuevos hallazgos para guiar las estrategias terapéuticas posteriores al alta hospitalaria / (Algún otro subtítulo que se relacione con el contenido de más de un párrafo)"
+    }
+  }
+}

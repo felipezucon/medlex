@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "practices": [
+    {
+      "id": "ing-forms",
+      "file": "./ing-forms.json",
+      "available": true
+    }
+  ]
+}

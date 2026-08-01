@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "prefinal-e",
+  "title": "Práctica Pre-final E",
+  "theme": "Estimulación cerebral profunda para trastornos del movimiento",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Deep Brain Stimulation for Movement Disorders",
+    "paragraphs": [
+      { "number": 1, "text": "Deep brain stimulation (DBS) is a surgical procedure used to treat disabling symptoms of neurological disorders, including dystonia, epilepsy, essential tremor, and Parkinson's disease. DBS uses a surgically implanted, battery-operated medical device called an implantable pulse generator (IPG)—similar to a heart pacemaker and approximately the size of a stopwatch—to deliver electrical stimulation to specific areas in the brain that control movement, which blocks the abnormal nerve signals that cause symptoms." },
+      { "number": 2, "text": "The DBS system consists of three components: the lead, the extension, and the IPG. The lead (also called an electrode)—a thin, insulated wire—is inserted through a small opening made in the skull and implanted in the brain. The tip of the electrode is positioned within a specific brain area, depending on the disorder. The extension is an insulated wire that is passed under the skin of the head, neck, and shoulder, connecting the lead to the implantable pulse generator. The IPG (the “battery pack”) is usually implanted under the skin near the collarbone. In some cases, it may be implanted lower in the chest or under the skin over the abdomen." },
+      { "number": 3, "text": "Once the system is in place, and after a period of healing post-surgery, the device is programmed to sets of parameters that work best for each person, over several visits with a neurologist. The therapy works by delivering electrical pulses from the IPG along the extension wire and the lead and into the brain. These pulses change the brain's electrical activity pattern at the target site to reduce motor symptoms." },
+      { "number": 4, "text": "Before the procedure, a neurosurgeon uses noninvasive diagnostic imaging—either magnetic resonance imaging (MRI) or computed tomography (CT) scanning—to identify and locate the exact target in the brain for the surgery. Most surgeons use microelectrode recording—which involves insertion of a tiny wire that monitors the activity of nerve cells—to more specifically identify the precise brain area that will be stimulated." },
+      { "number": 5, "text": "For treatment of Parkinson's disease, DBS targets parts of the brain that play a role in the control of movement—the thalamus (which relays and integrates sensory and motor information), subthalamic nucleus (which helps direct movement preparation), or globus pallidus (which helps regulate intended movement). DBS for dystonia specifically targets the globus pallidus interna (involved in the regulation of voluntary movement), while DBS for essential tremor targets the thalamus. Different areas of the brain may be targeted for individuals with epilepsy who do not respond well to other therapies." },
+      { "number": 6, "text": "BS (Brain Stimulation) involves minimal permanent surgical changes to the brain. If DBS causes unwanted side effects or more promising treatments develop in the future, the IPG can be removed and the DBS procedure can be halted. Also, stimulation from the IPG is easily adjustable—without further surgery—if the person's condition changes. Some people describe the pulse generator adjustments as “programming.”" },
+      { "number": 7, "text": "Although minimally invasive, DBS is a surgical procedure and therefore carries some associated risk. There is a low chance that placement of the stimulator may cause bleeding or infection in the brain. Complications of DBS, such as bleeding and swelling of brain tissue, may result from mechanical stress from the device but are generally reversible. Other complications may include headache, seizures, and temporary pain following surgery. Also, the hardware may erode or break down with use, requiring surgery to replace parts of the device. Side effects of the stimulation may include numbness or tingling sensations, behavioral changes, as well as balance or speech problems." }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        { "id": "a1", "statement": "Estudios prequirúrgicos previos a la colocación de un sistema de ECP (Estimulación Cerebral Profunda).", "developed": true, "paragraph": 4 },
+        { "id": "a2", "statement": "Motivos para discontinuar el uso del sistema de ECP.", "developed": true, "paragraph": 6 },
+        { "id": "a3", "statement": "Medicamentos administrados a pacientes que tienen un dispositivo de ECP.", "developed": false, "paragraph": null },
+        { "id": "a4", "statement": "Partes del cerebro estimuladas por este sistema según la enfermedad por tratar.", "developed": true, "paragraph": 5 },
+        { "id": "a5", "statement": "Riesgos asociados al uso de un sistema de estimulación cerebral profunda.", "developed": true, "paragraph": 7 },
+        { "id": "a6", "statement": "Aplicaciones de la estimulación cerebral profunda.", "developed": true, "paragraph": 1 }
+      ]
+    },
+    "b": {
+      "title": "B. Preguntas abiertas",
+      "instructions": "Responda estas preguntas con información del texto y su propia redacción de la forma más completa posible.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Qué es un estimulador cerebral profundo? ¿Cómo funciona?",
+          "suggestedAnswer": "Un estimulador cerebral profundo es un dispositivo médico, llamado generador de pulso, que se implanta quirúrgicamente y funciona a batería. (Sirve para tratar síntomas incapacitantes de trastornos neurológicos como la distonía, la epilepsia, el temblor esencial y la enfermedad de Parkinson). Funciona (de manera similar a un marcapasos y tiene el tamaño de un reloj de pulsera/cronómetro) estimulando eléctricamente áreas específicas del cerebro que controlan el movimiento, para bloquear las señales nerviosas anormales que causan los síntomas.",
+          "rubric": [
+            { "id": "b1-1", "label": "Definí el generador de pulso implantado quirúrgicamente y a batería.", "points": 1 },
+            { "id": "b1-2", "label": "Mencioné los trastornos neurológicos o síntomas incapacitantes que trata.", "points": 1 },
+            { "id": "b1-3", "label": "Expliqué que estimula áreas cerebrales que controlan el movimiento.", "points": 1 },
+            { "id": "b1-4", "label": "Expliqué que bloquea señales nerviosas anormales causantes de síntomas.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿En qué consiste la evaluación de los pacientes antes de que se coloque el ECP?",
+          "suggestedAnswer": "Antes del procedimiento, un neurocirujano emplea métodos diagnósticos no invasivos por imágenes (resonancia magnética o tomografía computada) para identificar el lugar exacto del cerebro en el que se realizará cirugía. La mayoría de los cirujanos utilizan un registro de microelectrodos (la inserción de un cable delgado que monitorea la actividad de las células nerviosas) para identificar específicamente el área precisa del cerebro que se estimulará.",
+          "rubric": [
+            { "id": "b2-1", "label": "Mencioné la evaluación por un neurocirujano antes del procedimiento.", "points": 1 },
+            { "id": "b2-2", "label": "Incluí resonancia magnética o tomografía computada no invasiva.", "points": 1 },
+            { "id": "b2-3", "label": "Expliqué el registro mediante microelectrodos.", "points": 1 },
+            { "id": "b2-4", "label": "Relacioné ambos métodos con la localización precisa del área por estimular.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "Describa los efectos colaterales y las complicaciones asociados al ECP.",
+          "suggestedAnswer": "Una de las complicaciones es que produzca sangrado o una infección en el cerebro, e inflamación del tejido cerebral producto del estrés mecánico que causa dispositivo. También puede provocar dolor de cabeza, convulsiones y dolor transitorio posquirúrgico. El dispositivo puede dañarse con el uso y hacer necesaria una cirugía para reemplazar partes de este. Entre los efectos colaterales se cuentan el entumecimiento o sensaciones de hormigueo, los cambios de comportamiento y los problemas del equilibrio o del habla.",
+          "rubric": [
+            { "id": "b3-1", "label": "Incluí sangrado, infección o inflamación del tejido cerebral.", "points": 1 },
+            { "id": "b3-2", "label": "Mencioné dolor de cabeza, convulsiones o dolor posquirúrgico.", "points": 1 },
+            { "id": "b3-3", "label": "Expliqué el desgaste del dispositivo y posible cirugía de reemplazo.", "points": 1 },
+            { "id": "b3-4", "label": "Incluí efectos sensoriales, conductuales, del equilibrio o del habla.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Cómo está compuesto el sistema del ECP? ¿Cómo se usa cada componente?",
+          "suggestedAnswer": "El sistema de estimulación cerebral profunda es un dispositivo médico que consta de tres componentes: el electrodo, la extensión y el generador de pulso implantable (GPI). (El electrodo, un cable delgado y aislado, se inserta a través de un pequeño orificio realizado en el cráneo y se implanta en el cerebro. La punta del electrodo se ubica dentro de un área específica del cerebro, según el trastorno por tratar. La extensión es un cable aislado que se pasa por debajo de la piel de la cabeza, el cuello y el hombro y que conecta el electrodo al generador de pulso para implantar. El GPI (el “paquete de batería”), por lo general, se implanta por debajo de la piel cerca de la clavícula. En algunos casos, se puede implantar más abajo en el tórax o por debajo de la piel en el abdomen). Una vez que el sistema está en su lugar y después de un período de recuperación posquirúrgica, se programa el dispositivo para establecer los parámetros que le funcionen mejor a cada persona a lo largo de varias visitas al neurólogo. La terapia actúa administrando impulsos eléctricos desde el IPG a lo largo del cable de extensión y del electrodo hacia el cerebro. Esos impulsos cambian el patrón de actividad eléctrica del cerebro en el lugar destino para disminuir los síntomas motores.",
+          "rubric": [
+            { "id": "b4-1", "label": "Identifiqué electrodo, extensión y GPI como los tres componentes.", "points": 1 },
+            { "id": "b4-2", "label": "Describí la colocación y función del electrodo.", "points": 1 },
+            { "id": "b4-3", "label": "Describí el recorrido de la extensión y la ubicación del GPI.", "points": 1 },
+            { "id": "b4-4", "label": "Expliqué la programación y el recorrido de los impulsos hasta el cerebro.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Qué partes del cerebro pueden ser estimuladas? Proporcione dos ejemplos.",
+          "suggestedAnswer": "Puede estimular diferentes áreas del cerebro según el estado de cada paciente. Por ejemplo, para el tratamiento de la enfermedad de Parkinson, el ECP se dirige a partes del cerebro que controlan el movimiento: el tálamo (que retransmite e integra la información sensorial y motora), el núcleo subtalámico (que ayuda a dirigir la preparación del movimiento) o el globo pálido (que ayuda a regular el movimiento intencional). (Para la distonía, el DBS actúa específicamente en el globo pálido, mientras que, para el temblor esencial, el ECP se centra en el tálamo).",
+          "rubric": [
+            { "id": "b5-1", "label": "Expliqué que el área elegida depende del trastorno del paciente.", "points": 1 },
+            { "id": "b5-2", "label": "Di un primer ejemplo correcto de trastorno y área cerebral.", "points": 1 },
+            { "id": "b5-3", "label": "Di un segundo ejemplo correcto de trastorno y área cerebral.", "points": 1 },
+            { "id": "b5-4", "label": "Relacioné las áreas mencionadas con el control del movimiento.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿En qué situaciones se puede retirar o reemplazar el GPI?",
+          "suggestedAnswer": "Si el sistema produce efectos secundarios no deseados o si en el futuro se desarrollan tratamientos más prometedores para los trastornos que trata, se puede extraer el GPI y detener el procedimiento de ECP. Si el dispositivo (hardware) se desgasta o se rompe con el uso, alguna de sus partes deberá ser reemplazada mediante cirugía.",
+          "rubric": [
+            { "id": "b6-1", "label": "Mencioné los efectos secundarios no deseados como motivo para retirarlo.", "points": 1 },
+            { "id": "b6-2", "label": "Mencioné la aparición de tratamientos futuros más prometedores.", "points": 1 },
+            { "id": "b6-3", "label": "Expliqué que el GPI puede extraerse y detenerse el procedimiento.", "points": 1 },
+            { "id": "b6-4", "label": "Relacioné el desgaste o rotura con el reemplazo quirúrgico.", "points": 1 }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Versión del título",
+      "instructions": "Elabore una adecuada versión del título de este texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "Estimulación cerebral profunda para trastornos motores"
+    }
+  }
+}

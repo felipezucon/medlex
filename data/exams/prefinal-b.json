@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "id": "prefinal-b",
+  "title": "Práctica Pre-final B",
+  "theme": "Rivaroxabán y tromboprofilaxis después del alta en pacientes hospitalizados por COVID-19",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Rivaroxaban versus no anticoagulation for post-discharge thromboprophylaxis after hospitalisation for COVID-19 (MICHELLE): an open-label, multicentre, randomised, controlled trial",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Thrombotic events complicate COVID-19 at higher rates than previously observed in other comparable clinical situations, such as acute distress respiratory syndrome not related to SARS-CoV-2. Prophylactic use of parenteral anticoagulants during hospitalisation is recommended, and there is emerging consensus about the role of in-hospital heparin as primary thromboprophylaxis. There is no consensus on the use of extended thrombo-prophylaxis beyond the hospital stay."
+      },
+      {
+        "number": 2,
+        "text": "Extended venous thromboembolism prophylaxis after hospitalisation for medically ill (non-COVID-19) patients was previously assessed. There are conflicting recommendations about the role of post-hospital discharge extended antithrombotic prophylaxis in patients hospitalised due to COVID-19. We hypothesised that in these patients, prophylaxis with rivaroxaban 10 mg/day for 35 days after discharge would improve clinical outcomes, including major and fatal thromboembolic events."
+      },
+      {
+        "number": 3,
+        "text": "We included patients at discharge who were hospitalised with COVID-19 (confirmed by RT-PCR, antigen, or IgM tests) for a minimum of 3 days (intensive care unit [ICU] stay was allowed). Patients received standard prophylactic doses of parenteral enoxaparin (40 mg subcutaneously once per day), unfractionated heparin (5000 IU two or three times per day), or fondaparinux (2·5 mg once per day) during hospitalisation. They also needed to have an increased risk for venous thromboembolism, defined as an elevated modified International Medical Prevention Registry on Venous Thromboembolism (IMPROVE) venous thromboembolism (VTE) score of 2–3 with a D-dimer level of more than 500 ng/mL using local laboratory criteria or a score of 4 or more independent of said level at hospital discharge. It was recommended that an elevated D-dimer level close to hospital discharge was to be used by sites when available, but any high D-dimer level (above 500 ng/mL) during any time of hospitalisation was considered for calculating the IMPROVE VTE score during randomisation. No patient was scanned with Doppler ultrasound or pulmonary angiogram CT in hospital before being recruited. Suspicion or confirmation of a thrombotic event was an exclusion criterion, so patients with previously positive scans were not eligible for the MICHELLE trial."
+      },
+      {
+        "number": 4,
+        "text": "In this open-label, multicentre, randomised, controlled trial of patients at high risk hospitalised with confirmed COVID-19, a treatment regimen of standard in-hospital parenteral thromboprophylaxis and extended post-discharge thromboprophylaxis with rivaroxaban 10 mg/day for 35 days (SD 4), when compared with no anticoagulation, resulted in better clinical outcomes, including a reduction in major and fatal thromboembolic events without increasing major bleeding, after standard in-hospital parenteral thromboprophylaxis. The results were consistent across all prespecified subgroups. These results provide high-quality evidence and will inform clinical practice guidelines about the role of extended thromboprophylaxis in hospitalised patients with COVID-19."
+      },
+      {
+        "number": 5,
+        "text": "The use of extended prophylactic-dose rivaroxaban should be considered at hospital discharge as an attractive strategy to improve clinical outcomes in patients with creatinine clearance of more than 30 mL/min who were hospitalised with COVID-19 and an IMPROVE VTE score 2–3 plus increased D-dimer levels or an IMPROVE VTE score of 4 or more."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        { "id": "a1", "statement": "Recomendaciones basadas en los resultados del estudio.", "developed": true, "paragraph": 5 },
+        { "id": "a2", "statement": "Descripción de los efectos secundarios de los anticoagulantes.", "developed": false, "paragraph": null },
+        { "id": "a3", "statement": "Tratamiento de los episodios trombóticos.", "developed": false, "paragraph": null },
+        { "id": "a4", "statement": "Criterios de selección de los participantes del estudio.", "developed": true, "paragraph": 3 },
+        { "id": "a5", "statement": "Comparación de los resultados en pacientes tratados con rivaroxabán y no tratados durante la internación por COVID-19 y luego de ella.", "developed": true, "paragraph": 4 },
+        { "id": "a6", "statement": "Anticoagulación posterior al alta en pacientes internados con y sin COVID-19.", "developed": true, "paragraph": 2 }
+      ]
+    },
+    "b": {
+      "title": "B. Preguntas abiertas",
+      "instructions": "Responda estas preguntas con información del texto y su propia redacción, de la forma más completa posible.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Cuáles son las características principales del ensayo MICHELLE y en qué consistió?",
+          "suggestedAnswer": "El estudio MICHELLE es un ensayo sin ocultación/abierto, multicéntrico, aleatorizado, controlado, realizado en pacientes de alto riesgo hospitalizados con COVID-19 confirmado, en el que se comparó la tromboprofilaxis prolongada posterior al alta con rivaroxabán (10 mg/día durante 35 días) con la no anticoagulación para guiar las directrices/establecer lineamientos/pautas para las prácticas clínicas/asistenciales sobre la función de la tromboprofilaxis prolongada en pacientes hospitalizados por COVID-19 a fin de mejorar los resultados clínicos en dichos pacientes.",
+          "rubric": [
+            { "id": "b1-1", "label": "Caractericé el ensayo como abierto, multicéntrico, aleatorizado y controlado.", "points": 1 },
+            { "id": "b1-2", "label": "Identifiqué a los participantes como pacientes de alto riesgo hospitalizados con COVID-19 confirmado.", "points": 1 },
+            { "id": "b1-3", "label": "Expliqué la comparación entre rivaroxabán 10 mg/día durante 35 días después del alta y la no anticoagulación.", "points": 1 },
+            { "id": "b1-4", "label": "Mencioné la finalidad de orientar la práctica clínica y mejorar los resultados.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Hay consenso sobre la anticoagulación para todos los pacientes durante y después de la hospitalización? Explique.",
+          "suggestedAnswer": "Hay consenso respecto de la profilaxis con anticoagulantes parenterales durante la internación y, cada vez más, acerca de la utilidad de la heparina como tromboprofilaxis primaria, pero no existe el mismo consenso respecto del uso de la tromboprofilaxis prolongada después del alta. (Las recomendaciones de la profilaxis antitrombótica prolongada posterior al alta en pacientes hospitalizados por COVID-19 son divergentes).",
+          "rubric": [
+            { "id": "b2-1", "label": "Mencioné el consenso sobre anticoagulantes parenterales durante la internación.", "points": 1 },
+            { "id": "b2-2", "label": "Mencioné el consenso creciente sobre la heparina como tromboprofilaxis primaria.", "points": 1 },
+            { "id": "b2-3", "label": "Aclaré que no existe el mismo consenso después del alta.", "points": 1 },
+            { "id": "b2-4", "label": "Expliqué que las recomendaciones posteriores al alta son divergentes.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿Qué criterios de inclusión y exclusión se utilizaron para la selección de los participantes en el estudio? Explique.",
+          "suggestedAnswer": "El estudio incluyó a pacientes dados de alta tras una hospitalización de al menos tres días (incluso en UTI) por COVID-19 (confirmado por RT-PCR [PCR-TI], antígenos o pruebas de IgM), que además tuvieran un riesgo aumentado de tromboembolismo venoso, (definido por un puntaje de 2-3 en la escala IMPROVE de riesgo de TEV con un nivel del dímero-D superior a los 500 ng/ml, o con un puntaje superior a 4 en la escala independientemente de dicho nivel). La sospecha o confirmación de un episodio trombótico constituyen un criterio de exclusión, por lo que los pacientes con imágenes previas que mostraban dichos episodios no eran elegibles para el estudio MICHELLE (no se hicieron ecografías Doppler/eco Doppler ni angioTAC/angiotomografías pulmonares durante la internación antes de incluirlos en el estudio).",
+          "rubric": [
+            { "id": "b3-1", "label": "Incluí la hospitalización mínima de tres días por COVID-19 confirmado y el alta.", "points": 1 },
+            { "id": "b3-2", "label": "Expliqué el riesgo aumentado de TEV mediante la escala IMPROVE y el dímero-D.", "points": 1 },
+            { "id": "b3-3", "label": "Identifiqué la sospecha o confirmación de trombosis como criterio de exclusión.", "points": 1 },
+            { "id": "b3-4", "label": "Mencioné la situación de los estudios por imágenes previos al reclutamiento.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "Describa la tromboprofilaxis que recibieron los pacientes con COVID-19 durante y después de la hospitalización.",
+          "suggestedAnswer": "Durante su internación por COVID-19, los pacientes recibieron dosis profilácticas/preventivas estándar de enoxaparina parenteral (40 mg subcutáneos 1 vez por día), heparina no fraccionada (5000 UI de 2 a 3 veces por día) o fondaparinux (2-5 mg 1 vez por día). Después del alta, la tromboprofilaxis consistió en anticoagulación con 10 mg por día de rivaroxabán durante 35 días.",
+          "rubric": [
+            { "id": "b4-1", "label": "Mencioné las dosis profilácticas estándar durante la internación.", "points": 1 },
+            { "id": "b4-2", "label": "Incluí la enoxaparina 40 mg subcutáneos una vez por día.", "points": 1 },
+            { "id": "b4-3", "label": "Incluí la heparina no fraccionada o el fondaparinux con sus frecuencias.", "points": 1 },
+            { "id": "b4-4", "label": "Describí el rivaroxabán 10 mg/día durante 35 días después del alta.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "Describa los resultados del ensayo MICHELLE y su importancia.",
+          "suggestedAnswer": "Los resultados mostraron que los pacientes tratados con el régimen estudiado de tromboprofilaxis posterior al alta tuvieron mejores resultados clínicos que aquellos que no fueron anticoagulados, ya que hubo una reducción de los episodios tromboembólicos graves o fatales sin un mayor sangrado (sin un aumento de las hemorragias). Estos resultados brindan evidencia de calidad para guiar las directrices para las prácticas clínicas/asistenciales referidas a la utilidad de la tromboprofilaxis prolongada en pacientes dados de alta tras una internación por COVID-19.",
+          "rubric": [
+            { "id": "b5-1", "label": "Señalé que la tromboprofilaxis posterior al alta produjo mejores resultados clínicos.", "points": 1 },
+            { "id": "b5-2", "label": "Mencioné la reducción de episodios tromboembólicos graves o fatales.", "points": 1 },
+            { "id": "b5-3", "label": "Aclaré que no aumentó el sangrado grave.", "points": 1 },
+            { "id": "b5-4", "label": "Expliqué que aporta evidencia para orientar las directrices clínicas.", "points": 1 }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Cuáles fueron las conclusiones del estudio MICHELLE?",
+          "suggestedAnswer": "Las conclusiones del estudio son que debería considerarse el uso de tromboprofilaxis prolongada después del alta como estrategia para mejorar los resultados clínicos en pacientes con clearance/depuración/aclaramiento de creatinina de más de 30 ml/minuto que estuvieron hospitalizados por COVID-19 y que tenían un puntaje de 2-3 en la escala IMPROVE de riesgo de TEV y un aumento de los niveles del dímero D, o un puntaje de 4 o más en la mencionada escala (independientemente del nivel del dímero D).",
+          "rubric": [
+            { "id": "b6-1", "label": "Mencioné que debe considerarse la tromboprofilaxis prolongada después del alta.", "points": 1 },
+            { "id": "b6-2", "label": "La relacioné con la mejora de resultados en pacientes hospitalizados por COVID-19.", "points": 1 },
+            { "id": "b6-3", "label": "Incluí el clearance de creatinina superior a 30 ml/minuto.", "points": 1 },
+            { "id": "b6-4", "label": "Expliqué los criterios de puntaje IMPROVE y dímero D.", "points": 1 }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Versión del título",
+      "instructions": "Elabore una adecuada versión del título de este texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "Rivaroxabán versus no anticoagulación para la tromboprofilaxis posterior al alta después de la hospitalización por COVID-19 (MICHELLE): un ensayo abierto, multicéntrico, randomizado/aleatorizado y controlado"
+    }
+  }
+}
