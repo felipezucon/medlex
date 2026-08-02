@@ -1,16 +1,13 @@
-const STORAGE_KEY = "medlexPractice.v1";
-const emptyState = () => ({version: 1, sessions: {}, history: []});
+import {readIngProgress, writeIngProgress} from "./storage.mjs";
 
 function readState() {
-  try {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (data?.version === 1 && data.sessions && Array.isArray(data.history)) return data;
-  } catch {}
-  return emptyState();
+  const data = readIngProgress();
+  return {version: 1, sessions: data.sessions, history: data.history};
 }
 
 function writeState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  const current = readIngProgress();
+  writeIngProgress({...current, sessions: state.sessions, history: state.history});
 }
 
 export function createSession(practiceId, unitIds) {

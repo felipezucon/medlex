@@ -1,10 +1,32 @@
-const STORAGE_KEY = "medlexCards.v1";
-const REVIEW_LOG_KEY = "medlexReviewLog.v1";
-const EXAM_PROGRESS_KEY = "medlexExams.v1";
-const PRACTICE_PROGRESS_KEY = "medlexPractice.v1";
-const DEFAULT_DECK_VERSION = 2;
+import {
+	CONTENT_VERSION,
+	LEGACY_KEYS,
+	exportStorageBackup,
+	getStorageIssues,
+	hasMigrationBackup,
+	migrateStorage,
+	parseStorageBackup,
+	readCardProgress,
+	readCustomDecks,
+	readReviewLog,
+	readSettings,
+	recoverMigrationBackup,
+	resetMedlexStorage,
+	restoreStorageBackup,
+	storageVersions,
+	writeCardProgress,
+	writeCustomDecks,
+	writeReviewLog,
+	writeSettings,
+} from "./js/storage.mjs";
+
 const DAY = 24 * 60 * 60 * 1000;
-let state = { cards: [], settings: { newPerDay: 20 } };
+const CONTENT_FIELDS = ["english", "spanish", "portuguese", "example_en", "example_es", "example_pt", "source", "tags"];
+let state = { cards: [], settings: { newPerDay: 20, theme: "light" } };
+let defaultCards = [];
+let defaultCardIds = new Set();
+let hiddenDefaultIds = new Set();
+let storageReady = true;
 let queue = [],
 	currentIndex = 0;
 
@@ -38,40 +60,51 @@ function normalizeCard(raw) {
 	};
 }
 function save() {
-	localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-function load() {
-	try {
-		const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-		if (saved?.cards?.length) state = saved;
-	} catch (e) {}
-	state.cards = state.cards.map(normalizeCard);
+	const progress = {};
+	const customCards = [];
+	const overrides = {};
+	for (const card of state.cards) {
+		const isDefault = defaultCardIds.has(card.id);
+		if (!isDefault || card.reviews > 0 || card.repetitions > 0 || card.lapses > 0 || card.due > 0 || card.interval > 0 || card.lastReviewed > 0) {
+			progress[card.id] = Object.fromEntries(["due", "interval", "ease", "repetitions", "lapses", "reviews", "createdAt", "lastReviewed"]
+				.map(field => [field, Number(card[field]) || (field === "ease" ? 2.5 : 0)]));
+		}
+		if (isDefault) {
+			const original = defaultCards.find(item => item.id === card.id);
+			const changed = Object.fromEntries(CONTENT_FIELDS
+				.filter(field => String(card[field] ?? "").trim() !== String(original?.[field] ?? "").trim())
+				.map(field => [field, String(card[field] ?? "").trim()]));
+			if (Object.keys(changed).length) overrides[card.id] = {id: card.id, ...changed};
+		} else {
+			customCards.push(Object.fromEntries([["id", card.id], ...CONTENT_FIELDS.map(field => [field, String(card[field] ?? "").trim()])]));
+		}
+	}
+	writeCardProgress({version: 1, cards: progress});
+	writeCustomDecks({version: 1, cards: customCards, overrides, hiddenDefaultIds: [...hiddenDefaultIds]});
+	writeSettings({version: 1, newPerDay: state.settings.newPerDay, theme: state.settings.theme});
 }
 async function loadInitial() {
-	load();
-	if (state.cards.length && state.defaultDeckVersion === DEFAULT_DECK_VERSION) return;
-	const res = await fetch("./cards.csv");
+	const res = await fetch(`./cards.csv?v=${CONTENT_VERSION}`, {cache: "no-cache"});
 	if (!res.ok) throw new Error(`Não foi possível carregar o baralho padrão (${res.status}).`);
 	const text = await res.text();
 	const rows = parseCSV(text);
-	const defaults = rows.filter((r) => r.english).map(normalizeCard);
-	const canonicalEnglish = (value) => String(value ?? "")
-		.normalize("NFKC")
-		.toLocaleLowerCase("en")
-		.trim()
-		.replace(/[\u2018\u2019]/g, "'")
-		.replace(/[\u2010-\u2015\u2212]/g, "-")
-		.replace(/\s+/g, " ")
-		.replace(/[.!?;:,]+$/u, "")
-		.trim();
-	const existing = new Map(state.cards.map((card) => [canonicalEnglish(card.english), card]));
-	for (const card of defaults) {
-		const saved = existing.get(canonicalEnglish(card.english));
-		if (saved) saved.id = card.id;
-		else state.cards.push(card);
+	defaultCards = rows.filter((r) => r.english).map(normalizeCard);
+	defaultCardIds = new Set(defaultCards.map(card => card.id));
+	let migrationFailure = null;
+	try {
+		migrateStorage(defaultCards);
+	} catch (error) {
+		migrationFailure = error;
 	}
-	state.defaultDeckVersion = DEFAULT_DECK_VERSION;
-	save();
+	const progress = readCardProgress().cards;
+	const userDecks = readCustomDecks();
+	hiddenDefaultIds = new Set(userDecks.hiddenDefaultIds);
+	state.settings = readSettings();
+	state.cards = defaultCards
+		.filter(card => !hiddenDefaultIds.has(card.id))
+		.map(card => normalizeCard({...card, ...(userDecks.overrides[card.id] || {}), ...(progress[card.id] || {})}));
+	state.cards.push(...userDecks.cards.map(card => normalizeCard({...card, ...(progress[card.id] || {})})));
+	return migrationFailure;
 }
 function parseCSV(text) {
 	text = text.replace(/^\uFEFF/, "");
@@ -194,6 +227,10 @@ function renderStudy() {
 	$("#easyInterval").textContent = fmtInterval(proposed(card, "easy"));
 }
 function rateCard(rating) {
+	if (!storageReady) {
+		$("#importStatus").textContent = "O vocabulário está disponível para consulta, mas o progresso não pode ser salvo até reparar os dados locais.";
+		return;
+	}
 	const card = queue[currentIndex];
 	if (!card) return;
 	const oldEase = card.ease;
@@ -220,9 +257,10 @@ function rateCard(rating) {
 	renderStats();
 }
 function logReview(rating) {
-	const log = JSON.parse(localStorage.getItem(REVIEW_LOG_KEY) || "[]");
-	log.push({ at: now(), rating });
-	localStorage.setItem(REVIEW_LOG_KEY, JSON.stringify(log.slice(-5000)));
+	const log = readReviewLog();
+	log.items.push({ at: now(), rating });
+	log.items = log.items.slice(-5000);
+	writeReviewLog(log);
 }
 function renderCards() {
 	const q = $("#searchInput").value.toLowerCase();
@@ -283,7 +321,7 @@ function renderStats() {
 				`<div class="stat"><strong>${v}</strong><span>${k}</span></div>`,
 		)
 		.join("");
-	const log = JSON.parse(localStorage.getItem(REVIEW_LOG_KEY) || "[]");
+	const log = readReviewLog().items;
 	const days = [];
 	for (let i = 6; i >= 0; i--) {
 		const d = new Date();
@@ -318,6 +356,7 @@ function switchView(name) {
 	if (name === "stats") renderStats();
 }
 async function importCSV(file) {
+	if (!storageReady) throw new Error("Repare os dados locais antes de importar cartões.");
 	const rows = parseCSV(await file.text());
 	let added = 0,
 		updated = 0;
@@ -374,64 +413,69 @@ function exportCards() {
 	download("medlex-cards.csv", "\uFEFF" + text, "text/csv;charset=utf-8");
 }
 function exportBackup() {
-	const storedJSON = (key) => {
-		try {
-			return JSON.parse(localStorage.getItem(key));
-		} catch {
-			return null;
-		}
-	};
 	download(
 		"medlex-backup.json",
-		JSON.stringify(
-			{
-				version: 2,
-				state,
-				reviewLog: storedJSON(REVIEW_LOG_KEY) || [],
-				examProgress: storedJSON(EXAM_PROGRESS_KEY),
-				practiceProgress: storedJSON(PRACTICE_PROGRESS_KEY),
-				theme: localStorage.getItem("medlexTheme") || "light",
-				exportedAt: new Date().toISOString(),
-			},
-			null,
-			2,
-		),
+		exportStorageBackup(),
 		"application/json",
 	);
 }
 async function restoreBackup(file) {
-	const data = JSON.parse(await file.text());
-	if (!Array.isArray(data?.state?.cards)) throw new Error("Backup inválido");
-	if (data.reviewLog !== undefined && !Array.isArray(data.reviewLog)) throw new Error("Histórico de revisões inválido");
-	const examModule = data.examProgress
-		? await import("./js/exam-storage.mjs")
-		: null;
-	const practiceModule = data.practiceProgress
-		? await import("./js/practice-storage.mjs")
-		: null;
-	if (examModule) examModule.parseExamBackup(JSON.stringify(data.examProgress));
-	if (practiceModule) practiceModule.parsePracticeBackup(JSON.stringify(data.practiceProgress));
+	const text = await file.text();
+	let data;
+	try {
+		data = parseStorageBackup(text);
+	} catch (currentError) {
+		let legacy;
+		try {
+			legacy = JSON.parse(text);
+		} catch {
+			throw currentError;
+		}
+		if (legacy?.version !== 2 || !Array.isArray(legacy?.state?.cards)
+			|| (legacy.reviewLog !== undefined && !Array.isArray(legacy.reviewLog))) throw currentError;
+		if (legacy.examProgress) (await import("./js/exam-storage.mjs")).parseExamBackup(JSON.stringify(legacy.examProgress));
+		if (legacy.practiceProgress) (await import("./js/practice-storage.mjs")).parsePracticeBackup(JSON.stringify(legacy.practiceProgress));
+		data = {
+			format: "medlex-storage-backup",
+			version: 1,
+			entries: {
+				[LEGACY_KEYS.cards]: JSON.stringify(legacy.state),
+				[LEGACY_KEYS.reviewLog]: JSON.stringify(legacy.reviewLog || []),
+				...(legacy.examProgress ? {[LEGACY_KEYS.exams]: JSON.stringify(legacy.examProgress)} : {}),
+				...(legacy.practiceProgress ? {[LEGACY_KEYS.practice]: JSON.stringify(legacy.practiceProgress)} : {}),
+				[LEGACY_KEYS.theme]: ["light", "dark"].includes(legacy.theme) ? legacy.theme : "light",
+			}
+		};
+	}
 	if (!confirm("Restaurar este backup e substituir os dados locais incluídos nele?")) {
 		$("#importStatus").textContent = "Restauração cancelada.";
 		return;
 	}
-	state = data.state;
-	state.settings ||= { newPerDay: 20 };
-	state.cards = state.cards.map(normalizeCard);
-	localStorage.setItem(REVIEW_LOG_KEY, JSON.stringify(data.reviewLog || []));
-	if (examModule) examModule.importExamBackup(JSON.stringify(data.examProgress));
-	if (practiceModule) practiceModule.importPracticeBackup(JSON.stringify(data.practiceProgress));
-	if (["light", "dark"].includes(data.theme)) {
-		localStorage.setItem("medlexTheme", data.theme);
-		document.documentElement.dataset.theme = data.theme === "dark" ? "dark" : "";
-	}
-	save();
-	await loadInitial();
+	restoreStorageBackup(data);
+	const failure = await loadInitial();
+	if (failure) throw failure;
+	storageReady = true;
+	applyTheme();
 	buildQueue();
 	populateTags();
 	renderStats();
+	renderStorageStatus();
 	window.dispatchEvent(new Event("medlex-backup-restored"));
 	$("#importStatus").textContent = "Backup restaurado com sucesso.";
+}
+
+function applyTheme() {
+	document.documentElement.dataset.theme = state.settings.theme === "dark" ? "dark" : "";
+}
+
+function renderStorageStatus() {
+	const versions = storageVersions();
+	$("#storageVersions").textContent = `Aplicativo ${versions.contentVersion} · schema de dados v${versions.schemaVersion}`;
+	const issues = getStorageIssues();
+	$("#storageHealth").textContent = issues.length
+		? `${issues.length} aviso(s): ${issues.map(item => item.message).join("; ")}`
+		: "Armazenamento local verificado.";
+	$("#recoverStorageBtn").classList.toggle("hidden", !hasMigrationBackup());
 }
 function initEvents() {
 	$$(".tab").forEach((b) => (b.onclick = () => switchView(b.dataset.view)));
@@ -443,6 +487,7 @@ function initEvents() {
 		(b) => (b.onclick = () => rateCard(b.dataset.rating)),
 	);
 	$("#studyNewBtn").onclick = () => {
+		if (!storageReady) return;
 		state.settings.newPerDay += 20;
 		save();
 		buildQueue();
@@ -453,6 +498,11 @@ function initEvents() {
 		const id = e.target.dataset.delete;
 		if (!id) return;
 		if (confirm("Excluir este cartão?")) {
+			if (!storageReady) {
+				$("#importStatus").textContent = "Repare os dados locais antes de excluir cartões.";
+				return;
+			}
+			if (defaultCardIds.has(id)) hiddenDefaultIds.add(id);
 			state.cards = state.cards.filter((c) => c.id !== id);
 			save();
 			renderCards();
@@ -472,30 +522,84 @@ function initEvents() {
 			(err) => ($("#importStatus").textContent = "Erro: " + err.message),
 		);
 	$("#resetBtn").onclick = async () => {
-		if (!confirm("Isso apagará seu progresso. Continuar?")) return;
-		localStorage.removeItem(STORAGE_KEY);
-		localStorage.removeItem(REVIEW_LOG_KEY);
-		state = { cards: [], settings: { newPerDay: 20 } };
-		await loadInitial();
+		if (!confirm("Isso apagará somente os dados locais do MedLex neste navegador: progresso, tentativas, histórico, cartões importados e preferências. Continuar?")) return;
+		resetMedlexStorage();
+		const failure = await loadInitial();
+		if (failure) throw failure;
+		storageReady = true;
+		applyTheme();
 		buildQueue();
 		populateTags();
 		renderStats();
-		$("#importStatus").textContent = "Baralho restaurado.";
+		renderStorageStatus();
+		window.dispatchEvent(new Event("medlex-backup-restored"));
+		$("#importStatus").textContent = "Dados locais do MedLex restabelecidos.";
 	};
 	$("#themeBtn").onclick = () => {
+		if (!storageReady) return;
 		const dark = document.documentElement.dataset.theme === "dark";
-		document.documentElement.dataset.theme = dark ? "" : "dark";
-		localStorage.setItem("medlexTheme", dark ? "light" : "dark");
+		state.settings.theme = dark ? "light" : "dark";
+		applyTheme();
+		save();
+	};
+	$("#repairStorageBtn").onclick = async () => {
+		try {
+			migrateStorage(defaultCards, {repair: true});
+			const failure = await loadInitial();
+			if (failure) throw failure;
+			storageReady = true;
+			buildQueue();
+			populateTags();
+			renderStats();
+			renderStorageStatus();
+			await Promise.all([import("./js/exam.mjs"), import("./js/practice.mjs")]);
+			$("#importStatus").textContent = getStorageIssues().length
+				? "Verificação concluída. Dados inválidos foram preservados e ignorados; exporte o backup para recuperação manual."
+				: "Verificação e reparo concluídos sem apagar dados válidos.";
+		} catch (error) {
+			$("#importStatus").textContent = `Não foi possível reparar: ${error.message}`;
+		}
+	};
+	$("#recoverStorageBtn").onclick = async () => {
+		if (!confirm("Recuperar a cópia automática anterior à migração? Os dados atuais serão substituídos.")) return;
+		try {
+			recoverMigrationBackup();
+			const failure = await loadInitial();
+			if (failure) throw failure;
+			storageReady = true;
+			applyTheme();
+			buildQueue();
+			populateTags();
+			renderStats();
+			renderStorageStatus();
+			window.dispatchEvent(new Event("medlex-backup-restored"));
+			$("#importStatus").textContent = "Cópia anterior recuperada.";
+		} catch (error) {
+			$("#importStatus").textContent = `Não foi possível recuperar: ${error.message}`;
+		}
 	};
 }
 (async function () {
-	document.documentElement.dataset.theme =
-		localStorage.getItem("medlexTheme") === "dark" ? "dark" : "";
-	await loadInitial();
-	initEvents();
-	buildQueue();
-	populateTags();
-	renderStats();
-	if ("serviceWorker" in navigator)
-		navigator.serviceWorker.register("./sw.js").catch(() => {});
+	try {
+		const migrationFailure = await loadInitial();
+		storageReady = !migrationFailure;
+		applyTheme();
+		initEvents();
+		buildQueue();
+		populateTags();
+		renderStats();
+		renderStorageStatus();
+		if (storageReady) {
+			await Promise.all([import("./js/exam.mjs"), import("./js/practice.mjs")]);
+		} else {
+			$("#examApp").innerHTML = '<div class="panel exam-error">Simulados pausados até a reparação dos dados locais.</div>';
+			$("#practiceApp").innerHTML = '<div class="panel exam-error">Práticas pausadas até a reparação dos dados locais.</div>';
+			$("#importStatus").textContent = `Migração interrompida sem apagar dados antigos: ${migrationFailure.message}`;
+		}
+		if ("serviceWorker" in navigator)
+			navigator.serviceWorker.register(`./sw.js?v=${CONTENT_VERSION}`).catch(error => console.warn("Service Worker:", error));
+	} catch (error) {
+		console.error(error);
+		$("#importStatus").textContent = `Não foi possível iniciar completamente: ${error.message}`;
+	}
 })();

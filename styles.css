@@ -64,6 +64,8 @@ textarea{resize:vertical;line-height:1.5}
 .actions{margin:16px 0;display:flex;flex-wrap:wrap}.actions button{background:var(--good)}
 .danger-outline{border:1px solid var(--danger);color:var(--danger);background:transparent;border-radius:12px;padding:11px}
 .status{min-height:1.4em;color:var(--muted)}
+.storage-maintenance{margin-top:18px}.storage-maintenance h3{margin-bottom:4px}.storage-maintenance .actions{margin:10px 0}
+.storage-version{margin:0;color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
 .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .stat{border:1px solid var(--line);border-radius:14px;padding:14px}.stat strong{font-size:1.5rem;display:block}
 .week-chart{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:180px;margin-top:16px}

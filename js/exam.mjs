@@ -197,7 +197,7 @@ function renderIntro(exam) {
       ])
     ]),
     button("Iniciar simulado", () => {
-      const attempt = createAttempt(exam.id, timer.checked);
+      const attempt = createAttempt(exam.id, timer.checked, exam.contentVersion || exam.schemaVersion);
       saveAttempt(attempt);
       renderAttempt(exam, attempt);
     }, "primary start-exam")

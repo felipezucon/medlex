@@ -23,7 +23,7 @@ O campo `id` é opcional para arquivos personalizados. Quando uma palavra em ing
 
 ## Banco padrão
 
-O `cards.csv` contém 1.000 cartões e é carregado automaticamente. Ao receber uma nova versão do banco, o aplicativo incorpora somente os cartões ausentes e preserva as métricas dos cartões já estudados em `medlexCards.v1`.
+O `cards.csv` contém 1.000 cartões e é carregado automaticamente a cada inicialização. O conteúdo padrão não é duplicado no `localStorage`: o navegador guarda apenas progresso, cartões personalizados, alterações e exclusões feitas pela pessoa usuária. Assim, novas versões e reordenações do CSV preservam as métricas pelo `id` estável de cada cartão.
 
 Para reconstruir e verificar o banco:
 
@@ -38,7 +38,22 @@ O relatório da última geração fica em `reports/cards-build-report.md`; poss�
 
 ## Backup
 
-O progresso fica salvo no navegador. Use **Importar → Exportar backup completo** regularmente; o arquivo inclui cartões, simulados e práticas.
+O progresso fica salvo no navegador em chaves `medlex:*`, com migrações incrementais de schema. Antes de uma migração, o aplicativo cria uma única cópia local para recuperação. Use **Importar → Exportar backup completo** regularmente; o arquivo inclui os valores brutos gerenciados pelo MedLex, inclusive dados inválidos que tenham sido preservados para recuperação manual.
+
+Em **Importar → Manutenção dos dados locais** é possível consultar as versões, validar os dados, recuperar a cópia anterior à migração e restabelecer somente os dados locais do MedLex. A última opção não chama `localStorage.clear()` e não interfere em outros sites.
+
+Para executar as verificações automatizadas, incluindo os cenários de migração dos schemas 0, 1, 2 e atual:
+
+```sh
+node --test tests/*.test.mjs
+```
+
+## Atualizações futuras
+
+- Mudou somente HTML, CSS, JavaScript ou conteúdo publicado: aumente `CONTENT_VERSION` em `js/storage.mjs` e mantenha o mesmo valor em `sw.js` e nas URLs de `index.html`.
+- Mudou o formato dos dados locais: aumente `STORAGE_SCHEMA_VERSION`, crie uma função `migrationThreeToFour()` (ou equivalente) em `js/storage.mjs` e acrescente-a, em ordem, ao laço de `migrateStorage()`.
+- Mudou `cards.csv`: preserve os IDs existentes; cartões novos começam sem progresso e a ordem das linhas pode mudar.
+- Um dado antigo deixou de ser compatível: arquive somente o registro afetado e preserve o restante.
 
 ## Conteúdo de provas e práticas
 

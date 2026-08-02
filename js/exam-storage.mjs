@@ -1,24 +1,30 @@
-const STORAGE_KEY = "medlexExams.v1";
-
-const emptyState = () => ({version: 1, attempts: {}, history: []});
+import {
+  readExamAttempts,
+  readExamHistory,
+  writeExamAttempts,
+  writeExamHistory
+} from "./storage.mjs";
 
 function readState() {
-  try {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (data?.version === 1 && data.attempts && Array.isArray(data.history)) return data;
-  } catch {}
-  return emptyState();
+  return {
+    version: 1,
+    attempts: readExamAttempts().attempts,
+    history: readExamHistory().records
+  };
 }
 
 function writeState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  writeExamAttempts({version: 1, attempts: state.attempts});
+  const current = readExamHistory();
+  writeExamHistory({...current, records: state.history});
 }
 
-export function createAttempt(examId, timerEnabled) {
+export function createAttempt(examId, timerEnabled, examVersion = 1) {
   const startedAt = Date.now();
   return {
     id: `${examId}-${startedAt}`,
     examId,
+    examVersion,
     status: "in-progress",
     timerEnabled,
     startedAt,

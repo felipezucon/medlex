@@ -1,4 +1,11 @@
-const INDEX_URL = new URL("../data/exams/index.json", import.meta.url);
+import {CONTENT_VERSION} from "./storage.mjs";
+
+const versionedURL = (path, base = import.meta.url) => {
+  const url = new URL(path, base);
+  url.searchParams.set("v", CONTENT_VERSION);
+  return url;
+};
+const INDEX_URL = versionedURL("../data/exams/index.json");
 
 const fail = message => { throw new Error(message); };
 const isText = value => typeof value === "string" && value.trim().length > 0;
@@ -103,6 +110,6 @@ export function validateExam(exam, expectedId = exam?.id) {
 }
 
 export async function loadExam(entry) {
-  const exam = await requestJSON(new URL(entry.file, INDEX_URL));
+  const exam = await requestJSON(versionedURL(entry.file, INDEX_URL));
   return validateExam(exam, entry.id);
 }

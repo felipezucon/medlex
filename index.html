@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#17324d">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="MedLex">
@@ -11,7 +12,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=2026.08.02.2">
 </head>
 <body>
   <header class="topbar">
@@ -126,8 +127,18 @@
           </label>
         </div>
         <hr>
-        <button id="resetBtn" class="danger-outline">Apagar progresso e restaurar baralho inicial</button>
-        <p id="importStatus" class="status"></p>
+        <section class="storage-maintenance" aria-labelledby="storageHeading">
+          <h3 id="storageHeading">Manutenção dos dados locais</h3>
+          <p id="storageVersions" class="storage-version"></p>
+          <p id="storageHealth" class="status" aria-live="polite">Verificando armazenamento…</p>
+          <div class="actions">
+            <button id="repairStorageBtn" type="button">Verificar e reparar</button>
+            <button id="recoverStorageBtn" type="button" class="secondary hidden">Recuperar cópia anterior</button>
+          </div>
+          <p class="muted">A opção abaixo apaga somente os dados do MedLex neste navegador. Ela não remove arquivos, caches ou dados de outros sites.</p>
+          <button id="resetBtn" class="danger-outline">Restablecer solo datos locales</button>
+        </section>
+        <p id="importStatus" class="status" aria-live="polite"></p>
       </div>
     </section>
 
@@ -142,8 +153,6 @@
   </main>
 
   <footer>Dados salvos neste navegador. Exporte um backup regularmente.</footer>
-  <script src="./app.js"></script>
-  <script type="module" src="./js/exam.mjs"></script>
-  <script type="module" src="./js/practice.mjs"></script>
+  <script type="module" src="./app.js?v=2026.08.02.2"></script>
 </body>
 </html>

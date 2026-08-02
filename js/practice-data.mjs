@@ -1,4 +1,11 @@
-const INDEX_URL = new URL("../data/practice/index.json", import.meta.url);
+import {CONTENT_VERSION} from "./storage.mjs";
+
+const versionedURL = (path, base = import.meta.url) => {
+  const url = new URL(path, base);
+  url.searchParams.set("v", CONTENT_VERSION);
+  return url;
+};
+const INDEX_URL = versionedURL("../data/practice/index.json");
 const isText = value => typeof value === "string" && value.trim().length > 0;
 const uniqueIds = items => new Set(items.map(item => item.id)).size === items.length;
 const rubricValid = rubric => Array.isArray(rubric) && rubric.length > 0 && uniqueIds(rubric)
@@ -76,5 +83,5 @@ export function validatePractice(practice, expectedId = practice?.id) {
 }
 
 export async function loadPractice(entry) {
-  return validatePractice(await requestJSON(new URL(entry.file, INDEX_URL)), entry.id);
+  return validatePractice(await requestJSON(versionedURL(entry.file, INDEX_URL)), entry.id);
 }
