@@ -30,6 +30,10 @@ const review = gradePractice(practice, session);
 assert.ok(review.percent < 100);
 assert.deepEqual(review.pendingReview.sort(), ["blood-a", "tb-tests"]);
 
+session.aiGrading = {"blood-a": {accepted: true, finalPoints: 0.5}};
+const reviewed = gradePractice(practice, session);
+assert.ok(reviewed.percent > review.percent);
+
 const incomplete = structuredClone(practice);
 delete incomplete.units[0].blocks[0].items[0].expectedAnswer;
 assert.throws(() => validatePractice(incomplete, "ing-forms"), /traduções inválidas/);

@@ -92,6 +92,8 @@
       ]
     },
     "b": {
+      "gradingMode": "ai_or_manual",
+      "answerLanguage": "es",
       "title": "B. Comprensión del texto",
       "instructions": "Responda en español, de forma completa y con su propia redacción.",
       "pointsPerItem": 4,
@@ -201,6 +203,8 @@
       ]
     },
     "c": {
+      "gradingMode": "manual",
+      "answerLanguage": "es",
       "title": "C. Título",
       "instructions": "Elabore una adecuada versión del título del texto en español.",
       "maxPoints": 3,

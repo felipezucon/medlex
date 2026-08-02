@@ -11,3 +11,9 @@ Thumbs.db
 # Codigos IA
 AGENTS.md
 /docs/
+
+# Regras e documentação pública exigidas pelo projeto
+!AGENTS.md
+!/docs/
+!/docs/content-schema.md
+!/docs/ai-grading.md

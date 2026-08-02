@@ -12,6 +12,8 @@
         {
           "id": "blood-translation",
           "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
           "instructions": "Complete con la traducción de las partes destacadas.",
           "items": [
             {
@@ -124,6 +126,8 @@
         {
           "id": "trauma-open",
           "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
           "instructions": "Responda las preguntas en español con información de cada texto en inglés.",
           "items": [
             { "id": "trauma-a", "text": "Accidents or violence can result in penetrating trauma in the adult population.", "question": "¿Cuál es el resultado de los accidentes o los actos de violencia?", "expectedAnswer": "Pueden causar traumatismos abiertos/penetrantes.", "rubric": [{ "id": "trauma-a-1", "label": "Mi respuesta indica que pueden causar traumatismos abiertos o penetrantes.", "points": 1 }] },

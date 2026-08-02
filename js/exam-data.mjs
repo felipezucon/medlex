@@ -11,6 +11,21 @@ const fail = message => { throw new Error(message); };
 const isText = value => typeof value === "string" && value.trim().length > 0;
 const uniqueIds = items => new Set(items.map(item => item.id)).size === items.length;
 
+function normalizeExam(exam) {
+  exam.contentVersion ||= CONTENT_VERSION;
+  const b = exam.sections.b;
+  b.items = b.items.map(item => ({
+    ...item,
+    gradingMode: item.gradingMode || b.gradingMode,
+    answerLanguage: item.answerLanguage || b.answerLanguage,
+    expectedAnswer: item.expectedAnswer || item.suggestedAnswer,
+    acceptedVariants: item.acceptedVariants || [],
+    sourceExcerpt: item.sourceExcerpt || null,
+    maxPoints: Number(item.maxPoints) || Number(b.pointsPerItem)
+  }));
+  return exam;
+}
+
 async function requestJSON(url) {
   let response;
   try {
@@ -74,6 +89,8 @@ export function validateExam(exam, expectedId = exam?.id) {
           : references.every(number => number === null || number === undefined));
     })
     || !isText(b?.title)
+    || b?.gradingMode !== "ai_or_manual"
+    || !["es", "en"].includes(b?.answerLanguage)
     || !isText(b?.instructions)
     || !Number.isFinite(Number(b?.pointsPerItem))
     || Number(b.pointsPerItem) <= 0
@@ -89,6 +106,8 @@ export function validateExam(exam, expectedId = exam?.id) {
         && Number.isFinite(Number(criterion?.points)) && Number(criterion.points) > 0)
       && item.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0) === Number(b.pointsPerItem))
     || !isText(c?.title)
+    || c?.gradingMode !== "manual"
+    || !["es", "en"].includes(c?.answerLanguage)
     || !isText(c?.instructions)
     || !isText(c?.suggestedAnswer)
     || (c?.answerLabel !== undefined && !isText(c.answerLabel))
@@ -106,7 +125,7 @@ export function validateExam(exam, expectedId = exam?.id) {
     || Number(exam.passingScore) > points
   ) fail(`Os dados de ${expectedId || "simulado"} estão incompletos ou inconsistentes.`);
 
-  return exam;
+  return normalizeExam(exam);
 }
 
 export async function loadExam(entry) {

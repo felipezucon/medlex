@@ -1,3 +1,5 @@
+import {calculateCriterionPoints} from "./ai-grading.mjs";
+
 export function practiceItems(practice, unitIds = practice.units.map(unit => unit.id)) {
   const selected = new Set(unitIds);
   return practice.units.filter(unit => selected.has(unit.id)).flatMap(unit =>
@@ -39,7 +41,10 @@ export function gradePractice(practice, session) {
       needsReview ||= !correct || !assessment.translation;
     } else {
       const possible = item.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0);
-      const earned = item.rubric.reduce((sum, criterion) => sum + (assessment[criterion.id] ? Number(criterion.points) : 0), 0);
+      const reviewedAI = session.aiGrading?.[item.id];
+      const earned = reviewedAI?.accepted
+        ? Math.min(possible, Math.max(0, Number(reviewedAI.finalPoints) || 0))
+        : item.rubric.reduce((sum, criterion) => sum + calculateCriterionPoints(assessment[criterion.id], criterion.points), 0);
       subjectiveTotal += possible;
       subjectiveEarned += earned;
       subjectiveItems++;

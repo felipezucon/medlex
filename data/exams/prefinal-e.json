@@ -32,6 +32,8 @@
       ]
     },
     "b": {
+      "gradingMode": "ai_or_manual",
+      "answerLanguage": "es",
       "title": "B. Preguntas abiertas",
       "instructions": "Responda estas preguntas con información del texto y su propia redacción de la forma más completa posible.",
       "pointsPerItem": 4,
@@ -105,6 +107,8 @@
       ]
     },
     "c": {
+      "gradingMode": "manual",
+      "answerLanguage": "es",
       "title": "C. Versión del título",
       "instructions": "Elabore una adecuada versión del título de este texto en español.",
       "maxPoints": 3,

@@ -30,6 +30,8 @@
       ]
     },
     "b": {
+      "gradingMode": "ai_or_manual",
+      "answerLanguage": "es",
       "title": "B. Preguntas abiertas",
       "instructions": "Responda estas preguntas con información del texto y su propia redacción, de la forma más completa posible.",
       "pointsPerItem": 4,
@@ -103,6 +105,8 @@
       ]
     },
     "c": {
+      "gradingMode": "manual",
+      "answerLanguage": "es",
       "title": "C. Subtítulo",
       "instructions": "Complete el siguiente espacio con un subtítulo en español para este texto (en una o dos líneas). Anticoagulación en pacientes con COVID-19: ______________________________________",
       "maxPoints": 3,

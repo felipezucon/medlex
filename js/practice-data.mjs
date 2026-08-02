@@ -11,6 +11,26 @@ const uniqueIds = items => new Set(items.map(item => item.id)).size === items.le
 const rubricValid = rubric => Array.isArray(rubric) && rubric.length > 0 && uniqueIds(rubric)
   && rubric.every(item => isText(item?.id) && isText(item?.label) && Number(item?.points) > 0);
 
+function normalizePractice(practice) {
+  practice.contentVersion ||= CONTENT_VERSION;
+  for (const unit of practice.units) {
+    for (const block of unit.blocks) {
+      if (block.type === "matching") continue;
+      block.items = block.items.map(item => ({
+        ...item,
+        gradingMode: item.gradingMode || block.gradingMode,
+        answerLanguage: item.answerLanguage || block.answerLanguage,
+        question: item.question || block.instructions,
+        sourceText: item.sourceText || (item.segments ? item.segments.map(segment => segment.text).join("") : item.text),
+        acceptedVariants: item.acceptedVariants || [],
+        sourceExcerpt: item.sourceExcerpt || null,
+        maxPoints: Number(item.maxPoints) || item.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0)
+      }));
+    }
+  }
+  return practice;
+}
+
 async function requestJSON(url) {
   let response;
   try {
@@ -59,6 +79,7 @@ export function validatePractice(practice, expectedId = practice?.id) {
       if (items.some(item => itemIds.has(item.id))) throw new Error(`O item ${items.find(item => itemIds.has(item.id)).id} está duplicado.`);
       items.forEach(item => itemIds.add(item.id));
       if (block.type === "translation" && !items.every(item => isText(item?.id)
+        && block.gradingMode === "ai_or_manual" && ["es", "en"].includes(block.answerLanguage)
         && Array.isArray(item.segments) && item.segments.some(segment => segment?.target)
         && item.segments.every(segment => isText(segment?.text))
         && isText(item.expectedAnswer) && rubricValid(item.rubric))) {
@@ -72,6 +93,7 @@ export function validatePractice(practice, expectedId = practice?.id) {
           throw new Error(`O bloco ${block.id} contém associações inválidas.`);
         }
       } else if (block.type === "open" && !items.every(item => isText(item?.id) && isText(item?.text)
+        && block.gradingMode === "ai_or_manual" && ["es", "en"].includes(block.answerLanguage)
         && isText(item?.question) && isText(item?.expectedAnswer) && rubricValid(item.rubric))) {
         throw new Error(`O bloco ${block.id} contém respostas abertas inválidas.`);
       } else if (!["translation", "open"].includes(block.type)) {
@@ -79,7 +101,7 @@ export function validatePractice(practice, expectedId = practice?.id) {
       }
     }
   }
-  return practice;
+  return normalizePractice(practice);
 }
 
 export async function loadPractice(entry) {

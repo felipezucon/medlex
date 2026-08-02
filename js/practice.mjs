@@ -10,7 +10,8 @@ import {
   parsePracticeBackup,
   importPracticeBackup
 } from "./practice-storage.mjs";
-import {gradePractice} from "./practice-grading.mjs";
+import {gradePractice, practiceItems} from "./practice-grading.mjs";
+import {aiGradingAvailability, calculateItemPoints, gradeItemsWithAI, validateGradableItem} from "./ai-grading.mjs";
 
 const root = document.querySelector("#practiceApp");
 let catalog = [];
@@ -182,14 +183,159 @@ function appendRubric(container, item, session, onAssessment) {
   const rubric = el("fieldset", {className: "self-rubric"}, [el("legend", {text: "Autoevaluación de esta respuesta"})]);
   for (const criterion of item.rubric) {
     const id = `${item.id}-${criterion.id}`;
-    const checkbox = el("input", {id, type: "checkbox", checked: Boolean(selected[criterion.id])});
-    checkbox.addEventListener("change", () => {
-      selected[criterion.id] = checkbox.checked;
+    const select = el("select", {id});
+    select.append(
+      el("option", {value: "not_met", text: "No cumplido"}),
+      el("option", {value: "partial", text: "Parcial (50 %)"}),
+      el("option", {value: "met", text: "Cumplido"})
+    );
+    select.value = selected[criterion.id] === true ? "met" : selected[criterion.id] || "not_met";
+    select.addEventListener("change", () => {
+      selected[criterion.id] = select.value;
+      if (session.aiGrading?.[item.id]?.accepted) {
+        session.aiGrading[item.id].accepted = false;
+        session.aiGrading[item.id].gradingMethod = "manual";
+      }
       onAssessment(container, item.id);
     });
-    rubric.append(el("label", {className: "rubric-item", htmlFor: id}, [checkbox, el("span", {text: criterion.label}), el("b", {text: `+${criterion.points}`})]));
+    rubric.append(el("label", {className: "rubric-item", htmlFor: id}, [el("span", {text: criterion.label}), select, el("b", {text: `${criterion.points} pt`})]));
   }
-  container.append(rubric);
+  container.append(rubric, renderPracticeAIItemReview(container, item, session, onAssessment));
+}
+
+function renderPracticeAIItemReview(container, item, session, onAssessment) {
+  const suggestion = session.aiGrading?.[item.id];
+  if (!suggestion) return el("p", {className: "muted ai-item-empty", text: "Puede usar la rúbrica manual o solicitar una sugerencia de IA para la sesión."});
+  const panel = el("section", {className: `ai-item-review ${suggestion.confidence === "low" || suggestion.status !== "graded" ? "needs-manual-review" : ""}`.trim()}, [
+    el("div", {className: "ai-item-heading"}, [
+      el("h3", {text: "Sugerencia de Gemini"}),
+      el("span", {className: "availability", text: suggestion.cached ? "Resultado guardado" : `Confianza: ${suggestion.confidence}`})
+    ]),
+    el("p", {className: "ai-assistive-warning", text: "Corrección asistida por IA. Revise el resultado antes de aceptarlo."}),
+    suggestion.confidence === "low" || suggestion.status !== "graded"
+      ? el("p", {className: "answer-feedback ai-review-warning", text: "Revisión manual recomendada."}) : null,
+    el("p", {text: suggestion.overallFeedback})
+  ]);
+  const statuses = suggestion.finalStatuses || Object.fromEntries(suggestion.criteria.map(criterion => [criterion.criterionId, criterion.status]));
+  suggestion.finalStatuses = statuses;
+  const pointsId = `${item.id}-ai-final-points`;
+  const finalPoints = el("input", {id: pointsId, type: "number", value: String(suggestion.finalPoints ?? suggestion.aiSuggestedPoints), attrs: {min: "0", max: String(item.maxPoints), step: "0.5"}});
+  finalPoints.addEventListener("change", () => {
+    suggestion.finalPoints = Math.min(item.maxPoints, Math.max(0, Number(finalPoints.value) || 0));
+    finalPoints.value = String(suggestion.finalPoints);
+    suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
+    saveSession(session);
+  });
+  for (const criterion of suggestion.criteria) {
+    const source = item.rubric.find(entry => entry.id === criterion.criterionId);
+    const id = `${item.id}-${criterion.criterionId}-ai`;
+    const select = el("select", {id});
+    select.append(
+      el("option", {value: "not_met", text: "No cumplido"}),
+      el("option", {value: "partial", text: "Parcial (50 %)"}),
+      el("option", {value: "met", text: "Cumplido"})
+    );
+    select.value = statuses[criterion.criterionId];
+    select.addEventListener("change", () => {
+      statuses[criterion.criterionId] = select.value;
+      suggestion.finalPoints = calculateItemPoints(item, statuses);
+      finalPoints.value = String(suggestion.finalPoints);
+      suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
+      saveSession(session);
+    });
+    panel.append(el("label", {className: "ai-criterion", htmlFor: id}, [
+      el("span", {}, [el("strong", {text: `${source.label} (${source.points} pt)`}), el("small", {text: criterion.feedback})]),
+      select
+    ]));
+  }
+  const noteId = `${item.id}-ai-note`;
+  const note = el("textarea", {id: noteId, value: suggestion.personalNote || "", attrs: {rows: "2"}});
+  note.addEventListener("input", () => { suggestion.personalNote = note.value; saveSession(session); });
+  panel.append(
+    el("label", {className: "ai-personal-note", htmlFor: noteId}, [el("span", {text: "Observación personal (no se envía a Gemini)"}), note]),
+    el("p", {className: "ai-points", text: `Sugerencia de IA: ${suggestion.aiSuggestedPoints}/${item.maxPoints} puntos`}),
+    el("label", {className: "ai-final-points", htmlFor: pointsId}, [el("span", {text: "Puntuación final (ajuste humano)"}), finalPoints]),
+    el("div", {className: "exam-actions"}, [
+      button("Aceptar corrección revisada", () => {
+        Object.assign(session.assessment[item.id], statuses);
+        for (const criterion of item.rubric) {
+          const manual = document.getElementById(`${item.id}-${criterion.id}`);
+          if (manual) manual.value = statuses[criterion.id];
+        }
+        suggestion.gradingMethod = "ai_reviewed";
+        suggestion.finalPoints = Math.min(item.maxPoints, Math.max(0, Number(finalPoints.value) || 0));
+        suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
+        suggestion.accepted = true;
+        onAssessment(container, item.id);
+      }, "primary", suggestion.status !== "graded"),
+      button("Descartar sugerencia", () => {
+        delete session.aiGrading[item.id];
+        saveSession(session);
+        panel.replaceWith(el("p", {className: "muted ai-item-empty", text: "Sugerencia descartada. La corrección manual permanece disponible."}));
+      })
+    ]),
+    suggestion.accepted ? el("p", {className: "exam-status success", text: `Corrección aceptada: ${suggestion.finalPoints}/${item.maxPoints} puntos.`}) : null
+  );
+  return panel;
+}
+
+function renderPracticeAIGradingPanel(practice, session) {
+  const availability = aiGradingAvailability();
+  const openItems = practiceItems(practice, session.unitIds).filter(item => item.type !== "matching");
+  const answered = openItems.filter(item => String(session.answers[item.id] || "").trim());
+  const allGradable = answered.every(item => validateGradableItem(item).gradable);
+  const status = statusMessage();
+  const run = async force => {
+    const buttons = panel.querySelectorAll("button");
+    buttons.forEach(control => { control.disabled = true; });
+    status.textContent = `Corrigiendo 0 de ${answered.length} respuestas…`;
+    try {
+      const results = await gradeItemsWithAI({
+        parentId: practice.id,
+        contentVersion: practice.contentVersion || practice.schemaVersion,
+        items: answered.map(item => ({...item, studentAnswer: session.answers[item.id]})),
+        force,
+        onProgress: (done, total) => { status.textContent = `Corrigiendo ${done} de ${total} respuestas…`; }
+      });
+      session.aiGrading ||= {};
+      for (const result of results) {
+        const previous = session.aiGrading[result.itemId];
+        session.aiGrading[result.itemId] = {
+          ...result,
+          aiSuggestedPoints: result.points,
+          finalStatuses: Object.fromEntries(result.criteria.map(criterion => [criterion.criterionId, criterion.status])),
+          finalPoints: result.points,
+          personalNote: previous?.personalNote || "",
+          gradingMethod: "ai_pending",
+          manuallyAdjusted: false,
+          accepted: false
+        };
+      }
+      saveSession(session);
+      renderSession(practice, session);
+    } catch (error) {
+      status.textContent = `${error.message} Puede continuar con la corrección manual.`;
+      status.className = "exam-status error";
+      buttons.forEach(control => { control.disabled = false; });
+    }
+  };
+  const reason = !answered.length ? "No hay respuestas abiertas para enviar. Las respuestas en blanco valen cero y no usan la API."
+    : !allGradable ? "Faltan datos de corrección. Use la autoevaluación manual."
+      : availability.reason;
+  const panel = el("section", {className: "panel ai-grading-panel", attrs: {"aria-labelledby": "aiPracticeHeading"}}, [
+    el("div", {className: "section-heading"}, [
+      el("div", {}, [el("h2", {id: "aiPracticeHeading", text: "Corrección de traducciones y respuestas"}), el("p", {text: "Las asociaciones se corrigen localmente y nunca se envían."})]),
+      el("div", {className: "exam-actions"}, [
+        button("Corregir con IA", () => run(false), "primary", !availability.available || !allGradable || !answered.length),
+        button("Corregir manualmente", () => root.querySelector(".self-rubric")?.scrollIntoView({behavior: "smooth", block: "center"})),
+        Object.keys(session.aiGrading || {}).length ? button("Corregir nuevamente", () => run(true), "", !availability.available || !allGradable || !answered.length) : null
+      ])
+    ]),
+    el("p", {className: "ai-assistive-warning", text: "Corrección asistida por IA. La nota solo cambia cuando usted acepta cada resultado."}),
+    reason ? el("p", {className: "exam-status", text: reason}) : null,
+    status
+  ]);
+  return panel;
 }
 
 function renderTranslationBlock(block, session, review, onAnswer, onAssessment, pending) {
@@ -205,6 +351,7 @@ function renderTranslationBlock(block, session, review, onAnswer, onAssessment, 
     ]);
     textarea.addEventListener("input", () => { session.answers[item.id] = textarea.value; onAnswer(); });
     if (review) {
+      article.classList.add("review-answer-layout");
       article.append(el("div", {className: "suggested-answer"}, [el("h3", {text: "Respuesta esperada"}), el("p", {text: item.expectedAnswer})]));
       appendRubric(article, item, session, onAssessment);
     }
@@ -268,6 +415,7 @@ function renderOpenBlock(block, session, review, onAnswer, onAssessment, pending
     ]);
     textarea.addEventListener("input", () => { session.answers[item.id] = textarea.value; onAnswer(); });
     if (review) {
+      article.classList.add("review-answer-layout");
       article.append(el("div", {className: "suggested-answer"}, [el("h3", {text: "Respuesta esperada"}), el("p", {text: item.expectedAnswer})]));
       appendRubric(article, item, session, onAssessment);
     }
@@ -285,7 +433,14 @@ function historyRecord(practice, session, grade) {
     date: new Date(session.finalizedAt).toISOString(),
     durationMs: session.durationMs,
     percent: grade.percent,
-    pendingReview: grade.pendingReview.length
+    pendingReview: grade.pendingReview.length,
+    grading: Object.fromEntries(Object.entries(session.aiGrading || {}).map(([itemId, result]) => [itemId, {
+      gradingMethod: result.gradingMethod,
+      aiSuggestedPoints: result.aiSuggestedPoints,
+      finalPoints: result.finalPoints,
+      manuallyAdjusted: Boolean(result.manuallyAdjusted),
+      accepted: Boolean(result.accepted)
+    }]))
   };
 }
 
@@ -372,7 +527,7 @@ function renderSession(practice, session) {
       }, "primary")
     );
   }
-  replace(header, scoreSlot, content, status, actions);
+  replace(header, scoreSlot, ...(review ? [renderPracticeAIGradingPanel(practice, session)] : []), content, status, actions);
 }
 
 async function init() {
@@ -399,4 +554,8 @@ async function init() {
 }
 
 window.addEventListener("medlex-backup-restored", init);
+window.addEventListener("medlex-ai-state-changed", () => {
+  const active = catalog.map(item => item.practice).find(practice => practice && getSession(practice.id)?.status === "review");
+  if (active && root.closest(".view")?.classList.contains("active")) renderSession(active, getSession(active.id));
+});
 init();

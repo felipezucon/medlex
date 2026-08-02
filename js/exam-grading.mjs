@@ -1,3 +1,5 @@
+import {calculateCriterionPoints} from "./ai-grading.mjs";
+
 const paragraphList = value => String(value ?? "")
   .split(/[^0-9]+/)
   .filter(Boolean)
@@ -29,14 +31,18 @@ export function gradeExam(exam, attempt) {
   let sectionB = 0;
   for (const item of exam.sections.b.items) {
     const selected = attempt.assessment.b[item.id] || {};
-    const itemScore = item.rubric.reduce(
-      (sum, criterion) => sum + (selected[criterion.id] ? criterion.points : 0),
-      0
-    );
+    const reviewedAI = attempt.aiGrading?.[item.id];
+    const itemScore = reviewedAI?.accepted
+      ? Number(reviewedAI.finalPoints) || 0
+      : item.rubric.reduce(
+        (sum, criterion) => sum + calculateCriterionPoints(selected[criterion.id], criterion.points),
+        0
+      );
     sectionB += Math.min(exam.sections.b.pointsPerItem, itemScore);
   }
   const sectionC = Math.min(exam.sections.c.maxPoints, Math.max(0, Number(attempt.assessment.c) || 0));
-  const total = sectionA.score + sectionB + sectionC;
+  sectionB = Math.round(sectionB * 100) / 100;
+  const total = Math.round((sectionA.score + sectionB + sectionC) * 100) / 100;
   return {
     sections: {a: sectionA.score, b: sectionB, c: sectionC},
     sectionAResults: sectionA.results,

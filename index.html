@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self'">
   <meta name="theme-color" content="#17324d">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,7 +13,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="stylesheet" href="./styles.css?v=2026.08.02.2">
+  <link rel="stylesheet" href="./styles.css?v=2026.08.02.3">
 </head>
 <body>
   <header class="topbar">
@@ -126,6 +127,44 @@
             Restaurar backup
           </label>
         </div>
+        <p class="muted">A configuração da IA, a chave criptografada e o cache de correções não fazem parte do backup.</p>
+        <hr>
+        <section id="aiSettings" class="ai-settings" aria-labelledby="aiSettingsHeading">
+          <div class="section-heading">
+            <div>
+              <h3 id="aiSettingsHeading">Corrección con IA — Gemini</h3>
+              <p>Modelo: Gemini 3.5 Flash-Lite</p>
+            </div>
+            <span id="aiState" class="availability unavailable">No configurada</span>
+          </div>
+          <p class="security-notice">Esta chave será criptografada neste navegador para reduzir a exposição acidental. Como o site funciona sem servidor, isso não oferece a mesma proteção de um backend.</p>
+          <p class="muted">Para corregir una respuesta se enviarán a Google Gemini la pregunta, su respuesta, la resolución sugerida y la rúbrica. No se enviarán su nombre, historial completo, clave de API ni otros datos del sitio. En el nivel gratuito, Google puede utilizar los datos procesados para mejorar sus productos.</p>
+
+          <form id="aiConfigureForm" class="ai-form">
+            <label for="aiApiKey"><span>Clave de API de Gemini</span><input id="aiApiKey" type="password" autocomplete="off" required></label>
+            <label for="aiPassword"><span>Contraseña local (mínimo 8 caracteres)</span><input id="aiPassword" type="password" autocomplete="new-password" minlength="8" required></label>
+            <label for="aiPasswordConfirm"><span>Confirmar contraseña local</span><input id="aiPasswordConfirm" type="password" autocomplete="new-password" minlength="8" required></label>
+            <div class="exam-actions"><button class="primary" type="submit">Guardar clave cifrada</button><button id="aiCancelReplaceBtn" type="button" class="hidden">Cancelar</button></div>
+          </form>
+
+          <form id="aiUnlockForm" class="ai-form hidden">
+            <label for="aiUnlockPassword"><span>Contraseña local</span><input id="aiUnlockPassword" type="password" autocomplete="current-password" required></label>
+            <button class="primary" type="submit">Desbloquear clave</button>
+          </form>
+
+          <div id="aiKeyActions" class="exam-actions hidden">
+            <button id="aiLockBtn" type="button">Bloquear clave</button>
+            <button id="aiReplaceBtn" type="button">Sustituir clave</button>
+            <button id="aiForgetBtn" type="button" class="danger-outline">Olvidar clave</button>
+            <button id="aiTestBtn" type="button">Probar conexión</button>
+          </div>
+          <label class="consent-option" for="aiConsent">
+            <input id="aiConsent" type="checkbox">
+            <span>Acepto el envío limitado de cada respuesta seleccionada a Google Gemini para su corrección.</span>
+          </label>
+          <p id="aiLastTest" class="storage-version"></p>
+          <p id="aiStatus" class="status" aria-live="polite"></p>
+        </section>
         <hr>
         <section class="storage-maintenance" aria-labelledby="storageHeading">
           <h3 id="storageHeading">Manutenção dos dados locais</h3>
@@ -153,6 +192,6 @@
   </main>
 
   <footer>Dados salvos neste navegador. Exporte um backup regularmente.</footer>
-  <script type="module" src="./app.js?v=2026.08.02.2"></script>
+  <script type="module" src="./app.js?v=2026.08.02.3"></script>
 </body>
 </html>

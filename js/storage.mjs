@@ -1,5 +1,5 @@
-export const STORAGE_SCHEMA_VERSION = 3;
-export const CONTENT_VERSION = "2026.08.02.2";
+export const STORAGE_SCHEMA_VERSION = 4;
+export const CONTENT_VERSION = "2026.08.02.3";
 
 export const STORAGE_KEYS = Object.freeze({
   meta: "medlex:meta",
@@ -10,8 +10,20 @@ export const STORAGE_KEYS = Object.freeze({
   examHistory: "medlex:exam-history",
   ingProgress: "medlex:ing-progress",
   settings: "medlex:settings",
+  aiKeyVault: "medlex:ai-key-vault",
+  aiSettings: "medlex:ai-settings",
+  aiConsent: "medlex:ai-consent",
+  aiGradingCache: "medlex:ai-grading-cache",
   migrationBackup: "medlex:migration-backup"
 });
+
+// These browser-specific AI values are intentionally never part of a backup.
+const BACKUP_EXCLUDED_KEYS = new Set([
+  STORAGE_KEYS.aiKeyVault,
+  STORAGE_KEYS.aiSettings,
+  STORAGE_KEYS.aiConsent,
+  STORAGE_KEYS.aiGradingCache
+]);
 
 export const LEGACY_KEYS = Object.freeze({
   cards: "medlexCards.v1",
@@ -351,6 +363,12 @@ function migrationTwoToThree() {
   writeMeta(3);
 }
 
+function migrationThreeToFour() {
+  console.info("[MedLex storage] Migrando schema 3 → 4");
+  // AI storage is optional and initialized lazily. Existing study data is untouched.
+  writeMeta(4);
+}
+
 function ensureFinalKeys() {
   const defaults = [
     [STORAGE_KEYS.cardProgress, emptyCardProgress],
@@ -389,6 +407,7 @@ export function migrateStorage(defaultCards = [], {repair = false} = {}) {
       if (version === 0) migrationZeroToOne(defaultCards);
       if (version === 1) migrationOneToTwo();
       if (version === 2) migrationTwoToThree();
+      if (version === 3) migrationThreeToFour();
       version++;
     }
     ensureFinalKeys();
@@ -412,9 +431,10 @@ const managedKeys = () => [...new Set([
   ...Object.values(TRANSITION_KEYS)
 ])];
 
-function collectEntries({includeBackup = true} = {}) {
+function collectEntries({includeBackup = true, includeAI = false} = {}) {
   return Object.fromEntries(managedKeys()
     .filter(key => includeBackup || key !== STORAGE_KEYS.migrationBackup)
+    .filter(key => includeAI || !BACKUP_EXCLUDED_KEYS.has(key))
     .map(key => [key, readRaw(key)])
     .filter(([, raw]) => raw !== null));
 }
@@ -448,15 +468,19 @@ export function restoreStorageBackup(data) {
   const parsed = typeof data === "string" ? parseStorageBackup(data) : data;
   const current = collectEntries({includeBackup: false});
   backupEntries(current, detectSchemaVersion(), "pre-restore");
-  for (const key of managedKeys()) if (key !== STORAGE_KEYS.migrationBackup) removeStorageKey(key);
+  for (const key of managedKeys()) {
+    if (key !== STORAGE_KEYS.migrationBackup && !BACKUP_EXCLUDED_KEYS.has(key)) removeStorageKey(key);
+  }
   try {
     for (const [key, raw] of Object.entries(parsed.entries)) {
-      if (key === STORAGE_KEYS.migrationBackup) continue;
+      if (key === STORAGE_KEYS.migrationBackup || BACKUP_EXCLUDED_KEYS.has(key)) continue;
       localStorage.setItem(key, raw);
       if (localStorage.getItem(key) !== raw) throw new Error(`falha ao verificar ${key}`);
     }
   } catch (error) {
-    for (const key of managedKeys()) if (key !== STORAGE_KEYS.migrationBackup) removeStorageKey(key);
+    for (const key of managedKeys()) {
+      if (key !== STORAGE_KEYS.migrationBackup && !BACKUP_EXCLUDED_KEYS.has(key)) removeStorageKey(key);
+    }
     for (const [key, raw] of Object.entries(current)) localStorage.setItem(key, raw);
     throw new Error(`A restauração falhou e os dados anteriores foram recuperados: ${error.message}`);
   }
@@ -468,14 +492,14 @@ export function recoverMigrationBackup() {
   if (!backup) throw new Error("Não há cópia de recuperação disponível.");
   const current = collectEntries();
   try {
-    for (const key of managedKeys()) removeStorageKey(key);
+    for (const key of managedKeys()) if (!BACKUP_EXCLUDED_KEYS.has(key)) removeStorageKey(key);
     for (const [key, raw] of Object.entries(backup.entries)) {
-      if (typeof raw !== "string" || !managedKeys().includes(key)) continue;
+      if (typeof raw !== "string" || !managedKeys().includes(key) || BACKUP_EXCLUDED_KEYS.has(key)) continue;
       localStorage.setItem(key, raw);
       if (localStorage.getItem(key) !== raw) throw new Error(`falha ao verificar ${key}`);
     }
   } catch (error) {
-    for (const key of managedKeys()) removeStorageKey(key);
+    for (const key of managedKeys()) if (!BACKUP_EXCLUDED_KEYS.has(key)) removeStorageKey(key);
     for (const [key, raw] of Object.entries(current)) localStorage.setItem(key, raw);
     throw new Error(`A recuperação falhou e os dados atuais foram restaurados: ${error.message}`);
   }

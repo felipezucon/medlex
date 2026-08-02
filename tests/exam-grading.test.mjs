@@ -53,4 +53,8 @@ thresholdAttempt.assessment.b.b6 = {"b6-1": true};
 assert.equal(gradeExam(thresholdExam, thresholdAttempt).total, 21);
 assert.equal(gradeExam(thresholdExam, thresholdAttempt).passed, true);
 
+thresholdAttempt.aiGrading = {b1: {accepted: true, finalPoints: 2.5}};
+thresholdAttempt.assessment.b.b1 = {};
+assert.equal(gradeExam(thresholdExam, thresholdAttempt).sections.b, 19.5);
+
 console.log("exam grading: ok");

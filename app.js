@@ -524,6 +524,7 @@ function initEvents() {
 	$("#resetBtn").onclick = async () => {
 		if (!confirm("Isso apagará somente os dados locais do MedLex neste navegador: progresso, tentativas, histórico, cartões importados e preferências. Continuar?")) return;
 		resetMedlexStorage();
+		window.dispatchEvent(new Event("medlex-storage-reset"));
 		const failure = await loadInitial();
 		if (failure) throw failure;
 		storageReady = true;
@@ -590,7 +591,7 @@ function initEvents() {
 		renderStats();
 		renderStorageStatus();
 		if (storageReady) {
-			await Promise.all([import("./js/exam.mjs"), import("./js/practice.mjs")]);
+			await Promise.all([import("./js/exam.mjs"), import("./js/practice.mjs"), import("./js/ai-settings.mjs")]);
 		} else {
 			$("#examApp").innerHTML = '<div class="panel exam-error">Simulados pausados até a reparação dos dados locais.</div>';
 			$("#practiceApp").innerHTML = '<div class="panel exam-error">Práticas pausadas até a reparação dos dados locais.</div>';
