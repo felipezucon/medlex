@@ -1,5 +1,5 @@
 
-const CACHE="medlex-v4";
+const CACHE="medlex-v5";
 const ASSETS=[
   "./","./index.html","./styles.css","./app.js","./cards.csv","./manifest.webmanifest","./icon.svg",
   "./js/exam.mjs","./js/exam-data.mjs","./js/exam-storage.mjs","./js/exam-grading.mjs",

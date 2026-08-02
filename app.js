@@ -2,6 +2,7 @@ const STORAGE_KEY = "medlexCards.v1";
 const REVIEW_LOG_KEY = "medlexReviewLog.v1";
 const EXAM_PROGRESS_KEY = "medlexExams.v1";
 const PRACTICE_PROGRESS_KEY = "medlexPractice.v1";
+const DEFAULT_DECK_VERSION = 2;
 const DAY = 24 * 60 * 60 * 1000;
 let state = { cards: [], settings: { newPerDay: 20 } };
 let queue = [],
@@ -48,11 +49,28 @@ function load() {
 }
 async function loadInitial() {
 	load();
-	if (state.cards.length) return;
+	if (state.cards.length && state.defaultDeckVersion === DEFAULT_DECK_VERSION) return;
 	const res = await fetch("./cards.csv");
+	if (!res.ok) throw new Error(`Não foi possível carregar o baralho padrão (${res.status}).`);
 	const text = await res.text();
 	const rows = parseCSV(text);
-	state.cards = rows.filter((r) => r.english).map(normalizeCard);
+	const defaults = rows.filter((r) => r.english).map(normalizeCard);
+	const canonicalEnglish = (value) => String(value ?? "")
+		.normalize("NFKC")
+		.toLocaleLowerCase("en")
+		.trim()
+		.replace(/[\u2018\u2019]/g, "'")
+		.replace(/[\u2010-\u2015\u2212]/g, "-")
+		.replace(/\s+/g, " ")
+		.replace(/[.!?;:,]+$/u, "")
+		.trim();
+	const existing = new Map(state.cards.map((card) => [canonicalEnglish(card.english), card]));
+	for (const card of defaults) {
+		const saved = existing.get(canonicalEnglish(card.english));
+		if (saved) saved.id = card.id;
+		else state.cards.push(card);
+	}
+	state.defaultDeckVersion = DEFAULT_DECK_VERSION;
 	save();
 }
 function parseCSV(text) {
@@ -339,6 +357,7 @@ async function importCSV(file) {
 }
 function exportCards() {
 	const cols = [
+		"id",
 		"english",
 		"spanish",
 		"portuguese",
@@ -407,6 +426,7 @@ async function restoreBackup(file) {
 		document.documentElement.dataset.theme = data.theme === "dark" ? "dark" : "";
 	}
 	save();
+	await loadInitial();
 	buildQueue();
 	populateTags();
 	renderStats();
