@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "id": "simulado-03-post-infectious-mecfs",
+  "title": "Práctica Pre-final — Simulado 3",
+  "theme": "Encefalomielitis miálgica/síndrome de fatiga crónica posinfeccioso",
+  "description": "El siguiente texto es una adaptación educativa original basada en una investigación del NIH. No reproduce literalmente la publicación fuente.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "NIH study identifies brain and immune differences in post-infectious ME/CFS",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Myalgic encephalomyelitis/chronic fatigue syndrome, known as ME/CFS, is a disabling condition marked by profound fatigue, worsening of symptoms after exertion, cognitive difficulties and problems involving sleep or the autonomic nervous system. In some patients, the illness begins after a viral or bacterial infection. Its biological mechanisms remain uncertain, and there is currently no treatment that modifies the underlying disease. Inconsistent findings among previous studies have made it difficult to identify reliable therapeutic targets."
+      },
+      {
+        "number": 2,
+        "text": "A multidisciplinary team at the U.S. National Institutes of Health conducted an intensive study of post-infectious ME/CFS. The investigators enrolled 17 people who had developed the condition after an infection and had been ill for fewer than five years, together with 21 healthy controls. Participants underwent rigorous screening to exclude alternative explanations for their symptoms. The small sample allowed researchers to collect an unusually detailed set of measurements from each person."
+      },
+      {
+        "number": 3,
+        "text": "The evaluation included clinical examinations, functional magnetic resonance imaging, cognitive and physical performance tests, autonomic testing, blood and spinal-fluid analyses, and skin and muscle biopsies. Participants also stayed in metabolic chambers, where researchers monitored energy use, diet, sleep, metabolism and the gut microbiome under controlled conditions. During another visit, they completed cardiopulmonary exercise testing. This approach, known as deep phenotyping, was designed to connect symptoms with findings from several body systems."
+      },
+      {
+        "number": 4,
+        "text": "Brain imaging showed lower activity in the temporal-parietal junction, a region involved in deciding how much effort to exert. People with ME/CFS had difficulty choosing and sustaining effort during experimental tasks. Their motor cortex remained unusually active during fatiguing activities, but researchers did not find evidence that the muscles themselves had become exhausted. This pattern suggested that the sensation of fatigue may involve altered communication between brain regions that evaluate effort and those that initiate movement."
+      },
+      {
+        "number": 5,
+        "text": "Analyses of spinal fluid found reduced levels of certain catecholamines and related molecules that help regulate the nervous system. Lower concentrations were associated with poorer motor performance and more severe cognitive or effort-related symptoms. Immune testing also identified a higher proportion of naïve B cells and fewer switched memory B cells than in healthy controls. In addition, men and women showed different patterns of immune-cell activity, gene expression and metabolic markers."
+      },
+      {
+        "number": 6,
+        "text": "The study provides objective evidence that post-infectious ME/CFS involves abnormalities across the nervous, immune and metabolic systems. Nevertheless, the findings should be interpreted cautiously because the number of participants was small and the design was exploratory. The results do not establish a diagnostic test or an immediate treatment. Researchers must determine whether the same patterns appear in larger and more diverse populations and whether any of the identified pathways can be safely targeted."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {
+          "id": "a1",
+          "statement": "Características generales y dificultades para comprender el ME/CFS.",
+          "developed": true,
+          "paragraphs": [
+            1
+          ]
+        },
+        {
+          "id": "a2",
+          "statement": "Selección de los participantes y tamaño de los grupos estudiados.",
+          "developed": true,
+          "paragraphs": [
+            2
+          ]
+        },
+        {
+          "id": "a3",
+          "statement": "Comparación de la eficacia de tres tratamientos farmacológicos.",
+          "developed": false,
+          "paragraphs": []
+        },
+        {
+          "id": "a4",
+          "statement": "Métodos utilizados para realizar un fenotipado profundo.",
+          "developed": true,
+          "paragraphs": [
+            3
+          ]
+        },
+        {
+          "id": "a5",
+          "statement": "Hallazgos cerebrales, neuroquímicos e inmunológicos.",
+          "developed": true,
+          "paragraphs": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": "a6",
+          "statement": "Limitaciones del estudio y necesidad de validación posterior.",
+          "developed": true,
+          "paragraphs": [
+            6
+          ]
+        }
+      ]
+    },
+    "b": {
+      "title": "B. Comprensión del texto",
+      "instructions": "Responda en español, de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Cuáles son algunas manifestaciones del ME/CFS y por qué ha sido difícil descubrir sus mecanismos?",
+          "suggestedAnswer": "Puede causar fatiga profunda, empeoramiento después del esfuerzo, alteraciones cognitivas y problemas del sueño o autonómicos. Ha sido difícil comprenderlo porque los mecanismos biológicos no están claros y los resultados previos han sido inconsistentes.",
+          "rubric": [
+            {
+              "id": "b1-1",
+              "label": "Incluí esta idea esencial: Puede causar fatiga profunda, empeoramiento después del esfuerzo, alteraciones cognitivas y problemas del sueño o autonómicos.",
+              "points": 2
+            },
+            {
+              "id": "b1-2",
+              "label": "Incluí esta idea esencial: Ha sido difícil comprenderlo porque los mecanismos biológicos no están claros y los resultados previos han sido inconsistentes.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Quiénes participaron del estudio y por qué fue necesario realizar una selección rigurosa?",
+          "suggestedAnswer": "Participaron 17 personas con ME/CFS posinfeccioso de menos de cinco años de evolución y 21 controles sanos. La selección rigurosa permitió descartar otras enfermedades que podían explicar los síntomas y formar grupos comparables.",
+          "rubric": [
+            {
+              "id": "b2-1",
+              "label": "Incluí esta idea esencial: Participaron 17 personas con ME/CFS posinfeccioso de menos de cinco años de evolución y 21 controles sanos.",
+              "points": 2
+            },
+            {
+              "id": "b2-2",
+              "label": "Incluí esta idea esencial: La selección rigurosa permitió descartar otras enfermedades que podían explicar los síntomas y formar grupos comparables.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿En qué consistió el enfoque de fenotipado profundo empleado por los investigadores?",
+          "suggestedAnswer": "Incluyó estudios clínicos, resonancia funcional, pruebas físicas y cognitivas, evaluación autonómica, biopsias, análisis de sangre y líquido cefalorraquídeo, cámaras metabólicas y una prueba de ejercicio cardiopulmonar. El objetivo fue relacionar síntomas con alteraciones de distintos sistemas.",
+          "rubric": [
+            {
+              "id": "b3-1",
+              "label": "Incluí esta idea esencial: Incluyó estudios clínicos, resonancia funcional, pruebas físicas y cognitivas, evaluación autonómica, biopsias, análisis de sangre y líquido cefalorraquídeo, cámaras metabólicas y una prueba de ejercicio cardiopulmonar.",
+              "points": 2
+            },
+            {
+              "id": "b3-2",
+              "label": "Incluí esta idea esencial: El objetivo fue relacionar síntomas con alteraciones de distintos sistemas.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Qué hallazgos permitieron proponer que la fatiga no se debía simplemente al agotamiento muscular?",
+          "suggestedAnswer": "Las personas tuvieron dificultades para decidir y mantener el esfuerzo, presentaron menor actividad de la unión temporoparietal y activación anormal del córtex motor, pero no mostraron signos de fatiga muscular. Esto orientó hacia un mecanismo central relacionado con el procesamiento cerebral del esfuerzo.",
+          "rubric": [
+            {
+              "id": "b4-1",
+              "label": "Incluí esta idea esencial: Las personas tuvieron dificultades para decidir y mantener el esfuerzo, presentaron menor actividad de la unión temporoparietal y activación anormal del córtex motor, pero no mostraron signos de fatiga muscular.",
+              "points": 2
+            },
+            {
+              "id": "b4-2",
+              "label": "Incluí esta idea esencial: Esto orientó hacia un mecanismo central relacionado con el procesamiento cerebral del esfuerzo.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "Describa los principales resultados obtenidos en el líquido cefalorraquídeo y en el sistema inmunitario.",
+          "suggestedAnswer": "Se encontraron niveles bajos de ciertas catecolaminas, relacionados con peor desempeño motor y síntomas cognitivos. También hubo más células B naïve, menos células B de memoria con cambio de clase y diferencias inmunológicas y metabólicas entre hombres y mujeres.",
+          "rubric": [
+            {
+              "id": "b5-1",
+              "label": "Incluí esta idea esencial: Se encontraron niveles bajos de ciertas catecolaminas, relacionados con peor desempeño motor y síntomas cognitivos.",
+              "points": 2
+            },
+            {
+              "id": "b5-2",
+              "label": "Incluí esta idea esencial: También hubo más células B naïve, menos células B de memoria con cambio de clase y diferencias inmunológicas y metabólicas entre hombres y mujeres.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Qué aporta este estudio y por qué sus resultados todavía no pueden utilizarse como prueba diagnóstica o tratamiento?",
+          "suggestedAnswer": "Aporta evidencia objetiva de alteraciones cerebrales, inmunitarias y metabólicas. Sin embargo, fue un estudio pequeño y exploratorio; los resultados deben reproducirse en poblaciones mayores antes de convertirse en biomarcadores, pruebas diagnósticas o blancos terapéuticos.",
+          "rubric": [
+            {
+              "id": "b6-1",
+              "label": "Incluí esta idea esencial: Aporta evidencia objetiva de alteraciones cerebrales, inmunitarias y metabólicas.",
+              "points": 2
+            },
+            {
+              "id": "b6-2",
+              "label": "Incluí esta idea esencial: Sin embargo, fue un estudio pequeño y exploratorio; los resultados deben reproducirse en poblaciones mayores antes de convertirse en biomarcadores, pruebas diagnósticas o blancos terapéuticos.",
+              "points": 2
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Título",
+      "instructions": "Elabore una adecuada versión del título del texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "suggestedAnswer": "Un estudio del NIH identifica diferencias cerebrales e inmunológicas en el ME/CFS posinfeccioso."
+    }
+  }
+}

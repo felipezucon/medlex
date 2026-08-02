@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "id": "simulado-05-antibiotic-resistance",
+  "title": "Práctica Pre-final — Simulado 5",
+  "theme": "Vigilancia mundial de la resistencia a los antibióticos",
+  "description": "El siguiente texto es una adaptación educativa original basada en el informe mundial de vigilancia de la OMS de 2025. No reproduce literalmente la publicación fuente.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "WHO report warns that antibiotic resistance is increasing worldwide",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Antibiotic resistance occurs when bacteria change in ways that allow them to survive medicines that previously killed them or stopped their growth. As a result, common infections become more difficult to treat, hospital stays may be prolonged and the risk of severe disease or death increases. Resistance also threatens routine surgery, cancer treatment and other medical procedures that depend on effective antibiotics. Misuse and overuse accelerate the problem, although unequal access to appropriate treatment is also a major concern."
+      },
+      {
+        "number": 2,
+        "text": "In 2025, the World Health Organization published its most extensive global analysis of antibiotic resistance to date. The report drew on more than 23 million laboratory-confirmed infections involving the bloodstream, urinary and gastrointestinal tracts and urogenital gonorrhoea. Data for 2023 were reported by 104 countries, while 110 countries contributed information at some point between 2016 and 2023 through the Global Antimicrobial Resistance and Use Surveillance System, known as GLASS."
+      },
+      {
+        "number": 3,
+        "text": "The analysis covered eight common bacterial pathogens and 22 antibiotics. It provided global, regional and national estimates and examined trends for selected pathogen–antibiotic combinations between 2018 and 2023. Worldwide, approximately one in six laboratory-confirmed bacterial infections in 2023 was resistant to the antibiotic used for treatment. Resistance increased in more than 40% of the monitored combinations, with average annual rises ranging from about 5% to 15%."
+      },
+      {
+        "number": 4,
+        "text": "The burden was not distributed equally. Roughly one in three reported infections was resistant in the South-East Asian and Eastern Mediterranean regions, compared with about one in five in Africa. Countries with limited laboratory capacity and restricted access to diagnosis or appropriate medicines often faced the greatest difficulties. At the same time, weak surveillance in those settings made it harder to measure the true size of the problem."
+      },
+      {
+        "number": 5,
+        "text": "Drug-resistant Gram-negative bacteria were a particular threat. Escherichia coli and Klebsiella pneumoniae are frequent causes of severe bloodstream infections that can lead to sepsis, organ failure and death. Globally, more than 40% of E. coli and more than 55% of K. pneumoniae from bloodstream infections were resistant to third-generation cephalosporins. In the African region, resistance to these important first-choice drugs exceeded 70% for some estimates. Resistance to carbapenems and fluoroquinolones was also increasing, leaving fewer affordable treatment options."
+      },
+      {
+        "number": 6,
+        "text": "Participation in GLASS rose from 25 countries in 2016 to 104 in 2023, but important gaps remained. Nearly half of countries did not submit data in 2023, and many reporting countries lacked systems capable of producing complete and reliable estimates. WHO called for stronger laboratories, higher-quality surveillance, responsible antibiotic use, access to reliable diagnostics and vaccines, infection prevention and continued development of new treatments. The organization also emphasized a One Health approach connecting human, animal and environmental health."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {
+          "id": "a1",
+          "statement": "Consecuencias médicas generales de la resistencia a los antibióticos.",
+          "developed": true,
+          "paragraphs": [
+            1
+          ]
+        },
+        {
+          "id": "a2",
+          "statement": "Origen, alcance y cantidad de datos utilizados por el informe.",
+          "developed": true,
+          "paragraphs": [
+            2
+          ]
+        },
+        {
+          "id": "a3",
+          "statement": "Comparación entre todos los antibióticos disponibles para cada infección.",
+          "developed": false,
+          "paragraphs": []
+        },
+        {
+          "id": "a4",
+          "statement": "Diferencias regionales en la frecuencia de resistencia.",
+          "developed": true,
+          "paragraphs": [
+            4
+          ]
+        },
+        {
+          "id": "a5",
+          "statement": "Amenaza representada por bacterias gramnegativas resistentes.",
+          "developed": true,
+          "paragraphs": [
+            5
+          ]
+        },
+        {
+          "id": "a6",
+          "statement": "Avances, deficiencias y acciones futuras en la vigilancia mundial.",
+          "developed": true,
+          "paragraphs": [
+            6
+          ]
+        }
+      ]
+    },
+    "b": {
+      "title": "B. Comprensión del texto",
+      "instructions": "Responda en español, de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Qué es la resistencia a los antibióticos y por qué representa un problema para diferentes áreas de la medicina?",
+          "suggestedAnswer": "Es la capacidad adquirida por las bacterias para sobrevivir a antibióticos que antes eran eficaces. Dificulta el tratamiento de infecciones, aumenta complicaciones y muertes y pone en riesgo procedimientos como cirugías o tratamientos oncológicos que necesitan antibióticos efectivos.",
+          "rubric": [
+            {
+              "id": "b1-1",
+              "label": "Incluí esta idea esencial: Es la capacidad adquirida por las bacterias para sobrevivir a antibióticos que antes eran eficaces.",
+              "points": 2
+            },
+            {
+              "id": "b1-2",
+              "label": "Incluí esta idea esencial: Dificulta el tratamiento de infecciones, aumenta complicaciones y muertes y pone en riesgo procedimientos como cirugías o tratamientos oncológicos que necesitan antibióticos efectivos.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Qué fuentes y qué cantidad de información utilizó la OMS para elaborar el informe?",
+          "suggestedAnswer": "La OMS utilizó más de 23 millones de infecciones confirmadas por laboratorio, correspondientes a sangre, vías urinarias y gastrointestinales y gonorrea urogenital. En 2023 informaron 104 países y 110 aportaron datos durante el período 2016–2023 mediante GLASS.",
+          "rubric": [
+            {
+              "id": "b2-1",
+              "label": "Incluí esta idea esencial: La OMS utilizó más de 23 millones de infecciones confirmadas por laboratorio, correspondientes a sangre, vías urinarias y gastrointestinales y gonorrea urogenital.",
+              "points": 2
+            },
+            {
+              "id": "b2-2",
+              "label": "Incluí esta idea esencial: En 2023 informaron 104 países y 110 aportaron datos durante el período 2016–2023 mediante GLASS.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿Qué resultados globales se obtuvieron para 2023 y para las tendencias entre 2018 y 2023?",
+          "suggestedAnswer": "Aproximadamente una de cada seis infecciones bacterianas confirmadas en 2023 fue resistente. Entre 2018 y 2023 la resistencia aumentó en más del 40% de las combinaciones vigiladas, con incrementos anuales medios cercanos al 5–15%.",
+          "rubric": [
+            {
+              "id": "b3-1",
+              "label": "Incluí esta idea esencial: Aproximadamente una de cada seis infecciones bacterianas confirmadas en 2023 fue resistente.",
+              "points": 2
+            },
+            {
+              "id": "b3-2",
+              "label": "Incluí esta idea esencial: Entre 2018 y 2023 la resistencia aumentó en más del 40% de las combinaciones vigiladas, con incrementos anuales medios cercanos al 5–15%.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "Compare la situación de las regiones del Sudeste Asiático, Mediterráneo Oriental y África. ¿Qué dificultad adicional enfrentan los países con menos recursos?",
+          "suggestedAnswer": "En el Sudeste Asiático y el Mediterráneo Oriental aproximadamente una de cada tres infecciones fue resistente; en África, cerca de una de cada cinco. Los países con menos recursos suelen tener menos capacidad diagnóstica, terapéutica y de vigilancia, lo que agrava el problema y dificulta estimarlo.",
+          "rubric": [
+            {
+              "id": "b4-1",
+              "label": "Incluí esta idea esencial: En el Sudeste Asiático y el Mediterráneo Oriental aproximadamente una de cada tres infecciones fue resistente; en África, cerca de una de cada cinco.",
+              "points": 2
+            },
+            {
+              "id": "b4-2",
+              "label": "Incluí esta idea esencial: Los países con menos recursos suelen tener menos capacidad diagnóstica, terapéutica y de vigilancia, lo que agrava el problema y dificulta estimarlo.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Por qué E. coli y K. pneumoniae representan una amenaza importante y qué ocurrió con las cefalosporinas de tercera generación?",
+          "suggestedAnswer": "Ambas bacterias causan infecciones sanguíneas graves, sepsis, falla orgánica y muerte. Más del 40% de E. coli y más del 55% de K. pneumoniae presentaron resistencia a cefalosporinas de tercera generación a nivel mundial, y algunas estimaciones africanas superaron el 70%.",
+          "rubric": [
+            {
+              "id": "b5-1",
+              "label": "Incluí esta idea esencial: Ambas bacterias causan infecciones sanguíneas graves, sepsis, falla orgánica y muerte.",
+              "points": 2
+            },
+            {
+              "id": "b5-2",
+              "label": "Incluí esta idea esencial: Más del 40% de E. coli y más del 55% de K. pneumoniae presentaron resistencia a cefalosporinas de tercera generación a nivel mundial, y algunas estimaciones africanas superaron el 70%.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Qué progresos y limitaciones presentó GLASS y qué medidas recomendó la OMS?",
+          "suggestedAnswer": "La participación aumentó de 25 a 104 países, pero casi la mitad no informó en 2023 y muchos sistemas no producían datos confiables. La OMS recomendó fortalecer laboratorios y vigilancia, usar responsablemente los antibióticos, mejorar diagnóstico, vacunación y prevención, desarrollar tratamientos y aplicar el enfoque One Health.",
+          "rubric": [
+            {
+              "id": "b6-1",
+              "label": "Incluí esta idea esencial: La participación aumentó de 25 a 104 países, pero casi la mitad no informó en 2023 y muchos sistemas no producían datos confiables.",
+              "points": 2
+            },
+            {
+              "id": "b6-2",
+              "label": "Incluí esta idea esencial: La OMS recomendó fortalecer laboratorios y vigilancia, usar responsablemente los antibióticos, mejorar diagnóstico, vacunación y prevención, desarrollar tratamientos y aplicar el enfoque One Health.",
+              "points": 2
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Título",
+      "instructions": "Elabore una adecuada versión del título del texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "suggestedAnswer": "Un informe de la OMS advierte que la resistencia a los antibióticos está aumentando en todo el mundo."
+    }
+  }
+}

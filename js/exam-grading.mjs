@@ -1,12 +1,23 @@
+const paragraphList = value => String(value ?? "")
+  .split(/[^0-9]+/)
+  .filter(Boolean)
+  .map(Number)
+  .sort((a, b) => a - b);
+
 export function gradeSectionA(exam, answers = {}) {
   const results = {};
   let score = 0;
   for (const item of exam.sections.a.items) {
     const answer = answers[item.id] || {};
     const developed = Boolean(answer.developed);
-    const paragraph = String(answer.paragraph || "").trim();
+    const paragraphs = paragraphList(answer.paragraph);
+    const expected = (Array.isArray(item.paragraphs) ? item.paragraphs : [item.paragraph])
+      .filter(Number.isInteger)
+      .sort((a, b) => a - b);
     const correct = developed === item.developed
-      && (item.developed ? paragraph === String(item.paragraph) : paragraph === "");
+      && (item.developed
+        ? paragraphs.length === expected.length && paragraphs.every((number, index) => number === expected[index])
+        : paragraphs.length === 0);
     results[item.id] = correct;
     if (correct) score += exam.sections.a.pointsPerItem;
   }

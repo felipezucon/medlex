@@ -30,6 +30,36 @@
       "id": "prefinal-f",
       "file": "./prefinal-f.json",
       "available": true
+    },
+    {
+      "id": "exam-smoking-depression-2022-reconstructed",
+      "file": "./exam-smoking-depression.json",
+      "available": true
+    },
+    {
+      "id": "simulado-01-sleep-apnea",
+      "file": "./simulado-01-sleep-apnea.json",
+      "available": true
+    },
+    {
+      "id": "simulado-02-pitavastatin-hiv",
+      "file": "./simulado-02-pitavastatin-hiv.json",
+      "available": true
+    },
+    {
+      "id": "simulado-03-post-infectious-mecfs",
+      "file": "./simulado-03-post-infectious-mecfs.json",
+      "available": true
+    },
+    {
+      "id": "simulado-04-cannabis-cardiovascular",
+      "file": "./simulado-04-cannabis-cardiovascular.json",
+      "available": true
+    },
+    {
+      "id": "simulado-05-antibiotic-resistance",
+      "file": "./simulado-05-antibiotic-resistance.json",
+      "available": true
     }
   ]
 }

@@ -274,18 +274,16 @@ function renderSectionA(exam, attempt, review, grade, onSave) {
     const developed = el("input", {id: developedId, type: "checkbox", checked: answer.developed, disabled: review});
     const paragraph = el("input", {
       id: paragraphId,
-      type: "number",
+      type: "text",
       value: answer.paragraph,
-      min: 1,
-      max: exam.article.paragraphs.length,
       disabled: review || !answer.developed,
-      attrs: {inputmode: "numeric"}
+      attrs: {inputmode: "numeric", placeholder: "Ej.: 2, 3"}
     });
     const fieldset = el("fieldset", {className: "exam-question"}, [
       el("legend", {text: `${index + 1}. ${item.statement}`}),
       el("div", {className: "objective-answer"}, [
         el("label", {className: "check-option", htmlFor: developedId}, [developed, el("span", {text: "El tema se desarrolla"})]),
-        el("label", {htmlFor: paragraphId}, [el("span", {text: "Párrafo"}), paragraph])
+        el("label", {htmlFor: paragraphId}, [el("span", {text: "Párrafo(s)"}), paragraph])
       ])
     ]);
     developed.addEventListener("change", () => {
@@ -314,7 +312,12 @@ function renderSectionA(exam, attempt, review, grade, onSave) {
       fieldset.classList.add(correct ? "correct" : "incorrect", ...(correct ? [] : ["needs-review"]));
       fieldset.append(el("p", {className: "answer-feedback", text: correct
         ? `Correcto · ${exam.sections.a.pointsPerItem} punto(s)`
-        : `Respuesta correcta: ${item.developed ? `se desarrolla en el párrafo ${item.paragraph}` : "no se desarrolla"}.`}));
+        : `Respuesta correcta: ${item.developed
+          ? `se desarrolla en ${(() => {
+            const references = Array.isArray(item.paragraphs) ? item.paragraphs : [item.paragraph];
+            return references.length === 1 ? `el párrafo ${references[0]}` : `los párrafos ${references.join(" y ")}`;
+          })()}`
+          : "no se desarrolla"}.`}));
     }
     section.append(fieldset);
   }
@@ -385,7 +388,7 @@ function renderSectionC(exam, attempt, review, onSave) {
     el("h2", {id: "sectionCTitle", text: exam.sections.c.title}),
     el("p", {className: "section-instructions", text: exam.sections.c.instructions}),
     el("div", {className: "exam-question open-question"}, [
-      el("label", {htmlFor: answerId}, [el("strong", {text: "Versión en español"}), textarea])
+      el("label", {htmlFor: answerId}, [el("strong", {text: exam.sections.c.answerLabel || "Versión en español"}), textarea])
     ])
   ]);
   textarea.addEventListener("input", () => {

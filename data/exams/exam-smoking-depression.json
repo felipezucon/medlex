@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "id": "exam-smoking-depression-2022-reconstructed",
+  "title": "Examen reconstruido: tabaquismo, depresión mayor y trastornos por consumo de sustancias",
+  "theme": "Tabaquismo, salud mental y trastornos por consumo de sustancias",
+  "description": "Mantener la etiqueta de examen reconstruido hasta obtener fotografías completas de las secciones A y C.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "source": {
+    "type": "reconstructed_real_exam",
+    "articleTitle": "Tobacco smoking rates are decreasing in people with major depression and substance use disorder",
+    "articleDate": "2022-04-26",
+    "publisher": "National Institutes of Health (NIH)",
+    "journalStudy": "JAMA",
+    "articleUrl": "https://www.nih.gov/news-events/news-releases/tobacco-smoking-rates-are-decreasing-people-major-depression-substance-use-disorder",
+    "studyUrl": "https://jamanetwork.com/journals/jama/fullarticle/2791406"
+  },
+  "reconstruction": {
+    "isReconstructed": true,
+    "basis": [
+      "Fotografías parciales tomadas durante la evaluación",
+      "Texto original publicado por NIH",
+      "Artículo científico original publicado en JAMA",
+      "Estructura de las prácticas pre-final A–F de Inglés Médico"
+    ],
+    "confirmedFromPhotos": [
+      "Fecha y título del texto",
+      "Contenido principal de los párrafos 1 a 4",
+      "Existencia de seis preguntas abiertas en la sección B",
+      "Tema general de las seis preguntas de la sección B"
+    ],
+    "verifiedFromSources": [
+      "Contenido faltante del texto",
+      "Características del diseño y de la muestra",
+      "Resultados en American Indian or Alaska Native adults",
+      "Recomendaciones para investigaciones futuras"
+    ],
+    "inferred": [
+      "Enunciados completos de la sección A",
+      "Redacción exacta de algunas preguntas cortadas en el margen derecho",
+      "Actividad completa de la sección C",
+      "Distribución de puntaje conforme al modelo de las prácticas pre-final"
+    ],
+    "confidence": {
+      "reading": "high",
+      "sectionA": "medium",
+      "sectionB": "high",
+      "sectionC": "low"
+    },
+    "reviewNote": "Mantener la etiqueta de examen reconstruido hasta obtener fotografías completas de las secciones A y C."
+  },
+  "article": {
+    "title": "Tobacco smoking rates are decreasing in people with major depression and substance use disorder",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Significant reductions in cigarette use were found among U.S. adults with major depression, substance use disorder, or both from 2006 to 2019, according to a new analysis of nationally representative survey data published today in JAMA. The study was conducted by researchers at the National Institute on Drug Abuse (NIDA), part of the National Institutes of Health, and the Substance Abuse and Mental Health Services Administration (SAMHSA). These findings suggest that groups at higher risk of cigarette smoking can be reached by, and may have benefitted from, tobacco use prevention and cessation efforts that have led to significant declines in tobacco use in the general population. At the same time, the findings highlight remaining disparities, documenting higher smoking rates in people with psychiatric disorders than in those without."
+      },
+      {
+        "number": 2,
+        "text": "“This study shows us that, at a population-level, reductions in tobacco use are achievable for people with psychiatric conditions, and smoking cessation should be prioritized along with treatments for substance use, depression, and other mental health disorders for people who experience them,” said Nora Volkow, M.D., director of NIDA and co-author of the study. “Therapies to help people stop smoking are safe, effective, and may even enhance the long-term success of concurrent treatments for more severe mental health symptoms in individuals with psychiatric disorders by lowering stress, anxiety, depression, and by improving overall mood and quality of life.”"
+      },
+      {
+        "number": 3,
+        "text": "Cigarette smoking, the leading preventable cause of disease, disability and death in the U.S., has been declining. Experts attribute this in part to increases in available treatments, insurance coverage of these treatments, cigarette prices, smoke-free and tobacco-free policies, mass media and educational campaigns and other evidence-based strategies that have been implemented in recent decades to help people avoid or quit using cigarettes."
+      },
+      {
+        "number": 4,
+        "text": "Past studies have documented that smoking rates remained essentially unchanged in people with substance use disorders, major depression or other psychiatric disorders. Now, analyzing data from more than 558,000 individuals aged 18 and older who participated in the 2006 to 2019 National Surveys on Drug Use and Health (NSDUH), researchers found that while people with major depression, substance use disorder or both were more likely to smoke cigarettes than people without these disorders, improvements in smoking cessation were seen among those with these psychiatric disorders during the 14-year period. The NSDUH, conducted annually by SAMHSA, provides nationally representative data on cigarette smoking, tobacco use, major depressive episode and substance (alcohol or drug) use disorders among the U.S. civilian, non-institutionalized adult population. Among the population studied here, roughly 53% were women, 41% were aged 18 to 25 and 62% were non-Hispanic white."
+      },
+      {
+        "number": 5,
+        "text": "“However, there’s still a lot of work to be done to ensure tobacco use in patients with substance use disorder, depression, or other psychiatric conditions continue to decrease. It is crucial that healthcare providers treat all the health issues that a patient experiences, not just their depression or drug use disorder at a given point in time. To do this, smoking cessation therapies need to be integrated into existing behavioral health treatments. The result will be longer and healthier lives for all people.”"
+      },
+      {
+        "number": 6,
+        "text": "During 2006 to 2019, among adults with past-year major depressive episodes or substance use disorder, past-month cigarette smoking declined significantly across every examined age, sex, and racial and ethnic subgroup, except that among non-Hispanic American Indian or Alaska Native adults smoking rates did not decline. Given that American Indian and Alaska Native communities face the highest smoking and lowest quitting rates among racial and ethnic subgroups in the United States, this highlights the need to channel additional prevention and treatment efforts into these communities. In future work, the researchers note the need to include data on certain populations at high risk of psychiatric disorders and cigarette smoking, such as institutionalized individuals or those experiencing homelessness without living in a shelter. More work is also needed to continue to monitor national trends in differences in tobacco use and nicotine vaping among adults with or without psychiatric conditions—including substance use disorder—during the COVID-19 pandemic."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {
+          "id": "a1",
+          "statement": "Instituciones que realizaron el estudio y hallazgo principal de la investigación.",
+          "developed": true,
+          "paragraphs": [
+            1
+          ]
+        },
+        {
+          "id": "a2",
+          "statement": "Seguridad y beneficios de las terapias para dejar de fumar en personas con trastornos psiquiátricos.",
+          "developed": true,
+          "paragraphs": [
+            2
+          ]
+        },
+        {
+          "id": "a3",
+          "statement": "Estrategias que contribuyeron a disminuir el consumo de cigarrillos en la población general.",
+          "developed": true,
+          "paragraphs": [
+            3
+          ]
+        },
+        {
+          "id": "a4",
+          "statement": "Fuente de los datos y características de la muestra analizada.",
+          "developed": true,
+          "paragraphs": [
+            4
+          ]
+        },
+        {
+          "id": "a5",
+          "statement": "Resultados específicos y medidas necesarias para las comunidades American Indian y Alaska Native.",
+          "developed": true,
+          "paragraphs": [
+            6
+          ]
+        },
+        {
+          "id": "a6",
+          "statement": "Comparación de la eficacia de diferentes medicamentos para dejar de fumar.",
+          "developed": false,
+          "paragraphs": []
+        }
+      ]
+    },
+    "b": {
+      "title": "B. Comprensión del texto",
+      "instructions": "Resuelva en español de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Qué tipo de estudio se publicó el 26 de abril de 2022 y cuál fue su principal hallazgo?",
+          "suggestedAnswer": "Se publicó un nuevo análisis de datos de encuestas representativas a nivel nacional, correspondiente a un estudio exploratorio, transversal y seriado basado en las encuestas NSDUH. Su principal hallazgo fue que, entre 2006 y 2019, disminuyó significativamente el consumo de cigarrillos entre los adultos estadounidenses con episodios de depresión mayor, trastornos por consumo de sustancias o ambas condiciones. Sin embargo, estos grupos continuaron presentando tasas de tabaquismo más elevadas que las personas sin esos trastornos.",
+          "rubric": [
+            {
+              "id": "b1-r1",
+              "label": "Identifica que se trató de un análisis de datos de encuestas representativas o de un estudio transversal seriado.",
+              "points": 1
+            },
+            {
+              "id": "b1-r2",
+              "label": "Menciona a los adultos con depresión mayor, trastorno por consumo de sustancias o ambas condiciones.",
+              "points": 1
+            },
+            {
+              "id": "b1-r3",
+              "label": "Indica que el consumo de cigarrillos disminuyó significativamente entre 2006 y 2019.",
+              "points": 1
+            },
+            {
+              "id": "b1-r4",
+              "label": "Aclara que persistieron tasas más altas que en las personas sin esos trastornos.",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿De dónde se obtuvo la información para el estudio? ¿Qué características tenía la muestra?",
+          "suggestedAnswer": "La información se obtuvo de las Encuestas Nacionales sobre Uso de Drogas y Salud de Estados Unidos (NSDUH), realizadas anualmente por SAMHSA entre 2006 y 2019. Se analizaron datos de más de 558.000 personas de 18 años o más pertenecientes a la población civil adulta no institucionalizada. Aproximadamente el 53% eran mujeres, el 41% tenía entre 18 y 25 años y el 62% era blanco no hispano.",
+          "rubric": [
+            {
+              "id": "b2-r1",
+              "label": "Identifica las encuestas NSDUH como fuente de los datos.",
+              "points": 1
+            },
+            {
+              "id": "b2-r2",
+              "label": "Menciona el período 2006–2019 y que SAMHSA realiza las encuestas anualmente.",
+              "points": 1
+            },
+            {
+              "id": "b2-r3",
+              "label": "Incluye que participaron más de 558.000 adultos de 18 años o más de la población civil no institucionalizada.",
+              "points": 1
+            },
+            {
+              "id": "b2-r4",
+              "label": "Describe las principales características demográficas de la muestra.",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿Qué diferencia mostró el presente estudio en comparación con los anteriores?",
+          "suggestedAnswer": "Los estudios anteriores habían señalado que las tasas de tabaquismo se mantenían prácticamente sin cambios entre las personas con trastornos por consumo de sustancias, depresión mayor u otros trastornos psiquiátricos. En cambio, el estudio actual encontró una disminución significativa del consumo de cigarrillos y mejoras en la cesación tabáquica en esos grupos durante el período de catorce años.",
+          "rubric": [
+            {
+              "id": "b3-r1",
+              "label": "Explica que los estudios anteriores mostraban tasas prácticamente sin cambios.",
+              "points": 1
+            },
+            {
+              "id": "b3-r2",
+              "label": "Relaciona esos resultados anteriores con personas con trastornos psiquiátricos.",
+              "points": 1
+            },
+            {
+              "id": "b3-r3",
+              "label": "Señala que el nuevo estudio encontró una disminución significativa.",
+              "points": 1
+            },
+            {
+              "id": "b3-r4",
+              "label": "Menciona las mejoras en la cesación durante los catorce años analizados.",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "Explique cuál es la importancia de los tratamientos para dejar de fumar en personas con trastornos psiquiátricos.",
+          "suggestedAnswer": "Los tratamientos para dejar de fumar son importantes porque son seguros y eficaces y pueden mejorar el éxito a largo plazo de los tratamientos simultáneos para síntomas psiquiátricos más graves. Además, pueden disminuir el estrés, la ansiedad y la depresión, y mejorar el estado de ánimo y la calidad de vida. Por eso, la cesación tabáquica debería priorizarse e integrarse en los tratamientos de salud conductual y de los trastornos por consumo de sustancias.",
+          "rubric": [
+            {
+              "id": "b4-r1",
+              "label": "Indica que las terapias son seguras y eficaces.",
+              "points": 1
+            },
+            {
+              "id": "b4-r2",
+              "label": "Explica que pueden favorecer el éxito de otros tratamientos de salud mental.",
+              "points": 1
+            },
+            {
+              "id": "b4-r3",
+              "label": "Menciona beneficios sobre estrés, ansiedad, depresión, estado de ánimo o calidad de vida.",
+              "points": 1
+            },
+            {
+              "id": "b4-r4",
+              "label": "Señala que deben priorizarse e integrarse en la atención de salud conductual.",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Qué resultados arrojó el estudio en relación con los grupos aborígenes? ¿Qué podría hacerse para mejorar esta situación?",
+          "suggestedAnswer": "A diferencia de los demás grupos analizados, las tasas de tabaquismo no disminuyeron entre los adultos no hispanos American Indian o Alaska Native. Estas comunidades presentan las tasas más altas de tabaquismo y las tasas más bajas de abandono del consumo entre los grupos raciales y étnicos de Estados Unidos. Para mejorar la situación deberían dirigirse hacia ellas más esfuerzos específicos de prevención y tratamiento para dejar de fumar.",
+          "rubric": [
+            {
+              "id": "b5-r1",
+              "label": "Identifica específicamente a los adultos American Indian o Alaska Native.",
+              "points": 1
+            },
+            {
+              "id": "b5-r2",
+              "label": "Indica que las tasas de tabaquismo no disminuyeron en este grupo.",
+              "points": 1
+            },
+            {
+              "id": "b5-r3",
+              "label": "Menciona sus altas tasas de tabaquismo y bajas tasas de abandono.",
+              "points": 1
+            },
+            {
+              "id": "b5-r4",
+              "label": "Propone dirigir más esfuerzos de prevención y tratamiento hacia esas comunidades.",
+              "points": 1
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "Según este estudio, ¿qué otra información debería incluirse en futuras investigaciones?",
+          "suggestedAnswer": "Las futuras investigaciones deberían incluir datos de poblaciones con alto riesgo de trastornos psiquiátricos y tabaquismo que no estaban representadas en la encuesta, como las personas institucionalizadas y las personas sin vivienda que no viven en refugios. También deberían continuar evaluando las tendencias del consumo de tabaco y del vapeo de nicotina en adultos con y sin trastornos psiquiátricos, incluidos los trastornos por consumo de sustancias, especialmente durante la pandemia de COVID-19.",
+          "rubric": [
+            {
+              "id": "b6-r1",
+              "label": "Menciona la necesidad de incluir poblaciones de alto riesgo no representadas.",
+              "points": 1
+            },
+            {
+              "id": "b6-r2",
+              "label": "Incluye a las personas institucionalizadas.",
+              "points": 1
+            },
+            {
+              "id": "b6-r3",
+              "label": "Incluye a las personas sin vivienda que no viven en refugios.",
+              "points": 1
+            },
+            {
+              "id": "b6-r4",
+              "label": "Menciona el seguimiento del consumo de tabaco y del vapeo en personas con y sin trastornos psiquiátricos.",
+              "points": 1
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Interpretación en contexto",
+      "instructions": "Explique en sus palabras. Explique en español la siguiente idea del texto: “people with major depression, substance use disorder or both were more likely to smoke cigarettes than people without these disorders”.",
+      "answerLabel": "Explicación en español",
+      "maxPoints": 3,
+      "scoreScale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "suggestedAnswer": "La frase significa que las personas con depresión mayor, trastorno por consumo de sustancias o ambas condiciones tenían una mayor probabilidad o una mayor frecuencia de consumo de cigarrillos que las personas que no presentaban esos trastornos. Se trata de una comparación entre grupos y no demuestra por sí sola una relación causal."
+    }
+  }
+}

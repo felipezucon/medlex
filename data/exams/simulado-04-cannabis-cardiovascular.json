@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "id": "simulado-04-cannabis-cardiovascular",
+  "title": "Práctica Pre-final — Simulado 4",
+  "theme": "Consumo de cannabis y resultados cardiovasculares",
+  "description": "El siguiente texto es una adaptación educativa original basada en un estudio observacional. No reproduce literalmente la publicación fuente.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Frequent cannabis use is associated with higher odds of heart attack and stroke",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Cannabis use has increased in the United States as more jurisdictions have allowed medical or recreational access. Many people consider cannabis less harmful than tobacco, yet its cardiovascular effects are not fully understood. Smoke from burning cannabis contains particles and toxic substances that are also present in tobacco smoke. In addition, cannabinoids can influence heart rate, blood pressure, inflammation and the function of blood vessels."
+      },
+      {
+        "number": 2,
+        "text": "Researchers analyzed information from the Behavioral Risk Factor Surveillance System, a large telephone survey coordinated by the U.S. Centers for Disease Control and Prevention. The study included nearly 435,000 adults between 18 and 74 years of age who answered questions from 2016 through 2020. Participants reported how many days they had used cannabis during the previous month, how they usually consumed it and whether a health professional had ever diagnosed them with coronary heart disease, myocardial infarction or stroke."
+      },
+      {
+        "number": 3,
+        "text": "Because tobacco is a major cardiovascular risk factor, the statistical analysis adjusted for cigarette and other tobacco use, as well as age, sex, race, education, body mass index, diabetes, alcohol consumption and physical activity. The researchers also examined adults who had never smoked tobacco cigarettes and younger adults who might otherwise be considered at relatively low cardiovascular risk. Smoking was the most common form of cannabis consumption, although some participants reported vaping or eating cannabis products."
+      },
+      {
+        "number": 4,
+        "text": "Cannabis use was associated with a greater likelihood of myocardial infarction and stroke, and the relationship became stronger as the number of days of use increased. Compared with people who had not used cannabis in the previous month, daily users had approximately 25% higher odds of reporting a heart attack and 42% higher odds of reporting a stroke. Associations were also present among adults who had never smoked tobacco, suggesting that cigarette smoking alone did not explain the findings."
+      },
+      {
+        "number": 5,
+        "text": "Similar patterns were observed in younger men and women, an important finding because cardiovascular prevention often focuses on older adults. However, the study did not show that cannabis directly caused the reported events. Both cannabis exposure and cardiovascular diagnoses were self-reported, the timing of events could not always be established, and unmeasured differences between users and non-users may have affected the results. The analysis also could not fully compare the risks of smoking, vaping and oral consumption."
+      },
+      {
+        "number": 6,
+        "text": "The findings support including cannabis use in routine conversations about cardiovascular health. Clinicians should ask about frequency and route of administration without assuming that a legal or plant-derived product is harmless. Public health messages may also need to address potential cardiovascular risks, particularly among frequent users. Prospective studies with objective measurements are necessary to clarify causality, biological mechanisms and whether different forms of cannabis carry different levels of risk."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {
+          "id": "a1",
+          "statement": "Razones por las que existe preocupación sobre los efectos cardiovasculares del cannabis.",
+          "developed": true,
+          "paragraphs": [
+            1
+          ]
+        },
+        {
+          "id": "a2",
+          "statement": "Fuente de información y variables estudiadas.",
+          "developed": true,
+          "paragraphs": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "a3",
+          "statement": "Resultados de un ensayo aleatorizado de cannabis medicinal.",
+          "developed": false,
+          "paragraphs": []
+        },
+        {
+          "id": "a4",
+          "statement": "Asociación entre frecuencia de uso, infarto y accidente cerebrovascular.",
+          "developed": true,
+          "paragraphs": [
+            4
+          ]
+        },
+        {
+          "id": "a5",
+          "statement": "Limitaciones que impiden demostrar causalidad.",
+          "developed": true,
+          "paragraphs": [
+            5
+          ]
+        },
+        {
+          "id": "a6",
+          "statement": "Recomendaciones clínicas y necesidades de investigación futura.",
+          "developed": true,
+          "paragraphs": [
+            6
+          ]
+        }
+      ]
+    },
+    "b": {
+      "title": "B. Comprensión del texto",
+      "instructions": "Responda en español, de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Por qué es importante investigar los efectos cardiovasculares del cannabis?",
+          "suggestedAnswer": "Porque el consumo aumentó, muchas personas lo consideran poco dañino y aún no se conocen completamente sus efectos. El humo contiene sustancias similares a las del tabaco y los cannabinoides pueden modificar funciones cardiovasculares.",
+          "rubric": [
+            {
+              "id": "b1-1",
+              "label": "Incluí esta idea esencial: Porque el consumo aumentó, muchas personas lo consideran poco dañino y aún no se conocen completamente sus efectos.",
+              "points": 2
+            },
+            {
+              "id": "b1-2",
+              "label": "Incluí esta idea esencial: El humo contiene sustancias similares a las del tabaco y los cannabinoides pueden modificar funciones cardiovasculares.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿De dónde se obtuvieron los datos y qué información proporcionaron los participantes?",
+          "suggestedAnswer": "Se utilizaron datos del Behavioral Risk Factor Surveillance System de 2016–2020, con casi 435.000 adultos de 18 a 74 años. Informaron frecuencia y vía de consumo, además de diagnósticos previos de cardiopatía coronaria, infarto o accidente cerebrovascular.",
+          "rubric": [
+            {
+              "id": "b2-1",
+              "label": "Incluí esta idea esencial: Se utilizaron datos del Behavioral Risk Factor Surveillance System de 2016–2020, con casi 435.000 adultos de 18 a 74 años.",
+              "points": 2
+            },
+            {
+              "id": "b2-2",
+              "label": "Incluí esta idea esencial: Informaron frecuencia y vía de consumo, además de diagnósticos previos de cardiopatía coronaria, infarto o accidente cerebrovascular.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿Cómo intentaron los investigadores separar el efecto del cannabis del efecto del tabaco y de otros factores?",
+          "suggestedAnswer": "Los modelos ajustaron por consumo de cigarrillos y otros productos de tabaco, edad, sexo, raza, educación, IMC, diabetes, alcohol y actividad física. También se analizaron por separado personas que nunca habían fumado cigarrillos.",
+          "rubric": [
+            {
+              "id": "b3-1",
+              "label": "Incluí esta idea esencial: Los modelos ajustaron por consumo de cigarrillos y otros productos de tabaco, edad, sexo, raza, educación, IMC, diabetes, alcohol y actividad física.",
+              "points": 2
+            },
+            {
+              "id": "b3-2",
+              "label": "Incluí esta idea esencial: También se analizaron por separado personas que nunca habían fumado cigarrillos.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Qué relación se observó entre la frecuencia del consumo y los antecedentes de infarto o accidente cerebrovascular?",
+          "suggestedAnswer": "A mayor número de días de consumo, mayor probabilidad de antecedentes cardiovasculares. El uso diario se asoció con alrededor de 25% más probabilidades de infarto y 42% más probabilidades de accidente cerebrovascular frente al no consumo.",
+          "rubric": [
+            {
+              "id": "b4-1",
+              "label": "Incluí esta idea esencial: A mayor número de días de consumo, mayor probabilidad de antecedentes cardiovasculares.",
+              "points": 2
+            },
+            {
+              "id": "b4-2",
+              "label": "Incluí esta idea esencial: El uso diario se asoció con alrededor de 25% más probabilidades de infarto y 42% más probabilidades de accidente cerebrovascular frente al no consumo.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Qué resultados se encontraron en personas que nunca habían fumado cigarrillos y en adultos más jóvenes?",
+          "suggestedAnswer": "Las asociaciones persistieron entre quienes nunca habían fumado tabaco, por lo que el cigarrillo no explicaba por sí solo los resultados. También se observaron patrones semejantes en hombres y mujeres más jóvenes.",
+          "rubric": [
+            {
+              "id": "b5-1",
+              "label": "Incluí esta idea esencial: Las asociaciones persistieron entre quienes nunca habían fumado tabaco, por lo que el cigarrillo no explicaba por sí solo los resultados.",
+              "points": 2
+            },
+            {
+              "id": "b5-2",
+              "label": "Incluí esta idea esencial: También se observaron patrones semejantes en hombres y mujeres más jóvenes.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Por qué el estudio no demuestra una relación causal y cuáles son sus posibles implicancias clínicas?",
+          "suggestedAnswer": "Fue un estudio observacional y transversal, con exposición y diagnósticos autoinformados, posibles factores de confusión y escasa precisión sobre la secuencia temporal. Puede orientar el interrogatorio clínico y la educación sanitaria, pero requiere estudios prospectivos para confirmar causalidad y comparar vías de consumo.",
+          "rubric": [
+            {
+              "id": "b6-1",
+              "label": "Incluí esta idea esencial: Fue un estudio observacional y transversal, con exposición y diagnósticos autoinformados, posibles factores de confusión y escasa precisión sobre la secuencia temporal.",
+              "points": 2
+            },
+            {
+              "id": "b6-2",
+              "label": "Incluí esta idea esencial: Puede orientar el interrogatorio clínico y la educación sanitaria, pero requiere estudios prospectivos para confirmar causalidad y comparar vías de consumo.",
+              "points": 2
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Título",
+      "instructions": "Elabore una adecuada versión del título del texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "suggestedAnswer": "El consumo frecuente de cannabis se asocia con mayores probabilidades de infarto y accidente cerebrovascular."
+    }
+  }
+}

@@ -1,14 +1,17 @@
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
-import {gradeExam} from "../js/exam-grading.mjs";
+import {gradeExam, gradeSectionA} from "../js/exam-grading.mjs";
 
-for (const letter of ["a", "b", "c", "d", "e", "f"]) {
-  const exam = JSON.parse(await readFile(new URL(`../data/exams/prefinal-${letter}.json`, import.meta.url), "utf8"));
+const indexUrl = new URL("../data/exams/index.json", import.meta.url);
+const index = JSON.parse(await readFile(indexUrl, "utf8"));
+
+for (const entry of index.exams) {
+  const exam = JSON.parse(await readFile(new URL(entry.file, indexUrl), "utf8"));
   const attempt = {
     answers: {
       a: Object.fromEntries(exam.sections.a.items.map(item => [item.id, {
         developed: item.developed,
-        paragraph: item.paragraph || ""
+        paragraph: (Array.isArray(item.paragraphs) ? item.paragraphs : [item.paragraph]).filter(Number.isInteger).join(", ")
       }]))
     },
     assessment: {
@@ -30,6 +33,10 @@ for (const letter of ["a", "b", "c", "d", "e", "f"]) {
   assert.equal(failed.total, 9);
   assert.equal(failed.passed, false);
 }
+
+const multiParagraphExam = JSON.parse(await readFile(new URL("../data/exams/simulado-01-sleep-apnea.json", import.meta.url), "utf8"));
+assert.equal(gradeSectionA(multiParagraphExam, {a2: {developed: true, paragraph: "5, 3"}}).results.a2, true);
+assert.equal(gradeSectionA(multiParagraphExam, {a2: {developed: true, paragraph: "3"}}).results.a2, false);
 
 const thresholdExam = JSON.parse(await readFile(new URL("../data/exams/prefinal-a.json", import.meta.url), "utf8"));
 const thresholdAttempt = {

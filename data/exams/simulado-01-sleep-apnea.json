@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "id": "simulado-01-sleep-apnea",
+  "title": "Práctica Pre-final — Simulado 1",
+  "theme": "Apnea obstructiva del sueño y riesgo cardiovascular",
+  "description": "El siguiente texto es una adaptación educativa original basada en un estudio científico. No reproduce literalmente la publicación fuente.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Sleep apnea measurements may improve cardiovascular risk prediction",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Obstructive sleep apnea is a common disorder in which the upper airway repeatedly narrows or closes during sleep. These events reduce airflow and may cause brief awakenings and drops in blood oxygen. The condition has long been associated with cardiovascular disease, but patients with the same diagnosis do not necessarily have the same level of risk. Researchers have therefore questioned whether the usual way of grading sleep apnea captures the physiological stress that is most relevant to the heart and blood vessels."
+      },
+      {
+        "number": 2,
+        "text": "The apnea–hypopnea index, or AHI, is the conventional measure of severity. It counts how many breathing interruptions occur during each hour of sleep. However, it does not describe how deep or prolonged each reduction in airflow is, how much oxygen is lost, or how long a person remains aroused. Two individuals may have an identical AHI while experiencing very different degrees of oxygen deprivation and ventilatory impairment. This limitation may partly explain why some clinical trials have not identified the patients most likely to benefit from treatment."
+      },
+      {
+        "number": 3,
+        "text": "Investigators examined information from two prospective population studies in the United States: the Multi-Ethnic Study of Atherosclerosis and the Osteoporotic Fractures in Men Study. Together, the cohorts included more than 4,500 middle-aged and older adults. At the beginning of follow-up, participants underwent overnight sleep studies. Researchers calculated three measures: hypoxic burden, which reflects the depth and duration of oxygen desaturation; ventilatory burden, which represents the total reduction in airflow; and arousal burden, which measures the accumulated time spent in brief awakenings."
+      },
+      {
+        "number": 4,
+        "text": "The team then evaluated whether these measurements were associated with new cardiovascular events and death during follow-up. Statistical models accounted for factors such as age, sex, race, body mass index, hypertension, diabetes, smoking and baseline oxygen saturation. The researchers also explored whether obesity, lung function or a person’s general tendency to lose oxygen could explain the hypoxic burden observed during sleep."
+      },
+      {
+        "number": 5,
+        "text": "Higher hypoxic and ventilatory burdens were consistently associated with a greater risk of cardiovascular disease in both cohorts. Similar relationships were observed for several mortality outcomes. In contrast, arousal burden was not a consistent predictor. Approximately 78% of the variation in hypoxic burden could be explained by the ventilatory burden caused by obstructed breathing, whereas measures of obesity, lung function and baseline oxygen levels contributed very little additional explanation."
+      },
+      {
+        "number": 6,
+        "text": "These findings suggest that the cardiovascular consequences of sleep apnea may be linked more closely to the total loss of ventilation and oxygen than to the number of respiratory events alone. Hypoxic burden could help clinicians identify higher-risk patients and could improve the selection of participants for future treatment trials. Nevertheless, the study was observational: it showed associations but did not prove that reducing hypoxic burden with a particular therapy will prevent cardiovascular events. Prospective studies and randomized trials are still needed."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {
+          "id": "a1",
+          "statement": "Limitaciones del índice de apnea–hipopnea para evaluar la gravedad de la apnea del sueño.",
+          "developed": true,
+          "paragraphs": [
+            2
+          ]
+        },
+        {
+          "id": "a2",
+          "statement": "Comparación entre tres medidas fisiológicas obtenidas durante el sueño.",
+          "developed": true,
+          "paragraphs": [
+            3,
+            5
+          ]
+        },
+        {
+          "id": "a3",
+          "statement": "Descripción de un medicamento nuevo para evitar la obstrucción de la vía aérea.",
+          "developed": false,
+          "paragraphs": []
+        },
+        {
+          "id": "a4",
+          "statement": "Características generales de las poblaciones estudiadas.",
+          "developed": true,
+          "paragraphs": [
+            3
+          ]
+        },
+        {
+          "id": "a5",
+          "statement": "Relación entre la carga hipóxica y el riesgo cardiovascular.",
+          "developed": true,
+          "paragraphs": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "a6",
+          "statement": "Implicancias y limitaciones de los resultados para futuras investigaciones.",
+          "developed": true,
+          "paragraphs": [
+            6
+          ]
+        }
+      ]
+    },
+    "b": {
+      "title": "B. Comprensión del texto",
+      "instructions": "Responda en español, de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Por qué los investigadores consideraron necesario estudiar nuevas formas de medir la gravedad de la apnea obstructiva del sueño?",
+          "suggestedAnswer": "Porque el diagnóstico convencional no distingue adecuadamente el grado de estrés fisiológico entre pacientes. Personas con el mismo número de episodios pueden presentar pérdidas de oxígeno y reducciones del flujo respiratorio muy diferentes, y por lo tanto distinto riesgo cardiovascular.",
+          "rubric": [
+            {
+              "id": "b1-1",
+              "label": "Incluí esta idea esencial: Porque el diagnóstico convencional no distingue adecuadamente el grado de estrés fisiológico entre pacientes.",
+              "points": 2
+            },
+            {
+              "id": "b1-2",
+              "label": "Incluí esta idea esencial: Personas con el mismo número de episodios pueden presentar pérdidas de oxígeno y reducciones del flujo respiratorio muy diferentes, y por lo tanto distinto riesgo cardiovascular.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Qué información proporciona el AHI y qué aspectos importantes no logra representar?",
+          "suggestedAnswer": "El AHI informa la cantidad de apneas e hipopneas por hora. No muestra la profundidad ni la duración de cada reducción del flujo, la magnitud de la desaturación ni el tiempo acumulado de despertares.",
+          "rubric": [
+            {
+              "id": "b2-1",
+              "label": "Incluí esta idea esencial: El AHI informa la cantidad de apneas e hipopneas por hora.",
+              "points": 2
+            },
+            {
+              "id": "b2-2",
+              "label": "Incluí esta idea esencial: No muestra la profundidad ni la duración de cada reducción del flujo, la magnitud de la desaturación ni el tiempo acumulado de despertares.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "¿De dónde se obtuvieron los datos y qué procedimientos se realizaron al comienzo del seguimiento?",
+          "suggestedAnswer": "Los datos provinieron de MESA y MrOS, dos estudios prospectivos poblacionales de Estados Unidos con más de 4.500 adultos de mediana y mayor edad. Al inicio se realizaron estudios nocturnos del sueño y se calcularon las cargas hipóxica, ventilatoria y de despertares.",
+          "rubric": [
+            {
+              "id": "b3-1",
+              "label": "Incluí esta idea esencial: Los datos provinieron de MESA y MrOS, dos estudios prospectivos poblacionales de Estados Unidos con más de 4.500 adultos de mediana y mayor edad.",
+              "points": 2
+            },
+            {
+              "id": "b3-2",
+              "label": "Incluí esta idea esencial: Al inicio se realizaron estudios nocturnos del sueño y se calcularon las cargas hipóxica, ventilatoria y de despertares.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "Compare los resultados obtenidos para la carga hipóxica, la carga ventilatoria y la carga de despertares.",
+          "suggestedAnswer": "Las cargas hipóxica y ventilatoria se asociaron de manera consistente con nuevos episodios cardiovasculares y con algunos resultados de mortalidad. La carga de despertares no fue un predictor consistente.",
+          "rubric": [
+            {
+              "id": "b4-1",
+              "label": "Incluí esta idea esencial: Las cargas hipóxica y ventilatoria se asociaron de manera consistente con nuevos episodios cardiovasculares y con algunos resultados de mortalidad.",
+              "points": 2
+            },
+            {
+              "id": "b4-2",
+              "label": "Incluí esta idea esencial: La carga de despertares no fue un predictor consistente.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Qué relación se encontró entre la carga hipóxica, la obstrucción ventilatoria y factores como la obesidad o la función pulmonar?",
+          "suggestedAnswer": "La carga ventilatoria explicó alrededor del 78% de la variación de la carga hipóxica. La obesidad, la función pulmonar y la saturación basal agregaron muy poca explicación, lo que sugiere que la hipoxia reflejaba principalmente la obstrucción respiratoria propia de la apnea.",
+          "rubric": [
+            {
+              "id": "b5-1",
+              "label": "Incluí esta idea esencial: La carga ventilatoria explicó alrededor del 78% de la variación de la carga hipóxica.",
+              "points": 2
+            },
+            {
+              "id": "b5-2",
+              "label": "Incluí esta idea esencial: La obesidad, la función pulmonar y la saturación basal agregaron muy poca explicación, lo que sugiere que la hipoxia reflejaba principalmente la obstrucción respiratoria propia de la apnea.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Cuál podría ser la utilidad clínica de estos hallazgos y por qué todavía no permiten afirmar que un tratamiento evitará episodios cardiovasculares?",
+          "suggestedAnswer": "La carga hipóxica podría mejorar la estratificación del riesgo y la selección de pacientes para ensayos. Sin embargo, el estudio fue observacional y solo demostró asociaciones; no evaluó si disminuir esa carga mediante una terapia específica previene eventos cardiovasculares.",
+          "rubric": [
+            {
+              "id": "b6-1",
+              "label": "Incluí esta idea esencial: La carga hipóxica podría mejorar la estratificación del riesgo y la selección de pacientes para ensayos.",
+              "points": 2
+            },
+            {
+              "id": "b6-2",
+              "label": "Incluí esta idea esencial: Sin embargo, el estudio fue observacional y solo demostró asociaciones; no evaluó si disminuir esa carga mediante una terapia específica previene eventos cardiovasculares.",
+              "points": 2
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Título",
+      "instructions": "Elabore una adecuada versión del título del texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "suggestedAnswer": "Las mediciones de la apnea del sueño podrían mejorar la predicción del riesgo cardiovascular."
+    }
+  }
+}

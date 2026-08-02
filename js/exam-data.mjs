@@ -35,6 +35,7 @@ export function validateExam(exam, expectedId = exam?.id) {
   const paragraphs = exam?.article?.paragraphs;
   const paragraphNumbers = new Set(Array.isArray(paragraphs) ? paragraphs.map(item => item.number) : []);
   const scoreScale = c?.scoreScale;
+  const itemParagraphs = item => Array.isArray(item?.paragraphs) ? item.paragraphs : [item?.paragraph];
   const points = (a?.items?.length || 0) * Number(a?.pointsPerItem)
     + (b?.items?.length || 0) * Number(b?.pointsPerItem)
     + Number(c?.maxPoints);
@@ -56,9 +57,15 @@ export function validateExam(exam, expectedId = exam?.id) {
     || !Array.isArray(a?.items)
     || a.items.length === 0
     || !uniqueIds(a.items)
-    || !a.items.every(item => isText(item?.id) && isText(item?.statement)
-      && typeof item.developed === "boolean"
-      && (item.developed ? paragraphNumbers.has(item.paragraph) : item.paragraph === null))
+    || !a.items.every(item => {
+      const references = itemParagraphs(item);
+      return isText(item?.id) && isText(item?.statement)
+        && typeof item.developed === "boolean"
+        && (item.developed
+          ? references.length > 0 && new Set(references).size === references.length
+            && references.every(number => paragraphNumbers.has(number))
+          : references.every(number => number === null || number === undefined));
+    })
     || !isText(b?.title)
     || !isText(b?.instructions)
     || !Number.isFinite(Number(b?.pointsPerItem))
@@ -77,6 +84,7 @@ export function validateExam(exam, expectedId = exam?.id) {
     || !isText(c?.title)
     || !isText(c?.instructions)
     || !isText(c?.suggestedAnswer)
+    || (c?.answerLabel !== undefined && !isText(c.answerLabel))
     || !Number.isInteger(Number(c?.maxPoints))
     || Number(c.maxPoints) <= 0
     || !Array.isArray(scoreScale)

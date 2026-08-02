@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "id": "simulado-02-pitavastatin-hiv",
+  "title": "Práctica Pre-final — Simulado 2",
+  "theme": "Prevención cardiovascular en personas con VIH",
+  "description": "El siguiente texto es una adaptación educativa original basada en el ensayo REPRIEVE. No reproduce literalmente la publicación fuente.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Daily pitavastatin lowers cardiovascular risk in adults living with HIV",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Effective antiretroviral therapy has greatly increased life expectancy for people living with HIV. As this population ages, cardiovascular disease has become an important cause of illness and death. Adults with HIV may have approximately twice the cardiovascular risk of people without the infection, even when the virus is well controlled. Traditional factors such as smoking and hypertension contribute to this risk, but chronic inflammation and immune activation related to HIV may also accelerate atherosclerosis."
+      },
+      {
+        "number": 2,
+        "text": "Statins lower cholesterol and are widely prescribed to people with a high predicted cardiovascular risk. Before the REPRIEVE trial, however, there was limited evidence about using a statin for primary prevention in adults with HIV whose traditional risk scores were low or moderate. Researchers selected pitavastatin because it lowers LDL cholesterol and has relatively few clinically important interactions with commonly used antiretroviral medicines."
+      },
+      {
+        "number": 3,
+        "text": "REPRIEVE was a phase 3, randomized, double-blind, placebo-controlled trial conducted at more than 100 sites in 12 countries. It enrolled 7,769 adults with HIV between 40 and 75 years of age. Participants were receiving antiretroviral therapy, had no known cardiovascular disease, and had a low-to-moderate predicted risk according to conventional criteria. They were assigned to receive either 4 mg of pitavastatin calcium every day or an identical placebo."
+      },
+      {
+        "number": 4,
+        "text": "The primary outcome was a major adverse cardiovascular event, including cardiovascular death, myocardial infarction, stroke, hospitalization for unstable angina, peripheral arterial ischemia or a procedure to restore blood flow. After a median follow-up of about 5.1 years, the pitavastatin group had approximately 35% fewer major cardiovascular events than the placebo group. An independent monitoring board recommended stopping the blinded phase early because the evidence of benefit had become clear."
+      },
+      {
+        "number": 5,
+        "text": "Pitavastatin was generally safe, although muscle-related symptoms and diabetes occurred somewhat more often in the treatment group. Serious adverse events were not substantially different between groups. The reduction in cardiovascular events appeared larger than researchers would have predicted from the change in LDL cholesterol alone, raising the possibility that statins may also reduce inflammation or affect other pathways that are particularly relevant to people with HIV."
+      },
+      {
+        "number": 6,
+        "text": "The findings provide strong evidence that a daily statin can prevent cardiovascular events in many adults with HIV who would not previously have met standard criteria for treatment. However, implementation requires individual assessment, discussion of adverse effects and attention to access in different health systems. The trial did not establish that every person with HIV should receive pitavastatin, nor did it compare pitavastatin with every other statin. Updated clinical recommendations must combine the trial results with age, comorbidities, other medications and patient preferences."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {
+          "id": "a1",
+          "statement": "Motivos del mayor riesgo cardiovascular en las personas con VIH.",
+          "developed": true,
+          "paragraphs": [
+            1
+          ]
+        },
+        {
+          "id": "a2",
+          "statement": "Criterios de selección y diseño del ensayo REPRIEVE.",
+          "developed": true,
+          "paragraphs": [
+            3
+          ]
+        },
+        {
+          "id": "a3",
+          "statement": "Comparación entre diferentes esquemas de tratamiento antirretroviral.",
+          "developed": false,
+          "paragraphs": []
+        },
+        {
+          "id": "a4",
+          "statement": "Resultados cardiovasculares obtenidos con pitavastatina.",
+          "developed": true,
+          "paragraphs": [
+            4
+          ]
+        },
+        {
+          "id": "a5",
+          "statement": "Seguridad y posibles mecanismos adicionales del tratamiento.",
+          "developed": true,
+          "paragraphs": [
+            5
+          ]
+        },
+        {
+          "id": "a6",
+          "statement": "Consideraciones necesarias antes de aplicar los resultados a todos los pacientes.",
+          "developed": true,
+          "paragraphs": [
+            6
+          ]
+        }
+      ]
+    },
+    "b": {
+      "title": "B. Comprensión del texto",
+      "instructions": "Responda en español, de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Por qué la enfermedad cardiovascular se ha convertido en un problema importante para las personas con VIH?",
+          "suggestedAnswer": "Porque el tratamiento antirretroviral prolongó la supervivencia y más personas con VIH llegan a edades en las que aumenta el riesgo cardiovascular. Además de factores tradicionales, la inflamación y la activación inmunitaria crónicas pueden favorecer la aterosclerosis.",
+          "rubric": [
+            {
+              "id": "b1-1",
+              "label": "Incluí esta idea esencial: Porque el tratamiento antirretroviral prolongó la supervivencia y más personas con VIH llegan a edades en las que aumenta el riesgo cardiovascular.",
+              "points": 2
+            },
+            {
+              "id": "b1-2",
+              "label": "Incluí esta idea esencial: Además de factores tradicionales, la inflamación y la activación inmunitaria crónicas pueden favorecer la aterosclerosis.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Qué vacío de conocimiento intentó resolver el ensayo REPRIEVE y por qué se eligió la pitavastatina?",
+          "suggestedAnswer": "Buscó determinar si una estatina podía prevenir eventos cardiovasculares en personas con VIH cuyo riesgo tradicional era bajo o moderado. Se eligió pitavastatina porque disminuye LDL y presenta pocas interacciones relevantes con los antirretrovirales.",
+          "rubric": [
+            {
+              "id": "b2-1",
+              "label": "Incluí esta idea esencial: Buscó determinar si una estatina podía prevenir eventos cardiovasculares en personas con VIH cuyo riesgo tradicional era bajo o moderado.",
+              "points": 2
+            },
+            {
+              "id": "b2-2",
+              "label": "Incluí esta idea esencial: Se eligió pitavastatina porque disminuye LDL y presenta pocas interacciones relevantes con los antirretrovirales.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "Describa el diseño del estudio y las características principales de los participantes.",
+          "suggestedAnswer": "Fue un ensayo de fase 3, aleatorizado, doble ciego y controlado con placebo, realizado en más de 100 centros de 12 países. Incluyó 7.769 adultos de 40 a 75 años, tratados con antirretrovirales, sin enfermedad cardiovascular conocida y con riesgo convencional bajo o moderado. Recibieron 4 mg diarios de pitavastatina o placebo.",
+          "rubric": [
+            {
+              "id": "b3-1",
+              "label": "Incluí esta idea esencial: Fue un ensayo de fase 3, aleatorizado, doble ciego y controlado con placebo, realizado en más de 100 centros de 12 países.",
+              "points": 1
+            },
+            {
+              "id": "b3-2",
+              "label": "Incluí esta idea esencial: Incluyó 7.769 adultos de 40 a 75 años, tratados con antirretrovirales, sin enfermedad cardiovascular conocida y con riesgo convencional bajo o moderado.",
+              "points": 1
+            },
+            {
+              "id": "b3-3",
+              "label": "Incluí esta idea esencial: Recibieron 4 mg diarios de pitavastatina o placebo.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Qué resultados se observaron y por qué se interrumpió anticipadamente la fase ciega del ensayo?",
+          "suggestedAnswer": "Después de una mediana de 5,1 años, la pitavastatina redujo aproximadamente un 35% los eventos cardiovasculares mayores. La fase ciega se detuvo antes de lo planificado porque el comité independiente consideró clara la evidencia de eficacia.",
+          "rubric": [
+            {
+              "id": "b4-1",
+              "label": "Incluí esta idea esencial: Después de una mediana de 5,1 años, la pitavastatina redujo aproximadamente un 35% los eventos cardiovasculares mayores.",
+              "points": 2
+            },
+            {
+              "id": "b4-2",
+              "label": "Incluí esta idea esencial: La fase ciega se detuvo antes de lo planificado porque el comité independiente consideró clara la evidencia de eficacia.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Qué se informó sobre la seguridad de la pitavastatina y qué explicación adicional se propuso para sus beneficios?",
+          "suggestedAnswer": "El fármaco fue generalmente seguro, aunque hubo algo más de síntomas musculares y diabetes. Como el beneficio fue mayor de lo esperado por la reducción del LDL, se planteó que los efectos antiinflamatorios u otras vías también podrían haber contribuido.",
+          "rubric": [
+            {
+              "id": "b5-1",
+              "label": "Incluí esta idea esencial: El fármaco fue generalmente seguro, aunque hubo algo más de síntomas musculares y diabetes.",
+              "points": 2
+            },
+            {
+              "id": "b5-2",
+              "label": "Incluí esta idea esencial: Como el beneficio fue mayor de lo esperado por la reducción del LDL, se planteó que los efectos antiinflamatorios u otras vías también podrían haber contribuido.",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Cuál es la importancia clínica del estudio y qué aspectos deben considerarse antes de indicar el tratamiento?",
+          "suggestedAnswer": "El estudio demuestra que la prevención con estatinas puede beneficiar a personas con VIH que antes no cumplían criterios habituales. Aun así, deben valorarse edad, comorbilidades, interacciones, efectos adversos, acceso y preferencias; no significa que todas las personas con VIH deban recibir el mismo fármaco.",
+          "rubric": [
+            {
+              "id": "b6-1",
+              "label": "Incluí esta idea esencial: El estudio demuestra que la prevención con estatinas puede beneficiar a personas con VIH que antes no cumplían criterios habituales.",
+              "points": 2
+            },
+            {
+              "id": "b6-2",
+              "label": "Incluí esta idea esencial: Aun así, deben valorarse edad, comorbilidades, interacciones, efectos adversos, acceso y preferencias; no significa que todas las personas con VIH deban recibir el mismo fármaco.",
+              "points": 2
+            }
+          ]
+        }
+      ]
+    },
+    "c": {
+      "title": "C. Título",
+      "instructions": "Elabore una adecuada versión del título del texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "suggestedAnswer": "La pitavastatina diaria reduce el riesgo cardiovascular en adultos que viven con VIH."
+    }
+  }
+}
