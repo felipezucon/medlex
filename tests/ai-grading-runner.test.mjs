@@ -34,12 +34,13 @@ globalThis.fetch = async (url, options) => {
   assert.doesNotMatch(options.body, new RegExp(credential));
   assert.equal(JSON.parse(options.body).store, false);
   const output = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     items: [{
       itemId: "open-1",
       status: "graded",
       confidence: "high",
       criteria: [{criterionId: "open-1-r1", status: "partial", feedback: "Parcial."}],
+      score: 1,
       overallFeedback: "Respuesta parcial."
     }]
   };
@@ -51,7 +52,7 @@ globalThis.fetch = async (url, options) => {
 
 await assert.rejects(
   grading.gradeItemsWithAI({parentId: "practice", contentVersion: 1, items: [item]}),
-  /consentimiento/
+  /consentimento/
 );
 assert.equal(calls, 0);
 storage.setAIConsent(true);
@@ -72,8 +73,8 @@ let invalidCalls = 0;
 globalThis.fetch = async () => {
   invalidCalls++;
   const text = invalidCalls === 1 ? "not-json" : JSON.stringify({
-    schemaVersion: 1,
-    items: [{itemId: "open-1", status: "graded", confidence: "medium", criteria: [{criterionId: "open-1-r1", status: "met", feedback: "Cumplido."}], overallFeedback: "Correcto."}]
+    schemaVersion: 2,
+    items: [{itemId: "open-1", status: "graded", confidence: "medium", criteria: [{criterionId: "open-1-r1", status: "met", feedback: "Cumplido."}], score: 2, overallFeedback: "Correcto."}]
   });
   return new Response(JSON.stringify({status: "completed", steps: [{type: "model_output", content: [{type: "text", text}]}]}), {status: 200});
 };

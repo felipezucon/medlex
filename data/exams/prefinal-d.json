@@ -105,7 +105,9 @@
       ]
     },
     "c": {
-      "gradingMode": "manual",
+      "id": "c",
+      "gradingMode": "ai_or_manual",
+      "gradingType": "holistic",
       "answerLanguage": "es",
       "title": "C. Subtítulo",
       "instructions": "Complete el siguiente espacio con un subtítulo en español para este texto (en una o dos líneas). Anticoagulación en pacientes con COVID-19: ______________________________________",

@@ -23,6 +23,8 @@ function normalizeExam(exam) {
     sourceExcerpt: item.sourceExcerpt || null,
     maxPoints: Number(item.maxPoints) || Number(b.pointsPerItem)
   }));
+  const c = exam.sections.c;
+  c.expectedAnswer = c.expectedAnswer || c.suggestedAnswer;
   return exam;
 }
 
@@ -106,7 +108,9 @@ export function validateExam(exam, expectedId = exam?.id) {
         && Number.isFinite(Number(criterion?.points)) && Number(criterion.points) > 0)
       && item.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0) === Number(b.pointsPerItem))
     || !isText(c?.title)
-    || c?.gradingMode !== "manual"
+    || !isText(c?.id)
+    || c?.gradingMode !== "ai_or_manual"
+    || c?.gradingType !== "holistic"
     || !["es", "en"].includes(c?.answerLanguage)
     || !isText(c?.instructions)
     || !isText(c?.suggestedAnswer)

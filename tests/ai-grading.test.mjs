@@ -54,19 +54,43 @@ const response = {
       {criterionId: "b1-1", status: "partial", feedback: "Menciona A de forma incompleta."},
       {criterionId: "b1-2", status: "not_met", feedback: "No menciona B."}
     ],
+    score: 1,
     overallFeedback: "Revisión manual recomendada."
   }]
 };
 assert.equal(validateGradingResponse(response, [item]).items[0].points, 1);
-assert.throws(() => validateGradingResponse({...response, html: "<b>bad</b>"}, [item]), /no pudo validarse/);
-assert.throws(() => validateGradingResponse({...response, items: [response.items[0], response.items[0]]}, [item]), /no pudo validarse/);
-assert.throws(() => validateGradingResponse({...response, items: [{...response.items[0], itemId: "unknown"}]}, [item]), /no pudo validarse/);
-assert.equal(AI_GRADING_PROMPT_VERSION, 1);
+assert.throws(() => validateGradingResponse({...response, html: "<b>bad</b>"}, [item]), /validar/);
+assert.throws(() => validateGradingResponse({...response, items: [response.items[0], response.items[0]]}, [item]), /validar/);
+assert.throws(() => validateGradingResponse({...response, items: [{...response.items[0], itemId: "unknown"}]}, [item]), /validar/);
+assert.equal(AI_GRADING_PROMPT_VERSION, 2);
+assert.equal(AI_GRADING_SCHEMA_VERSION, 2);
 
 const withoutRubric = {...item, rubric: []};
 assert.equal(validateGradableItem(withoutRubric).gradable, false);
 const inconsistent = {...item, maxPoints: 5};
 assert.equal(validateGradableItem(inconsistent).gradable, false);
-assert.throws(() => buildGradingRequest([{...item, studentAnswer: "x".repeat(12001)}]), /demasiado extensa/);
+assert.throws(() => buildGradingRequest([{...item, studentAnswer: "x".repeat(12001)}]), /extensa demais/);
+
+const holistic = {
+  id: "c",
+  gradingMode: "ai_or_manual",
+  gradingType: "holistic",
+  question: "Elabore una versión adecuada del título en español.",
+  expectedAnswer: "Título sugerido",
+  answerLanguage: "es",
+  maxPoints: 3,
+  scoreScale: [0, 1, 2, 3],
+  rubric: [],
+  studentAnswer: "Título equivalente"
+};
+assert.deepEqual(validateGradableItem(holistic), {gradable: true});
+const holisticRequest = buildGradingRequest([holistic]);
+assert.match(holisticRequest.input, /allowedScoreScale/);
+assert.equal(validateGradingResponse({schemaVersion: 2, items: [{
+  itemId: "c", status: "graded", confidence: "high", criteria: [], score: 3, overallFeedback: "Adecuado."
+}]}, [holistic]).items[0].points, 3);
+assert.throws(() => validateGradingResponse({schemaVersion: 2, items: [{
+  itemId: "c", status: "graded", confidence: "high", criteria: [], score: 2.5, overallFeedback: "Inválido."
+}]}, [holistic]), /validar/);
 
 console.log("ai grading: ok");

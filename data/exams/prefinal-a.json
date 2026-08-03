@@ -153,7 +153,9 @@
       ]
     },
     "c": {
-      "gradingMode": "manual",
+      "id": "c",
+      "gradingMode": "ai_or_manual",
+      "gradingType": "holistic",
       "answerLanguage": "es",
       "title": "C. Versión del título",
       "instructions": "Elabore una adecuada versión del título de este texto en español.",

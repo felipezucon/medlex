@@ -32,6 +32,8 @@ assert.doesNotMatch(grading, /google_search|grounding/);
 assert.match(storage, /BACKUP_EXCLUDED_KEYS/);
 assert.doesNotMatch([vault, grading, client, storage, examUI, practiceUI].join("\n"), /localStorage\.clear\s*\(/);
 assert.doesNotMatch([examUI, practiceUI].join("\n"), /innerHTML/);
+assert.match(examUI, /continueFinalization/);
+assert.doesNotMatch(examUI, /Aceitar correção revisada|Descartar sugestão|Corrigir novamente/);
 assert.doesNotMatch([html, vault, grading, client, storage, examUI, practiceUI].join("\n"), /AIza[0-9A-Za-z_-]{20,}/);
 
 console.log("ai security: ok");

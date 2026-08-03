@@ -355,6 +355,13 @@ function switchView(name) {
 	}
 	if (name === "stats") renderStats();
 }
+window.addEventListener("medlex-switch-view", event => {
+	if (event.detail?.view) switchView(event.detail.view);
+});
+window.addEventListener("medlex-open-ai-settings", event => {
+	switchView("import");
+	requestAnimationFrame(() => document.querySelector(event.detail?.focus || "#aiSettingsHeading")?.focus());
+});
 async function importCSV(file) {
 	if (!storageReady) throw new Error("Repare os dados locais antes de importar cartões.");
 	const rows = parseCSV(await file.text());

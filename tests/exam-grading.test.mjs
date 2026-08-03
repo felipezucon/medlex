@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
-import {gradeExam, gradeSectionA} from "../js/exam-grading.mjs";
+import {applyExamAIResults, buildExamAIItems, gradeExam, gradeSectionA} from "../js/exam-grading.mjs";
 
 const indexUrl = new URL("../data/exams/index.json", import.meta.url);
 const index = JSON.parse(await readFile(indexUrl, "utf8"));
@@ -56,5 +56,17 @@ assert.equal(gradeExam(thresholdExam, thresholdAttempt).passed, true);
 thresholdAttempt.aiGrading = {b1: {accepted: true, finalPoints: 2.5}};
 thresholdAttempt.assessment.b.b1 = {};
 assert.equal(gradeExam(thresholdExam, thresholdAttempt).sections.b, 19.5);
+
+thresholdAttempt.answers.b = {};
+thresholdAttempt.answers.c = "Título equivalente";
+thresholdAttempt.aiGrading.c = {accepted: true, finalPoints: 2};
+assert.equal(gradeExam(thresholdExam, thresholdAttempt).sections.c, 2);
+thresholdExam.sections.c.expectedAnswer = thresholdExam.sections.c.suggestedAnswer;
+const aiItems = buildExamAIItems(thresholdExam, thresholdAttempt);
+assert.equal(aiItems.at(-1).id, "c");
+assert.match(aiItems.at(-1).sourceText, /More than one in three/);
+const complete = [{itemId: "c", status: "graded", criteria: [], points: 2}];
+assert.equal(applyExamAIResults(thresholdExam, thresholdAttempt, complete).c.finalPoints, 2);
+assert.throws(() => applyExamAIResults(thresholdExam, thresholdAttempt, []), /correção completa/);
 
 console.log("exam grading: ok");

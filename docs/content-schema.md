@@ -4,7 +4,7 @@ Os arquivos de produção usam `schemaVersion: 1` e caminhos relativos nos índi
 
 ## Simulados
 
-Cada item de `data/exams/index.json` aponta para um JSON com metadados da prova, texto e parágrafos numerados, além das seções `a`, `b` e `c`. A seção A define afirmações, resposta booleana, parágrafo e pontos por item. A seção B define perguntas abertas, resolução sugerida e rubrica cuja soma corresponde ao máximo por pergunta. Ela também declara `gradingMode: "ai_or_manual"` e `answerLanguage: "es"`; o carregador deriva `maxPoints` de `pointsPerItem`, mantém `acceptedVariants` vazio quando não há variantes documentadas e expõe `suggestedAnswer` como a resposta esperada canônica. A seção C atual declara `gradingMode: "manual"`, pois as fontes fornecem um título sugerido, mas não uma rubrica.
+Cada item de `data/exams/index.json` aponta para um JSON com metadados da prova, texto e parágrafos numerados, além das seções `a`, `b` e `c`. A seção A define afirmações, resposta booleana, parágrafo e pontos por item. A seção B define perguntas abertas, resolução sugerida e rubrica cuja soma corresponde ao máximo por pergunta. Ela também declara `gradingMode: "ai_or_manual"` e `answerLanguage: "es"`; o carregador deriva `maxPoints` de `pointsPerItem`, mantém `acceptedVariants` vazio quando não há variantes documentadas e expõe `suggestedAnswer` como a resposta esperada canônica. A seção C usa um ID estável, `gradingMode: "ai_or_manual"`, `gradingType: "holistic"` e `scoreScale: [0, 1, 2, 3]`, preservando a consigna e a resolução sugerida da fonte.
 
 Para adicionar outra prova, crie o JSON no mesmo schema e acrescente somente sua entrada ao índice. A validação central em `js/exam-data.mjs` impede que um arquivo incompleto interrompa as demais provas.
 
@@ -25,11 +25,11 @@ O schema local atual é o 4. O armazenamento central usa chaves `medlex:*` separ
 - enunciado e idioma esperado;
 - resposta esperada transcrita de uma fonte;
 - `maxPoints` explícito ou derivável do bloco/seção;
-- critérios com IDs únicos, rótulo e pontos positivos;
-- soma dos critérios exatamente igual a `maxPoints`;
+- uma rubrica com critérios de IDs únicos, rótulo e pontos positivos cuja soma seja `maxPoints`; ou
+- `gradingType: "holistic"` com escala explícita fornecida pela prova;
 - variantes e trecho-fonte somente quando documentados.
 
-Sem qualquer desses dados, mantenha `gradingMode: "manual"`. Não crie conteúdo para tornar um item elegível.
+Sem qualquer desses dados, mantenha `gradingMode: "manual"`. Não crie conteúdo para tornar um item elegível; o modo holístico só é permitido quando a fonte define a pontuação máxima e fornece uma resolução.
 
 ## Divergências preservadas das fontes
 

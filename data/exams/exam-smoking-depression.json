@@ -304,7 +304,9 @@
       ]
     },
     "c": {
-      "gradingMode": "manual",
+      "id": "c",
+      "gradingMode": "ai_or_manual",
+      "gradingType": "holistic",
       "answerLanguage": "es",
       "title": "C. Interpretación en contexto",
       "instructions": "Explique en sus palabras. Explique en español la siguiente idea del texto: “people with major depression, substance use disorder or both were more likely to smoke cigarettes than people without these disorders”.",

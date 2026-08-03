@@ -12,12 +12,12 @@ import {readAIConsent, readAISettings, setAIConsent, writeAISettings} from "./ai
 
 const $ = selector => document.querySelector(selector);
 const stateLabels = {
-  unconfigured: "No configurada",
-  locked: "Configurada y bloqueada",
+  unconfigured: "Não configurada",
+  locked: "Configurada e bloqueada",
   ready: "Desbloqueada",
-  invalid: "Clave inválida",
-  limited: "Límite alcanzado",
-  unavailable: "No disponible"
+  invalid: "Chave inválida",
+  limited: "Limite atingido",
+  unavailable: "Indisponível"
 };
 let replacing = false;
 
@@ -47,8 +47,8 @@ function render(message = "", error = false, announce = true) {
   $("#aiCancelReplaceBtn").classList.toggle("hidden", !replacing);
   $("#aiConsent").checked = readAIConsent().accepted;
   $("#aiLastTest").textContent = settings.lastSuccessfulTestAt
-    ? `Última conexión correcta: ${new Date(settings.lastSuccessfulTestAt).toLocaleString("es-AR")}`
-    : "La conexión todavía no fue probada con éxito.";
+    ? `Última conexão bem-sucedida: ${new Date(settings.lastSuccessfulTestAt).toLocaleString("pt-BR")}`
+    : "A conexão ainda não foi testada com sucesso.";
   $("#aiStatus").textContent = message;
   $("#aiStatus").className = `status ${error ? "error" : ""}`.trim();
   if (announce) announceState();
@@ -69,7 +69,7 @@ $("#aiConfigureForm").addEventListener("submit", async event => {
     writeAISettings({state: "ready"});
     replacing = false;
     clearConfigureFields();
-    render("Clave guardada y desbloqueada durante esta sesión.");
+    render("Chave salva e desbloqueada durante esta sessão.");
   } catch (error) {
     render(error.message, true);
   } finally {
@@ -85,7 +85,7 @@ $("#aiUnlockForm").addEventListener("submit", async event => {
     await unlockApiKey($("#aiUnlockPassword").value);
     $("#aiUnlockPassword").value = "";
     writeAISettings({state: "ready"});
-    render("Clave desbloqueada durante esta sesión.");
+    render("Chave desbloqueada durante esta sessão.");
   } catch (error) {
     render(error.message, true);
   } finally {
@@ -96,12 +96,12 @@ $("#aiUnlockForm").addEventListener("submit", async event => {
 $("#aiLockBtn").addEventListener("click", () => {
   lockApiKey();
   writeAISettings({state: "locked"});
-  render("Clave bloqueada.");
+  render("Chave bloqueada.");
 });
 
 $("#aiReplaceBtn").addEventListener("click", () => {
   replacing = true;
-  render("Ingrese la nueva clave y una nueva contraseña local.");
+  render("Informe a nova chave e uma nova senha local.");
   $("#aiApiKey").focus();
 });
 
@@ -112,38 +112,39 @@ $("#aiCancelReplaceBtn").addEventListener("click", () => {
 });
 
 $("#aiForgetBtn").addEventListener("click", () => {
-  if (!confirm("¿Olvidar solamente la clave de Gemini? El progreso de estudio no se eliminará.")) return;
+  if (!confirm("Esquecer somente a chave do Gemini? O progresso de estudo não será apagado.")) return;
   forgetApiKey();
   writeAISettings({state: "unconfigured", lastSuccessfulTestAt: null});
-  render("Clave eliminada. El progreso permanece intacto.");
+  render("Chave removida. O progresso permanece intacto.");
 });
 
 $("#aiTestBtn").addEventListener("click", async event => {
   event.currentTarget.disabled = true;
-  render("Probando la conexión…");
+  render("Testando a conexão…");
   try {
     await withUnlockedApiKey(apiKey => testGeminiConnection(apiKey, GEMINI_MODEL));
     writeAISettings({state: "ready", lastSuccessfulTestAt: new Date().toISOString()});
-    render("Conexión correcta.");
+    render("Conexão bem-sucedida.");
   } catch (error) {
     const state = error.code === "invalid_key" ? "invalid"
       : error.code === "limited" ? "limited" : "unavailable";
     writeAISettings({state});
-    render(`${error.message} Puede continuar con la corrección manual.`, true);
+    render(`${error.message} Você pode continuar com a correção manual.`, true);
   }
 });
 
 $("#aiConsent").addEventListener("change", event => {
   setAIConsent(event.currentTarget.checked);
-  render(event.currentTarget.checked ? "Consentimiento registrado." : "Consentimiento revocado. No se realizarán llamadas.");
+  render(event.currentTarget.checked ? "Consentimento registrado." : "Consentimento revogado. Nenhuma chamada será realizada.");
 });
 
-window.addEventListener("medlex-backup-restored", () => render("La configuración de IA no fue modificada por el backup."));
+window.addEventListener("medlex-open-ai-settings", event => render(event.detail?.message || ""));
+window.addEventListener("medlex-backup-restored", () => render("A configuração da IA não foi alterada pelo backup."));
 window.addEventListener("medlex-ai-status-changed", () => render("", false, false));
 window.addEventListener("medlex-storage-reset", () => {
   lockApiKey();
   replacing = false;
   clearConfigureFields();
-  render("La configuración local de IA fue eliminada.");
+  render("A configuração local da IA foi removida.");
 });
 render();

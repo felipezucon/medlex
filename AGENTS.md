@@ -25,20 +25,21 @@ There is no backend, authentication, database, or build system. The only permitt
 - Do not load the source PDFs in the production website.
 - Exam content must be loaded from files in `data/exams/`.
 - User progress must be stored in localStorage.
-- Open-answer correction must use self-assessment rubrics.
+- Manual open-answer correction must use self-assessment rubrics.
 - Do not grade open answers by exact string comparison.
 - All examination content must remain in Spanish and English as written in the source materials.
 - Interface text may follow the language already used by the existing website.
 
 ## AI grading rules
 
-- AI is permitted only to compare open exam/practice answers with the expected answer and rubric stored in the content JSON.
+- AI is permitted only to compare open exam/practice answers with the source text, expected answer and grading rules stored in the content JSON.
 - Never use AI for flashcards, objective questions, content generation, medical lookup, chat, grounding, tools, or external search.
-- Never generate a missing expected answer, accepted variant, source excerpt, or rubric.
+- Never generate a missing expected answer, accepted variant, source excerpt, rubric, or score scale.
 - Never commit an API key, password, decrypted credential, or test credential that could be mistaken for a real key.
 - Never send the API key in a URL, request body, log, backup, grading history, or DOM attribute.
-- Every AI-gradable item must have a stable ID, expected answer, answer language, maximum points, and a rubric whose points equal that maximum.
-- Keep manual grading available for every item and every API failure. AI output is advisory and requires human acceptance.
+- Every AI-gradable item must have a stable ID, expected answer, answer language, maximum points, and either a rubric whose points equal that maximum or a source-backed holistic score scale.
+- Exam AI grading runs automatically at finalization and is definitive for that attempt. Keep manual grading available when no key is configured or an API failure occurs.
+- Practice AI output remains advisory and requires human acceptance.
 - Keep Gemini interactions isolated, stateless, with `store: false`, and without grounding, tools, history, or model fallback.
 - Increment `AI_GRADING_PROMPT_VERSION` whenever the grading instruction or payload semantics change.
 - Increment `AI_GRADING_SCHEMA_VERSION` whenever the structured output contract changes.

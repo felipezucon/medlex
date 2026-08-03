@@ -25,7 +25,7 @@ assert.equal(vault.vaultState().unlocked, true);
 
 vault.lockApiKey();
 assert.deepEqual(vault.vaultState(), {configured: true, unlocked: false});
-await assert.rejects(vault.unlockApiKey("incorrect-password"), /no es correcta/);
+await assert.rejects(vault.unlockApiKey("incorrect-password"), /incorreta/);
 await vault.unlockApiKey(password);
 assert.equal(await vault.withUnlockedApiKey(value => value.length), credential.length);
 

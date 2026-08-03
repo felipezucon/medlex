@@ -1,5 +1,5 @@
 
-const CONTENT_VERSION="2026.08.02.3";
+const CONTENT_VERSION="2026.08.02.4";
 const CACHE=`medlex-${CONTENT_VERSION}`;
 const ASSETS=[
   "./","./index.html","./styles.css","./app.js","./cards.csv","./manifest.webmanifest","./icon.svg",

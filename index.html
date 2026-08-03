@@ -13,7 +13,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="stylesheet" href="./styles.css?v=2026.08.02.3">
+  <link rel="stylesheet" href="./styles.css?v=2026.08.02.4">
 </head>
 <body>
   <header class="topbar">
@@ -30,7 +30,7 @@
       <button class="tab" data-view="exam">Simulado</button>
       <button class="tab" data-view="practice">Formas -ing</button>
       <button class="tab" data-view="cards">Cartões</button>
-      <button class="tab" data-view="import">Importar</button>
+      <button class="tab" data-view="import">Configuração</button>
       <button class="tab" data-view="stats">Progresso</button>
     </nav>
 
@@ -113,7 +113,7 @@
 
     <section id="importView" class="view">
       <div class="panel">
-        <h2>Importar e fazer backup</h2>
+        <h2>Configuração e backup</h2>
         <p>O CSV deve usar as colunas do arquivo-modelo incluído no projeto.</p>
         <label class="file-label">
           <input id="csvInput" type="file" accept=".csv,text/csv">
@@ -132,35 +132,35 @@
         <section id="aiSettings" class="ai-settings" aria-labelledby="aiSettingsHeading">
           <div class="section-heading">
             <div>
-              <h3 id="aiSettingsHeading">Corrección con IA — Gemini</h3>
+              <h3 id="aiSettingsHeading">Correção com IA — Gemini</h3>
               <p>Modelo: Gemini 3.5 Flash-Lite</p>
             </div>
-            <span id="aiState" class="availability unavailable">No configurada</span>
+            <span id="aiState" class="availability unavailable">Não configurada</span>
           </div>
           <p class="security-notice">Esta chave será criptografada neste navegador para reduzir a exposição acidental. Como o site funciona sem servidor, isso não oferece a mesma proteção de um backend.</p>
-          <p class="muted">Para corregir una respuesta se enviarán a Google Gemini la pregunta, su respuesta, la resolución sugerida y la rúbrica. No se enviarán su nombre, historial completo, clave de API ni otros datos del sitio. En el nivel gratuito, Google puede utilizar los datos procesados para mejorar sus productos.</p>
+          <p class="muted">Para corrigir uma resposta, serão enviados ao Google Gemini a pergunta, sua resposta, a resolução sugerida e as regras de pontuação. Não serão enviados seu nome, histórico completo, chave de API nem outros dados do site. No nível gratuito, o Google pode usar os dados processados para melhorar seus produtos.</p>
 
           <form id="aiConfigureForm" class="ai-form">
-            <label for="aiApiKey"><span>Clave de API de Gemini</span><input id="aiApiKey" type="password" autocomplete="off" required></label>
-            <label for="aiPassword"><span>Contraseña local (mínimo 8 caracteres)</span><input id="aiPassword" type="password" autocomplete="new-password" minlength="8" required></label>
-            <label for="aiPasswordConfirm"><span>Confirmar contraseña local</span><input id="aiPasswordConfirm" type="password" autocomplete="new-password" minlength="8" required></label>
-            <div class="exam-actions"><button class="primary" type="submit">Guardar clave cifrada</button><button id="aiCancelReplaceBtn" type="button" class="hidden">Cancelar</button></div>
+            <label for="aiApiKey"><span>Chave de API do Gemini</span><input id="aiApiKey" type="password" autocomplete="off" required></label>
+            <label for="aiPassword"><span>Senha local (mínimo de 8 caracteres)</span><input id="aiPassword" type="password" autocomplete="new-password" minlength="8" required></label>
+            <label for="aiPasswordConfirm"><span>Confirmar senha local</span><input id="aiPasswordConfirm" type="password" autocomplete="new-password" minlength="8" required></label>
+            <div class="exam-actions"><button class="primary" type="submit">Salvar chave criptografada</button><button id="aiCancelReplaceBtn" type="button" class="hidden">Cancelar</button></div>
           </form>
 
           <form id="aiUnlockForm" class="ai-form hidden">
-            <label for="aiUnlockPassword"><span>Contraseña local</span><input id="aiUnlockPassword" type="password" autocomplete="current-password" required></label>
-            <button class="primary" type="submit">Desbloquear clave</button>
+            <label for="aiUnlockPassword"><span>Senha local</span><input id="aiUnlockPassword" type="password" autocomplete="current-password" required></label>
+            <button class="primary" type="submit">Desbloquear chave</button>
           </form>
 
           <div id="aiKeyActions" class="exam-actions hidden">
-            <button id="aiLockBtn" type="button">Bloquear clave</button>
-            <button id="aiReplaceBtn" type="button">Sustituir clave</button>
-            <button id="aiForgetBtn" type="button" class="danger-outline">Olvidar clave</button>
-            <button id="aiTestBtn" type="button">Probar conexión</button>
+            <button id="aiLockBtn" type="button">Bloquear chave</button>
+            <button id="aiReplaceBtn" type="button">Substituir chave</button>
+            <button id="aiForgetBtn" type="button" class="danger-outline">Esquecer chave</button>
+            <button id="aiTestBtn" type="button">Testar conexão</button>
           </div>
           <label class="consent-option" for="aiConsent">
             <input id="aiConsent" type="checkbox">
-            <span>Acepto el envío limitado de cada respuesta seleccionada a Google Gemini para su corrección.</span>
+            <span>Aceito o envio limitado de cada resposta selecionada ao Google Gemini para correção.</span>
           </label>
           <p id="aiLastTest" class="storage-version"></p>
           <p id="aiStatus" class="status" aria-live="polite"></p>
@@ -175,7 +175,7 @@
             <button id="recoverStorageBtn" type="button" class="secondary hidden">Recuperar cópia anterior</button>
           </div>
           <p class="muted">A opção abaixo apaga somente os dados do MedLex neste navegador. Ela não remove arquivos, caches ou dados de outros sites.</p>
-          <button id="resetBtn" class="danger-outline">Restablecer solo datos locales</button>
+          <button id="resetBtn" class="danger-outline">Restabelecer somente os dados locais</button>
         </section>
         <p id="importStatus" class="status" aria-live="polite"></p>
       </div>
@@ -192,6 +192,6 @@
   </main>
 
   <footer>Dados salvos neste navegador. Exporte um backup regularmente.</footer>
-  <script type="module" src="./app.js?v=2026.08.02.3"></script>
+  <script type="module" src="./app.js?v=2026.08.02.4"></script>
 </body>
 </html>

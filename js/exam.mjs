@@ -11,17 +11,18 @@ import {
   parseExamBackup,
   importExamBackup
 } from "./exam-storage.mjs";
-import {gradeExam, examMaximums, examItemCount} from "./exam-grading.mjs";
+import {applyExamAIResults, buildExamAIItems, gradeExam, examMaximums, examItemCount} from "./exam-grading.mjs";
 import {
   aiGradingAvailability,
   calculateItemPoints,
   gradeItemsWithAI,
-  validateGradableItem
+  GEMINI_MODEL
 } from "./ai-grading.mjs";
 
 const root = document.querySelector("#examApp");
 let catalog = [];
 let timerId;
+let pendingFinalization = null;
 
 function el(tag, options = {}, children = []) {
   const node = document.createElement(tag);
@@ -163,7 +164,8 @@ function renderSelection(message = "", kind = "") {
     const best = history.length ? Math.max(...history.map(record => record.score)) : null;
     const available = item.entry.available !== false && exam;
     const actionText = attempt?.status === "review" ? "Revisar tentativa"
-      : attempt ? "Continuar" : "Começar";
+      : attempt?.status === "finalizing" ? "Concluir tentativa"
+        : attempt ? "Continuar" : "Começar";
     list.append(el("article", {className: "exam-choice"}, [
       el("div", {}, [
         el("div", {className: `availability ${available ? "available" : "unavailable"}`, text: available ? "Disponível" : "Indisponível"}),
@@ -222,8 +224,10 @@ function persist(attempt, announce) {
   try {
     saveAttempt(attempt);
     if (announce) announce.textContent = "Respostas salvas neste navegador.";
+    return true;
   } catch {
     if (announce) announce.textContent = "Não foi possível salvar. Exporte um backup antes de sair.";
+    return false;
   }
 }
 
@@ -237,6 +241,8 @@ function historyRecord(exam, attempt, grade) {
     score: grade.total,
     totalPoints: exam.totalPoints,
     passed: grade.passed,
+    gradingMethod: attempt.gradingMethod || "manual",
+    gradingModel: attempt.gradingModel || null,
     grading: Object.fromEntries(Object.entries(attempt.aiGrading || {}).map(([itemId, result]) => [itemId, {
       gradingMethod: result.gradingMethod,
       aiSuggestedPoints: result.aiSuggestedPoints,
@@ -245,6 +251,64 @@ function historyRecord(exam, attempt, grade) {
       accepted: Boolean(result.accepted)
     }]))
   };
+}
+
+function completeAttempt(exam, attempt, method) {
+  pendingFinalization = null;
+  attempt.status = "review";
+  attempt.gradingMethod = method;
+  attempt.gradingModel = method === "ai" ? GEMINI_MODEL : null;
+  const grade = gradeExam(exam, attempt);
+  saveAttempt(attempt);
+  saveHistory(historyRecord(exam, attempt, grade));
+  renderAttempt(exam, attempt);
+}
+
+function completeManually(exam, attempt, fallback = false) {
+  attempt.aiGrading = {};
+  completeAttempt(exam, attempt, fallback ? "manual_fallback" : "manual");
+}
+
+async function continueFinalization(exam, attempt) {
+  const availability = aiGradingAvailability();
+  if (availability.code === "unconfigured") {
+    completeManually(exam, attempt);
+    return;
+  }
+  if (["locked", "consent"].includes(availability.code)) {
+    pendingFinalization = {exam, attempt};
+    window.dispatchEvent(new CustomEvent("medlex-open-ai-settings", {detail: {
+      message: "As respostas foram salvas. Desbloqueie a chave e confirme o consentimento para concluir a correção.",
+      focus: availability.code === "locked" ? "#aiUnlockPassword" : "#aiConsent"
+    }}));
+    return;
+  }
+  if (!availability.available) {
+    console.warn("Correção automática indisponível:", availability.reason);
+    completeManually(exam, attempt, true);
+    return;
+  }
+
+  renderAttempt(exam, attempt, true);
+  const status = root.querySelector("#examGradingStatus");
+  try {
+    const items = buildExamAIItems(exam, attempt);
+    const answered = items.filter(item => String(item.studentAnswer).trim()).length;
+    const results = await gradeItemsWithAI({
+      parentId: exam.id,
+      contentVersion: exam.contentVersion || exam.schemaVersion,
+      items,
+      onProgress: (done, total) => {
+        if (status) status.textContent = total ? `Corrigindo ${done} de ${total} respostas…` : "Calculando o resultado…";
+      }
+    });
+    if (results.length !== answered) throw new Error("A IA não devolveu uma correção completa.");
+    applyExamAIResults(exam, attempt, results);
+    completeAttempt(exam, attempt, "ai");
+  } catch (error) {
+    console.warn("Falha na correção automática; usando correção manual:", error);
+    completeManually(exam, attempt, true);
+  }
 }
 
 function renderScore(exam, grade) {
@@ -274,7 +338,7 @@ function renderArticle(exam) {
   return details;
 }
 
-function renderSectionA(exam, attempt, review, grade, onSave) {
+function renderSectionA(exam, attempt, review, grade, onSave, locked = review) {
   const section = el("section", {className: "exam-section", attrs: {"aria-labelledby": "sectionATitle"}}, [
     el("h2", {id: "sectionATitle", text: exam.sections.a.title}),
     el("p", {className: "section-instructions", text: exam.sections.a.instructions})
@@ -284,12 +348,12 @@ function renderSectionA(exam, attempt, review, grade, onSave) {
     attempt.answers.a[item.id] = answer;
     const developedId = `${item.id}-developed`;
     const paragraphId = `${item.id}-paragraph`;
-    const developed = el("input", {id: developedId, type: "checkbox", checked: answer.developed, disabled: review});
+    const developed = el("input", {id: developedId, type: "checkbox", checked: answer.developed, disabled: locked});
     const paragraph = el("input", {
       id: paragraphId,
       type: "text",
       value: answer.paragraph,
-      disabled: review || !answer.developed,
+      disabled: locked || !answer.developed,
       attrs: {inputmode: "numeric", placeholder: "Ej.: 2, 3"}
     });
     const fieldset = el("fieldset", {className: "exam-question"}, [
@@ -337,7 +401,7 @@ function renderSectionA(exam, attempt, review, grade, onSave) {
   return section;
 }
 
-function renderSectionB(exam, attempt, review, onSave) {
+function renderSectionB(exam, attempt, review, onSave, locked = review) {
   const section = el("section", {className: "exam-section", attrs: {"aria-labelledby": "sectionBTitle"}}, [
     el("h2", {id: "sectionBTitle", text: exam.sections.b.title}),
     el("p", {className: "section-instructions", text: exam.sections.b.instructions})
@@ -347,7 +411,7 @@ function renderSectionB(exam, attempt, review, onSave) {
     const textarea = el("textarea", {
       id: answerId,
       value: attempt.answers.b[item.id] || "",
-      disabled: review,
+      disabled: locked,
       attrs: {rows: "5"}
     });
     const article = el("article", {className: "exam-question open-question"}, [
@@ -362,185 +426,73 @@ function renderSectionB(exam, attempt, review, onSave) {
     });
     if (review) {
       article.classList.add("review-answer-layout");
+      const aiResult = attempt.aiGrading?.[item.id];
       const selected = attempt.assessment.b[item.id] || {};
       attempt.assessment.b[item.id] = selected;
-      const rubric = el("fieldset", {className: "self-rubric"}, [
-        el("legend", {text: "Autoevaluación de esta respuesta"})
-      ]);
-      for (const criterion of item.rubric) {
-        const id = `${item.id}-${criterion.id}`;
-        const select = el("select", {id});
-        select.append(
-          el("option", {value: "not_met", text: "No cumplido"}),
-          el("option", {value: "partial", text: "Parcial (50 %)"}),
-          el("option", {value: "met", text: "Cumplido"})
-        );
-        select.value = selected[criterion.id] === true ? "met" : selected[criterion.id] || "not_met";
-        select.addEventListener("change", () => {
-          selected[criterion.id] = select.value;
-          if (attempt.aiGrading?.[item.id]?.accepted) {
-            attempt.aiGrading[item.id].accepted = false;
-            attempt.aiGrading[item.id].gradingMethod = "manual";
-          }
-          onSave(true);
-        });
-        rubric.append(el("label", {className: "rubric-item", htmlFor: id}, [
-          el("span", {text: criterion.label}),
-          select,
-          el("b", {text: `${criterion.points} pt`})
-        ]));
-      }
-      const itemScore = calculateItemPoints(item, selected);
+      const itemScore = aiResult?.accepted ? Number(aiResult.finalPoints) || 0 : calculateItemPoints(item, selected);
       if (itemScore < exam.sections.b.pointsPerItem) article.classList.add("needs-review");
       article.append(
         el("div", {className: "suggested-answer"}, [
           el("h3", {text: "Resolución sugerida"}),
           el("p", {text: item.suggestedAnswer})
-        ]),
-        rubric,
-        renderAIItemReview(item, attempt, onSave)
+        ])
       );
+      if (aiResult?.accepted) article.append(renderAIItemReview(item, aiResult));
+      else {
+        const rubric = el("fieldset", {className: "self-rubric"}, [
+          el("legend", {text: "Autoevaluación de esta respuesta"})
+        ]);
+        for (const criterion of item.rubric) {
+          const id = `${item.id}-${criterion.id}`;
+          const select = el("select", {id});
+          select.append(
+            el("option", {value: "not_met", text: "No cumplido"}),
+            el("option", {value: "partial", text: "Parcial (50 %)"}),
+            el("option", {value: "met", text: "Cumplido"})
+          );
+          select.value = selected[criterion.id] === true ? "met" : selected[criterion.id] || "not_met";
+          select.addEventListener("change", () => {
+            selected[criterion.id] = select.value;
+            onSave(true);
+          });
+          rubric.append(el("label", {className: "rubric-item", htmlFor: id}, [
+            el("span", {text: criterion.label}),
+            select,
+            el("b", {text: `${criterion.points} pt`})
+          ]));
+        }
+        article.append(rubric);
+      }
     }
     section.append(article);
   }
   return section;
 }
 
-function renderAIItemReview(item, attempt, onSave) {
-  const suggestion = attempt.aiGrading?.[item.id];
-  if (!suggestion) return el("p", {className: "muted ai-item-empty", text: "Puede usar la rúbrica manual o solicitar una sugerencia de IA para la sección."});
-  const panel = el("section", {className: `ai-item-review ${suggestion.confidence === "low" || suggestion.status !== "graded" ? "needs-manual-review" : ""}`.trim()}, [
+function renderAIItemReview(item, suggestion) {
+  const confidence = {high: "alta", medium: "média", low: "baixa"}[suggestion.confidence] || suggestion.confidence;
+  const criterionStatus = {met: "Atendido", partial: "Parcial", not_met: "Não atendido"};
+  const panel = el("section", {className: "ai-item-review"}, [
     el("div", {className: "ai-item-heading"}, [
-      el("h3", {text: "Sugerencia de Gemini"}),
-      el("span", {className: "availability", text: suggestion.cached ? "Resultado guardado" : `Confianza: ${suggestion.confidence}`})
+      el("h3", {text: "Correção por IA"}),
+      el("span", {className: "availability", text: suggestion.cached ? "Resultado salvo" : `Confiança ${confidence}`})
     ]),
-    el("p", {className: "ai-assistive-warning", text: "Corrección asistida por IA. Revise el resultado antes de aceptarlo."}),
-    suggestion.confidence === "low" || suggestion.status !== "graded"
-      ? el("p", {className: "answer-feedback ai-review-warning", text: "Revisión manual recomendada."}) : null,
-    el("p", {text: suggestion.overallFeedback})
+    el("p", {text: suggestion.overallFeedback}),
+    el("p", {className: "ai-points", text: `Pontuação: ${suggestion.finalPoints}/${item.maxPoints}`})
   ]);
-  const statuses = suggestion.finalStatuses || Object.fromEntries(suggestion.criteria.map(criterion => [criterion.criterionId, criterion.status]));
-  suggestion.finalStatuses = statuses;
-  const pointsId = `${item.id}-ai-final-points`;
-  const finalPoints = el("input", {id: pointsId, type: "number", value: String(suggestion.finalPoints ?? suggestion.aiSuggestedPoints), min: "0", max: String(item.maxPoints), attrs: {step: "0.5"}});
-  finalPoints.addEventListener("change", () => {
-    suggestion.finalPoints = Math.min(item.maxPoints, Math.max(0, Number(finalPoints.value) || 0));
-    finalPoints.value = String(suggestion.finalPoints);
-    suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
-    onSave();
-  });
   for (const criterion of suggestion.criteria) {
     const source = item.rubric.find(entry => entry.id === criterion.criterionId);
-    const id = `${item.id}-${criterion.criterionId}-ai`;
-    const select = el("select", {id});
-    select.append(
-      el("option", {value: "not_met", text: "No cumplido"}),
-      el("option", {value: "partial", text: "Parcial (50 %)"}),
-      el("option", {value: "met", text: "Cumplido"})
-    );
-    select.value = statuses[criterion.criterionId];
-    select.addEventListener("change", () => {
-      statuses[criterion.criterionId] = select.value;
-      suggestion.finalPoints = calculateItemPoints(item, statuses);
-      finalPoints.value = String(suggestion.finalPoints);
-      suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
-      onSave();
-    });
-    panel.append(el("label", {className: "ai-criterion", htmlFor: id}, [
+    panel.append(el("div", {className: "ai-criterion"}, [
       el("span", {}, [el("strong", {text: `${source.label} (${source.points} pt)`}), el("small", {text: criterion.feedback})]),
-      select
+      el("b", {text: criterionStatus[criterion.status] || criterion.status})
     ]));
   }
-  const noteId = `${item.id}-ai-note`;
-  const note = el("textarea", {id: noteId, value: suggestion.personalNote || "", attrs: {rows: "2"}});
-  note.addEventListener("input", () => { suggestion.personalNote = note.value; onSave(); });
-  panel.append(
-    el("label", {className: "ai-personal-note", htmlFor: noteId}, [el("span", {text: "Observación personal (no se envía a Gemini)"}), note]),
-    el("p", {className: "ai-points", text: `Sugerencia de IA: ${suggestion.aiSuggestedPoints}/${item.maxPoints} puntos`}),
-    el("label", {className: "ai-final-points", htmlFor: pointsId}, [el("span", {text: "Puntuación final (ajuste humano)"}), finalPoints]),
-    el("div", {className: "exam-actions"}, [
-      button("Aceptar corrección revisada", () => {
-        Object.assign(attempt.assessment.b[item.id], statuses);
-        suggestion.gradingMethod = "ai_reviewed";
-        suggestion.finalPoints = Math.min(item.maxPoints, Math.max(0, Number(finalPoints.value) || 0));
-        suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
-        suggestion.accepted = true;
-        onSave(true);
-      }, "primary", suggestion.status !== "graded"),
-      button("Descartar sugerencia", () => {
-        delete attempt.aiGrading[item.id];
-        onSave(true);
-      })
-    ]),
-    suggestion.accepted ? el("p", {className: "exam-status success", text: `Corrección aceptada: ${suggestion.finalPoints}/${item.maxPoints} puntos.`}) : null
-  );
   return panel;
 }
 
-function renderAIGradingPanel(exam, attempt) {
-  const availability = aiGradingAvailability();
-  const answered = exam.sections.b.items.filter(item => String(attempt.answers.b[item.id] || "").trim());
-  const allGradable = answered.every(item => validateGradableItem(item).gradable);
-  const status = statusMessage();
-  const run = async force => {
-    const buttons = panel.querySelectorAll("button");
-    buttons.forEach(control => { control.disabled = true; });
-    status.textContent = "Corrigiendo 0 de " + answered.length + " respuestas…";
-    status.className = "exam-status";
-    try {
-      const items = answered.map(item => ({...item, studentAnswer: attempt.answers.b[item.id]}));
-      const results = await gradeItemsWithAI({
-        parentId: exam.id,
-        contentVersion: exam.contentVersion || exam.schemaVersion,
-        items,
-        force,
-        onProgress: (done, total) => { status.textContent = `Corrigiendo ${done} de ${total} respuestas…`; }
-      });
-      attempt.aiGrading ||= {};
-      for (const result of results) {
-        const previous = attempt.aiGrading[result.itemId];
-        attempt.aiGrading[result.itemId] = {
-          ...result,
-          aiSuggestedPoints: result.points,
-          finalStatuses: Object.fromEntries(result.criteria.map(criterion => [criterion.criterionId, criterion.status])),
-          finalPoints: result.points,
-          personalNote: previous?.personalNote || "",
-          gradingMethod: "ai_pending",
-          manuallyAdjusted: false,
-          accepted: false
-        };
-      }
-      saveAttempt(attempt);
-      renderAttempt(exam, attempt);
-    } catch (error) {
-      status.textContent = `${error.message} Puede continuar con la corrección manual.`;
-      status.className = "exam-status error";
-      buttons.forEach(control => { control.disabled = false; });
-    }
-  };
-  const reason = !answered.length ? "No hay respuestas abiertas para enviar. Las respuestas en blanco valen cero y no usan la API."
-    : !allGradable ? "Faltan datos de corrección en uno o más ítems. Use la autoevaluación manual."
-      : availability.reason;
-  const panel = el("section", {className: "panel ai-grading-panel", attrs: {"aria-labelledby": "aiExamHeading"}}, [
-    el("div", {className: "section-heading"}, [
-      el("div", {}, [el("h2", {id: "aiExamHeading", text: "Corrección de respuestas abiertas"}), el("p", {text: "Gemini solo compara su respuesta con la resolución y la rúbrica del JSON."})]),
-      el("div", {className: "exam-actions"}, [
-        button("Corregir con IA", () => run(false), "primary", !availability.available || !allGradable || !answered.length),
-        button("Corregir manualmente", () => root.querySelector(".self-rubric")?.scrollIntoView({behavior: "smooth", block: "center"})),
-        Object.keys(attempt.aiGrading || {}).length ? button("Corregir nuevamente", () => run(true), "", !availability.available || !allGradable || !answered.length) : null
-      ])
-    ]),
-    el("p", {className: "ai-assistive-warning", text: "Corrección asistida por IA. La nota solo cambia cuando usted acepta cada resultado."}),
-    el("p", {className: "muted", text: "La Sección C continúa en autoevaluación manual porque las fuentes no contienen una rúbrica."}),
-    reason ? el("p", {className: "exam-status", text: reason}) : null,
-    status
-  ]);
-  return panel;
-}
-
-function renderSectionC(exam, attempt, review, onSave) {
+function renderSectionC(exam, attempt, review, onSave, locked = review) {
   const answerId = "section-c-answer";
-  const textarea = el("textarea", {id: answerId, value: attempt.answers.c || "", disabled: review, attrs: {rows: "3"}});
+  const textarea = el("textarea", {id: answerId, value: attempt.answers.c || "", disabled: locked, attrs: {rows: "3"}});
   const section = el("section", {className: "exam-section", attrs: {"aria-labelledby": "sectionCTitle"}}, [
     el("h2", {id: "sectionCTitle", text: exam.sections.c.title}),
     el("p", {className: "section-instructions", text: exam.sections.c.instructions}),
@@ -553,6 +505,18 @@ function renderSectionC(exam, attempt, review, onSave) {
     onSave();
   });
   if (review) {
+    const aiResult = attempt.aiGrading?.[exam.sections.c.id];
+    const question = section.querySelector(".exam-question");
+    const points = aiResult?.accepted ? Number(aiResult.finalPoints) || 0 : Number(attempt.assessment.c) || 0;
+    if (points < exam.sections.c.maxPoints) question.classList.add("needs-review");
+    question.append(el("div", {className: "suggested-answer"}, [
+      el("h3", {text: "Resolución sugerida"}),
+      el("p", {text: exam.sections.c.suggestedAnswer})
+    ]));
+    if (aiResult?.accepted) {
+      question.append(renderAIItemReview({...exam.sections.c, rubric: []}, aiResult));
+      return section;
+    }
     const selectId = "section-c-score";
     const select = el("select", {id: selectId, value: String(attempt.assessment.c)});
     for (const score of exam.sections.c.scoreScale) {
@@ -563,15 +527,9 @@ function renderSectionC(exam, attempt, review, onSave) {
       attempt.assessment.c = Number(select.value);
       onSave(true);
     });
-    const question = section.querySelector(".exam-question");
-    if (Number(attempt.assessment.c) < exam.sections.c.maxPoints) question.classList.add("needs-review");
     question.append(
-      el("div", {className: "suggested-answer"}, [
-        el("h3", {text: "Resolución sugerida"}),
-        el("p", {text: exam.sections.c.suggestedAnswer})
-      ]),
       el("label", {className: "title-score", htmlFor: selectId}, [
-        el("span", {text: "Autoavaliação do título"}),
+        el("span", {text: "Autoavaliação da resposta"}),
         select
       ])
     );
@@ -579,8 +537,23 @@ function renderSectionC(exam, attempt, review, onSave) {
   return section;
 }
 
-function renderAttempt(exam, attempt) {
+function renderReviewNotice(attempt) {
+  const ai = attempt.gradingMethod === "ai";
+  const fallback = attempt.gradingMethod === "manual_fallback";
+  return el("section", {className: "panel ai-grading-panel", attrs: {"aria-live": "polite"}}, [
+    el("h2", {text: ai ? "Correção automática concluída" : "Correção manual"}),
+    el("p", {text: ai
+      ? "A IA corrigiu as respostas abertas de acordo com as resoluções e regras da prova. A pontuação é definitiva para esta tentativa."
+      : fallback
+        ? "A correção automática não pôde ser concluída. Use as resoluções e rubricas abaixo para atribuir a pontuação."
+        : "Nenhuma chave de API está configurada. Use as resoluções e rubricas abaixo para atribuir a pontuação."})
+  ]);
+}
+
+function renderAttempt(exam, attempt, grading = false) {
   const review = attempt.status === "review";
+  const finalizing = attempt.status === "finalizing";
+  const locked = review || finalizing;
   let grade = gradeExam(exam, attempt);
   const itemCount = examItemCount(exam);
   const savedStatus = statusMessage("Respostas salvas automaticamente.");
@@ -618,13 +591,17 @@ function renderAttempt(exam, attempt) {
 
   const questions = el("main", {className: "exam-questions"});
   questions.append(
-    renderSectionA(exam, attempt, review, grade, onSave),
-    renderSectionB(exam, attempt, review, onSave),
-    renderSectionC(exam, attempt, review, onSave)
+    renderSectionA(exam, attempt, review, grade, onSave, locked),
+    renderSectionB(exam, attempt, review, onSave, locked),
+    renderSectionC(exam, attempt, review, onSave, locked)
   );
 
   const actions = el("div", {className: "exam-footer-actions"});
-  if (review) {
+  if (grading) {
+    const gradingStatus = statusMessage("Corrigindo respostas abertas com IA…");
+    gradingStatus.id = "examGradingStatus";
+    actions.append(gradingStatus);
+  } else if (review) {
     scoreSlot.append(renderScore(exam, grade));
     actions.append(
       button("Voltar às provas", () => renderSelection()),
@@ -634,6 +611,11 @@ function renderAttempt(exam, attempt) {
         clearAttempt(exam.id);
         renderIntro(exam);
       }, "primary")
+    );
+  } else if (finalizing) {
+    actions.append(
+      button("Voltar às provas", () => renderSelection()),
+      button("Continuar finalização", () => continueFinalization(exam, attempt), "primary")
     );
   } else {
     actions.append(
@@ -647,14 +629,17 @@ function renderAttempt(exam, attempt) {
         renderIntro(exam);
       }, "danger-outline"),
       button("Finalizar simulado", () => {
+        if (!persist(attempt, savedStatus)) return;
         if (!confirm("Finalizar o simulado? As respostas originais ficarão bloqueadas para edição.")) return;
-        attempt.status = "review";
+        attempt.status = "finalizing";
         attempt.finalizedAt = Date.now();
         attempt.durationMs = durationOf(attempt);
-        grade = gradeExam(exam, attempt);
-        persist(attempt, savedStatus);
-        saveHistory(historyRecord(exam, attempt, grade));
-        renderAttempt(exam, attempt);
+        attempt.aiGrading = {};
+        if (!persist(attempt, savedStatus)) {
+          attempt.status = "in-progress";
+          return;
+        }
+        continueFinalization(exam, attempt);
       }, "primary")
     );
   }
@@ -663,9 +648,9 @@ function renderAttempt(exam, attempt) {
     el("aside", {className: "exam-reference"}, [renderArticle(exam)]),
     questions
   ]);
-  replace(header, scoreSlot, ...(review ? [renderAIGradingPanel(exam, attempt)] : []), layout, savedStatus, actions);
+  replace(header, scoreSlot, ...(review ? [renderReviewNotice(attempt)] : []), layout, savedStatus, actions);
   updateProgress();
-  if (!review && attempt.timerEnabled) {
+  if (!locked && attempt.timerEnabled) {
     timerId = setInterval(() => {
       timer.textContent = formatDuration(durationOf(attempt));
     }, 1000);
@@ -696,6 +681,13 @@ async function init() {
 
 window.addEventListener("medlex-backup-restored", init);
 window.addEventListener("medlex-ai-state-changed", () => {
+  if (pendingFinalization && aiGradingAvailability().available) {
+    const pending = pendingFinalization;
+    pendingFinalization = null;
+    window.dispatchEvent(new CustomEvent("medlex-switch-view", {detail: {view: "exam"}}));
+    continueFinalization(pending.exam, pending.attempt);
+    return;
+  }
   const active = catalog.map(item => item.exam).find(exam => exam && getAttempt(exam.id)?.status === "review");
   if (active && root.closest(".view")?.classList.contains("active")) renderAttempt(active, getAttempt(active.id));
 });

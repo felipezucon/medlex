@@ -14,7 +14,9 @@ for (const entry of examIndex.exams) {
   objective += exam.sections.a.items.length;
   open += exam.sections.b.items.length + 1;
   ready += exam.sections.b.items.filter(item => validateGradableItem(item).gradable).length;
-  assert.equal(exam.sections.c.gradingMode, "manual");
+  ready += Number(validateGradableItem({...exam.sections.c, question: exam.sections.c.instructions, rubric: []}).gradable);
+  assert.equal(exam.sections.c.gradingMode, "ai_or_manual");
+  assert.equal(exam.sections.c.gradingType, "holistic");
   assert.equal(Array.isArray(exam.sections.c.rubric), false);
 }
 
@@ -28,5 +30,5 @@ for (const unit of practice.units) for (const block of unit.blocks) {
   }
 }
 
-assert.deepEqual({objective, open, ready}, {objective: 77, open: 97, ready: 85});
+assert.deepEqual({objective, open, ready}, {objective: 77, open: 97, ready: 97});
 console.log("ai readiness: ok");

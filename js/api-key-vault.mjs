@@ -41,9 +41,9 @@ export function vaultState() {
 
 export async function configureApiKey(apiKey, password, confirmation) {
   const keyText = String(apiKey ?? "").trim();
-  if (!keyText) throw new Error("Ingrese una clave de API.");
-  if (String(password).length < 8) throw new Error("La contraseña local debe tener al menos 8 caracteres.");
-  if (password !== confirmation) throw new Error("Las contraseñas no coinciden.");
+  if (!keyText) throw new Error("Informe uma chave de API.");
+  if (String(password).length < 8) throw new Error("A senha local deve ter pelo menos 8 caracteres.");
+  if (password !== confirmation) throw new Error("As senhas não coincidem.");
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const key = await deriveKey(password, salt, ITERATIONS);
@@ -63,7 +63,7 @@ export async function configureApiKey(apiKey, password, confirmation) {
 
 export async function unlockApiKey(password) {
   const vault = readJsonStorage(STORAGE_KEYS.aiKeyVault, null, validVault);
-  if (!vault) throw new Error("No hay una clave configurada.");
+  if (!vault) throw new Error("Não há uma chave configurada.");
   try {
     const key = await deriveKey(String(password), fromBase64(vault.salt), vault.iterations);
     const plaintext = await crypto.subtle.decrypt(
@@ -76,7 +76,7 @@ export async function unlockApiKey(password) {
     unlockedApiKey = value;
   } catch {
     unlockedApiKey = null;
-    throw new Error("La contraseña local no es correcta.");
+    throw new Error("A senha local está incorreta.");
   }
 }
 
@@ -90,6 +90,6 @@ export function forgetApiKey() {
 }
 
 export async function withUnlockedApiKey(operation) {
-  if (!unlockedApiKey) throw new Error("La clave de API está bloqueada.");
+  if (!unlockedApiKey) throw new Error("A chave de API está bloqueada.");
   return operation(unlockedApiKey);
 }

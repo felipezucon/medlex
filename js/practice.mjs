@@ -91,7 +91,7 @@ function renderBackupControls(message = "", kind = "") {
     el("div", {className: "section-heading"}, [
       el("div", {}, [
         el("h3", {id: "practiceToolsTitle", text: "Backup das práticas"}),
-        el("p", {text: "Este progresso também é incluído no backup completo da área Importar."})
+        el("p", {text: "Este progresso também é incluído no backup completo da área Configuração."})
       ]),
       el("div", {className: "exam-actions"}, [
         button("Exportar JSON", () => download("medlex-praticas.json", exportPracticeBackup())),
@@ -205,15 +205,15 @@ function appendRubric(container, item, session, onAssessment) {
 
 function renderPracticeAIItemReview(container, item, session, onAssessment) {
   const suggestion = session.aiGrading?.[item.id];
-  if (!suggestion) return el("p", {className: "muted ai-item-empty", text: "Puede usar la rúbrica manual o solicitar una sugerencia de IA para la sesión."});
+  if (!suggestion) return el("p", {className: "muted ai-item-empty", text: "Você pode usar a rubrica manual ou solicitar uma sugestão da IA para a sessão."});
   const panel = el("section", {className: `ai-item-review ${suggestion.confidence === "low" || suggestion.status !== "graded" ? "needs-manual-review" : ""}`.trim()}, [
     el("div", {className: "ai-item-heading"}, [
-      el("h3", {text: "Sugerencia de Gemini"}),
-      el("span", {className: "availability", text: suggestion.cached ? "Resultado guardado" : `Confianza: ${suggestion.confidence}`})
+      el("h3", {text: "Sugestão do Gemini"}),
+      el("span", {className: "availability", text: suggestion.cached ? "Resultado salvo" : `Confiança: ${suggestion.confidence}`})
     ]),
-    el("p", {className: "ai-assistive-warning", text: "Corrección asistida por IA. Revise el resultado antes de aceptarlo."}),
+    el("p", {className: "ai-assistive-warning", text: "Correção assistida por IA. Revise o resultado antes de aceitá-lo."}),
     suggestion.confidence === "low" || suggestion.status !== "graded"
-      ? el("p", {className: "answer-feedback ai-review-warning", text: "Revisión manual recomendada."}) : null,
+      ? el("p", {className: "answer-feedback ai-review-warning", text: "Revisão manual recomendada."}) : null,
     el("p", {text: suggestion.overallFeedback})
   ]);
   const statuses = suggestion.finalStatuses || Object.fromEntries(suggestion.criteria.map(criterion => [criterion.criterionId, criterion.status]));
@@ -252,11 +252,11 @@ function renderPracticeAIItemReview(container, item, session, onAssessment) {
   const note = el("textarea", {id: noteId, value: suggestion.personalNote || "", attrs: {rows: "2"}});
   note.addEventListener("input", () => { suggestion.personalNote = note.value; saveSession(session); });
   panel.append(
-    el("label", {className: "ai-personal-note", htmlFor: noteId}, [el("span", {text: "Observación personal (no se envía a Gemini)"}), note]),
-    el("p", {className: "ai-points", text: `Sugerencia de IA: ${suggestion.aiSuggestedPoints}/${item.maxPoints} puntos`}),
-    el("label", {className: "ai-final-points", htmlFor: pointsId}, [el("span", {text: "Puntuación final (ajuste humano)"}), finalPoints]),
+    el("label", {className: "ai-personal-note", htmlFor: noteId}, [el("span", {text: "Observação pessoal (não é enviada ao Gemini)"}), note]),
+    el("p", {className: "ai-points", text: `Sugestão da IA: ${suggestion.aiSuggestedPoints}/${item.maxPoints} pontos`}),
+    el("label", {className: "ai-final-points", htmlFor: pointsId}, [el("span", {text: "Pontuação final (ajuste humano)"}), finalPoints]),
     el("div", {className: "exam-actions"}, [
-      button("Aceptar corrección revisada", () => {
+      button("Aceitar correção revisada", () => {
         Object.assign(session.assessment[item.id], statuses);
         for (const criterion of item.rubric) {
           const manual = document.getElementById(`${item.id}-${criterion.id}`);
@@ -268,13 +268,13 @@ function renderPracticeAIItemReview(container, item, session, onAssessment) {
         suggestion.accepted = true;
         onAssessment(container, item.id);
       }, "primary", suggestion.status !== "graded"),
-      button("Descartar sugerencia", () => {
+      button("Descartar sugestão", () => {
         delete session.aiGrading[item.id];
         saveSession(session);
-        panel.replaceWith(el("p", {className: "muted ai-item-empty", text: "Sugerencia descartada. La corrección manual permanece disponible."}));
+        panel.replaceWith(el("p", {className: "muted ai-item-empty", text: "Sugestão descartada. A correção manual permanece disponível."}));
       })
     ]),
-    suggestion.accepted ? el("p", {className: "exam-status success", text: `Corrección aceptada: ${suggestion.finalPoints}/${item.maxPoints} puntos.`}) : null
+    suggestion.accepted ? el("p", {className: "exam-status success", text: `Correção aceita: ${suggestion.finalPoints}/${item.maxPoints} pontos.`}) : null
   );
   return panel;
 }
@@ -288,14 +288,14 @@ function renderPracticeAIGradingPanel(practice, session) {
   const run = async force => {
     const buttons = panel.querySelectorAll("button");
     buttons.forEach(control => { control.disabled = true; });
-    status.textContent = `Corrigiendo 0 de ${answered.length} respuestas…`;
+    status.textContent = `Corrigindo 0 de ${answered.length} respostas…`;
     try {
       const results = await gradeItemsWithAI({
         parentId: practice.id,
         contentVersion: practice.contentVersion || practice.schemaVersion,
         items: answered.map(item => ({...item, studentAnswer: session.answers[item.id]})),
         force,
-        onProgress: (done, total) => { status.textContent = `Corrigiendo ${done} de ${total} respuestas…`; }
+        onProgress: (done, total) => { status.textContent = `Corrigindo ${done} de ${total} respostas…`; }
       });
       session.aiGrading ||= {};
       for (const result of results) {
@@ -314,24 +314,24 @@ function renderPracticeAIGradingPanel(practice, session) {
       saveSession(session);
       renderSession(practice, session);
     } catch (error) {
-      status.textContent = `${error.message} Puede continuar con la corrección manual.`;
+      status.textContent = `${error.message} Você pode continuar com a correção manual.`;
       status.className = "exam-status error";
       buttons.forEach(control => { control.disabled = false; });
     }
   };
-  const reason = !answered.length ? "No hay respuestas abiertas para enviar. Las respuestas en blanco valen cero y no usan la API."
-    : !allGradable ? "Faltan datos de corrección. Use la autoevaluación manual."
+  const reason = !answered.length ? "Não há respostas abertas para enviar. Respostas em branco valem zero e não usam a API."
+    : !allGradable ? "Faltam dados de correção. Use a autoavaliação manual."
       : availability.reason;
   const panel = el("section", {className: "panel ai-grading-panel", attrs: {"aria-labelledby": "aiPracticeHeading"}}, [
     el("div", {className: "section-heading"}, [
-      el("div", {}, [el("h2", {id: "aiPracticeHeading", text: "Corrección de traducciones y respuestas"}), el("p", {text: "Las asociaciones se corrigen localmente y nunca se envían."})]),
+      el("div", {}, [el("h2", {id: "aiPracticeHeading", text: "Correção de traduções e respostas"}), el("p", {text: "As associações são corrigidas localmente e nunca são enviadas."})]),
       el("div", {className: "exam-actions"}, [
-        button("Corregir con IA", () => run(false), "primary", !availability.available || !allGradable || !answered.length),
-        button("Corregir manualmente", () => root.querySelector(".self-rubric")?.scrollIntoView({behavior: "smooth", block: "center"})),
-        Object.keys(session.aiGrading || {}).length ? button("Corregir nuevamente", () => run(true), "", !availability.available || !allGradable || !answered.length) : null
+        button("Corrigir com IA", () => run(false), "primary", !availability.available || !allGradable || !answered.length),
+        button("Corrigir manualmente", () => root.querySelector(".self-rubric")?.scrollIntoView({behavior: "smooth", block: "center"})),
+        Object.keys(session.aiGrading || {}).length ? button("Corrigir novamente", () => run(true), "", !availability.available || !allGradable || !answered.length) : null
       ])
     ]),
-    el("p", {className: "ai-assistive-warning", text: "Corrección asistida por IA. La nota solo cambia cuando usted acepta cada resultado."}),
+    el("p", {className: "ai-assistive-warning", text: "Correção assistida por IA. A nota só muda quando você aceita cada resultado."}),
     reason ? el("p", {className: "exam-status", text: reason}) : null,
     status
   ]);

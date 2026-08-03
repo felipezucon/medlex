@@ -40,7 +40,10 @@ export function gradeExam(exam, attempt) {
       );
     sectionB += Math.min(exam.sections.b.pointsPerItem, itemScore);
   }
-  const sectionC = Math.min(exam.sections.c.maxPoints, Math.max(0, Number(attempt.assessment.c) || 0));
+  const reviewedC = attempt.aiGrading?.[exam.sections.c.id];
+  const sectionC = Math.min(exam.sections.c.maxPoints, Math.max(0,
+    reviewedC?.accepted ? Number(reviewedC.finalPoints) || 0 : Number(attempt.assessment.c) || 0
+  ));
   sectionB = Math.round(sectionB * 100) / 100;
   const total = Math.round((sectionA.score + sectionB + sectionC) * 100) / 100;
   return {
@@ -49,6 +52,44 @@ export function gradeExam(exam, attempt) {
     total,
     passed: total >= exam.passingScore
   };
+}
+
+export function buildExamAIItems(exam, attempt) {
+  const sourceText = [exam.article.title, ...exam.article.paragraphs.map(
+    paragraph => `(${paragraph.number}) ${paragraph.text}`
+  )].join("\n");
+  return [
+    ...exam.sections.b.items.map(item => ({...item, sourceText, studentAnswer: attempt.answers.b[item.id] || ""})),
+    {
+      ...exam.sections.c,
+      question: exam.sections.c.instructions,
+      sourceText,
+      studentAnswer: attempt.answers.c || "",
+      rubric: []
+    }
+  ];
+}
+
+export function applyExamAIResults(exam, attempt, results) {
+  const answered = buildExamAIItems(exam, attempt).filter(item => String(item.studentAnswer).trim());
+  if (results.length !== answered.length || results.some(result => result.status !== "graded")) {
+    throw new Error("A IA não devolveu uma correção completa.");
+  }
+  const expectedIds = new Set(answered.map(item => item.id));
+  if (new Set(results.map(result => result.itemId)).size !== results.length
+    || results.some(result => !expectedIds.has(result.itemId))) {
+    throw new Error("A IA não devolveu uma correção completa.");
+  }
+  attempt.aiGrading = Object.fromEntries(results.map(result => [result.itemId, {
+    ...result,
+    aiSuggestedPoints: result.points,
+    finalStatuses: Object.fromEntries(result.criteria.map(criterion => [criterion.criterionId, criterion.status])),
+    finalPoints: result.points,
+    gradingMethod: "ai",
+    manuallyAdjusted: false,
+    accepted: true
+  }]));
+  return attempt.aiGrading;
 }
 
 export function examMaximums(exam) {

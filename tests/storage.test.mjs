@@ -17,6 +17,9 @@ exams.saveAttempt(examB);
 exams.clearAttempt("prefinal-a");
 assert.equal(exams.getAttempt("prefinal-a"), null);
 assert.equal(exams.getAttempt("prefinal-b").id, examB.id);
+examB.status = "finalizing";
+exams.saveAttempt(examB);
+assert.equal(exams.parseExamBackup(exams.exportExamBackup()).attempts["prefinal-b"].status, "finalizing");
 assert.throws(() => exams.importExamBackup("{}"), /backup de simulados válido/);
 
 const session = practice.createSession("ing-forms", ["blood"]);

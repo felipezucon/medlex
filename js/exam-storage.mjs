@@ -85,7 +85,7 @@ export function parseExamBackup(text) {
       attempt
       && typeof attempt.id === "string"
       && typeof attempt.examId === "string"
-      && ["in-progress", "review"].includes(attempt.status)
+      && ["in-progress", "finalizing", "review"].includes(attempt.status)
       && attempt.answers?.a
       && attempt.answers?.b
       && attempt.assessment?.b
