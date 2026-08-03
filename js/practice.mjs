@@ -357,6 +357,7 @@ function renderTranslationBlock(block, session, review, locked, onAnswer, onAsse
 }
 
 function renderMatchingBlock(block, session, review, locked, onAnswer, onAssessment, pending) {
+  const hasTranslation = block.answerMode !== "choice";
   const section = el("section", {className: "practice-block"}, [el("p", {className: "section-instructions", text: block.instructions})]);
   const options = el("ol", {className: "matching-options"});
   for (const option of block.options) options.append(el("li", {}, [el("b", {text: `${option.id}. `}), option.text]));
@@ -370,34 +371,32 @@ function renderMatchingBlock(block, session, review, locked, onAnswer, onAssessm
     select.append(el("option", {value: "", text: "Selecione"}));
     for (const option of block.options) select.append(el("option", {value: option.id, text: option.id}));
     select.value = answer.choice;
-    const textarea = el("textarea", {id: translationId, value: answer.translation, disabled: locked, attrs: {rows: "3"}});
+    const textarea = hasTranslation ? el("textarea", {id: translationId, value: answer.translation, disabled: locked, attrs: {rows: "3"}}) : null;
     const article = el("article", {className: `exam-question ${review && pending.includes(item.id) ? "needs-review" : ""}`.trim()}, [
       el("h3", {text: item.question}),
-      el("div", {className: "matching-answer"}, [
+      el("div", {className: `matching-answer ${hasTranslation ? "" : "choice-only"}`.trim()}, [
         el("label", {htmlFor: selectId}, [el("span", {text: "Letra"}), select]),
-        el("label", {htmlFor: translationId}, [el("span", {text: "Su traducción"}), textarea])
+        hasTranslation ? el("label", {htmlFor: translationId}, [el("span", {text: "Su traducción"}), textarea]) : null
       ])
     ]);
     select.addEventListener("change", () => { answer.choice = select.value; onAnswer(); });
-    textarea.addEventListener("input", () => { answer.translation = textarea.value; onAnswer(); });
+    textarea?.addEventListener("input", () => { answer.translation = textarea.value; onAnswer(); });
     if (review) {
       const option = block.options.find(entry => entry.id === item.correctOption);
       const correct = answer.choice === item.correctOption;
-      article.append(
-        el("p", {className: "answer-feedback", text: correct ? `Asociación correcta: ${item.correctOption}` : `Asociación correcta: ${item.correctOption} (su respuesta: ${answer.choice || "sin respuesta"})`}),
-        el("div", {className: "suggested-answer"}, [el("h3", {text: "Traducción sugerida"}), el("p", {text: option.expectedTranslation})])
-      );
+      article.append(el("p", {className: "answer-feedback", text: correct ? `Asociación correcta: ${item.correctOption}` : `Asociación correcta: ${item.correctOption} (su respuesta: ${answer.choice || "sin respuesta"})`}));
+      if (hasTranslation) article.append(el("div", {className: "suggested-answer"}, [el("h3", {text: "Traducción sugerida"}), el("p", {text: option.expectedTranslation})]));
       if (!correct) article.classList.add("incorrect");
-      const aiReview = renderPracticeAIItemReview(item, session);
+      const aiReview = hasTranslation ? renderPracticeAIItemReview(item, session) : null;
       if (aiReview) article.append(aiReview);
-      else if (String(answer.translation).trim()) {
+      else if (hasTranslation && String(answer.translation).trim()) {
         const assessment = session.assessment[item.id] || {};
         session.assessment[item.id] = assessment;
         const checkId = `${item.id}-translation-ok`;
         const checkbox = el("input", {id: checkId, type: "checkbox", checked: Boolean(assessment.translation)});
         checkbox.addEventListener("change", () => { assessment.translation = checkbox.checked; onAssessment(article, item.id); });
         article.append(el("label", {className: "check-option practice-self-check", htmlFor: checkId}, [checkbox, el("span", {text: item.rubric[0].label})]));
-      } else article.append(el("p", {className: "muted ai-item-empty", text: "Tradução em branco: 0 ponto."}));
+      } else if (hasTranslation) article.append(el("p", {className: "muted ai-item-empty", text: "Tradução em branco: 0 ponto."}));
     }
     section.append(article);
   }

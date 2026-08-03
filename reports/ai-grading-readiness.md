@@ -4,19 +4,19 @@ Data da auditoria: 2026-08-03
 
 ## Resultado
 
-Foram auditados os 12 simulados em `data/exams/`, a prática em `data/practice/ing-forms.json` e os materiais de origem em `materiais-fonte/`.
+Foram auditados os 14 simulados em `data/exams/`, a prática em `data/practice/ing-forms.json` e os materiais de origem em `materiais-fonte/`.
 
 | Métrica | Quantidade |
 | --- | ---: |
-| Componentes de resposta auditados | 227 |
-| Itens objetivos, corrigidos localmente | 77 |
-| Respostas escritas | 150 |
-| Respostas escritas prontas para IA | 150 |
+| Componentes de resposta auditados | 302 |
+| Itens objetivos, corrigidos localmente | 106 |
+| Respostas escritas | 196 |
+| Respostas escritas prontas para IA | 196 |
 | Itens sem resposta esperada | 0 |
 | Itens com pontuação inconsistente | 0 |
 | IDs duplicados | 0 |
 
-As 150 respostas escritas são as 72 perguntas da Seção B, as 12 respostas da Seção C dos simulados e os 66 itens escritos da prática de formas em `-ing`. A prática inclui os 18 exercícios originais e 48 exercícios derivados dos 12 simulados, todos rastreados até seus parágrafos, resoluções e rubricas de origem.
+As 196 respostas escritas são as 84 perguntas da Seção B, as 14 respostas da Seção C dos simulados e os 98 itens escritos da prática de formas em `-ing`. A prática agora possui 110 atividades: 18 originais, 48 derivadas dos primeiros 12 simulados e 44 fornecidas com os simulados 6 e 7. Destas últimas, 12 associações de função gramatical são corrigidas localmente e 32 respostas escritas usam as resoluções e rubricas documentadas.
 
 ## Regras usadas
 

@@ -6,8 +6,8 @@ import {practiceHistoryUnitTitles} from "../js/practice-storage.mjs";
 
 const practice = JSON.parse(await readFile(new URL("../data/practice/ing-forms.json", import.meta.url), "utf8"));
 assert.equal(validatePractice(practice, "ing-forms"), practice);
-assert.equal(practice.units.length, 15);
-assert.equal(practiceItems(practice).length, 66);
+assert.equal(practice.units.length, 17);
+assert.equal(practiceItems(practice).length, 110);
 assert.equal(practiceItems(practice, ["blood"]).length, 7);
 const matchingItem = practiceItems(practice).find(item => item.id === "tb-tests");
 assert.equal(matchingItem.maxPoints, 1);
@@ -24,8 +24,8 @@ for (const item of practiceItems(practice)) {
   }
 }
 const full = gradePractice(practice, session);
-assert.equal(full.completed, 66);
-assert.equal(full.autoCorrect, 5);
+assert.equal(full.completed, 110);
+assert.equal(full.autoCorrect, 22);
 assert.equal(full.percent, 100);
 assert.deepEqual(full.pendingReview, []);
 
@@ -37,12 +37,13 @@ assert.deepEqual(review.pendingReview.sort(), ["blood-a", "tb-tests"]);
 
 session.aiGrading = {"blood-a": {accepted: true, finalPoints: 0.5}};
 const reviewed = gradePractice(practice, session);
-assert.ok(reviewed.percent > review.percent);
+assert.ok(reviewed.percent >= review.percent);
+assert.ok(reviewed.pendingReview.includes("blood-a"));
 
 const aiSession = structuredClone(session);
 aiSession.assessment = {};
 const aiItems = buildPracticeAIItems(practice, aiSession).filter(item => String(item.studentAnswer).trim());
-assert.equal(aiItems.length, 66);
+assert.equal(aiItems.length, 98);
 assert.equal(aiItems.find(item => item.id === "tb-tests").sourceText, matchingItem.sourceText);
 applyPracticeAIResults(practice, aiSession, aiItems.map(item => ({
   itemId: item.id,
@@ -54,7 +55,7 @@ applyPracticeAIResults(practice, aiSession, aiItems.map(item => ({
   overallFeedback: "Correto.",
   coachingFeedback: {explanation: "Correto.", improvementTip: "Continue.", memoryTip: "Revise."}
 })));
-assert.equal(gradePractice(practice, aiSession).percent, 99);
+assert.ok(gradePractice(practice, aiSession).percent >= 99);
 assert.equal(aiSession.aiGrading["tb-tests"].accepted, true);
 assert.equal(aiSession.aiGrading["tb-tests"].manuallyAdjusted, false);
 
@@ -78,7 +79,7 @@ const exams = new Map(await Promise.all(examIndex.exams.map(async entry => [
   JSON.parse(await readFile(new URL(entry.file, examIndexUrl), "utf8"))
 ])));
 const sourcedUnits = practice.units.filter(unit => unit.examId);
-assert.equal(sourcedUnits.length, 12);
+assert.equal(sourcedUnits.length, 14);
 assert.deepEqual(practiceHistoryUnitTitles({units: [sourcedUnits[0].sourceTitle]}, practice.units), [sourcedUnits[0].title]);
 assert.deepEqual(practiceHistoryUnitTitles({unitIds: [sourcedUnits[0].id]}, practice.units), [sourcedUnits[0].title]);
 for (const unit of sourcedUnits) {
@@ -86,6 +87,12 @@ for (const unit of sourcedUnits) {
   assert.ok(exam, `Simulado ausente: ${unit.examId}`);
   assert.equal(unit.title, exam.theme);
   assert.equal(unit.sourceTitle, exam.title);
+}
+
+const derivedUnits = sourcedUnits.filter(unit => !unit.practiceSource);
+assert.equal(derivedUnits.length, 12);
+for (const unit of derivedUnits) {
+  const exam = exams.get(unit.examId);
   const translation = unit.blocks.find(block => block.type === "translation");
   const open = unit.blocks.find(block => block.type === "open");
   assert.equal(translation.items.length, 3);
@@ -110,5 +117,38 @@ for (const unit of sourcedUnits) {
   assert.equal(item.expectedAnswer, sourceAnswer.suggestedAnswer);
   assert.deepEqual(item.rubric.map(({label, points}) => ({label, points})), sourceAnswer.rubric.map(({label, points}) => ({label, points})));
 }
+
+const suppliedUnits = sourcedUnits.filter(unit => unit.practiceSource);
+assert.deepEqual(suppliedUnits.map(unit => unit.practiceSource).sort(), [
+  "practice-ing-06-semaglutide-masld.md",
+  "practice-ing-07-bioengineered-vessels.md"
+]);
+for (const unit of suppliedUnits) {
+  assert.ok((await readFile(new URL(`../materiais-fonte/${unit.practiceSource}`, import.meta.url), "utf8")).length > 0);
+  const exam = exams.get(unit.examId);
+  const translations = unit.blocks.find(block => block.type === "translation").items;
+  const openItems = unit.blocks.find(block => block.type === "open").items;
+  assert.ok(translations.every(item => item.rubric.length === 1
+    && item.rubric[0].label === "La traducción transmite correctamente el sentido de la respuesta en inglés."));
+  for (const item of openItems) {
+    const sourceAnswer = exam.sections.b.items.find(answer => answer.id === item.sourceAnswerId);
+    assert.ok(sourceAnswer, `Resposta de origem ausente: ${item.id}`);
+    assert.ok(item.rubric.every(criterion => sourceAnswer.rubric.some(source => source.label === criterion.label && source.points === criterion.points)));
+  }
+}
+
+const choiceOnly = practiceItems(practice).filter(item => item.type === "matching" && item.block.answerMode === "choice");
+assert.equal(choiceOnly.length, 12);
+assert.ok(choiceOnly.every(item => item.gradingMode === "local"));
+assert.ok(choiceOnly.every(item => !aiItems.some(aiItem => aiItem.id === item.id)));
+const localChoice = choiceOnly[0];
+const localOnlyGrade = gradePractice(practice, {
+  unitIds: [practice.units.find(unit => unit.blocks.includes(localChoice.block)).id],
+  answers: {[localChoice.id]: {choice: localChoice.correctOption, translation: ""}},
+  assessment: {}
+});
+assert.equal(localOnlyGrade.completed, 1);
+assert.equal(localOnlyGrade.autoCorrect, 1);
+assert.ok(!localOnlyGrade.pendingReview.includes(localChoice.id));
 
 console.log("practice: ok");

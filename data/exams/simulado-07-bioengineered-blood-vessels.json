@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "simulado-07-bioengineered-blood-vessels",
+  "title": "Práctica Pre-final — Simulado 7",
+  "theme": "Vasos sanguíneos humanos bioingenierizados como sustitutos vasculares",
+  "description": "El siguiente texto es una adaptación educativa original basada en un estudio publicado en Science Translational Medicine y resumido por el NIH. No reproduce literalmente las publicaciones fuente.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Bioengineered vessels can become living blood vessels after implantation",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Surgeons frequently need vascular substitutes to bypass narrowed arteries, reconstruct vessels damaged by trauma or surgery, and create access for hemodialysis. A patient’s own artery or vein is often the preferred material because it is living tissue and usually resists infection. However, an appropriate vessel may be unavailable because of previous surgery, disease, insufficient size or poor quality. Synthetic grafts are readily available, but they may have higher risks of infection, thrombosis, mechanical deterioration and poor integration with the patient’s tissue."
+      },
+      {
+        "number": 2,
+        "text": "Researchers developed a human acellular vessel, or HAV, as a possible ready-to-use alternative. Human vascular cells obtained from donor tissue were expanded and placed on a biodegradable tubular scaffold inside a bioreactor. Pulsatile flow encouraged the cells to produce an organized collagen-rich extracellular matrix while the scaffold gradually disappeared. The vessel was then decellularized, removing living donor cells and much of their immunogenic potential while preserving the tubular structure and mechanical strength. The finished graft could be stored and implanted without matching it to an individual donor."
+      },
+      {
+        "number": 3,
+        "text": "Two phase 2, single-arm clinical trials included 60 adults with end-stage renal disease who were not considered suitable candidates for creation of a conventional arteriovenous fistula. Twenty participants were treated in the United States and 40 in Poland. Each bioengineered vessel was implanted in the upper arm, connecting an artery to a vein so that it could later be punctured for hemodialysis. The grafts were 35 to 42 centimeters long and had an internal diameter of 6 millimeters. Dialysis cannulation usually began four to eight weeks after surgery."
+      },
+      {
+        "number": 4,
+        "text": "During follow-up, ultrasound was used to assess blood flow and graft diameter. One year after implantation, the reported secondary patency rate was 89%, meaning that most vessels could still be used after procedures performed to restore or maintain blood flow. Thirteen patients required ordinary surgical interventions for problems such as thrombosis or pseudoaneurysm caused by repeated needle puncture. These procedures provided 16 small graft samples that had remained in the body for periods ranging from 16 to 200 weeks."
+      },
+      {
+        "number": 5,
+        "text": "Microscopic examination showed that the originally acellular grafts were gradually populated by the recipients’ own cells. Smooth-muscle-like cells entered the vessel wall, became more mature and aligned around the graft. Endothelial cells and small blood vessels developed in different layers, while progenitor cells appeared to contribute to tissue remodeling. In areas injured by dialysis needles, the grafts showed evidence of repair. Over time, the implanted structures developed several features of native, multilayered blood vessels and continued transporting blood."
+      },
+      {
+        "number": 6,
+        "text": "The study suggests that an off-the-shelf vascular graft can act as a framework that is transformed by the patient’s body into living tissue. This approach could eventually provide an alternative when suitable veins or arteries are unavailable. Nevertheless, the remodeling analysis was based on samples from only 13 patients, all of whom required a surgical intervention, and the vessels had been implanted specifically as dialysis conduits. The findings may not apply in exactly the same way to arterial bypass, trauma repair or other anatomical locations. Larger comparative trials are necessary to establish long-term safety, durability and clinical advantages over standard grafts."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {"id": "a1", "statement": "Problemas asociados con la disponibilidad de vasos autólogos y con los injertos sintéticos.", "developed": true, "paragraphs": [1]},
+        {"id": "a2", "statement": "Proceso de fabricación y descelularización del vaso bioingenierizado.", "developed": true, "paragraphs": [2]},
+        {"id": "a3", "statement": "Comparación aleatorizada entre el HAV y tres tipos de injertos comerciales.", "developed": false, "paragraphs": []},
+        {"id": "a4", "statement": "Características de los participantes e implantación para acceso de hemodiálisis.", "developed": true, "paragraphs": [3]},
+        {"id": "a5", "statement": "Repoblación celular, remodelación y reparación del injerto después de la implantación.", "developed": true, "paragraphs": [5]},
+        {"id": "a6", "statement": "Posibles aplicaciones, limitaciones y necesidad de estudios adicionales.", "developed": true, "paragraphs": [6]}
+      ]
+    },
+    "b": {
+      "gradingMode": "ai_or_manual",
+      "answerLanguage": "es",
+      "title": "B. Comprensión del texto",
+      "instructions": "Responda en español, de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿En qué situaciones se necesitan sustitutos vasculares y qué problemas presentan las opciones actualmente disponibles?",
+          "suggestedAnswer": "Se necesitan para realizar bypass de arterias estrechadas, reparar vasos lesionados y crear accesos para hemodiálisis. Los vasos propios son preferibles, pero pueden no estar disponibles por enfermedad, cirugías previas, tamaño o calidad inadecuados. Los injertos sintéticos están disponibles rápidamente, aunque pueden presentar infección, trombosis, deterioro mecánico y mala integración.",
+          "rubric": [
+            {"id": "b1-1", "label": "Menciona al menos dos indicaciones de sustitución vascular.", "points": 1},
+            {"id": "b1-2", "label": "Explica por qué se prefieren vasos autólogos.", "points": 1},
+            {"id": "b1-3", "label": "Describe por qué un vaso propio puede no estar disponible.", "points": 1},
+            {"id": "b1-4", "label": "Incluye al menos dos riesgos de los injertos sintéticos.", "points": 1}
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "Explique cómo se fabricó el vaso humano acelular y por qué se eliminaron las células del donante.",
+          "suggestedAnswer": "Se cultivaron células vasculares humanas sobre un soporte tubular biodegradable dentro de un biorreactor con flujo pulsátil. Las células produjeron una matriz extracelular rica en colágeno mientras el soporte se degradaba. Luego se eliminaron las células vivas del donante para reducir el potencial inmunogénico, conservando la forma y la resistencia mecánica del vaso.",
+          "rubric": [
+            {"id": "b2-1", "label": "Incluye células vasculares humanas y soporte tubular biodegradable.", "points": 1},
+            {"id": "b2-2", "label": "Describe el uso del biorreactor y del flujo pulsátil.", "points": 1},
+            {"id": "b2-3", "label": "Explica la formación de una matriz rica en colágeno.", "points": 1},
+            {"id": "b2-4", "label": "Explica el propósito de la descelularización y lo que se conservó.", "points": 1}
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "Describa las características principales de los ensayos, de los participantes y del procedimiento de implantación.",
+          "suggestedAnswer": "Fueron dos ensayos de fase 2, de un solo brazo, con 60 adultos con insuficiencia renal terminal que no eran candidatos adecuados para una fístula arteriovenosa convencional. Veinte fueron tratados en Estados Unidos y 40 en Polonia. El HAV se colocó en el brazo superior conectando una arteria con una vena para usarlo posteriormente como acceso de hemodiálisis.",
+          "rubric": [
+            {"id": "b3-1", "label": "Identifica dos ensayos de fase 2 y de un solo brazo.", "points": 1},
+            {"id": "b3-2", "label": "Incluye los 60 participantes con enfermedad renal terminal.", "points": 1},
+            {"id": "b3-3", "label": "Menciona la distribución entre Estados Unidos y Polonia.", "points": 1},
+            {"id": "b3-4", "label": "Describe la conexión arteriovenosa y su finalidad para diálisis.", "points": 1}
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Cómo se realizó el seguimiento y qué significan los resultados de permeabilidad y la obtención de muestras?",
+          "suggestedAnswer": "Se utilizaron ecografías para controlar flujo y diámetro. La permeabilidad secundaria al año fue del 89%, lo que indica que la mayoría de los injertos seguía utilizable después de procedimientos destinados a recuperar o mantener el flujo. Trece pacientes requirieron intervenciones por trombosis o pseudoaneurisma y esas cirugías permitieron obtener 16 muestras implantadas durante 16 a 200 semanas.",
+          "rubric": [
+            {"id": "b4-1", "label": "Menciona el seguimiento por ecografía.", "points": 1},
+            {"id": "b4-2", "label": "Interpreta correctamente la permeabilidad secundaria del 89%.", "points": 1},
+            {"id": "b4-3", "label": "Incluye los motivos generales de las intervenciones.", "points": 1},
+            {"id": "b4-4", "label": "Incluye la cantidad de pacientes, muestras y período de implantación.", "points": 1}
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Qué cambios celulares y estructurales se observaron en los injertos después de permanecer en el organismo?",
+          "suggestedAnswer": "Los vasos inicialmente acelulares fueron ocupados por células del propio receptor. Aparecieron células semejantes al músculo liso que maduraron y se alinearon, células endoteliales, pequeños vasos y células progenitoras. También se observó reparación en zonas lesionadas por las agujas. Con el tiempo, el injerto adquirió una estructura viva y con varias capas semejante a un vaso nativo.",
+          "rubric": [
+            {"id": "b5-1", "label": "Explica que las células provenían del receptor.", "points": 1},
+            {"id": "b5-2", "label": "Describe la presencia y organización de células musculares.", "points": 1},
+            {"id": "b5-3", "label": "Incluye endotelio, microvasos o células progenitoras.", "points": 1},
+            {"id": "b5-4", "label": "Menciona reparación y transformación en tejido vascular vivo.", "points": 1}
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Qué importancia podría tener esta tecnología y qué limitaciones deben considerarse al interpretar el estudio?",
+          "suggestedAnswer": "La tecnología podría ofrecer un sustituto disponible de inmediato cuando no hay venas o arterias adecuadas, y funcionar como una matriz que el organismo convierte en tejido vivo. Sin embargo, la evaluación microscópica utilizó muestras de solo 13 pacientes que habían requerido intervenciones y todos los injertos funcionaban como accesos de diálisis. No se sabe si el comportamiento será igual en bypass, trauma u otras ubicaciones, por lo que se requieren ensayos comparativos mayores y seguimiento prolongado.",
+          "rubric": [
+            {"id": "b6-1", "label": "Explica la utilidad potencial como sustituto disponible.", "points": 1},
+            {"id": "b6-2", "label": "Menciona la transformación del injerto en tejido vivo.", "points": 1},
+            {"id": "b6-3", "label": "Incluye el tamaño y el sesgo de la muestra analizada.", "points": 1},
+            {"id": "b6-4", "label": "Explica la limitada generalización y la necesidad de nuevos estudios.", "points": 1}
+          ]
+        }
+      ]
+    },
+    "c": {
+      "id": "c",
+      "gradingMode": "ai_or_manual",
+      "gradingType": "holistic",
+      "answerLanguage": "es",
+      "title": "C. Título",
+      "instructions": "Elabore una adecuada versión del título del texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "Los vasos bioingenierizados pueden transformarse en vasos sanguíneos vivos después de la implantación."
+    }
+  }
+}

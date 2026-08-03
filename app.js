@@ -472,7 +472,14 @@ async function restoreBackup(file) {
 }
 
 function applyTheme() {
-	document.documentElement.dataset.theme = state.settings.theme === "dark" ? "dark" : "";
+	const dark = state.settings.theme === "dark";
+	document.documentElement.dataset.theme = dark ? "dark" : "";
+	const themeButton = $("#themeBtn");
+	if (themeButton) {
+		const label = dark ? "Ativar tema claro" : "Ativar tema escuro";
+		themeButton.setAttribute("aria-label", label);
+		themeButton.setAttribute("title", label);
+	}
 }
 
 function renderStorageStatus() {

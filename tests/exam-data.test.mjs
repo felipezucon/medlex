@@ -4,7 +4,7 @@ import {validateExam} from "../js/exam-data.mjs";
 
 const indexUrl = new URL("../data/exams/index.json", import.meta.url);
 const index = JSON.parse(await readFile(indexUrl, "utf8"));
-assert.equal(index.exams.length, 12);
+assert.equal(index.exams.length, 14);
 
 for (const entry of index.exams) {
   const exam = JSON.parse(await readFile(new URL(entry.file, indexUrl), "utf8"));

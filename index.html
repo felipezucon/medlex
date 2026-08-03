@@ -13,7 +13,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="stylesheet" href="./styles.css?v=2026.08.03.3">
+  <link rel="stylesheet" href="./styles.css?v=2026.08.03.4">
 </head>
 <body>
   <header class="topbar">
@@ -21,19 +21,33 @@
       <h1>MedLex Cards</h1>
       <p>Inglês médico para leitura de prova</p>
     </div>
-    <button id="themeBtn" class="icon-btn" aria-label="Alternar tema">◐</button>
-  </header>
-
-  <main class="shell">
     <nav class="tabs" aria-label="Navegação">
       <button class="tab active" data-view="study">Estudar</button>
       <button class="tab" data-view="exam">Simulado</button>
-      <button class="tab" data-view="practice">Formas -ing</button>
+      <button class="tab" data-view="practice">Prática</button>
       <button class="tab" data-view="cards">Cartões</button>
-      <button class="tab" data-view="import">Configuração</button>
       <button class="tab" data-view="stats">Progresso</button>
+      <button class="tab" type="button" data-view="import" aria-label="Configuração" title="Configuração"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings" aria-hidden="true" focusable="false"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></button>
     </nav>
+    <button id="themeBtn" class="icon-btn" type="button" aria-label="Ativar tema escuro">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-light lucide lucide-sun-icon lucide-sun" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2"/>
+        <path d="M12 20v2"/>
+        <path d="m4.93 4.93 1.41 1.41"/>
+        <path d="m17.66 17.66 1.41 1.41"/>
+        <path d="M2 12h2"/>
+        <path d="M20 12h2"/>
+        <path d="m6.34 17.66-1.41 1.41"/>
+        <path d="m19.07 4.93-1.41 1.41"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-icon-dark lucide lucide-moon-icon lucide-moon" aria-hidden="true" focusable="false">
+        <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>
+      </svg>
+    </button>
+  </header>
 
+  <main class="shell">
     <section id="studyView" class="view active">
       <div class="dashboard">
         <div><strong id="dueCount">0</strong><span>para revisar</span></div>
@@ -203,6 +217,6 @@
   </main>
 
   <footer>Dados salvos neste navegador. Exporte um backup regularmente.</footer>
-  <script type="module" src="./app.js?v=2026.08.03.3"></script>
+  <script type="module" src="./app.js?v=2026.08.03.4"></script>
 </body>
 </html>

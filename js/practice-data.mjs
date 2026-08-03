@@ -18,6 +18,7 @@ function normalizePractice(practice) {
       if (block.type === "matching") {
         block.questions = block.questions.map(item => {
           const option = block.options.find(entry => entry.id === item.correctOption);
+          if (block.answerMode === "choice") return {...item, gradingMode: "local", sourceText: option.text};
           return {
             ...item,
             gradingMode: block.translationGrading.gradingMode,
@@ -103,12 +104,14 @@ export function validatePractice(practice, expectedId = practice?.id) {
         throw new Error(`O bloco ${block.id} contém traduções inválidas.`);
       }
       if (block.type === "matching") {
+        const choiceOnly = block.answerMode === "choice";
         if (!Array.isArray(block.options) || !block.options.length || !uniqueIds(block.options)
-          || !block.options.every(option => isText(option?.id) && isText(option?.text) && isText(option?.expectedTranslation))
-          || block.translationGrading?.gradingMode !== "ai_or_manual"
-          || !["es", "en"].includes(block.translationGrading?.answerLanguage)
-          || !isText(block.translationGrading?.question)
-          || !rubricValid(block.translationGrading?.rubric)
+          || !block.options.every(option => isText(option?.id) && isText(option?.text)
+            && (choiceOnly || isText(option?.expectedTranslation)))
+          || (!choiceOnly && (block.translationGrading?.gradingMode !== "ai_or_manual"
+            || !["es", "en"].includes(block.translationGrading?.answerLanguage)
+            || !isText(block.translationGrading?.question)
+            || !rubricValid(block.translationGrading?.rubric)))
           || !items.every(item => isText(item?.id) && isText(item?.question)
             && block.options.some(option => option.id === item.correctOption))) {
           throw new Error(`O bloco ${block.id} contém associações inválidas.`);

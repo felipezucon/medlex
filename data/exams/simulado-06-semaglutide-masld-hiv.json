@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "simulado-06-semaglutide-masld-hiv",
+  "title": "Práctica Pre-final — Simulado 6",
+  "theme": "Semaglutida y grasa hepática en personas con VIH",
+  "description": "El siguiente texto es una adaptación educativa original basada en el estudio SLIM LIVER y en una comunicación del NIH. No reproduce literalmente las publicaciones fuente.",
+  "totalPoints": 36,
+  "passingScore": 21,
+  "article": {
+    "title": "Weekly semaglutide reduces liver fat in people with HIV and MASLD",
+    "paragraphs": [
+      {
+        "number": 1,
+        "text": "Metabolic dysfunction-associated steatotic liver disease, or MASLD, is characterized by an excessive accumulation of fat in the liver together with metabolic risk factors. The condition was previously known as nonalcoholic fatty liver disease. It may progress from simple steatosis to inflammation, fibrosis, cirrhosis, liver failure or liver cancer. MASLD is also associated with a greater risk of cardiovascular disease. People with HIV may be particularly vulnerable because of chronic metabolic abnormalities, weight gain and the effects of some antiretroviral treatments."
+      },
+      {
+        "number": 2,
+        "text": "Semaglutide is a glucagon-like peptide-1 receptor agonist used in the treatment of type 2 diabetes and long-term weight management. It improves glucose regulation, reduces appetite and commonly produces weight loss. These effects led researchers to investigate whether the drug could also reduce intrahepatic triglycerides in people with HIV and MASLD. Before this study, evidence for this specific population was limited."
+      },
+      {
+        "number": 3,
+        "text": "The SLIM LIVER study was a phase 2, single-arm, open-label pilot trial. It enrolled adults with HIV whose viral load was suppressed by antiretroviral therapy. Eligible participants also had central adiposity, insulin resistance or prediabetes, and at least 5% liver fat measured by magnetic resonance imaging-proton density fat fraction. Fifty-one people entered the study, and 49 were included in the main per-protocol analysis. Most participants were receiving an antiretroviral regimen containing an integrase strand transfer inhibitor."
+      },
+      {
+        "number": 4,
+        "text": "All participants received subcutaneous semaglutide once a week for 24 weeks. The dose was gradually increased from 0.25 mg to 0.5 mg and then to 1.0 mg weekly. Researchers measured liver fat by magnetic resonance imaging before treatment and again at week 24. They also evaluated body weight, waist circumference, glucose regulation, fasting triglycerides, safety and tolerability. Because the trial had no placebo or untreated comparison group, every participant knew that semaglutide was being administered."
+      },
+      {
+        "number": 5,
+        "text": "At the end of treatment, liver fat had fallen by approximately one third on average. Twenty-nine percent of participants reached complete resolution of MASLD, defined in the study as liver fat decreasing to 5% or less, and 58% achieved a relative reduction of at least 30%. Participants also experienced reductions in body weight, body mass index and waist circumference, together with improvements in fasting glucose and triglyceride levels. The medication was generally well tolerated, and the most frequently reported adverse effects were mild gastrointestinal symptoms."
+      },
+      {
+        "number": 6,
+        "text": "The results suggest that semaglutide may improve liver and cardiometabolic health in people with well-controlled HIV and MASLD. However, the study was small, open-label, short and lacked a control group. It cannot determine how much of the reduction in liver fat was caused directly by semaglutide rather than by accompanying weight loss, nor can it establish long-term effects on fibrosis, cirrhosis or cardiovascular events. Larger randomized trials with longer follow-up are needed before the findings can be broadly applied."
+      }
+    ]
+  },
+  "sections": {
+    "a": {
+      "title": "A. Temas desarrollados",
+      "instructions": "Marque con un √ solo los temas que se desarrollan en el texto. Indique en qué párrafo se encuentran.",
+      "pointsPerItem": 1.5,
+      "items": [
+        {"id": "a1", "statement": "Definición, posibles consecuencias y factores relacionados con MASLD.", "developed": true, "paragraphs": [1]},
+        {"id": "a2", "statement": "Motivos para estudiar semaglutida en personas con VIH y grasa hepática.", "developed": true, "paragraphs": [2]},
+        {"id": "a3", "statement": "Comparación entre semaglutida y tres tratamientos farmacológicos para la fibrosis.", "developed": false, "paragraphs": []},
+        {"id": "a4", "statement": "Diseño, selección de participantes y características generales del estudio SLIM LIVER.", "developed": true, "paragraphs": [3]},
+        {"id": "a5", "statement": "Resultados hepáticos, metabólicos y de tolerabilidad después de 24 semanas.", "developed": true, "paragraphs": [5]},
+        {"id": "a6", "statement": "Limitaciones del estudio y necesidad de investigaciones posteriores.", "developed": true, "paragraphs": [6]}
+      ]
+    },
+    "b": {
+      "gradingMode": "ai_or_manual",
+      "answerLanguage": "es",
+      "title": "B. Comprensión del texto",
+      "instructions": "Responda en español, de forma completa y con su propia redacción.",
+      "pointsPerItem": 4,
+      "items": [
+        {
+          "id": "b1",
+          "question": "¿Qué es MASLD, qué complicaciones puede producir y por qué las personas con VIH podrían presentar un riesgo particular?",
+          "suggestedAnswer": "MASLD es una enfermedad caracterizada por la acumulación excesiva de grasa en el hígado junto con factores de riesgo metabólico. Puede progresar a inflamación, fibrosis, cirrosis, insuficiencia hepática o cáncer y se relaciona con mayor riesgo cardiovascular. Las personas con VIH pueden ser más vulnerables por las alteraciones metabólicas crónicas, el aumento de peso y los efectos de ciertos tratamientos antirretrovirales.",
+          "rubric": [
+            {"id": "b1-1", "label": "Define la acumulación de grasa hepática asociada a disfunción o riesgo metabólico.", "points": 1},
+            {"id": "b1-2", "label": "Menciona al menos dos posibles complicaciones hepáticas.", "points": 1},
+            {"id": "b1-3", "label": "Incluye la relación con el riesgo cardiovascular.", "points": 1},
+            {"id": "b1-4", "label": "Explica al menos un motivo de vulnerabilidad en personas con VIH.", "points": 1}
+          ]
+        },
+        {
+          "id": "b2",
+          "question": "¿Qué características de la semaglutida llevaron a los investigadores a estudiar su posible utilidad para la grasa hepática?",
+          "suggestedAnswer": "La semaglutida mejora la regulación de la glucosa, disminuye el apetito y suele producir pérdida de peso. Como estas alteraciones están relacionadas con la acumulación de grasa hepática, se investigó si el medicamento también podía reducir los triglicéridos intrahepáticos en personas con VIH y MASLD, una población para la cual había poca evidencia específica.",
+          "rubric": [
+            {"id": "b2-1", "label": "Identifica a la semaglutida como agonista del receptor GLP-1.", "points": 1},
+            {"id": "b2-2", "label": "Menciona su efecto sobre la regulación de la glucosa.", "points": 1},
+            {"id": "b2-3", "label": "Menciona reducción del apetito o pérdida de peso.", "points": 1},
+            {"id": "b2-4", "label": "Relaciona esos efectos con la hipótesis de disminuir la grasa hepática.", "points": 1}
+          ]
+        },
+        {
+          "id": "b3",
+          "question": "Describa el diseño del estudio SLIM LIVER y los principales criterios que debían cumplir los participantes.",
+          "suggestedAnswer": "Fue un estudio piloto de fase 2, abierto y de un solo brazo. Incluyó adultos con VIH y carga viral suprimida por tratamiento antirretroviral, adiposidad central, resistencia a la insulina o prediabetes y al menos 5% de grasa hepática medida por resonancia. Ingresaron 51 personas y 49 integraron el análisis principal.",
+          "rubric": [
+            {"id": "b3-1", "label": "Indica que fue un estudio de fase 2, piloto, abierto y de un solo brazo.", "points": 1},
+            {"id": "b3-2", "label": "Menciona VIH controlado con tratamiento antirretroviral.", "points": 1},
+            {"id": "b3-3", "label": "Incluye adiposidad central y resistencia a la insulina o prediabetes.", "points": 1},
+            {"id": "b3-4", "label": "Incluye el criterio de grasa hepática y la cantidad analizada.", "points": 1}
+          ]
+        },
+        {
+          "id": "b4",
+          "question": "¿Cómo se administró el tratamiento y qué variables evaluaron los investigadores?",
+          "suggestedAnswer": "Todos recibieron semaglutida subcutánea una vez por semana durante 24 semanas, con aumento progresivo de 0,25 mg a 0,5 mg y luego a 1 mg. La grasa hepática se midió por resonancia antes y después del tratamiento. También se evaluaron peso, cintura, glucosa, triglicéridos, seguridad y tolerabilidad.",
+          "rubric": [
+            {"id": "b4-1", "label": "Menciona la administración subcutánea semanal durante 24 semanas.", "points": 1},
+            {"id": "b4-2", "label": "Describe el aumento progresivo de la dosis.", "points": 1},
+            {"id": "b4-3", "label": "Explica que la grasa hepática se midió por resonancia antes y después.", "points": 1},
+            {"id": "b4-4", "label": "Incluye al menos tres variables metabólicas o de seguridad adicionales.", "points": 1}
+          ]
+        },
+        {
+          "id": "b5",
+          "question": "¿Qué resultados se obtuvieron en relación con la grasa hepática, la resolución de MASLD y los indicadores metabólicos?",
+          "suggestedAnswer": "La grasa hepática disminuyó aproximadamente un tercio en promedio. El 29% alcanzó resolución de MASLD al quedar con 5% o menos de grasa hepática y el 58% tuvo una reducción relativa de al menos 30%. También disminuyeron peso, IMC y cintura y mejoraron glucosa y triglicéridos. Los efectos adversos más frecuentes fueron síntomas gastrointestinales leves.",
+          "rubric": [
+            {"id": "b5-1", "label": "Menciona la reducción promedio aproximada de un tercio.", "points": 1},
+            {"id": "b5-2", "label": "Incluye la resolución de MASLD en el 29% y su definición.", "points": 1},
+            {"id": "b5-3", "label": "Incluye la reducción relativa de al menos 30% en el 58%.", "points": 1},
+            {"id": "b5-4", "label": "Describe mejoras metabólicas y tolerabilidad.", "points": 1}
+          ]
+        },
+        {
+          "id": "b6",
+          "question": "¿Cuál es la importancia de los hallazgos y qué limitaciones impiden aplicarlos de manera definitiva?",
+          "suggestedAnswer": "Los resultados indican que la semaglutida podría beneficiar la salud hepática y cardiometabólica en personas con VIH controlado y MASLD. Sin embargo, la muestra fue pequeña, el estudio fue abierto, duró solo 24 semanas y no tuvo grupo control. Por eso no permite separar el efecto directo del fármaco del efecto de la pérdida de peso ni conocer resultados clínicos a largo plazo.",
+          "rubric": [
+            {"id": "b6-1", "label": "Explica la posible utilidad hepática o cardiometabólica.", "points": 1},
+            {"id": "b6-2", "label": "Menciona el tamaño pequeño y la corta duración.", "points": 1},
+            {"id": "b6-3", "label": "Incluye la ausencia de grupo control o el diseño abierto.", "points": 1},
+            {"id": "b6-4", "label": "Explica qué conclusiones causales o de largo plazo todavía no pueden establecerse.", "points": 1}
+          ]
+        }
+      ]
+    },
+    "c": {
+      "id": "c",
+      "gradingMode": "ai_or_manual",
+      "gradingType": "holistic",
+      "answerLanguage": "es",
+      "title": "C. Título",
+      "instructions": "Elabore una adecuada versión del título del texto en español.",
+      "maxPoints": 3,
+      "scoreScale": [0, 1, 2, 3],
+      "suggestedAnswer": "La semaglutida semanal reduce la grasa hepática en personas con VIH y MASLD."
+    }
+  }
+}

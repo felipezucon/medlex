@@ -60,6 +60,16 @@
       "id": "simulado-05-antibiotic-resistance",
       "file": "./simulado-05-antibiotic-resistance.json",
       "available": true
+    },
+    {
+      "id": "simulado-06-semaglutide-masld-hiv",
+      "file": "./simulado-06-semaglutide-masld-hiv.json",
+      "available": true
+    },
+    {
+      "id": "simulado-07-bioengineered-blood-vessels",
+      "file": "./simulado-07-bioengineered-blood-vessels.json",
+      "available": true
     }
   ]
 }
