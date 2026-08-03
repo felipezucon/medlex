@@ -1,5 +1,5 @@
-export const STORAGE_SCHEMA_VERSION = 4;
-export const CONTENT_VERSION = "2026.08.03.4";
+export const STORAGE_SCHEMA_VERSION = 5;
+export const CONTENT_VERSION = "2026.08.03.5";
 
 export const STORAGE_KEYS = Object.freeze({
   meta: "medlex:meta",
@@ -369,6 +369,39 @@ function migrationThreeToFour() {
   writeMeta(4);
 }
 
+const REBUILT_ING_UNITS = [
+  "ing-simulado-06-semaglutide-masld",
+  "ing-simulado-07-bioengineered-vessels"
+];
+
+function migrationFourToFive() {
+  console.info("[MedLex storage] Migrando schema 4 → 5");
+  const progress = readIngProgress();
+  for (const session of Object.values(progress.sessions)) {
+    const affectedUnits = REBUILT_ING_UNITS.filter(unitId => session.unitIds?.includes(unitId));
+    if (!affectedUnits.length) continue;
+    const belongsToRebuiltUnit = itemId => affectedUnits.some(unitId => itemId.startsWith(`${unitId}-`));
+    for (const field of ["answers", "assessment", "aiGrading"]) {
+      if (!isObject(session[field])) continue;
+      session[field] = Object.fromEntries(Object.entries(session[field]).filter(([itemId]) => !belongsToRebuiltUnit(itemId)));
+    }
+    if (session.status === "review") {
+      const timestamp = Date.now();
+      session.id = `${session.practiceId}-${timestamp}`;
+      session.startedAt = timestamp;
+    }
+    session.status = "in-progress";
+    session.updatedAt = Date.now();
+    delete session.finalizedAt;
+    delete session.durationMs;
+    delete session.gradingMethod;
+    delete session.gradingModel;
+    delete session.gradingMessage;
+  }
+  writeIngProgress(progress);
+  writeMeta(5);
+}
+
 function ensureFinalKeys() {
   const defaults = [
     [STORAGE_KEYS.cardProgress, emptyCardProgress],
@@ -408,6 +441,7 @@ export function migrateStorage(defaultCards = [], {repair = false} = {}) {
       if (version === 1) migrationOneToTwo();
       if (version === 2) migrationTwoToThree();
       if (version === 3) migrationThreeToFour();
+      if (version === 4) migrationFourToFive();
       version++;
     }
     ensureFinalKeys();

@@ -52,7 +52,7 @@ use({
 });
 let result = storage.migrateStorage([...defaults].reverse());
 assert.equal(result.fromVersion, 0);
-assert.equal(read(STORAGE_KEYS.meta).schemaVersion, 4);
+assert.equal(read(STORAGE_KEYS.meta).schemaVersion, 5);
 assert.equal(read(STORAGE_KEYS.cardProgress).cards["card-b"].reviews, 3);
 assert.equal(read(STORAGE_KEYS.customDecks).cards[0].english, "personal term");
 assert.deepEqual(read(STORAGE_KEYS.customDecks).hiddenDefaultIds, []);
@@ -111,6 +111,81 @@ use({
 storage.migrateStorage(defaults);
 assert.equal(read(STORAGE_KEYS.cardProgress).cards["card-a"].reviews, 7);
 assert.equal(localStorage.getItem("medlex:cards"), null);
+
+// Schema 4 resets only rebuilt -ing units and gives finalized sessions a new identity.
+const preservedHistory = [{
+  sessionId: "finished-session", practiceId: "ing-forms", durationMs: 1000,
+  percent: 75, units: ["Blood", "Simulado 6"]
+}];
+use({
+  [STORAGE_KEYS.meta]: json({schemaVersion: 4, contentVersion: "old"}),
+  [STORAGE_KEYS.ingProgress]: json({version: 1, sessions: {
+    "ing-forms": {
+      id: "finished-session",
+      practiceId: "ing-forms",
+      status: "review",
+      unitIds: ["blood", "ing-simulado-06-semaglutide-masld", "ing-simulado-07-bioengineered-vessels"],
+      answers: {
+        "blood-a": "preservar",
+        "ing-simulado-06-semaglutide-masld-t1": "apagar",
+        "ing-simulado-07-bioengineered-vessels-o1": "apagar"
+      },
+      assessment: {
+        "blood-a": {"blood-a-meaning": true},
+        "ing-simulado-06-semaglutide-masld-t1": {criterion: true}
+      },
+      aiGrading: {
+        "blood-a": {accepted: true, finalPoints: 1},
+        "ing-simulado-07-bioengineered-vessels-o1": {accepted: true, finalPoints: 4}
+      },
+      finalizedAt: 20,
+      durationMs: 1000,
+      gradingMethod: "ai",
+      gradingModel: "gemini",
+      gradingMessage: "ok"
+    },
+    "other-practice": {
+      id: "other-session", practiceId: "other-practice", status: "in-progress",
+      unitIds: ["blood"], answers: {"blood-a": "intacto"}, assessment: {}, aiGrading: {}
+    }
+  }, history: preservedHistory, archived: []})
+});
+storage.migrateStorage(defaults);
+const migratedPractice = read(STORAGE_KEYS.ingProgress);
+const rebuiltSession = migratedPractice.sessions["ing-forms"];
+assert.equal(read(STORAGE_KEYS.meta).schemaVersion, 5);
+assert.equal(rebuiltSession.status, "in-progress");
+assert.notEqual(rebuiltSession.id, "finished-session");
+assert.equal(rebuiltSession.answers["blood-a"], "preservar");
+assert.equal(rebuiltSession.answers["ing-simulado-06-semaglutide-masld-t1"], undefined);
+assert.equal(rebuiltSession.answers["ing-simulado-07-bioengineered-vessels-o1"], undefined);
+assert.deepEqual(rebuiltSession.assessment["blood-a"], {"blood-a-meaning": true});
+assert.equal(rebuiltSession.assessment["ing-simulado-06-semaglutide-masld-t1"], undefined);
+assert.deepEqual(rebuiltSession.aiGrading["blood-a"], {accepted: true, finalPoints: 1});
+assert.equal(rebuiltSession.aiGrading["ing-simulado-07-bioengineered-vessels-o1"], undefined);
+assert.equal(rebuiltSession.finalizedAt, undefined);
+assert.equal(rebuiltSession.gradingMethod, undefined);
+assert.deepEqual(migratedPractice.history, preservedHistory);
+assert.equal(migratedPractice.sessions["other-practice"].answers["blood-a"], "intacto");
+
+// An active session keeps its identity while only the affected unit is cleared.
+use({
+  [STORAGE_KEYS.meta]: json({schemaVersion: 4, contentVersion: "old"}),
+  [STORAGE_KEYS.ingProgress]: json({version: 1, sessions: {
+    "ing-forms": {
+      id: "active-session", practiceId: "ing-forms", status: "in-progress",
+      unitIds: ["blood", "ing-simulado-06-semaglutide-masld"],
+      answers: {"blood-a": "preservar", "ing-simulado-06-semaglutide-masld-o1": "apagar"},
+      assessment: {}, aiGrading: {}, startedAt: 10, updatedAt: 20
+    }
+  }, history: [], archived: []})
+});
+storage.migrateStorage(defaults);
+const activeSession = read(STORAGE_KEYS.ingProgress).sessions["ing-forms"];
+assert.equal(activeSession.id, "active-session");
+assert.equal(activeSession.startedAt, 10);
+assert.equal(activeSession.answers["blood-a"], "preservar");
+assert.equal(activeSession.answers["ing-simulado-06-semaglutide-masld-o1"], undefined);
 
 // Current malformed JSON is never overwritten silently and remains exportable.
 use({

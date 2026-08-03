@@ -12,15 +12,15 @@ Para adicionar outra prova, crie o JSON no mesmo schema e acrescente somente sua
 
 `data/practice/index.json` aponta para conteúdos compostos por `units` e `blocks`. Os tipos aceitos são `translation`, `matching` e `open`. Traduções usam segmentos de texto com `target: true`; respostas abertas e traduções usam resolução esperada, `gradingMode: "ai_or_manual"`, `answerLanguage` e rubricas de autoavaliação. O carregador deriva `maxPoints` da soma da rubrica.
 
-Associações definem opções e `correctOption`. Quando também exigem tradução, declaram `translationGrading`: a letra é corrigida localmente e a tradução escrita é enviada à IA com o texto, a resolução da opção correta e a rubrica explícita. Blocos com `answerMode: "choice"` solicitam somente a letra e são corrigidos integralmente no navegador.
+Associações definem opções, `correctOption` e `translationGrading`. A letra é corrigida localmente; a tradução escrita é enviada à IA com o texto, a resolução da opção correta e a rubrica explícita. No fallback, o mesmo critério permanece disponível para autoavaliação manual.
 
 Uma nova unidade pode ser acrescentada ao array `units` de `ing-forms.json`, com IDs únicos. Uma prática de outra natureza deve receber seu próprio JSON e entrada no índice.
 
-As unidades derivadas dos simulados declaram `examId`; cada item declara `sourceExamId`, `sourceParagraph` e `sourceAnswerId`. Traduções também registram `sourceRubricId`. Unidades fornecidas em um material próprio de prática usam `practiceSource`. Esses campos permitem verificar a origem das frases, resoluções e rubricas sem carregar `materiais-fonte/` no site.
+As unidades derivadas dos simulados declaram `examId`; cada item declara `sourceExamId`, `sourceParagraph` e `sourceAnswerId`, e as traduções também registram `sourceRubricId`. Os grupos dos simulados 6 e 7 contêm quatro traduções e uma pergunta aberta cada. Esses campos permitem verificar que frases, resoluções e rubricas continuam idênticas ao conteúdo de `data/exams/`.
 
 ## Compatibilidade local
 
-O schema local atual é o 4. O armazenamento central usa chaves `medlex:*` separadas para cartões, tentativas, histórico, prática e preferências. As chaves antigas `medlexCards.v1`, `medlexReviewLog.v1`, `medlexExams.v1`, `medlexPractice.v1` e `medlexTheme` são somente fontes de migração e continuam reconhecidas. O cofre, as configurações, o consentimento e o cache de IA são locais a este navegador e ficam fora dos backups.
+O schema local atual é o 5. O armazenamento central usa chaves `medlex:*` separadas para cartões, tentativas, histórico, prática e preferências. As chaves antigas `medlexCards.v1`, `medlexReviewLog.v1`, `medlexExams.v1`, `medlexPractice.v1` e `medlexTheme` são somente fontes de migração e continuam reconhecidas. O cofre, as configurações, o consentimento e o cache de IA são locais a este navegador e ficam fora dos backups.
 
 ## Requisitos para um item corrigível por IA
 

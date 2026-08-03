@@ -9,7 +9,7 @@ export function practiceItems(practice, unitIds = practice.units.map(unit => uni
 }
 
 export function buildPracticeAIItems(practice, session) {
-  return practiceItems(practice, session.unitIds).filter(item => item.gradingMode === "ai_or_manual").map(item => item.type === "matching"
+  return practiceItems(practice, session.unitIds).map(item => item.type === "matching"
     ? {
       ...item,
       question: item.gradingQuestion,
@@ -52,9 +52,8 @@ export function gradePractice(practice, session) {
   for (const item of items) {
     const answer = session.answers[item.id];
     const assessment = session.assessment[item.id] || {};
-    const hasTranslation = item.type === "matching" && item.gradingMode === "ai_or_manual";
     const answered = item.type === "matching"
-      ? Boolean(answer?.choice && (!hasTranslation || String(answer?.translation || "").trim()))
+      ? Boolean(answer?.choice && String(answer?.translation || "").trim())
       : Boolean(String(answer || "").trim());
     if (answered) completed++;
 
@@ -63,19 +62,16 @@ export function gradePractice(practice, session) {
       autoTotal++;
       const correct = answer?.choice === item.correctOption;
       if (correct) autoCorrect++;
-      if (hasTranslation) {
-        const possible = Number(item.maxPoints) || 1;
-        const reviewedAI = session.aiGrading?.[item.id];
-        const translationEarned = reviewedAI?.accepted
-          ? Math.min(possible, Math.max(0, Number(reviewedAI.finalPoints) || 0))
-          : assessment.translation ? possible : 0;
-        subjectiveTotal += possible;
-        subjectiveItems++;
-        if (translationEarned) subjectiveEarned += translationEarned;
-        if (translationEarned === possible) satisfactory++;
-        needsReview ||= translationEarned < possible;
-      }
-      needsReview ||= !correct;
+      const possible = Number(item.maxPoints) || 1;
+      const reviewedAI = session.aiGrading?.[item.id];
+      const translationEarned = reviewedAI?.accepted
+        ? Math.min(possible, Math.max(0, Number(reviewedAI.finalPoints) || 0))
+        : assessment.translation ? possible : 0;
+      subjectiveTotal += possible;
+      subjectiveItems++;
+      if (translationEarned) subjectiveEarned += translationEarned;
+      if (translationEarned === possible) satisfactory++;
+      needsReview ||= !correct || translationEarned < possible;
     } else {
       const possible = item.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0);
       const reviewedAI = session.aiGrading?.[item.id];

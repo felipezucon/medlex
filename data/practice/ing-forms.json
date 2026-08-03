@@ -1774,117 +1774,70 @@
       "title": "Semaglutida y grasa hepática en personas con VIH",
       "sourceTitle": "Práctica Pre-final — Simulado 6",
       "source": "Grasa hepática, VIH y semaglutida",
-      "practiceSource": "practice-ing-06-semaglutide-masld.md",
       "blocks": [
         {
           "id": "ing-simulado-06-semaglutide-masld-translation",
           "type": "translation",
           "gradingMode": "ai_or_manual",
           "answerLanguage": "es",
-          "instructions": "Complete en español traduciendo la parte destacada.",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
           "items": [
             {
               "id": "ing-simulado-06-semaglutide-masld-t1",
+              "sourceExamId": "simulado-06-semaglutide-masld-hiv",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-3",
               "segments": [
-                {"text": "People with HIV may be particularly vulnerable because of chronic metabolic abnormalities, "},
-                {"text": "weight gain and the effects of some antiretroviral treatments", "target": true},
+                {"text": "Researchers measured liver fat by "},
+                {"text": "magnetic resonance imaging before treatment and again at week 24", "target": true},
                 {"text": "."}
               ],
-              "expectedAnswer": "el aumento de peso y los efectos de algunos tratamientos antirretrovirales",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t1-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "expectedAnswer": "resonancia antes y después del tratamiento",
+              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t1-r1", "label": "Explica que la grasa hepática se midió por resonancia antes y después.", "points": 1}]
             },
             {
               "id": "ing-simulado-06-semaglutide-masld-t2",
+              "sourceExamId": "simulado-06-semaglutide-masld-hiv",
+              "sourceParagraph": 5,
+              "sourceAnswerId": "b5",
+              "sourceRubricId": "b5-2",
               "segments": [
-                {"text": "These effects led researchers to investigate whether the drug could reduce liver fat "},
-                {"text": "in people living with HIV", "target": true},
-                {"text": "."}
+                {"text": "Twenty-nine percent of participants reached complete resolution of MASLD, defined in the study as "},
+                {"text": "liver fat decreasing to 5% or less", "target": true},
+                {"text": ", and 58% achieved a relative reduction of at least 30%."}
               ],
-              "expectedAnswer": "en personas que viven con VIH",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t2-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "expectedAnswer": "5% o menos de grasa hepática",
+              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t2-r1", "label": "Incluye la resolución de MASLD en el 29% y su definición.", "points": 1}]
             },
             {
               "id": "ing-simulado-06-semaglutide-masld-t3",
+              "sourceExamId": "simulado-06-semaglutide-masld-hiv",
+              "sourceParagraph": 5,
+              "sourceAnswerId": "b5",
+              "sourceRubricId": "b5-4",
               "segments": [
-                {"text": "Researchers evaluated liver fat "},
-                {"text": "by using magnetic resonance imaging", "target": true},
+                {"text": "Participants also experienced reductions in body weight, body mass index and waist circumference, together with improvements in "},
+                {"text": "fasting glucose and triglyceride levels", "target": true},
                 {"text": "."}
               ],
-              "expectedAnswer": "mediante el uso de resonancia magnética",
-              "acceptedVariants": ["utilizando resonancia magnética"],
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t3-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "expectedAnswer": "glucosa y triglicéridos",
+              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t3-r1", "label": "Describe mejoras metabólicas y tolerabilidad.", "points": 1}]
             },
             {
               "id": "ing-simulado-06-semaglutide-masld-t4",
+              "sourceExamId": "simulado-06-semaglutide-masld-hiv",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "sourceRubricId": "b6-4",
               "segments": [
-                {"text": "After "},
-                {"text": "receiving weekly semaglutide for 24 weeks", "target": true},
-                {"text": ", participants underwent a second liver assessment."}
+                {"text": "It cannot determine how much of the reduction in liver fat was caused directly by semaglutide rather than by "},
+                {"text": "accompanying weight loss", "target": true},
+                {"text": ", nor can it establish long-term effects on fibrosis, cirrhosis or cardiovascular events."}
               ],
-              "expectedAnswer": "recibir semaglutida semanal durante 24 semanas",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t4-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-t5",
-              "segments": [
-                {"text": "Most participants were "},
-                {"text": "taking an antiretroviral regimen containing an integrase inhibitor", "target": true},
-                {"text": "."}
-              ],
-              "expectedAnswer": "estaba recibiendo un esquema antirretroviral que contenía un inhibidor de la integrasa",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t5-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-t6",
-              "segments": [
-                {"text": "The dose was increased gradually, "},
-                {"text": "starting at 0.25 mg per week", "target": true},
-                {"text": "."}
-              ],
-              "expectedAnswer": "comenzando con 0,25 mg por semana",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t6-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-t7",
-              "segments": [
-                {"text": "Liver fat decreased without researchers "},
-                {"text": "comparing the treatment with a placebo group", "target": true},
-                {"text": "."}
-              ],
-              "expectedAnswer": "compararan el tratamiento con un grupo placebo",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t7-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-t8",
-              "segments": [
-                {"text": "Larger randomized trials are needed before "},
-                {"text": "applying the findings broadly", "target": true},
-                {"text": "."}
-              ],
-              "expectedAnswer": "aplicar los hallazgos de manera generalizada",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t8-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "expectedAnswer": "la pérdida de peso",
+              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-t4-r1", "label": "Explica qué conclusiones causales o de largo plazo todavía no pueden establecerse.", "points": 1}]
             }
-          ]
-        },
-        {
-          "id": "ing-simulado-06-semaglutide-masld-functions",
-          "type": "matching",
-          "answerMode": "choice",
-          "instructions": "Relacione cada ejemplo con la función predominante. Algunas funciones pueden utilizarse más de una vez.",
-          "options": [
-            {"id": "a", "text": "Forma verbal progresiva."},
-            {"id": "b", "text": "Forma en -ing después de una preposición."},
-            {"id": "c", "text": "Gerundio como sujeto u objeto de una acción."},
-            {"id": "d", "text": "Participio que modifica o describe un sustantivo."},
-            {"id": "e", "text": "Cláusula reducida que expresa inicio, manera o circunstancia."}
-          ],
-          "questions": [
-            {"id": "ing-simulado-06-semaglutide-masld-f1", "question": "Measuring liver fat was the main purpose of the imaging assessment.", "correctOption": "c"},
-            {"id": "ing-simulado-06-semaglutide-masld-f2", "question": "Participants were receiving antiretroviral therapy.", "correctOption": "a"},
-            {"id": "ing-simulado-06-semaglutide-masld-f3", "question": "A regimen containing an integrase inhibitor was common.", "correctOption": "d"},
-            {"id": "ing-simulado-06-semaglutide-masld-f4", "question": "The investigators evaluated the drug by comparing measurements over time.", "correctOption": "b"},
-            {"id": "ing-simulado-06-semaglutide-masld-f5", "question": "Starting at a low dose, the team increased semaglutide gradually.", "correctOption": "e"},
-            {"id": "ing-simulado-06-semaglutide-masld-f6", "question": "The study ended after participants had completed 24 weeks of receiving treatment.", "correctOption": "b"}
           ]
         },
         {
@@ -1892,52 +1845,22 @@
           "type": "open",
           "gradingMode": "ai_or_manual",
           "answerLanguage": "es",
-          "instructions": "Responda en español con información de cada texto breve.",
+          "instructions": "Responda en español con información del texto del simulado.",
           "items": [
             {
               "id": "ing-simulado-06-semaglutide-masld-o1",
-              "sourceAnswerId": "b4",
-              "sourceRubricId": "b4-3",
-              "text": "By measuring intrahepatic triglycerides before and after treatment, the researchers estimated how much liver fat had changed.",
-              "question": "¿Cómo estimaron los investigadores el cambio de la grasa hepática?",
-              "expectedAnswer": "Compararon los triglicéridos intrahepáticos o la grasa hepática medidos antes y después del tratamiento mediante resonancia magnética.",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-o1-r1", "label": "Explica que la grasa hepática se midió por resonancia antes y después.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-o2",
-              "sourceAnswerId": "b5",
-              "sourceRubricId": "b5-4",
-              "text": "Participants taking semaglutide also experienced reductions in body weight and waist circumference.",
-              "question": "Además de la grasa hepática, ¿qué otros cambios presentaron los participantes?",
-              "expectedAnswer": "Presentaron disminuciones del peso corporal y de la circunferencia de la cintura.",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-o2-r1", "label": "Describe mejoras metabólicas y tolerabilidad.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-o3",
-              "sourceAnswerId": "b5",
-              "sourceRubricId": "b5-2",
-              "text": "After receiving semaglutide for 24 weeks, 29% of participants had liver fat levels of 5% or less.",
-              "question": "¿Qué ocurrió en el 29% de los participantes?",
-              "expectedAnswer": "Alcanzaron niveles de grasa hepática de 5% o menos, criterio utilizado para considerar resuelta la MASLD en el estudio.",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-o3-r1", "label": "Incluye la resolución de MASLD en el 29% y su definición.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-o4",
+              "sourceExamId": "simulado-06-semaglutide-masld-hiv",
+              "sourceParagraph": 6,
               "sourceAnswerId": "b6",
-              "sourceRubricId": "b6-4",
-              "text": "The study lacked a control group, making it difficult to separate the direct drug effect from the effect of losing weight.",
-              "question": "¿Qué dificultad produjo la ausencia de un grupo control?",
-              "expectedAnswer": "Impidió distinguir con claridad cuánto del beneficio se debía directamente al medicamento y cuánto a la pérdida de peso.",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-o4-r1", "label": "Explica qué conclusiones causales o de largo plazo todavía no pueden establecerse.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-06-semaglutide-masld-o5",
-              "sourceAnswerId": "b6",
-              "sourceRubricId": "b6-4",
-              "text": "Researchers recommended conducting larger randomized trials with longer follow-up.",
-              "question": "¿Qué tipo de investigaciones recomendaron?",
-              "expectedAnswer": "Ensayos aleatorizados más grandes y con un seguimiento más prolongado.",
-              "rubric": [{"id": "ing-simulado-06-semaglutide-masld-o5-r1", "label": "Explica qué conclusiones causales o de largo plazo todavía no pueden establecerse.", "points": 1}]
+              "text": "The results suggest that semaglutide may improve liver and cardiometabolic health in people with well-controlled HIV and MASLD. However, the study was small, open-label, short and lacked a control group. It cannot determine how much of the reduction in liver fat was caused directly by semaglutide rather than by accompanying weight loss, nor can it establish long-term effects on fibrosis, cirrhosis or cardiovascular events. Larger randomized trials with longer follow-up are needed before the findings can be broadly applied.",
+              "question": "¿Cuál es la importancia de los hallazgos y qué limitaciones impiden aplicarlos de manera definitiva?",
+              "expectedAnswer": "Los resultados indican que la semaglutida podría beneficiar la salud hepática y cardiometabólica en personas con VIH controlado y MASLD. Sin embargo, la muestra fue pequeña, el estudio fue abierto, duró solo 24 semanas y no tuvo grupo control. Por eso no permite separar el efecto directo del fármaco del efecto de la pérdida de peso ni conocer resultados clínicos a largo plazo.",
+              "rubric": [
+                {"id": "ing-simulado-06-semaglutide-masld-o1-r1", "label": "Explica la posible utilidad hepática o cardiometabólica.", "points": 1},
+                {"id": "ing-simulado-06-semaglutide-masld-o1-r2", "label": "Menciona el tamaño pequeño y la corta duración.", "points": 1},
+                {"id": "ing-simulado-06-semaglutide-masld-o1-r3", "label": "Incluye la ausencia de grupo control o el diseño abierto.", "points": 1},
+                {"id": "ing-simulado-06-semaglutide-masld-o1-r4", "label": "Explica qué conclusiones causales o de largo plazo todavía no pueden establecerse.", "points": 1}
+              ]
             }
           ]
         }
@@ -1949,123 +1872,70 @@
       "title": "Vasos sanguíneos humanos bioingenierizados como sustitutos vasculares",
       "sourceTitle": "Práctica Pre-final — Simulado 7",
       "source": "Sustitución vascular e ingeniería de tejidos",
-      "practiceSource": "practice-ing-07-bioengineered-vessels.md",
       "blocks": [
         {
           "id": "ing-simulado-07-bioengineered-vessels-translation",
           "type": "translation",
           "gradingMode": "ai_or_manual",
           "answerLanguage": "es",
-          "instructions": "Complete en español traduciendo la parte destacada.",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
           "items": [
             {
               "id": "ing-simulado-07-bioengineered-vessels-t1",
-              "segments": [{"text": "Surgeons may need vascular substitutes for "}, {"text": "bypassing narrowed arteries", "target": true}, {"text": "."}],
-              "expectedAnswer": "realizar bypass de arterias estrechadas",
-              "acceptedVariants": ["puentear arterias estrechadas"],
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t1-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "sourceExamId": "simulado-07-bioengineered-blood-vessels",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b2",
+              "sourceRubricId": "b2-4",
+              "segments": [
+                {"text": "The vessel was then decellularized, "},
+                {"text": "removing living donor cells and much of their immunogenic potential while preserving the tubular structure and mechanical strength", "target": true},
+                {"text": "."}
+              ],
+              "expectedAnswer": "se eliminaron las células vivas del donante para reducir el potencial inmunogénico, conservando la forma y la resistencia mecánica del vaso",
+              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t1-r1", "label": "Explica el propósito de la descelularización y lo que se conservó.", "points": 1}]
             },
             {
               "id": "ing-simulado-07-bioengineered-vessels-t2",
-              "segments": [{"text": "Synthetic grafts may cause complications, including "}, {"text": "clotting and becoming infected", "target": true}, {"text": "."}],
-              "expectedAnswer": "la formación de coágulos y la infección",
-              "acceptedVariants": ["trombosarse e infectarse"],
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t2-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "sourceExamId": "simulado-07-bioengineered-blood-vessels",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b3",
+              "sourceRubricId": "b3-4",
+              "segments": [
+                {"text": "Each bioengineered vessel was implanted in the upper arm, "},
+                {"text": "connecting an artery to a vein so that it could later be punctured for hemodialysis", "target": true},
+                {"text": "."}
+              ],
+              "expectedAnswer": "conectando una arteria con una vena para usarlo posteriormente como acceso de hemodiálisis",
+              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t2-r1", "label": "Describe la conexión arteriovenosa y su finalidad para diálisis.", "points": 1}]
             },
             {
               "id": "ing-simulado-07-bioengineered-vessels-t3",
-              "segments": [{"text": "Researchers produced the graft "}, {"text": "by placing human vascular cells on a biodegradable scaffold", "target": true}, {"text": "."}],
-              "expectedAnswer": "colocando células vasculares humanas sobre un soporte biodegradable",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t3-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "sourceExamId": "simulado-07-bioengineered-blood-vessels",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-2",
+              "segments": [
+                {"text": "One year after implantation, the reported secondary patency rate was 89%, "},
+                {"text": "meaning that most vessels could still be used after procedures performed to restore or maintain blood flow", "target": true},
+                {"text": "."}
+              ],
+              "expectedAnswer": "lo que indica que la mayoría de los injertos seguía utilizable después de procedimientos destinados a recuperar o mantener el flujo",
+              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t3-r1", "label": "Interpreta correctamente la permeabilidad secundaria del 89%.", "points": 1}]
             },
             {
               "id": "ing-simulado-07-bioengineered-vessels-t4",
-              "segments": [{"text": "Pulsatile flow encouraged the cells to produce collagen "}, {"text": "while growing inside the bioreactor", "target": true}, {"text": "."}],
-              "expectedAnswer": "mientras crecían dentro del biorreactor",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t4-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-t5",
-              "segments": [{"text": "Decellularization reduced the risk of the recipient’s immune system "}, {"text": "rejecting the graft", "target": true}, {"text": "."}],
-              "expectedAnswer": "rechazara el injerto",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t5-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-t6",
-              "segments": [{"text": "After "}, {"text": "being implanted in the upper arm", "target": true}, {"text": ", the vessel connected an artery to a vein."}],
-              "expectedAnswer": "ser implantado en la parte superior del brazo",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t6-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-t7",
-              "segments": [{"text": "Patients began "}, {"text": "using the graft for hemodialysis", "target": true}, {"text": " several weeks after surgery."}],
-              "expectedAnswer": "a utilizar el injerto para hemodiálisis",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t7-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-t8",
-              "segments": [{"text": "Microscopy showed host cells "}, {"text": "entering, aligning and maturing within the vessel wall", "target": true}, {"text": "."}],
-              "expectedAnswer": "ingresando, alineándose y madurando dentro de la pared vascular",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t8-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-t9",
-              "segments": [{"text": "Repeatedly "}, {"text": "puncturing the vessel with dialysis needles", "target": true}, {"text": " caused injuries that later showed signs of repair."}],
-              "expectedAnswer": "Puncionar repetidamente el vaso con agujas de diálisis",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t9-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-t10",
-              "segments": [{"text": "Larger studies are needed before "}, {"text": "using the graft for replacing arteries in other settings", "target": true}, {"text": "."}],
-              "expectedAnswer": "usar el injerto para reemplazar arterias en otros contextos",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t10-r1", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
+              "sourceExamId": "simulado-07-bioengineered-blood-vessels",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-4",
+              "segments": [
+                {"text": "These procedures provided 16 small graft samples that had remained in the body for "},
+                {"text": "periods ranging from 16 to 200 weeks", "target": true},
+                {"text": "."}
+              ],
+              "expectedAnswer": "16 muestras implantadas durante 16 a 200 semanas",
+              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-t4-r1", "label": "Incluye la cantidad de pacientes, muestras y período de implantación.", "points": 1}]
             }
-          ]
-        },
-        {
-          "id": "ing-simulado-07-bioengineered-vessels-functions",
-          "type": "matching",
-          "answerMode": "choice",
-          "instructions": "Relacione cada ejemplo con la función predominante.",
-          "options": [
-            {"id": "a", "text": "Forma progresiva."},
-            {"id": "b", "text": "Forma en -ing después de una preposición."},
-            {"id": "c", "text": "Gerundio como sujeto u objeto."},
-            {"id": "d", "text": "Participio que modifica un sustantivo."},
-            {"id": "e", "text": "Cláusula reducida que expresa una acción simultánea o una circunstancia."}
-          ],
-          "questions": [
-            {"id": "ing-simulado-07-bioengineered-vessels-f1", "question": "Creating dialysis access often requires a vascular conduit.", "correctOption": "c"},
-            {"id": "ing-simulado-07-bioengineered-vessels-f2", "question": "Researchers examined cells remodeling the graft wall.", "correctOption": "d"},
-            {"id": "ing-simulado-07-bioengineered-vessels-f3", "question": "The vessel was produced by growing cells in a bioreactor.", "correctOption": "b"},
-            {"id": "ing-simulado-07-bioengineered-vessels-f4", "question": "The team observed circulating cells entering the graft.", "correctOption": "c"},
-            {"id": "ing-simulado-07-bioengineered-vessels-f5", "question": "After being decellularized, the vessel could be stored.", "correctOption": "e"},
-            {"id": "ing-simulado-07-bioengineered-vessels-f6", "question": "The investigators were studying long-term tissue changes.", "correctOption": "a"}
-          ]
-        },
-        {
-          "id": "ing-simulado-07-bioengineered-vessels-matching",
-          "type": "matching",
-          "instructions": "¿Qué oración responde a cada pregunta? Seleccione la letra correspondiente y escriba su traducción antes de finalizar.",
-          "translationGrading": {
-            "gradingMode": "ai_or_manual",
-            "answerLanguage": "es",
-            "question": "Traduzca al español la respuesta en inglés correspondiente.",
-            "rubric": [{"id": "semantic-fidelity", "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.", "points": 1}]
-          },
-          "options": [
-            {"id": "a", "text": "By using ultrasound, clinicians monitored blood flow and vessel diameter during follow-up.", "expectedTranslation": "Mediante el uso de ecografía, los profesionales controlaron el flujo sanguíneo y el diámetro del vaso durante el seguimiento."},
-            {"id": "b", "text": "Removing donor cells reduced immunogenic potential while preserving the extracellular matrix.", "expectedTranslation": "La eliminación de las células del donante redujo el potencial inmunogénico y conservó la matriz extracelular."},
-            {"id": "c", "text": "Host cells entering the graft came from the recipient’s tissues and circulation.", "expectedTranslation": "Las células del receptor que ingresaron al injerto provenían de sus tejidos y de la circulación."},
-            {"id": "d", "text": "Performing surgical revisions for thrombosis or pseudoaneurysm made it possible to recover small samples.", "expectedTranslation": "La realización de revisiones quirúrgicas por trombosis o pseudoaneurisma permitió recuperar pequeñas muestras."},
-            {"id": "e", "text": "After remaining in the body, the acellular framework developed several features of living vascular tissue.", "expectedTranslation": "Después de permanecer en el organismo, la estructura acelular desarrolló varias características del tejido vascular vivo."}
-          ],
-          "questions": [
-            {"id": "ing-simulado-07-bioengineered-vessels-m1", "question": "¿Por qué se eliminaron las células del donante?", "correctOption": "b"},
-            {"id": "ing-simulado-07-bioengineered-vessels-m2", "question": "¿Cómo se controló el funcionamiento del injerto?", "correctOption": "a"},
-            {"id": "ing-simulado-07-bioengineered-vessels-m3", "question": "¿De dónde provenían las células que repoblaron el vaso?", "correctOption": "c"},
-            {"id": "ing-simulado-07-bioengineered-vessels-m4", "question": "¿Qué procedimiento permitió obtener muestras para microscopía?", "correctOption": "d"},
-            {"id": "ing-simulado-07-bioengineered-vessels-m5", "question": "¿Qué transformación ocurrió con el paso del tiempo?", "correctOption": "e"}
           ]
         },
         {
@@ -2073,47 +1943,22 @@
           "type": "open",
           "gradingMode": "ai_or_manual",
           "answerLanguage": "es",
-          "instructions": "Responda en español con información de cada texto breve.",
+          "instructions": "Responda en español con información del texto del simulado.",
           "items": [
             {
               "id": "ing-simulado-07-bioengineered-vessels-o1",
-              "sourceAnswerId": "b2",
-              "text": "The graft was manufactured by growing donor vascular cells on a biodegradable scaffold and then removing the cells.",
-              "question": "¿Cuáles fueron las dos etapas principales de fabricación mencionadas?",
-              "expectedAnswer": "Primero se cultivaron células vasculares del donante sobre un soporte biodegradable y luego se eliminaron las células mediante descelularización.",
-              "rubric": [
-                {"id": "ing-simulado-07-bioengineered-vessels-o1-r1", "label": "Incluye células vasculares humanas y soporte tubular biodegradable.", "points": 1},
-                {"id": "ing-simulado-07-bioengineered-vessels-o1-r2", "label": "Explica el propósito de la descelularización y lo que se conservó.", "points": 1}
-              ]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-o2",
-              "sourceAnswerId": "b4",
-              "sourceRubricId": "b4-4",
-              "text": "Thirteen patients required surgical interventions, allowing researchers to examine graft samples after 16 to 200 weeks.",
-              "question": "¿Por qué pudieron estudiar muestras implantadas durante períodos diferentes?",
-              "expectedAnswer": "Porque las intervenciones quirúrgicas necesarias en distintos momentos permitieron retirar pequeños segmentos de los injertos.",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-o2-r1", "label": "Incluye la cantidad de pacientes, muestras y período de implantación.", "points": 1}]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-o3",
+              "sourceExamId": "simulado-07-bioengineered-blood-vessels",
+              "sourceParagraph": 5,
               "sourceAnswerId": "b5",
-              "text": "The vessels showed cells aligning in the wall and repairing areas injured by repeated cannulation.",
-              "question": "¿Qué dos signos de remodelación se observaron?",
-              "expectedAnswer": "Se observaron células que se alineaban en la pared y reparación de zonas lesionadas por punciones repetidas.",
+              "text": "Microscopic examination showed that the originally acellular grafts were gradually populated by the recipients’ own cells. Smooth-muscle-like cells entered the vessel wall, became more mature and aligned around the graft. Endothelial cells and small blood vessels developed in different layers, while progenitor cells appeared to contribute to tissue remodeling. In areas injured by dialysis needles, the grafts showed evidence of repair. Over time, the implanted structures developed several features of native, multilayered blood vessels and continued transporting blood.",
+              "question": "¿Qué cambios celulares y estructurales se observaron en los injertos después de permanecer en el organismo?",
+              "expectedAnswer": "Los vasos inicialmente acelulares fueron ocupados por células del propio receptor. Aparecieron células semejantes al músculo liso que maduraron y se alinearon, células endoteliales, pequeños vasos y células progenitoras. También se observó reparación en zonas lesionadas por las agujas. Con el tiempo, el injerto adquirió una estructura viva y con varias capas semejante a un vaso nativo.",
               "rubric": [
-                {"id": "ing-simulado-07-bioengineered-vessels-o3-r1", "label": "Describe la presencia y organización de células musculares.", "points": 1},
-                {"id": "ing-simulado-07-bioengineered-vessels-o3-r2", "label": "Menciona reparación y transformación en tejido vascular vivo.", "points": 1}
+                {"id": "ing-simulado-07-bioengineered-vessels-o1-r1", "label": "Explica que las células provenían del receptor.", "points": 1},
+                {"id": "ing-simulado-07-bioengineered-vessels-o1-r2", "label": "Describe la presencia y organización de células musculares.", "points": 1},
+                {"id": "ing-simulado-07-bioengineered-vessels-o1-r3", "label": "Incluye endotelio, microvasos o células progenitoras.", "points": 1},
+                {"id": "ing-simulado-07-bioengineered-vessels-o1-r4", "label": "Menciona reparación y transformación en tejido vascular vivo.", "points": 1}
               ]
-            },
-            {
-              "id": "ing-simulado-07-bioengineered-vessels-o4",
-              "sourceAnswerId": "b6",
-              "sourceRubricId": "b6-3",
-              "text": "Using samples only from patients who needed surgery may have introduced selection bias.",
-              "question": "¿Cuál es la posible limitación de haber estudiado solamente a esos pacientes?",
-              "expectedAnswer": "Las muestras pueden no representar a todos los pacientes, porque provenían únicamente de quienes tuvieron complicaciones o necesitaron una intervención quirúrgica.",
-              "rubric": [{"id": "ing-simulado-07-bioengineered-vessels-o4-r1", "label": "Incluye el tamaño y el sesgo de la muestra analizada.", "points": 1}]
             }
           ]
         }

@@ -25,10 +25,8 @@ const practice = validatePractice(JSON.parse(await readFile(practiceUrl, "utf8")
 for (const unit of practice.units) for (const block of unit.blocks) {
   if (block.type === "matching") {
     objective += block.questions.length;
-    if (block.answerMode !== "choice") {
-      open += block.questions.length;
-      ready += block.questions.filter(item => validateGradableItem(item).gradable).length;
-    }
+    open += block.questions.length;
+    ready += block.questions.filter(item => validateGradableItem(item).gradable).length;
   }
   else {
     open += block.items.length;
@@ -36,5 +34,5 @@ for (const unit of practice.units) for (const block of unit.blocks) {
   }
 }
 
-assert.deepEqual({objective, open, ready}, {objective: 106, open: 196, ready: 196});
+assert.deepEqual({objective, open, ready}, {objective: 89, open: 174, ready: 174});
 console.log("ai readiness: ok");
