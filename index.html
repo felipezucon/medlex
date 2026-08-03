@@ -13,7 +13,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="stylesheet" href="./styles.css?v=2026.08.03.2">
+  <link rel="stylesheet" href="./styles.css?v=2026.08.03.3">
 </head>
 <body>
   <header class="topbar">
@@ -140,6 +140,17 @@
           <p class="security-notice">Esta chave será criptografada neste navegador para reduzir a exposição acidental. Como o site funciona sem servidor, isso não oferece a mesma proteção de um backend.</p>
           <p class="muted">Para corrigir uma resposta, serão enviados ao Google Gemini a pergunta, sua resposta, a resolução sugerida e as regras de pontuação. Não serão enviados seu nome, histórico completo, chave de API nem outros dados do site. No nível gratuito, o Google pode usar os dados processados para melhorar seus produtos.</p>
 
+          <div class="ai-key-help">
+            <h4>Como obter uma chave de API</h4>
+            <ol>
+              <li><a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">Abra a página de chaves de API do Google AI Studio</a> e entre com sua conta Google.</li>
+              <li>Selecione <strong>Criar chave de API</strong> e escolha ou crie um projeto, se solicitado.</li>
+              <li>Copie a chave gerada e cole no campo <strong>Chave de API do Gemini</strong> abaixo.</li>
+              <li>Crie uma senha local e selecione <strong>Salvar chave criptografada</strong>.</li>
+            </ol>
+            <p>Não compartilhe sua chave de API com outras pessoas.</p>
+          </div>
+
           <form id="aiConfigureForm" class="ai-form">
             <label for="aiApiKey"><span>Chave de API do Gemini</span><input id="aiApiKey" type="password" autocomplete="off" required></label>
             <label for="aiPassword"><span>Senha local (mínimo de 8 caracteres)</span><input id="aiPassword" type="password" autocomplete="new-password" minlength="8" required></label>
@@ -192,6 +203,6 @@
   </main>
 
   <footer>Dados salvos neste navegador. Exporte um backup regularmente.</footer>
-  <script type="module" src="./app.js?v=2026.08.03.2"></script>
+  <script type="module" src="./app.js?v=2026.08.03.3"></script>
 </body>
 </html>

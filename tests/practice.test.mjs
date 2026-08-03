@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
 import {validatePractice} from "../js/practice-data.mjs";
 import {applyPracticeAIResults, buildPracticeAIItems, gradePractice, practiceItems} from "../js/practice-grading.mjs";
+import {practiceHistoryUnitTitles} from "../js/practice-storage.mjs";
 
 const practice = JSON.parse(await readFile(new URL("../data/practice/ing-forms.json", import.meta.url), "utf8"));
 assert.equal(validatePractice(practice, "ing-forms"), practice);
@@ -78,9 +79,13 @@ const exams = new Map(await Promise.all(examIndex.exams.map(async entry => [
 ])));
 const sourcedUnits = practice.units.filter(unit => unit.examId);
 assert.equal(sourcedUnits.length, 12);
+assert.deepEqual(practiceHistoryUnitTitles({units: [sourcedUnits[0].sourceTitle]}, practice.units), [sourcedUnits[0].title]);
+assert.deepEqual(practiceHistoryUnitTitles({unitIds: [sourcedUnits[0].id]}, practice.units), [sourcedUnits[0].title]);
 for (const unit of sourcedUnits) {
   const exam = exams.get(unit.examId);
   assert.ok(exam, `Simulado ausente: ${unit.examId}`);
+  assert.equal(unit.title, exam.theme);
+  assert.equal(unit.sourceTitle, exam.title);
   const translation = unit.blocks.find(block => block.type === "translation");
   const open = unit.blocks.find(block => block.type === "open");
   assert.equal(translation.items.length, 3);

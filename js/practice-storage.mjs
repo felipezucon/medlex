@@ -54,6 +54,15 @@ export function getPracticeHistory(practiceId = null) {
   return practiceId ? history.filter(item => item.practiceId === practiceId) : history;
 }
 
+export function practiceHistoryUnitTitles(record, units) {
+  const currentTitles = new Map(units.flatMap(unit => [
+    [unit.id, unit.title],
+    ...(unit.sourceTitle ? [[unit.sourceTitle, unit.title]] : [])
+  ]));
+  const references = Array.isArray(record.unitIds) ? record.unitIds : record.units;
+  return references.map(reference => currentTitles.get(reference) || reference);
+}
+
 export function exportPracticeBackup() {
   return JSON.stringify({...readState(), exportedAt: new Date().toISOString()}, null, 2);
 }

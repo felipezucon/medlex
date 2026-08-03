@@ -6,6 +6,7 @@ import {
   clearSession,
   savePracticeHistory,
   getPracticeHistory,
+  practiceHistoryUnitTitles,
   exportPracticeBackup,
   parsePracticeBackup,
   importPracticeBackup
@@ -115,8 +116,10 @@ function renderHistory(practice = null) {
   const list = el("div", {className: "history-list"});
   for (const item of history) {
     const method = {ai: "IA", manual: "Manual", manual_fallback: "Fallback manual", local: "Local"}[item.gradingMethod] || "Manual";
+    const currentPractice = catalog.find(entry => entry.practice?.id === item.practiceId)?.practice;
+    const units = currentPractice ? practiceHistoryUnitTitles(item, currentPractice.units) : item.units;
     list.append(el("article", {className: "history-row"}, [
-      el("div", {}, [el("strong", {text: item.practiceTitle}), el("span", {text: `${item.units.join(" · ")} · ${new Date(item.date).toLocaleString("pt-BR")}`})]),
+      el("div", {}, [el("strong", {text: item.practiceTitle}), el("span", {text: `${units.join(" · ")} · ${new Date(item.date).toLocaleString("pt-BR")}`})]),
       el("div", {className: "history-result"}, [el("strong", {text: `${item.percent}%`}), el("span", {text: `${item.pendingReview} para revisar · ${method} · ${formatDuration(item.durationMs)}`})])
     ]));
   }
@@ -159,7 +162,7 @@ function renderSelection(message = "", kind = "") {
       best === null ? null : el("span", {className: "exam-summary", text: `Melhor desempenho: ${best}%`}),
       el("div", {className: "practice-start"}, [
         el("label", {htmlFor: selectId}, [el("span", {text: "Conteúdo da sessão"}), select]),
-        button(session ? "Nova sessão" : "Iniciar prática", start, session ? "" : "primary"),
+        button(session ? "Nova sessão" : "Iniciar prática", start, session ? "danger-outline" : "primary"),
         session ? button(session.status === "review" ? "Revisar sessão"
           : session.status === "finalizing" ? "Concluir correção" : "Continuar", () => renderSession(practice, session), "primary") : null
       ])
@@ -427,6 +430,7 @@ function historyRecord(practice, session, grade) {
     sessionId: session.id,
     practiceId: practice.id,
     practiceTitle: practice.title,
+    unitIds: [...session.unitIds],
     units: practice.units.filter(unit => session.unitIds.includes(unit.id)).map(unit => unit.title),
     date: new Date(session.finalizedAt).toISOString(),
     durationMs: session.durationMs,

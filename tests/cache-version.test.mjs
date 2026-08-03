@@ -15,6 +15,7 @@ assert.match(serviceWorker, /key\.startsWith\(["']medlex-["']\)/);
 assert.doesNotMatch(serviceWorker, /localStorage/);
 assert.match(html, new RegExp(`app\\.js\\?v=${CONTENT_VERSION.replaceAll(".", "\\.")}`));
 assert.match(html, new RegExp(`styles\\.css\\?v=${CONTENT_VERSION.replaceAll(".", "\\.")}`));
+assert.match(html, /href="https:\/\/aistudio\.google\.com\/api-keys"/);
 assert.match(app, /cards\.csv\?v=\$\{CONTENT_VERSION\}/);
 assert.match(examData, /searchParams\.set\(["']v["'], CONTENT_VERSION\)/);
 assert.match(practiceData, /searchParams\.set\(["']v["'], CONTENT_VERSION\)/);

@@ -156,7 +156,8 @@
     {
       "id": "ing-prefinal-a",
       "examId": "prefinal-a",
-      "title": "Práctica Pre-final A",
+      "title": "Malnutrición en países de ingresos bajos y medios",
+      "sourceTitle": "Práctica Pre-final A",
       "source": "Malnutrición en países de ingresos bajos y medios",
       "blocks": [
         {
@@ -294,7 +295,8 @@
     {
       "id": "ing-prefinal-b",
       "examId": "prefinal-b",
-      "title": "Práctica Pre-final B",
+      "title": "Rivaroxabán y tromboprofilaxis después del alta en pacientes hospitalizados por COVID-19",
+      "sourceTitle": "Práctica Pre-final B",
       "source": "Rivaroxabán y tromboprofilaxis después del alta en pacientes hospitalizados por COVID-19",
       "blocks": [
         {
@@ -432,7 +434,8 @@
     {
       "id": "ing-prefinal-c",
       "examId": "prefinal-c",
-      "title": "Práctica Pre-final C",
+      "title": "Referencias descriptivas y estándares prescriptivos de crecimiento",
+      "sourceTitle": "Práctica Pre-final C",
       "source": "Referencias descriptivas y estándares prescriptivos de crecimiento",
       "blocks": [
         {
@@ -570,7 +573,8 @@
     {
       "id": "ing-prefinal-d",
       "examId": "prefinal-d",
-      "title": "Práctica Pre-final D",
+      "title": "Anticoagulación en pacientes con COVID-19 y contribución del estudio MICHELLE",
+      "sourceTitle": "Práctica Pre-final D",
       "source": "Anticoagulación en pacientes con COVID-19 y contribución del estudio MICHELLE",
       "blocks": [
         {
@@ -708,7 +712,8 @@
     {
       "id": "ing-prefinal-e",
       "examId": "prefinal-e",
-      "title": "Práctica Pre-final E",
+      "title": "Estimulación cerebral profunda para trastornos del movimiento",
+      "sourceTitle": "Práctica Pre-final E",
       "source": "Estimulación cerebral profunda para trastornos del movimiento",
       "blocks": [
         {
@@ -846,7 +851,8 @@
     {
       "id": "ing-prefinal-f",
       "examId": "prefinal-f",
-      "title": "Práctica Pre-final F",
+      "title": "Respuesta de anticuerpos neutralizantes después de la vacunación contra ómicron",
+      "sourceTitle": "Práctica Pre-final F",
       "source": "Respuesta de anticuerpos neutralizantes después de la vacunación contra ómicron",
       "blocks": [
         {
@@ -981,7 +987,8 @@
     {
       "id": "ing-exam-smoking-depression",
       "examId": "exam-smoking-depression-2022-reconstructed",
-      "title": "Examen reconstruido: tabaquismo, depresión mayor y trastornos por consumo de sustancias",
+      "title": "Tabaquismo, salud mental y trastornos por consumo de sustancias",
+      "sourceTitle": "Examen reconstruido: tabaquismo, depresión mayor y trastornos por consumo de sustancias",
       "source": "Tabaquismo, salud mental y trastornos por consumo de sustancias",
       "blocks": [
         {
@@ -1119,7 +1126,8 @@
     {
       "id": "ing-simulado-01-sleep-apnea",
       "examId": "simulado-01-sleep-apnea",
-      "title": "Práctica Pre-final — Simulado 1",
+      "title": "Apnea obstructiva del sueño y riesgo cardiovascular",
+      "sourceTitle": "Práctica Pre-final — Simulado 1",
       "source": "Apnea obstructiva del sueño y riesgo cardiovascular",
       "blocks": [
         {
@@ -1247,7 +1255,8 @@
     {
       "id": "ing-simulado-02-pitavastatin-hiv",
       "examId": "simulado-02-pitavastatin-hiv",
-      "title": "Práctica Pre-final — Simulado 2",
+      "title": "Prevención cardiovascular en personas con VIH",
+      "sourceTitle": "Práctica Pre-final — Simulado 2",
       "source": "Prevención cardiovascular en personas con VIH",
       "blocks": [
         {
@@ -1375,7 +1384,8 @@
     {
       "id": "ing-simulado-03-post-infectious-mecfs",
       "examId": "simulado-03-post-infectious-mecfs",
-      "title": "Práctica Pre-final — Simulado 3",
+      "title": "Encefalomielitis miálgica/síndrome de fatiga crónica posinfeccioso",
+      "sourceTitle": "Práctica Pre-final — Simulado 3",
       "source": "Encefalomielitis miálgica/síndrome de fatiga crónica posinfeccioso",
       "blocks": [
         {
@@ -1503,7 +1513,8 @@
     {
       "id": "ing-simulado-04-cannabis-cardiovascular",
       "examId": "simulado-04-cannabis-cardiovascular",
-      "title": "Práctica Pre-final — Simulado 4",
+      "title": "Consumo de cannabis y resultados cardiovasculares",
+      "sourceTitle": "Práctica Pre-final — Simulado 4",
       "source": "Consumo de cannabis y resultados cardiovasculares",
       "blocks": [
         {
@@ -1631,7 +1642,8 @@
     {
       "id": "ing-simulado-05-antibiotic-resistance",
       "examId": "simulado-05-antibiotic-resistance",
-      "title": "Práctica Pre-final — Simulado 5",
+      "title": "Vigilancia mundial de la resistencia a los antibióticos",
+      "sourceTitle": "Práctica Pre-final — Simulado 5",
       "source": "Vigilancia mundial de la resistencia a los antibióticos",
       "blocks": [
         {
