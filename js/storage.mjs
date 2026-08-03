@@ -1,5 +1,5 @@
 export const STORAGE_SCHEMA_VERSION = 4;
-export const CONTENT_VERSION = "2026.08.03.1";
+export const CONTENT_VERSION = "2026.08.03.2";
 
 export const STORAGE_KEYS = Object.freeze({
   meta: "medlex:meta",

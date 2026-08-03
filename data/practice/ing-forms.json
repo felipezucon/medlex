@@ -152,6 +152,1609 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ing-prefinal-a",
+      "examId": "prefinal-a",
+      "title": "Práctica Pre-final A",
+      "source": "Malnutrición en países de ingresos bajos y medios",
+      "blocks": [
+        {
+          "id": "ing-prefinal-a-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-prefinal-a-t1",
+              "sourceExamId": "prefinal-a",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "sourceRubricId": "b6-2",
+              "segments": [
+                {
+                  "text": "High-quality diets reduce the risk of malnutrition in all its forms by "
+                },
+                {
+                  "text": "promoting healthy growth, development, and immunity",
+                  "target": true
+                },
+                {
+                  "text": ", and preventing obesity and non-communicable diseases (NCDs) throughout life."
+                }
+              ],
+              "expectedAnswer": "promoviendo un crecimiento y desarrollo saludables, e inmunidad",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-a-t1-r1",
+                  "label": "Mencioné el crecimiento y desarrollo saludables.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-a-t2",
+              "sourceExamId": "prefinal-a",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "sourceRubricId": "b6-4",
+              "segments": [
+                {
+                  "text": "High-quality diets reduce the risk of malnutrition in all its forms by promoting healthy growth, development, and immunity, and "
+                },
+                {
+                  "text": "preventing obesity and non-communicable diseases (NCDs) throughout life",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "evitando la obesidad y las enfermedades no transmisibles durante toda la vida",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-a-t2-r1",
+                  "label": "Mencioné la prevención de obesidad y enfermedades no transmisibles.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-a-t3",
+              "sourceExamId": "prefinal-a",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b3",
+              "sourceRubricId": "b3-2",
+              "segments": [
+                {
+                  "text": "The new report explores the trends behind this intersection – known as the double burden of malnutrition – as well as "
+                },
+                {
+                  "text": "the societal and food system changes that may be causing it",
+                  "target": true
+                },
+                {
+                  "text": ", its biological explanation and effects, and policy measures that may help address malnutrition in all its forms."
+                }
+              ],
+              "expectedAnswer": "los cambios en los sistemas alimentarios y sociales que pueden estar causando esta superposición",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-a-t3-r1",
+                  "label": "Mencioné los cambios sociales y de los sistemas alimentarios que pueden causarla.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-prefinal-a-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-prefinal-a-o1",
+              "sourceExamId": "prefinal-a",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b4",
+              "text": "“We are facing a new nutrition reality,” said lead author of the report Dr. Francesco Branca, Director of the Department of Nutrition for Health and Development, World Health Organization. “We can no longer characterize countries as low-income and undernourished, or high-income and only concerned with obesity. All forms of malnutrition have a common denominator – food systems that fail to provide all people with healthy, safe, affordable, and sustainable diets. Changing this will require action across food systems – from production and processing, through trade and distribution, pricing, marketing, and labelling, to consumption and waste. All relevant policies and investments must be radically re-examined.”",
+              "question": "¿Cómo ha cambiado la realidad sobre la nutrición según la OMS? Explique.",
+              "expectedAnswer": "La OMS considera que la situación ha cambiado debido a que ya no se puede asociar la desnutrición con los países de bajos ingresos o el problema de la obesidad con los países de altos ingresos, sino que todas las formas de malnutrición se dan cuando fallan los sistemas alimentarios/cuando los sistemas alimentarios no proporcionan a todas las personas las dietas saludables, seguras, accesibles y sustentables que necesitan.",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-a-o1-r1",
+                  "label": "Expliqué que la desnutrición ya no se asocia solo con países de bajos ingresos.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-a-o1-r2",
+                  "label": "Expliqué que la obesidad ya no se asocia solo con países de altos ingresos.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-a-o1-r3",
+                  "label": "Identifiqué la falla de los sistemas alimentarios como denominador común.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-a-o1-r4",
+                  "label": "Mencioné dietas saludables, seguras, accesibles y sustentables.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-prefinal-b",
+      "examId": "prefinal-b",
+      "title": "Práctica Pre-final B",
+      "source": "Rivaroxabán y tromboprofilaxis después del alta en pacientes hospitalizados por COVID-19",
+      "blocks": [
+        {
+          "id": "ing-prefinal-b-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-prefinal-b-t1",
+              "sourceExamId": "prefinal-b",
+              "sourceParagraph": 1,
+              "sourceAnswerId": "b2",
+              "sourceRubricId": "b2-2",
+              "segments": [
+                {
+                  "text": "Prophylactic use of parenteral anticoagulants during hospitalisation is recommended, and there is "
+                },
+                {
+                  "text": "emerging consensus about the role of in-hospital heparin as primary thromboprophylaxis",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "cada vez más, acerca de la utilidad de la heparina como tromboprofilaxis primaria",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-b-t1-r1",
+                  "label": "Mencioné el consenso creciente sobre la heparina como tromboprofilaxis primaria.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-b-t2",
+              "sourceExamId": "prefinal-b",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b5",
+              "sourceRubricId": "b5-2",
+              "segments": [
+                {
+                  "text": "In this open-label, multicentre, randomised, controlled trial of patients at high risk hospitalised with confirmed COVID-19, a treatment regimen of standard in-hospital parenteral thromboprophylaxis and extended post-discharge thromboprophylaxis with rivaroxaban 10 mg/day for 35 days (SD 4), when compared with no anticoagulation, resulted in better clinical outcomes, "
+                },
+                {
+                  "text": "including a reduction in major and fatal thromboembolic events",
+                  "target": true
+                },
+                {
+                  "text": " without increasing major bleeding, after standard in-hospital parenteral thromboprophylaxis."
+                }
+              ],
+              "expectedAnswer": "una reducción de los episodios tromboembólicos graves o fatales",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-b-t2-r1",
+                  "label": "Mencioné la reducción de episodios tromboembólicos graves o fatales.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-b-t3",
+              "sourceExamId": "prefinal-b",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b5",
+              "sourceRubricId": "b5-3",
+              "segments": [
+                {
+                  "text": "In this open-label, multicentre, randomised, controlled trial of patients at high risk hospitalised with confirmed COVID-19, a treatment regimen of standard in-hospital parenteral thromboprophylaxis and extended post-discharge thromboprophylaxis with rivaroxaban 10 mg/day for 35 days (SD 4), when compared with no anticoagulation, resulted in better clinical outcomes, including a reduction in major and fatal thromboembolic events "
+                },
+                {
+                  "text": "without increasing major bleeding",
+                  "target": true
+                },
+                {
+                  "text": ", after standard in-hospital parenteral thromboprophylaxis."
+                }
+              ],
+              "expectedAnswer": "sin un aumento de las hemorragias",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-b-t3-r1",
+                  "label": "Aclaré que no aumentó el sangrado grave.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-prefinal-b-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-prefinal-b-o1",
+              "sourceExamId": "prefinal-b",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b3",
+              "text": "We included patients at discharge who were hospitalised with COVID-19 (confirmed by RT-PCR, antigen, or IgM tests) for a minimum of 3 days (intensive care unit [ICU] stay was allowed). Patients received standard prophylactic doses of parenteral enoxaparin (40 mg subcutaneously once per day), unfractionated heparin (5000 IU two or three times per day), or fondaparinux (2·5 mg once per day) during hospitalisation. They also needed to have an increased risk for venous thromboembolism, defined as an elevated modified International Medical Prevention Registry on Venous Thromboembolism (IMPROVE) venous thromboembolism (VTE) score of 2–3 with a D-dimer level of more than 500 ng/mL using local laboratory criteria or a score of 4 or more independent of said level at hospital discharge. It was recommended that an elevated D-dimer level close to hospital discharge was to be used by sites when available, but any high D-dimer level (above 500 ng/mL) during any time of hospitalisation was considered for calculating the IMPROVE VTE score during randomisation. No patient was scanned with Doppler ultrasound or pulmonary angiogram CT in hospital before being recruited. Suspicion or confirmation of a thrombotic event was an exclusion criterion, so patients with previously positive scans were not eligible for the MICHELLE trial.",
+              "question": "¿Qué criterios de inclusión y exclusión se utilizaron para la selección de los participantes en el estudio? Explique.",
+              "expectedAnswer": "El estudio incluyó a pacientes dados de alta tras una hospitalización de al menos tres días (incluso en UTI) por COVID-19 (confirmado por RT-PCR [PCR-TI], antígenos o pruebas de IgM), que además tuvieran un riesgo aumentado de tromboembolismo venoso, (definido por un puntaje de 2-3 en la escala IMPROVE de riesgo de TEV con un nivel del dímero-D superior a los 500 ng/ml, o con un puntaje superior a 4 en la escala independientemente de dicho nivel). La sospecha o confirmación de un episodio trombótico constituyen un criterio de exclusión, por lo que los pacientes con imágenes previas que mostraban dichos episodios no eran elegibles para el estudio MICHELLE (no se hicieron ecografías Doppler/eco Doppler ni angioTAC/angiotomografías pulmonares durante la internación antes de incluirlos en el estudio).",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-b-o1-r1",
+                  "label": "Incluí la hospitalización mínima de tres días por COVID-19 confirmado y el alta.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-b-o1-r2",
+                  "label": "Expliqué el riesgo aumentado de TEV mediante la escala IMPROVE y el dímero-D.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-b-o1-r3",
+                  "label": "Identifiqué la sospecha o confirmación de trombosis como criterio de exclusión.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-b-o1-r4",
+                  "label": "Mencioné la situación de los estudios por imágenes previos al reclutamiento.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-prefinal-c",
+      "examId": "prefinal-c",
+      "title": "Práctica Pre-final C",
+      "source": "Referencias descriptivas y estándares prescriptivos de crecimiento",
+      "blocks": [
+        {
+          "id": "ing-prefinal-c-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-prefinal-c-t1",
+              "sourceExamId": "prefinal-c",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b1",
+              "sourceRubricId": "b1-3",
+              "segments": [
+                {
+                  "text": "An observed value for body size (i.e., anthropometry) or rate of growth is at its most useful when it is compared with reference data "
+                },
+                {
+                  "text": "indicating how individuals normally grow with age",
+                  "target": true
+                },
+                {
+                  "text": " or how different measurements relate to each other (e.g., body-mass index [BMI] in kg/m²)."
+                }
+              ],
+              "expectedAnswer": "si indican cómo crece normalmente un individuo",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-c-t1-r1",
+                  "label": "Definí las referencias descriptivas como el modo en que normalmente se crece.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-c-t2",
+              "sourceExamId": "prefinal-c",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b3",
+              "sourceRubricId": "b3-3",
+              "segments": [
+                {
+                  "text": "Inclusion criteria included that mothers were or had followed "
+                },
+                {
+                  "text": "WHO breastfeeding and complementary feeding recommendations",
+                  "target": true
+                },
+                {
+                  "text": ", and there were no known health or environmental factors that could constrain growth such as maternal smoking."
+                }
+              ],
+              "expectedAnswer": "las recomendaciones de amamantamiento y de alimentación complementaria de la OMS",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-c-t2-r1",
+                  "label": "Incluí las recomendaciones de la OMS sobre amamantamiento y alimentación complementaria.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-c-t3",
+              "sourceExamId": "prefinal-c",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b3",
+              "sourceRubricId": "b3-4",
+              "segments": [
+                {
+                  "text": "Inclusion criteria included that mothers were or had followed WHO breastfeeding and complementary feeding recommendations, and there were no known health or environmental factors that could constrain growth such as "
+                },
+                {
+                  "text": "maternal smoking",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "madres fumadoras",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-c-t3-r1",
+                  "label": "Mencioné la ausencia de factores que limitaran el crecimiento, como el tabaquismo materno.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-prefinal-c-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-prefinal-c-o1",
+              "sourceExamId": "prefinal-c",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b2",
+              "text": "Prescriptive standards aim to be derived from measurements from optimally healthy individuals without nutritional limitations, disease, or exposures known to adversely influence growth. The leading example is the WHO Multicentre Growth Reference Study (MGRS). In this logistically challenging study, well controlled and standardised longitudinal and cross-sectional assessment was undertaken of infants and children from birth to 71 months of age. Participants were identified in affluent neighbourhoods in the USA, Norway, Brazil, Ghana, and India. Inclusion criteria included that mothers were or had followed WHO breastfeeding and complementary feeding recommendations, and there were no known health or environmental factors that could constrain growth such as maternal smoking. For the longitudinal assessment, 83% of screened participants were excluded. Remarkably, within these different locations and ethnic groups, growth was virtually identical.",
+              "question": "¿Cómo se obtienen los estándares prescriptivos de crecimiento?",
+              "expectedAnswer": "Los estándares prescriptivos de crecimiento se obtienen de mediciones hechas a niños en condiciones óptimas de salud, sin limitaciones nutricionales, sin enfermedades ni exposiciones a factores que impacten negativamente en el crecimiento.",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-c-o1-r1",
+                  "label": "Mencioné que se obtienen mediante mediciones en niños.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-c-o1-r2",
+                  "label": "Incluí las condiciones óptimas de salud.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-c-o1-r3",
+                  "label": "Aclaré que no existen limitaciones nutricionales ni enfermedades.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-c-o1-r4",
+                  "label": "Excluí exposiciones que afecten negativamente el crecimiento.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-prefinal-d",
+      "examId": "prefinal-d",
+      "title": "Práctica Pre-final D",
+      "source": "Anticoagulación en pacientes con COVID-19 y contribución del estudio MICHELLE",
+      "blocks": [
+        {
+          "id": "ing-prefinal-d-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-prefinal-d-t1",
+              "sourceExamId": "prefinal-d",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b5",
+              "sourceRubricId": "b5-2",
+              "segments": [
+                {
+                  "text": "Early in the COVID-19 pandemic, published guidelines were heterogeneous with some, in the absence of evidence, "
+                },
+                {
+                  "text": "recommending increased anticoagulation doses",
+                  "target": true
+                },
+                {
+                  "text": " (particularly in critical care), stratifying dose by D-dimer results, or extended post-discharge thromboprophylaxis, or both."
+                }
+              ],
+              "expectedAnswer": "indicaban aumentar las dosis de anticoagulación",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-d-t1-r1",
+                  "label": "Incluí el aumento de dosis, el dímero D o la profilaxis prolongada.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-d-t2",
+              "sourceExamId": "prefinal-d",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b5",
+              "sourceRubricId": "b5-2",
+              "segments": [
+                {
+                  "text": "Early in the COVID-19 pandemic, published guidelines were heterogeneous with some, in the absence of evidence, recommending increased anticoagulation doses (particularly in critical care), "
+                },
+                {
+                  "text": "stratifying dose by D-dimer results",
+                  "target": true
+                },
+                {
+                  "text": ", or extended post-discharge thromboprophylaxis, or both."
+                }
+              ],
+              "expectedAnswer": "las dosis se estratificaban según los resultados del dímero D",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-d-t2-r1",
+                  "label": "Incluí el aumento de dosis, el dímero D o la profilaxis prolongada.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-d-t3",
+              "sourceExamId": "prefinal-d",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-2",
+              "segments": [
+                {
+                  "text": "For non-critically ill patients hospitalised with COVID-19, therapeutic-dose heparin appears beneficial, with a high probability of "
+                },
+                {
+                  "text": "reducing the need for organ support and the progression to intubation and death",
+                  "target": true
+                },
+                {
+                  "text": ", regardless of D-dimer results."
+                }
+              ],
+              "expectedAnswer": "redujeron la necesidad de soporte orgánico y la posterior intubación y muerte",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-d-t3-r1",
+                  "label": "Incluí la reducción del soporte orgánico, la intubación y la muerte.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-prefinal-d-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-prefinal-d-o1",
+              "sourceExamId": "prefinal-d",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b6",
+              "text": "Now in The Lancet, Eduardo Ramacciotti and colleagues report the results of the MICHELLE trial, which addresses the role of extended duration rivaroxaban post discharge. The eligibility criteria meant only patients at high VTE (venous thromboembolism) risk were included in this trial. Patients with risk factors for bleeding, such as thrombocytopenia and severe renal failure, were excluded. The MICHELLE trial specifically evaluates the efficacy and safety of extended thromboprophylaxis after hospitalisation for COVID-19 (at prophylactic rather than therapeutic dose). The trial has a number of strengths, including the randomised design and enrolment across 14 sites, increasing the generalisability of the findings and the use of low-dose rivaroxaban appropriate for this phase of treatment. The eligibility criteria selected patients at low bleeding risk and high VTE risk, with symptomatic and fatal VTE reported in eight (5%) of 159 patients in the control group. The limitations of this trial include that it was an open-label study. Finally, the sample size was relatively small.",
+              "question": "Mencione algunas fortalezas y algunas limitaciones del estudio MICHELLE.",
+              "expectedAnswer": "Entre las fortalezas, se puede mencionar que fue un estudio aleatorizado y llevado a cabo en 14 lugares, lo cual favorece la generalización de los resultados y el uso de bajas dosis de rivaroxabán apropiadas para esta fase del tratamiento. Las limitaciones fueron que es un estudio sin ocultación y realizado en una muestra pequeña.",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-d-o1-r1",
+                  "label": "Mencioné el diseño aleatorizado como fortaleza.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-d-o1-r2",
+                  "label": "Incluí los 14 sitios, la generalización y la dosis apropiada de rivaroxabán.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-d-o1-r3",
+                  "label": "Identifiqué el diseño sin ocultación como limitación.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-d-o1-r4",
+                  "label": "Identifiqué el tamaño pequeño de la muestra como limitación.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-prefinal-e",
+      "examId": "prefinal-e",
+      "title": "Práctica Pre-final E",
+      "source": "Estimulación cerebral profunda para trastornos del movimiento",
+      "blocks": [
+        {
+          "id": "ing-prefinal-e-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-prefinal-e-t1",
+              "sourceExamId": "prefinal-e",
+              "sourceParagraph": 1,
+              "sourceAnswerId": "b1",
+              "sourceRubricId": "b1-2",
+              "segments": [
+                {
+                  "text": "Deep brain stimulation (DBS) is a surgical procedure "
+                },
+                {
+                  "text": "used to treat disabling symptoms of neurological disorders",
+                  "target": true
+                },
+                {
+                  "text": ", including dystonia, epilepsy, essential tremor, and Parkinson's disease."
+                }
+              ],
+              "expectedAnswer": "Sirve para tratar síntomas incapacitantes de trastornos neurológicos",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-e-t1-r1",
+                  "label": "Mencioné los trastornos neurológicos o síntomas incapacitantes que trata.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-e-t2",
+              "sourceExamId": "prefinal-e",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-4",
+              "segments": [
+                {
+                  "text": "The therapy "
+                },
+                {
+                  "text": "works by delivering electrical pulses from the IPG along the extension wire and the lead and into the brain",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "La terapia actúa administrando impulsos eléctricos desde el IPG a lo largo del cable de extensión y del electrodo hacia el cerebro",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-e-t2-r1",
+                  "label": "Expliqué la programación y el recorrido de los impulsos hasta el cerebro.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-e-t3",
+              "sourceExamId": "prefinal-e",
+              "sourceParagraph": 7,
+              "sourceAnswerId": "b3",
+              "sourceRubricId": "b3-3",
+              "segments": [
+                {
+                  "text": "Also, the hardware may erode or break down with use, "
+                },
+                {
+                  "text": "requiring surgery to replace parts of the device",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "hacer necesaria una cirugía para reemplazar partes de este",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-e-t3-r1",
+                  "label": "Expliqué el desgaste del dispositivo y posible cirugía de reemplazo.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-prefinal-e-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-prefinal-e-o1",
+              "sourceExamId": "prefinal-e",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b2",
+              "text": "Before the procedure, a neurosurgeon uses noninvasive diagnostic imaging—either magnetic resonance imaging (MRI) or computed tomography (CT) scanning—to identify and locate the exact target in the brain for the surgery. Most surgeons use microelectrode recording—which involves insertion of a tiny wire that monitors the activity of nerve cells—to more specifically identify the precise brain area that will be stimulated.",
+              "question": "¿En qué consiste la evaluación de los pacientes antes de que se coloque el ECP?",
+              "expectedAnswer": "Antes del procedimiento, un neurocirujano emplea métodos diagnósticos no invasivos por imágenes (resonancia magnética o tomografía computada) para identificar el lugar exacto del cerebro en el que se realizará cirugía. La mayoría de los cirujanos utilizan un registro de microelectrodos (la inserción de un cable delgado que monitorea la actividad de las células nerviosas) para identificar específicamente el área precisa del cerebro que se estimulará.",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-e-o1-r1",
+                  "label": "Mencioné la evaluación por un neurocirujano antes del procedimiento.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-e-o1-r2",
+                  "label": "Incluí resonancia magnética o tomografía computada no invasiva.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-e-o1-r3",
+                  "label": "Expliqué el registro mediante microelectrodos.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-e-o1-r4",
+                  "label": "Relacioné ambos métodos con la localización precisa del área por estimular.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-prefinal-f",
+      "examId": "prefinal-f",
+      "title": "Práctica Pre-final F",
+      "source": "Respuesta de anticuerpos neutralizantes después de la vacunación contra ómicron",
+      "blocks": [
+        {
+          "id": "ing-prefinal-f-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-prefinal-f-t1",
+              "sourceExamId": "prefinal-f",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b2",
+              "sourceRubricId": "b2-1",
+              "segments": [
+                {
+                  "text": "Using a high-throughput live SARS-CoV-2 neutralisation assay",
+                  "target": true
+                },
+                {
+                  "text": ", we determined neutralising antibody (NAb) titres (NAbTs) against omicron in 620 serum samples from 364 unique participants and compared these to NAbTs against alpha and delta VOCs, for which there is significant vaccine efficacy data correlated with NAbTs."
+                }
+              ],
+              "expectedAnswer": "Se utilizó un ensayo de neutralización de SARS-CoV-2 vivo de alto rendimiento",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-f-t1-r1",
+                  "label": "Identifiqué el ensayo de neutralización de SARS-CoV-2 vivo de alto rendimiento.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-f-t2",
+              "sourceExamId": "prefinal-f",
+              "sourceParagraph": 5,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-1",
+              "segments": [
+                {
+                  "text": "The same analysis of "
+                },
+                {
+                  "text": "participants following two-dose vaccination with Oxford–AstraZeneca",
+                  "target": true
+                },
+                {
+                  "text": " showed that less than half had a quantifiable NAbT against omicron 2–6 weeks after second dose (37%), dropping further (19%) 12–16 weeks after second dose, whereas most participants had a quantifiable NAbT against alpha (87%) and delta (76%) 2–6 weeks after second dose of Oxford–AstraZeneca."
+                }
+              ],
+              "expectedAnswer": "Tras una segunda dosis de Oxford–AstraZeneca",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-f-t2-r1",
+                  "label": "Incluí el 37 % contra ómicron a las 2-6 semanas.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-prefinal-f-t3",
+              "sourceExamId": "prefinal-f",
+              "sourceParagraph": 5,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-2",
+              "segments": [
+                {
+                  "text": "The same analysis of participants following two-dose vaccination with Oxford–AstraZeneca showed that less than half had a quantifiable NAbT against omicron 2–6 weeks after second dose (37%), "
+                },
+                {
+                  "text": "dropping further (19%) 12–16 weeks after second dose",
+                  "target": true
+                },
+                {
+                  "text": ", whereas most participants had a quantifiable NAbT against alpha (87%) and delta (76%) 2–6 weeks after second dose of Oxford–AstraZeneca."
+                }
+              ],
+              "expectedAnswer": "cifra que caía aún más a las 12-16 semanas (19 %)",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-f-t3-r1",
+                  "label": "Mencioné la caída al 19 % a las 12-16 semanas.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-prefinal-f-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-prefinal-f-o1",
+              "sourceExamId": "prefinal-f",
+              "sourceParagraph": 7,
+              "sourceAnswerId": "b6",
+              "text": "Our results show that two vaccine doses, of Oxford–AstraZeneca in particular, are insufficient to generate a strong NAb response against omicron. Participants who experienced a COVID-19 infection before or after two-dose vaccination generated higher NAbTs than those who did not experience a COVID-19 infection, as did those who received a third dose of Pfizer–BioNTech, who produced consistently high NAbTs against omicron (and alpha and delta).",
+              "question": "¿Cómo se protegió a los pacientes contra las diferentes variantes después de recibir dos o tres dosis de vacuna? ¿Qué implica esto?",
+              "expectedAnswer": "Los pacientes que tuvieron COVID-19 antes o después de las dos dosis de la vacuna generaron mayores títulos/cantidades de anticuerpos que aquellos que no tuvieron la infección, al igual que los que recibieron una tercera dosis de Pfizer–BioNTech, quienes produjeron sistemáticamente altas cantidades de anticuerpos contra ómicron (y contra alfa y delta). Esto implica que dos dosis de vacuna, en particular, de Oxford–AstraZeneca, no son suficientes para generar una respuesta fuerte de anticuerpos contra ómicron.",
+              "rubric": [
+                {
+                  "id": "ing-prefinal-f-o1-r1",
+                  "label": "Mencioné la mayor respuesta en quienes tuvieron COVID-19 antes o después de dos dosis.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-f-o1-r2",
+                  "label": "Mencioné la alta respuesta tras una tercera dosis de Pfizer–BioNTech.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-f-o1-r3",
+                  "label": "Incluí la respuesta contra ómicron, alfa y delta.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-prefinal-f-o1-r4",
+                  "label": "Concluí que dos dosis, especialmente de Oxford–AstraZeneca, no bastan contra ómicron.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-exam-smoking-depression",
+      "examId": "exam-smoking-depression-2022-reconstructed",
+      "title": "Examen reconstruido: tabaquismo, depresión mayor y trastornos por consumo de sustancias",
+      "source": "Tabaquismo, salud mental y trastornos por consumo de sustancias",
+      "blocks": [
+        {
+          "id": "ing-exam-smoking-depression-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-exam-smoking-depression-t1",
+              "sourceExamId": "exam-smoking-depression-2022-reconstructed",
+              "sourceParagraph": 1,
+              "sourceAnswerId": "b1",
+              "sourceRubricId": "b1-r4",
+              "segments": [
+                {
+                  "text": "At the same time, the findings highlight remaining disparities, "
+                },
+                {
+                  "text": "documenting higher smoking rates in people with psychiatric disorders than in those without",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "estos grupos continuaron presentando tasas de tabaquismo más elevadas que las personas sin esos trastornos",
+              "rubric": [
+                {
+                  "id": "ing-exam-smoking-depression-t1-r1",
+                  "label": "Aclara que persistieron tasas más altas que en las personas sin esos trastornos.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-exam-smoking-depression-t2",
+              "sourceExamId": "exam-smoking-depression-2022-reconstructed",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-r3",
+              "segments": [
+                {
+                  "text": "“Therapies to help people stop smoking are safe, effective, and may even enhance the long-term success of concurrent treatments for more severe mental health symptoms in individuals with psychiatric disorders "
+                },
+                {
+                  "text": "by lowering stress, anxiety, depression",
+                  "target": true
+                },
+                {
+                  "text": ", and by improving overall mood and quality of life.”"
+                }
+              ],
+              "expectedAnswer": "disminuir el estrés, la ansiedad y la depresión",
+              "rubric": [
+                {
+                  "id": "ing-exam-smoking-depression-t2-r1",
+                  "label": "Menciona beneficios sobre estrés, ansiedad, depresión, estado de ánimo o calidad de vida.",
+                  "points": 1
+                }
+              ]
+            },
+            {
+              "id": "ing-exam-smoking-depression-t3",
+              "sourceExamId": "exam-smoking-depression-2022-reconstructed",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-r3",
+              "segments": [
+                {
+                  "text": "“Therapies to help people stop smoking are safe, effective, and may even enhance the long-term success of concurrent treatments for more severe mental health symptoms in individuals with psychiatric disorders by lowering stress, anxiety, depression, and "
+                },
+                {
+                  "text": "by improving overall mood and quality of life",
+                  "target": true
+                },
+                {
+                  "text": ".”"
+                }
+              ],
+              "expectedAnswer": "mejorar el estado de ánimo y la calidad de vida",
+              "rubric": [
+                {
+                  "id": "ing-exam-smoking-depression-t3-r1",
+                  "label": "Menciona beneficios sobre estrés, ansiedad, depresión, estado de ánimo o calidad de vida.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-exam-smoking-depression-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-exam-smoking-depression-o1",
+              "sourceExamId": "exam-smoking-depression-2022-reconstructed",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "text": "During 2006 to 2019, among adults with past-year major depressive episodes or substance use disorder, past-month cigarette smoking declined significantly across every examined age, sex, and racial and ethnic subgroup, except that among non-Hispanic American Indian or Alaska Native adults smoking rates did not decline. Given that American Indian and Alaska Native communities face the highest smoking and lowest quitting rates among racial and ethnic subgroups in the United States, this highlights the need to channel additional prevention and treatment efforts into these communities. In future work, the researchers note the need to include data on certain populations at high risk of psychiatric disorders and cigarette smoking, such as institutionalized individuals or those experiencing homelessness without living in a shelter. More work is also needed to continue to monitor national trends in differences in tobacco use and nicotine vaping among adults with or without psychiatric conditions—including substance use disorder—during the COVID-19 pandemic.",
+              "question": "Según este estudio, ¿qué otra información debería incluirse en futuras investigaciones?",
+              "expectedAnswer": "Las futuras investigaciones deberían incluir datos de poblaciones con alto riesgo de trastornos psiquiátricos y tabaquismo que no estaban representadas en la encuesta, como las personas institucionalizadas y las personas sin vivienda que no viven en refugios. También deberían continuar evaluando las tendencias del consumo de tabaco y del vapeo de nicotina en adultos con y sin trastornos psiquiátricos, incluidos los trastornos por consumo de sustancias, especialmente durante la pandemia de COVID-19.",
+              "rubric": [
+                {
+                  "id": "ing-exam-smoking-depression-o1-r1",
+                  "label": "Menciona la necesidad de incluir poblaciones de alto riesgo no representadas.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-exam-smoking-depression-o1-r2",
+                  "label": "Incluye a las personas institucionalizadas.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-exam-smoking-depression-o1-r3",
+                  "label": "Incluye a las personas sin vivienda que no viven en refugios.",
+                  "points": 1
+                },
+                {
+                  "id": "ing-exam-smoking-depression-o1-r4",
+                  "label": "Menciona el seguimiento del consumo de tabaco y del vapeo en personas con y sin trastornos psiquiátricos.",
+                  "points": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-simulado-01-sleep-apnea",
+      "examId": "simulado-01-sleep-apnea",
+      "title": "Práctica Pre-final — Simulado 1",
+      "source": "Apnea obstructiva del sueño y riesgo cardiovascular",
+      "blocks": [
+        {
+          "id": "ing-simulado-01-sleep-apnea-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-simulado-01-sleep-apnea-t1",
+              "sourceExamId": "simulado-01-sleep-apnea",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b2",
+              "sourceRubricId": "b2-1",
+              "segments": [
+                {
+                  "text": "It counts how many "
+                },
+                {
+                  "text": "breathing interruptions",
+                  "target": true
+                },
+                {
+                  "text": " occur during each hour of sleep."
+                }
+              ],
+              "expectedAnswer": "la cantidad de apneas e hipopneas por hora",
+              "rubric": [
+                {
+                  "id": "ing-simulado-01-sleep-apnea-t1-r1",
+                  "label": "Incluí esta idea esencial: El AHI informa la cantidad de apneas e hipopneas por hora.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-01-sleep-apnea-t2",
+              "sourceExamId": "simulado-01-sleep-apnea",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b1",
+              "sourceRubricId": "b1-2",
+              "segments": [
+                {
+                  "text": "Two individuals may have an identical AHI "
+                },
+                {
+                  "text": "while experiencing very different degrees of oxygen deprivation and ventilatory impairment",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "pueden presentar pérdidas de oxígeno y reducciones del flujo respiratorio muy diferentes",
+              "rubric": [
+                {
+                  "id": "ing-simulado-01-sleep-apnea-t2-r1",
+                  "label": "Incluí esta idea esencial: Personas con el mismo número de episodios pueden presentar pérdidas de oxígeno y reducciones del flujo respiratorio muy diferentes, y por lo tanto distinto riesgo cardiovascular.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-01-sleep-apnea-t3",
+              "sourceExamId": "simulado-01-sleep-apnea",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "sourceRubricId": "b6-2",
+              "segments": [
+                {
+                  "text": "Nevertheless, the study was observational: it showed associations but did not prove that "
+                },
+                {
+                  "text": "reducing hypoxic burden with a particular therapy",
+                  "target": true
+                },
+                {
+                  "text": " will prevent cardiovascular events."
+                }
+              ],
+              "expectedAnswer": "disminuir esa carga mediante una terapia específica",
+              "rubric": [
+                {
+                  "id": "ing-simulado-01-sleep-apnea-t3-r1",
+                  "label": "Incluí esta idea esencial: Sin embargo, el estudio fue observacional y solo demostró asociaciones; no evaluó si disminuir esa carga mediante una terapia específica previene eventos cardiovasculares.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-simulado-01-sleep-apnea-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-simulado-01-sleep-apnea-o1",
+              "sourceExamId": "simulado-01-sleep-apnea",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b3",
+              "text": "Investigators examined information from two prospective population studies in the United States: the Multi-Ethnic Study of Atherosclerosis and the Osteoporotic Fractures in Men Study. Together, the cohorts included more than 4,500 middle-aged and older adults. At the beginning of follow-up, participants underwent overnight sleep studies. Researchers calculated three measures: hypoxic burden, which reflects the depth and duration of oxygen desaturation; ventilatory burden, which represents the total reduction in airflow; and arousal burden, which measures the accumulated time spent in brief awakenings.",
+              "question": "¿De dónde se obtuvieron los datos y qué procedimientos se realizaron al comienzo del seguimiento?",
+              "expectedAnswer": "Los datos provinieron de MESA y MrOS, dos estudios prospectivos poblacionales de Estados Unidos con más de 4.500 adultos de mediana y mayor edad. Al inicio se realizaron estudios nocturnos del sueño y se calcularon las cargas hipóxica, ventilatoria y de despertares.",
+              "rubric": [
+                {
+                  "id": "ing-simulado-01-sleep-apnea-o1-r1",
+                  "label": "Incluí esta idea esencial: Los datos provinieron de MESA y MrOS, dos estudios prospectivos poblacionales de Estados Unidos con más de 4.500 adultos de mediana y mayor edad.",
+                  "points": 2
+                },
+                {
+                  "id": "ing-simulado-01-sleep-apnea-o1-r2",
+                  "label": "Incluí esta idea esencial: Al inicio se realizaron estudios nocturnos del sueño y se calcularon las cargas hipóxica, ventilatoria y de despertares.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-simulado-02-pitavastatin-hiv",
+      "examId": "simulado-02-pitavastatin-hiv",
+      "title": "Práctica Pre-final — Simulado 2",
+      "source": "Prevención cardiovascular en personas con VIH",
+      "blocks": [
+        {
+          "id": "ing-simulado-02-pitavastatin-hiv-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-simulado-02-pitavastatin-hiv-t1",
+              "sourceExamId": "simulado-02-pitavastatin-hiv",
+              "sourceParagraph": 1,
+              "sourceAnswerId": "b1",
+              "sourceRubricId": "b1-1",
+              "segments": [
+                {
+                  "text": "Effective antiretroviral therapy has greatly increased life expectancy for "
+                },
+                {
+                  "text": "people living with HIV",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "personas con VIH",
+              "rubric": [
+                {
+                  "id": "ing-simulado-02-pitavastatin-hiv-t1-r1",
+                  "label": "Incluí esta idea esencial: Porque el tratamiento antirretroviral prolongó la supervivencia y más personas con VIH llegan a edades en las que aumenta el riesgo cardiovascular.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-02-pitavastatin-hiv-t2",
+              "sourceExamId": "simulado-02-pitavastatin-hiv",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b2",
+              "sourceRubricId": "b2-1",
+              "segments": [
+                {
+                  "text": "Before the REPRIEVE trial, however, there was limited evidence about "
+                },
+                {
+                  "text": "using a statin for primary prevention in adults with HIV",
+                  "target": true
+                },
+                {
+                  "text": " whose traditional risk scores were low or moderate."
+                }
+              ],
+              "expectedAnswer": "si una estatina podía prevenir eventos cardiovasculares en personas con VIH",
+              "rubric": [
+                {
+                  "id": "ing-simulado-02-pitavastatin-hiv-t2-r1",
+                  "label": "Incluí esta idea esencial: Buscó determinar si una estatina podía prevenir eventos cardiovasculares en personas con VIH cuyo riesgo tradicional era bajo o moderado.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-02-pitavastatin-hiv-t3",
+              "sourceExamId": "simulado-02-pitavastatin-hiv",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-2",
+              "segments": [
+                {
+                  "text": "An independent monitoring board "
+                },
+                {
+                  "text": "recommended stopping the blinded phase early",
+                  "target": true
+                },
+                {
+                  "text": " because the evidence of benefit had become clear."
+                }
+              ],
+              "expectedAnswer": "La fase ciega se detuvo antes de lo planificado",
+              "rubric": [
+                {
+                  "id": "ing-simulado-02-pitavastatin-hiv-t3-r1",
+                  "label": "Incluí esta idea esencial: La fase ciega se detuvo antes de lo planificado porque el comité independiente consideró clara la evidencia de eficacia.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-simulado-02-pitavastatin-hiv-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-simulado-02-pitavastatin-hiv-o1",
+              "sourceExamId": "simulado-02-pitavastatin-hiv",
+              "sourceParagraph": 5,
+              "sourceAnswerId": "b5",
+              "text": "Pitavastatin was generally safe, although muscle-related symptoms and diabetes occurred somewhat more often in the treatment group. Serious adverse events were not substantially different between groups. The reduction in cardiovascular events appeared larger than researchers would have predicted from the change in LDL cholesterol alone, raising the possibility that statins may also reduce inflammation or affect other pathways that are particularly relevant to people with HIV.",
+              "question": "¿Qué se informó sobre la seguridad de la pitavastatina y qué explicación adicional se propuso para sus beneficios?",
+              "expectedAnswer": "El fármaco fue generalmente seguro, aunque hubo algo más de síntomas musculares y diabetes. Como el beneficio fue mayor de lo esperado por la reducción del LDL, se planteó que los efectos antiinflamatorios u otras vías también podrían haber contribuido.",
+              "rubric": [
+                {
+                  "id": "ing-simulado-02-pitavastatin-hiv-o1-r1",
+                  "label": "Incluí esta idea esencial: El fármaco fue generalmente seguro, aunque hubo algo más de síntomas musculares y diabetes.",
+                  "points": 2
+                },
+                {
+                  "id": "ing-simulado-02-pitavastatin-hiv-o1-r2",
+                  "label": "Incluí esta idea esencial: Como el beneficio fue mayor de lo esperado por la reducción del LDL, se planteó que los efectos antiinflamatorios u otras vías también podrían haber contribuido.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-simulado-03-post-infectious-mecfs",
+      "examId": "simulado-03-post-infectious-mecfs",
+      "title": "Práctica Pre-final — Simulado 3",
+      "source": "Encefalomielitis miálgica/síndrome de fatiga crónica posinfeccioso",
+      "blocks": [
+        {
+          "id": "ing-simulado-03-post-infectious-mecfs-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-simulado-03-post-infectious-mecfs-t1",
+              "sourceExamId": "simulado-03-post-infectious-mecfs",
+              "sourceParagraph": 1,
+              "sourceAnswerId": "b1",
+              "sourceRubricId": "b1-1",
+              "segments": [
+                {
+                  "text": "Myalgic encephalomyelitis/chronic fatigue syndrome, known as ME/CFS, is "
+                },
+                {
+                  "text": "a disabling condition marked by profound fatigue, worsening of symptoms after exertion, cognitive difficulties and problems involving sleep or the autonomic nervous system",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "Puede causar fatiga profunda, empeoramiento después del esfuerzo, alteraciones cognitivas y problemas del sueño o autonómicos.",
+              "rubric": [
+                {
+                  "id": "ing-simulado-03-post-infectious-mecfs-t1-r1",
+                  "label": "Incluí esta idea esencial: Puede causar fatiga profunda, empeoramiento después del esfuerzo, alteraciones cognitivas y problemas del sueño o autonómicos.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-03-post-infectious-mecfs-t2",
+              "sourceExamId": "simulado-03-post-infectious-mecfs",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b2",
+              "sourceRubricId": "b2-2",
+              "segments": [
+                {
+                  "text": "Participants underwent "
+                },
+                {
+                  "text": "rigorous screening to exclude alternative explanations for their symptoms",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "La selección rigurosa permitió descartar otras enfermedades que podían explicar los síntomas",
+              "rubric": [
+                {
+                  "id": "ing-simulado-03-post-infectious-mecfs-t2-r1",
+                  "label": "Incluí esta idea esencial: La selección rigurosa permitió descartar otras enfermedades que podían explicar los síntomas y formar grupos comparables.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-03-post-infectious-mecfs-t3",
+              "sourceExamId": "simulado-03-post-infectious-mecfs",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-1",
+              "segments": [
+                {
+                  "text": "People with ME/CFS had difficulty "
+                },
+                {
+                  "text": "choosing and sustaining effort",
+                  "target": true
+                },
+                {
+                  "text": " during experimental tasks."
+                }
+              ],
+              "expectedAnswer": "dificultades para decidir y mantener el esfuerzo",
+              "rubric": [
+                {
+                  "id": "ing-simulado-03-post-infectious-mecfs-t3-r1",
+                  "label": "Incluí esta idea esencial: Las personas tuvieron dificultades para decidir y mantener el esfuerzo, presentaron menor actividad de la unión temporoparietal y activación anormal del córtex motor, pero no mostraron signos de fatiga muscular.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-simulado-03-post-infectious-mecfs-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-simulado-03-post-infectious-mecfs-o1",
+              "sourceExamId": "simulado-03-post-infectious-mecfs",
+              "sourceParagraph": 5,
+              "sourceAnswerId": "b5",
+              "text": "Analyses of spinal fluid found reduced levels of certain catecholamines and related molecules that help regulate the nervous system. Lower concentrations were associated with poorer motor performance and more severe cognitive or effort-related symptoms. Immune testing also identified a higher proportion of naïve B cells and fewer switched memory B cells than in healthy controls. In addition, men and women showed different patterns of immune-cell activity, gene expression and metabolic markers.",
+              "question": "Describa los principales resultados obtenidos en el líquido cefalorraquídeo y en el sistema inmunitario.",
+              "expectedAnswer": "Se encontraron niveles bajos de ciertas catecolaminas, relacionados con peor desempeño motor y síntomas cognitivos. También hubo más células B naïve, menos células B de memoria con cambio de clase y diferencias inmunológicas y metabólicas entre hombres y mujeres.",
+              "rubric": [
+                {
+                  "id": "ing-simulado-03-post-infectious-mecfs-o1-r1",
+                  "label": "Incluí esta idea esencial: Se encontraron niveles bajos de ciertas catecolaminas, relacionados con peor desempeño motor y síntomas cognitivos.",
+                  "points": 2
+                },
+                {
+                  "id": "ing-simulado-03-post-infectious-mecfs-o1-r2",
+                  "label": "Incluí esta idea esencial: También hubo más células B naïve, menos células B de memoria con cambio de clase y diferencias inmunológicas y metabólicas entre hombres y mujeres.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-simulado-04-cannabis-cardiovascular",
+      "examId": "simulado-04-cannabis-cardiovascular",
+      "title": "Práctica Pre-final — Simulado 4",
+      "source": "Consumo de cannabis y resultados cardiovasculares",
+      "blocks": [
+        {
+          "id": "ing-simulado-04-cannabis-cardiovascular-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-simulado-04-cannabis-cardiovascular-t1",
+              "sourceExamId": "simulado-04-cannabis-cardiovascular",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-2",
+              "segments": [
+                {
+                  "text": "Compared with people who had not used cannabis in the previous month, daily users had approximately "
+                },
+                {
+                  "text": "25% higher odds of reporting a heart attack",
+                  "target": true
+                },
+                {
+                  "text": " and 42% higher odds of reporting a stroke."
+                }
+              ],
+              "expectedAnswer": "25% más probabilidades de infarto",
+              "rubric": [
+                {
+                  "id": "ing-simulado-04-cannabis-cardiovascular-t1-r1",
+                  "label": "Incluí esta idea esencial: El uso diario se asoció con alrededor de 25% más probabilidades de infarto y 42% más probabilidades de accidente cerebrovascular frente al no consumo.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-04-cannabis-cardiovascular-t2",
+              "sourceExamId": "simulado-04-cannabis-cardiovascular",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b4",
+              "sourceRubricId": "b4-2",
+              "segments": [
+                {
+                  "text": "Compared with people who had not used cannabis in the previous month, daily users had approximately 25% higher odds of reporting a heart attack and "
+                },
+                {
+                  "text": "42% higher odds of reporting a stroke",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "42% más probabilidades de accidente cerebrovascular frente al no consumo",
+              "rubric": [
+                {
+                  "id": "ing-simulado-04-cannabis-cardiovascular-t2-r1",
+                  "label": "Incluí esta idea esencial: El uso diario se asoció con alrededor de 25% más probabilidades de infarto y 42% más probabilidades de accidente cerebrovascular frente al no consumo.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-04-cannabis-cardiovascular-t3",
+              "sourceExamId": "simulado-04-cannabis-cardiovascular",
+              "sourceParagraph": 4,
+              "sourceAnswerId": "b5",
+              "sourceRubricId": "b5-1",
+              "segments": [
+                {
+                  "text": "Associations were also present among adults who had never smoked tobacco, "
+                },
+                {
+                  "text": "suggesting that cigarette smoking alone did not explain the findings",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "por lo que el cigarrillo no explicaba por sí solo los resultados",
+              "rubric": [
+                {
+                  "id": "ing-simulado-04-cannabis-cardiovascular-t3-r1",
+                  "label": "Incluí esta idea esencial: Las asociaciones persistieron entre quienes nunca habían fumado tabaco, por lo que el cigarrillo no explicaba por sí solo los resultados.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-simulado-04-cannabis-cardiovascular-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-simulado-04-cannabis-cardiovascular-o1",
+              "sourceExamId": "simulado-04-cannabis-cardiovascular",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "text": "The findings support including cannabis use in routine conversations about cardiovascular health. Clinicians should ask about frequency and route of administration without assuming that a legal or plant-derived product is harmless. Public health messages may also need to address potential cardiovascular risks, particularly among frequent users. Prospective studies with objective measurements are necessary to clarify causality, biological mechanisms and whether different forms of cannabis carry different levels of risk.",
+              "question": "¿Por qué el estudio no demuestra una relación causal y cuáles son sus posibles implicancias clínicas?",
+              "expectedAnswer": "Fue un estudio observacional y transversal, con exposición y diagnósticos autoinformados, posibles factores de confusión y escasa precisión sobre la secuencia temporal. Puede orientar el interrogatorio clínico y la educación sanitaria, pero requiere estudios prospectivos para confirmar causalidad y comparar vías de consumo.",
+              "rubric": [
+                {
+                  "id": "ing-simulado-04-cannabis-cardiovascular-o1-r1",
+                  "label": "Incluí esta idea esencial: Fue un estudio observacional y transversal, con exposición y diagnósticos autoinformados, posibles factores de confusión y escasa precisión sobre la secuencia temporal.",
+                  "points": 2
+                },
+                {
+                  "id": "ing-simulado-04-cannabis-cardiovascular-o1-r2",
+                  "label": "Incluí esta idea esencial: Puede orientar el interrogatorio clínico y la educación sanitaria, pero requiere estudios prospectivos para confirmar causalidad y comparar vías de consumo.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ing-simulado-05-antibiotic-resistance",
+      "examId": "simulado-05-antibiotic-resistance",
+      "title": "Práctica Pre-final — Simulado 5",
+      "source": "Vigilancia mundial de la resistencia a los antibióticos",
+      "blocks": [
+        {
+          "id": "ing-simulado-05-antibiotic-resistance-translation",
+          "type": "translation",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Complete con la traducción contextual de la forma en -ing destacada.",
+          "items": [
+            {
+              "id": "ing-simulado-05-antibiotic-resistance-t1",
+              "sourceExamId": "simulado-05-antibiotic-resistance",
+              "sourceParagraph": 2,
+              "sourceAnswerId": "b2",
+              "sourceRubricId": "b2-1",
+              "segments": [
+                {
+                  "text": "The report drew on more than 23 million laboratory-confirmed "
+                },
+                {
+                  "text": "infections involving the bloodstream, urinary and gastrointestinal tracts and urogenital gonorrhoea",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "infecciones confirmadas por laboratorio, correspondientes a sangre, vías urinarias y gastrointestinales y gonorrea urogenital",
+              "rubric": [
+                {
+                  "id": "ing-simulado-05-antibiotic-resistance-t1-r1",
+                  "label": "Incluí esta idea esencial: La OMS utilizó más de 23 millones de infecciones confirmadas por laboratorio, correspondientes a sangre, vías urinarias y gastrointestinales y gonorrea urogenital.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-05-antibiotic-resistance-t2",
+              "sourceExamId": "simulado-05-antibiotic-resistance",
+              "sourceParagraph": 3,
+              "sourceAnswerId": "b3",
+              "sourceRubricId": "b3-2",
+              "segments": [
+                {
+                  "text": "Resistance increased in more than 40% of the monitored combinations, with "
+                },
+                {
+                  "text": "average annual rises ranging from about 5% to 15%",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "con incrementos anuales medios cercanos al 5–15%",
+              "rubric": [
+                {
+                  "id": "ing-simulado-05-antibiotic-resistance-t2-r1",
+                  "label": "Incluí esta idea esencial: Entre 2018 y 2023 la resistencia aumentó en más del 40% de las combinaciones vigiladas, con incrementos anuales medios cercanos al 5–15%.",
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": "ing-simulado-05-antibiotic-resistance-t3",
+              "sourceExamId": "simulado-05-antibiotic-resistance",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "sourceRubricId": "b6-1",
+              "segments": [
+                {
+                  "text": "Nearly half of countries did not submit data in 2023, and many reporting countries lacked "
+                },
+                {
+                  "text": "systems capable of producing complete and reliable estimates",
+                  "target": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "expectedAnswer": "muchos sistemas no producían datos confiables",
+              "rubric": [
+                {
+                  "id": "ing-simulado-05-antibiotic-resistance-t3-r1",
+                  "label": "Incluí esta idea esencial: La participación aumentó de 25 a 104 países, pero casi la mitad no informó en 2023 y muchos sistemas no producían datos confiables.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ing-simulado-05-antibiotic-resistance-open",
+          "type": "open",
+          "gradingMode": "ai_or_manual",
+          "answerLanguage": "es",
+          "instructions": "Responda en español con información del texto del simulado.",
+          "items": [
+            {
+              "id": "ing-simulado-05-antibiotic-resistance-o1",
+              "sourceExamId": "simulado-05-antibiotic-resistance",
+              "sourceParagraph": 6,
+              "sourceAnswerId": "b6",
+              "text": "Participation in GLASS rose from 25 countries in 2016 to 104 in 2023, but important gaps remained. Nearly half of countries did not submit data in 2023, and many reporting countries lacked systems capable of producing complete and reliable estimates. WHO called for stronger laboratories, higher-quality surveillance, responsible antibiotic use, access to reliable diagnostics and vaccines, infection prevention and continued development of new treatments. The organization also emphasized a One Health approach connecting human, animal and environmental health.",
+              "question": "¿Qué progresos y limitaciones presentó GLASS y qué medidas recomendó la OMS?",
+              "expectedAnswer": "La participación aumentó de 25 a 104 países, pero casi la mitad no informó en 2023 y muchos sistemas no producían datos confiables. La OMS recomendó fortalecer laboratorios y vigilancia, usar responsablemente los antibióticos, mejorar diagnóstico, vacunación y prevención, desarrollar tratamientos y aplicar el enfoque One Health.",
+              "rubric": [
+                {
+                  "id": "ing-simulado-05-antibiotic-resistance-o1-r1",
+                  "label": "Incluí esta idea esencial: La participación aumentó de 25 a 104 países, pero casi la mitad no informó en 2023 y muchos sistemas no producían datos confiables.",
+                  "points": 2
+                },
+                {
+                  "id": "ing-simulado-05-antibiotic-resistance-o1-r2",
+                  "label": "Incluí esta idea esencial: La OMS recomendó fortalecer laboratorios y vigilancia, usar responsablemente los antibióticos, mejorar diagnóstico, vacunación y prevención, desarrollar tratamientos y aplicar el enfoque One Health.",
+                  "points": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

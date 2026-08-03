@@ -5,7 +5,8 @@ import {applyPracticeAIResults, buildPracticeAIItems, gradePractice, practiceIte
 
 const practice = JSON.parse(await readFile(new URL("../data/practice/ing-forms.json", import.meta.url), "utf8"));
 assert.equal(validatePractice(practice, "ing-forms"), practice);
-assert.equal(practiceItems(practice).length, 18);
+assert.equal(practice.units.length, 15);
+assert.equal(practiceItems(practice).length, 66);
 assert.equal(practiceItems(practice, ["blood"]).length, 7);
 const matchingItem = practiceItems(practice).find(item => item.id === "tb-tests");
 assert.equal(matchingItem.maxPoints, 1);
@@ -22,7 +23,7 @@ for (const item of practiceItems(practice)) {
   }
 }
 const full = gradePractice(practice, session);
-assert.equal(full.completed, 18);
+assert.equal(full.completed, 66);
 assert.equal(full.autoCorrect, 5);
 assert.equal(full.percent, 100);
 assert.deepEqual(full.pendingReview, []);
@@ -40,7 +41,7 @@ assert.ok(reviewed.percent > review.percent);
 const aiSession = structuredClone(session);
 aiSession.assessment = {};
 const aiItems = buildPracticeAIItems(practice, aiSession).filter(item => String(item.studentAnswer).trim());
-assert.equal(aiItems.length, 18);
+assert.equal(aiItems.length, 66);
 assert.equal(aiItems.find(item => item.id === "tb-tests").sourceText, matchingItem.sourceText);
 applyPracticeAIResults(practice, aiSession, aiItems.map(item => ({
   itemId: item.id,
@@ -52,7 +53,7 @@ applyPracticeAIResults(practice, aiSession, aiItems.map(item => ({
   overallFeedback: "Correto.",
   coachingFeedback: {explanation: "Correto.", improvementTip: "Continue.", memoryTip: "Revise."}
 })));
-assert.equal(gradePractice(practice, aiSession).percent, 96);
+assert.equal(gradePractice(practice, aiSession).percent, 99);
 assert.equal(aiSession.aiGrading["tb-tests"].accepted, true);
 assert.equal(aiSession.aiGrading["tb-tests"].manuallyAdjusted, false);
 
@@ -68,5 +69,41 @@ assert.throws(() => validatePractice(incomplete, "ing-forms"), /traduções inv�
 const invalidMatching = structuredClone(practice);
 delete invalidMatching.units[1].blocks[0].translationGrading;
 assert.throws(() => validatePractice(invalidMatching, "ing-forms"), /associações inválidas/);
+
+const examIndexUrl = new URL("../data/exams/index.json", import.meta.url);
+const examIndex = JSON.parse(await readFile(examIndexUrl, "utf8"));
+const exams = new Map(await Promise.all(examIndex.exams.map(async entry => [
+  entry.id,
+  JSON.parse(await readFile(new URL(entry.file, examIndexUrl), "utf8"))
+])));
+const sourcedUnits = practice.units.filter(unit => unit.examId);
+assert.equal(sourcedUnits.length, 12);
+for (const unit of sourcedUnits) {
+  const exam = exams.get(unit.examId);
+  assert.ok(exam, `Simulado ausente: ${unit.examId}`);
+  const translation = unit.blocks.find(block => block.type === "translation");
+  const open = unit.blocks.find(block => block.type === "open");
+  assert.equal(translation.items.length, 3);
+  assert.equal(open.items.length, 1);
+  for (const item of translation.items) {
+    const sourceParagraph = exam.article.paragraphs.find(paragraph => paragraph.number === item.sourceParagraph);
+    const sourceAnswer = exam.sections.b.items.find(answer => answer.id === item.sourceAnswerId);
+    const sourceRubric = sourceAnswer.rubric.find(criterion => criterion.id === item.sourceRubricId);
+    const sourceSentence = item.segments.map(segment => segment.text).join("");
+    const highlighted = item.segments.filter(segment => segment.target).map(segment => segment.text).join(" ");
+    assert.ok(sourceParagraph.text.includes(sourceSentence), `Frase sem origem: ${item.id}`);
+    assert.match(highlighted, /\b[A-Za-z][A-Za-z'-]*ing\b/i);
+    assert.doesNotMatch(highlighted, /\b(?:during|according|offspring)\b/i);
+    assert.ok(sourceAnswer.suggestedAnswer.includes(item.expectedAnswer), `Resposta sem origem: ${item.id}`);
+    assert.deepEqual(item.rubric.map(({label, points}) => ({label, points})), [{label: sourceRubric.label, points: sourceRubric.points}]);
+  }
+  const item = open.items[0];
+  const sourceParagraph = exam.article.paragraphs.find(paragraph => paragraph.number === item.sourceParagraph);
+  const sourceAnswer = exam.sections.b.items.find(answer => answer.id === item.sourceAnswerId);
+  assert.equal(item.text, sourceParagraph.text);
+  assert.equal(item.question, sourceAnswer.question);
+  assert.equal(item.expectedAnswer, sourceAnswer.suggestedAnswer);
+  assert.deepEqual(item.rubric.map(({label, points}) => ({label, points})), sourceAnswer.rubric.map(({label, points}) => ({label, points})));
+}
 
 console.log("practice: ok");

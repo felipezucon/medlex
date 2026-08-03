@@ -115,6 +115,7 @@ async function loadExamCorpus() {
     const practice = JSON.parse(await readText(`data/practice/${entry.file.replace(/^\.\//, "")}`));
     const strings = [];
     for (const unit of practice.units) {
+      if (unit.examId) continue;
       for (const block of unit.blocks) {
         if (block.type === "translation") strings.push(...block.items.map(item => item.segments.map(segment => segment.text).join(" ")));
         else if (block.type === "matching") strings.push(...block.options.map(option => option.text));

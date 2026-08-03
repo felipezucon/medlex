@@ -8,15 +8,15 @@ Foram auditados os 12 simulados em `data/exams/`, a prática em `data/practice/i
 
 | Métrica | Quantidade |
 | --- | ---: |
-| Componentes de resposta auditados | 179 |
+| Componentes de resposta auditados | 227 |
 | Itens objetivos, corrigidos localmente | 77 |
-| Respostas escritas | 102 |
-| Respostas escritas prontas para IA | 102 |
+| Respostas escritas | 150 |
+| Respostas escritas prontas para IA | 150 |
 | Itens sem resposta esperada | 0 |
 | Itens com pontuação inconsistente | 0 |
 | IDs duplicados | 0 |
 
-As 102 respostas escritas são as 72 perguntas da Seção B, as 12 respostas da Seção C dos simulados e os 18 itens escritos da prática de formas em `-ing`, incluindo as cinco traduções dos exercícios de associação.
+As 150 respostas escritas são as 72 perguntas da Seção B, as 12 respostas da Seção C dos simulados e os 66 itens escritos da prática de formas em `-ing`. A prática inclui os 18 exercícios originais e 48 exercícios derivados dos 12 simulados, todos rastreados até seus parágrafos, resoluções e rubricas de origem.
 
 ## Regras usadas
 

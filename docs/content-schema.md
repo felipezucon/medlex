@@ -16,6 +16,8 @@ Associações definem opções, `correctOption` e `translationGrading`. A letra 
 
 Uma nova unidade pode ser acrescentada ao array `units` de `ing-forms.json`, com IDs únicos. Uma prática de outra natureza deve receber seu próprio JSON e entrada no índice.
 
+As unidades derivadas dos simulados declaram `examId`; cada item declara `sourceExamId`, `sourceParagraph` e `sourceAnswerId`. Traduções também registram `sourceRubricId`. Esses campos permitem verificar que frase, resolução e critério continuam idênticos ao conteúdo de origem em `data/exams/`.
+
 ## Compatibilidade local
 
 O schema local atual é o 4. O armazenamento central usa chaves `medlex:*` separadas para cartões, tentativas, histórico, prática e preferências. As chaves antigas `medlexCards.v1`, `medlexReviewLog.v1`, `medlexExams.v1`, `medlexPractice.v1` e `medlexTheme` são somente fontes de migração e continuam reconhecidas. O cofre, as configurações, o consentimento e o cache de IA são locais a este navegador e ficam fora dos backups.

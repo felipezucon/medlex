@@ -34,5 +34,5 @@ for (const unit of practice.units) for (const block of unit.blocks) {
   }
 }
 
-assert.deepEqual({objective, open, ready}, {objective: 77, open: 102, ready: 102});
+assert.deepEqual({objective, open, ready}, {objective: 77, open: 150, ready: 150});
 console.log("ai readiness: ok");
