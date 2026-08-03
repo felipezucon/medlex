@@ -10,11 +10,12 @@ import {
   parsePracticeBackup,
   importPracticeBackup
 } from "./practice-storage.mjs";
-import {gradePractice, practiceItems} from "./practice-grading.mjs";
-import {aiGradingAvailability, calculateItemPoints, gradeItemsWithAI, validateGradableItem} from "./ai-grading.mjs";
+import {applyPracticeAIResults, buildPracticeAIItems, gradePractice} from "./practice-grading.mjs";
+import {aiGradingAvailability, GEMINI_MODEL, gradeItemsWithAI} from "./ai-grading.mjs";
 
 const root = document.querySelector("#practiceApp");
 let catalog = [];
+let pendingFinalization = null;
 
 function el(tag, options = {}, children = []) {
   const node = document.createElement(tag);
@@ -43,8 +44,8 @@ function replace(...nodes) {
   window.scrollTo({top: 0, behavior: "smooth"});
 }
 
-function statusMessage(text = "", kind = "") {
-  return el("p", {className: `exam-status ${kind}`.trim(), text, attrs: {"aria-live": "polite"}});
+function statusMessage(text = "", kind = "", id = "") {
+  return el("p", {id, className: `exam-status ${kind}`.trim(), text, attrs: {"aria-live": "polite"}});
 }
 
 function formatDuration(milliseconds) {
@@ -113,9 +114,10 @@ function renderHistory(practice = null) {
   }
   const list = el("div", {className: "history-list"});
   for (const item of history) {
+    const method = {ai: "IA", manual: "Manual", manual_fallback: "Fallback manual", local: "Local"}[item.gradingMethod] || "Manual";
     list.append(el("article", {className: "history-row"}, [
       el("div", {}, [el("strong", {text: item.practiceTitle}), el("span", {text: `${item.units.join(" · ")} · ${new Date(item.date).toLocaleString("pt-BR")}`})]),
-      el("div", {className: "history-result"}, [el("strong", {text: `${item.percent}%`}), el("span", {text: `${item.pendingReview} para revisar · ${formatDuration(item.durationMs)}`})])
+      el("div", {className: "history-result"}, [el("strong", {text: `${item.percent}%`}), el("span", {text: `${item.pendingReview} para revisar · ${method} · ${formatDuration(item.durationMs)}`})])
     ]));
   }
   section.append(list);
@@ -158,7 +160,8 @@ function renderSelection(message = "", kind = "") {
       el("div", {className: "practice-start"}, [
         el("label", {htmlFor: selectId}, [el("span", {text: "Conteúdo da sessão"}), select]),
         button(session ? "Nova sessão" : "Iniciar prática", start, session ? "" : "primary"),
-        session ? button(session.status === "review" ? "Revisar sessão" : "Continuar", () => renderSession(practice, session), "primary") : null
+        session ? button(session.status === "review" ? "Revisar sessão"
+          : session.status === "finalizing" ? "Concluir correção" : "Continuar", () => renderSession(practice, session), "primary") : null
       ])
     ]));
   }
@@ -177,172 +180,162 @@ function renderScore(grade) {
   ]);
 }
 
-function appendRubric(container, item, session, onAssessment) {
+function appendManualRubric(container, item, session, onAssessment) {
   const selected = session.assessment[item.id] || {};
   session.assessment[item.id] = selected;
-  const rubric = el("fieldset", {className: "self-rubric"}, [el("legend", {text: "Autoevaluación de esta respuesta"})]);
+  const rubric = el("fieldset", {className: "self-rubric"}, [el("legend", {text: "Autoavaliação desta resposta"})]);
   for (const criterion of item.rubric) {
     const id = `${item.id}-${criterion.id}`;
     const select = el("select", {id});
     select.append(
-      el("option", {value: "not_met", text: "No cumplido"}),
+      el("option", {value: "not_met", text: "Não atendido"}),
       el("option", {value: "partial", text: "Parcial (50 %)"}),
-      el("option", {value: "met", text: "Cumplido"})
+      el("option", {value: "met", text: "Atendido"})
     );
     select.value = selected[criterion.id] === true ? "met" : selected[criterion.id] || "not_met";
     select.addEventListener("change", () => {
       selected[criterion.id] = select.value;
-      if (session.aiGrading?.[item.id]?.accepted) {
-        session.aiGrading[item.id].accepted = false;
-        session.aiGrading[item.id].gradingMethod = "manual";
-      }
       onAssessment(container, item.id);
     });
     rubric.append(el("label", {className: "rubric-item", htmlFor: id}, [el("span", {text: criterion.label}), select, el("b", {text: `${criterion.points} pt`})]));
   }
-  container.append(rubric, renderPracticeAIItemReview(container, item, session, onAssessment));
+  container.append(rubric);
 }
 
-function renderPracticeAIItemReview(container, item, session, onAssessment) {
+function renderPracticeAIItemReview(item, session) {
   const suggestion = session.aiGrading?.[item.id];
-  if (!suggestion) return el("p", {className: "muted ai-item-empty", text: "Você pode usar a rubrica manual ou solicitar uma sugestão da IA para a sessão."});
+  if (!suggestion?.accepted) return null;
+  const maximum = Number(item.maxPoints) || item.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0);
+  const fullScore = Number(suggestion.finalPoints) >= maximum;
   const panel = el("section", {className: `ai-item-review ${suggestion.confidence === "low" || suggestion.status !== "graded" ? "needs-manual-review" : ""}`.trim()}, [
     el("div", {className: "ai-item-heading"}, [
-      el("h3", {text: "Sugestão do Gemini"}),
-      el("span", {className: "availability", text: suggestion.cached ? "Resultado salvo" : `Confiança: ${suggestion.confidence}`})
+      el("h3", {text: "Correção do Gemini"}),
+      el("span", {className: "availability available", text: `${suggestion.finalPoints}/${maximum} pontos`})
     ]),
-    el("p", {className: "ai-assistive-warning", text: "Correção assistida por IA. Revise o resultado antes de aceitá-lo."}),
-    suggestion.confidence === "low" || suggestion.status !== "graded"
-      ? el("p", {className: "answer-feedback ai-review-warning", text: "Revisão manual recomendada."}) : null,
+    el("p", {className: "ai-assistive-warning", text: "Correção automática definitiva."}),
     el("p", {text: suggestion.overallFeedback})
   ]);
-  const statuses = suggestion.finalStatuses || Object.fromEntries(suggestion.criteria.map(criterion => [criterion.criterionId, criterion.status]));
-  suggestion.finalStatuses = statuses;
-  const pointsId = `${item.id}-ai-final-points`;
-  const finalPoints = el("input", {id: pointsId, type: "number", value: String(suggestion.finalPoints ?? suggestion.aiSuggestedPoints), attrs: {min: "0", max: String(item.maxPoints), step: "0.5"}});
-  finalPoints.addEventListener("change", () => {
-    suggestion.finalPoints = Math.min(item.maxPoints, Math.max(0, Number(finalPoints.value) || 0));
-    finalPoints.value = String(suggestion.finalPoints);
-    suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
-    saveSession(session);
-  });
   for (const criterion of suggestion.criteria) {
     const source = item.rubric.find(entry => entry.id === criterion.criterionId);
-    const id = `${item.id}-${criterion.criterionId}-ai`;
-    const select = el("select", {id});
-    select.append(
-      el("option", {value: "not_met", text: "No cumplido"}),
-      el("option", {value: "partial", text: "Parcial (50 %)"}),
-      el("option", {value: "met", text: "Cumplido"})
-    );
-    select.value = statuses[criterion.criterionId];
-    select.addEventListener("change", () => {
-      statuses[criterion.criterionId] = select.value;
-      suggestion.finalPoints = calculateItemPoints(item, statuses);
-      finalPoints.value = String(suggestion.finalPoints);
-      suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
-      saveSession(session);
-    });
-    panel.append(el("label", {className: "ai-criterion", htmlFor: id}, [
+    const statusLabel = {met: "Atendido", partial: "Parcial", not_met: "Não atendido"}[criterion.status] || criterion.status;
+    panel.append(el("div", {className: "ai-criterion ai-criterion-readonly"}, [
       el("span", {}, [el("strong", {text: `${source.label} (${source.points} pt)`}), el("small", {text: criterion.feedback})]),
-      select
+      el("b", {text: statusLabel})
     ]));
   }
-  const noteId = `${item.id}-ai-note`;
-  const note = el("textarea", {id: noteId, value: suggestion.personalNote || "", attrs: {rows: "2"}});
-  note.addEventListener("input", () => { suggestion.personalNote = note.value; saveSession(session); });
-  panel.append(
-    el("label", {className: "ai-personal-note", htmlFor: noteId}, [el("span", {text: "Observação pessoal (não é enviada ao Gemini)"}), note]),
-    el("p", {className: "ai-points", text: `Sugestão da IA: ${suggestion.aiSuggestedPoints}/${item.maxPoints} pontos`}),
-    el("label", {className: "ai-final-points", htmlFor: pointsId}, [el("span", {text: "Pontuação final (ajuste humano)"}), finalPoints]),
-    el("div", {className: "exam-actions"}, [
-      button("Aceitar correção revisada", () => {
-        Object.assign(session.assessment[item.id], statuses);
-        for (const criterion of item.rubric) {
-          const manual = document.getElementById(`${item.id}-${criterion.id}`);
-          if (manual) manual.value = statuses[criterion.id];
-        }
-        suggestion.gradingMethod = "ai_reviewed";
-        suggestion.finalPoints = Math.min(item.maxPoints, Math.max(0, Number(finalPoints.value) || 0));
-        suggestion.manuallyAdjusted = suggestion.finalPoints !== suggestion.aiSuggestedPoints;
-        suggestion.accepted = true;
-        onAssessment(container, item.id);
-      }, "primary", suggestion.status !== "graded"),
-      button("Descartar sugestão", () => {
-        delete session.aiGrading[item.id];
-        saveSession(session);
-        panel.replaceWith(el("p", {className: "muted ai-item-empty", text: "Sugestão descartada. A correção manual permanece disponível."}));
-      })
-    ]),
-    suggestion.accepted ? el("p", {className: "exam-status success", text: `Correção aceita: ${suggestion.finalPoints}/${item.maxPoints} pontos.`}) : null
-  );
+  const coaching = suggestion.coachingFeedback;
+  if (coaching) panel.append(el("div", {className: "ai-coaching"}, [
+    el("section", {}, [el("h4", {text: fullScore ? "O que você acertou" : "Por que errou"}), el("p", {text: coaching.explanation})]),
+    el("section", {}, [el("h4", {text: "Como melhorar"}), el("p", {text: coaching.improvementTip})]),
+    el("section", {}, [el("h4", {text: "Dica para lembrar"}), el("p", {text: coaching.memoryTip})])
+  ]));
   return panel;
 }
 
-function renderPracticeAIGradingPanel(practice, session) {
-  const availability = aiGradingAvailability();
-  const openItems = practiceItems(practice, session.unitIds).filter(item => item.type !== "matching");
-  const answered = openItems.filter(item => String(session.answers[item.id] || "").trim());
-  const allGradable = answered.every(item => validateGradableItem(item).gradable);
-  const status = statusMessage();
-  const run = async force => {
-    const buttons = panel.querySelectorAll("button");
-    buttons.forEach(control => { control.disabled = true; });
-    status.textContent = `Corrigindo 0 de ${answered.length} respostas…`;
-    try {
-      const results = await gradeItemsWithAI({
-        parentId: practice.id,
-        contentVersion: practice.contentVersion || practice.schemaVersion,
-        items: answered.map(item => ({...item, studentAnswer: session.answers[item.id]})),
-        force,
-        onProgress: (done, total) => { status.textContent = `Corrigindo ${done} de ${total} respostas…`; }
-      });
-      session.aiGrading ||= {};
-      for (const result of results) {
-        const previous = session.aiGrading[result.itemId];
-        session.aiGrading[result.itemId] = {
-          ...result,
-          aiSuggestedPoints: result.points,
-          finalStatuses: Object.fromEntries(result.criteria.map(criterion => [criterion.criterionId, criterion.status])),
-          finalPoints: result.points,
-          personalNote: previous?.personalNote || "",
-          gradingMethod: "ai_pending",
-          manuallyAdjusted: false,
-          accepted: false
-        };
-      }
-      saveSession(session);
-      renderSession(practice, session);
-    } catch (error) {
-      status.textContent = `${error.message} Você pode continuar com a correção manual.`;
-      status.className = "exam-status error";
-      buttons.forEach(control => { control.disabled = false; });
-    }
-  };
-  const reason = !answered.length ? "Não há respostas abertas para enviar. Respostas em branco valem zero e não usam a API."
-    : !allGradable ? "Faltam dados de correção. Use a autoavaliação manual."
-      : availability.reason;
-  const panel = el("section", {className: "panel ai-grading-panel", attrs: {"aria-labelledby": "aiPracticeHeading"}}, [
-    el("div", {className: "section-heading"}, [
-      el("div", {}, [el("h2", {id: "aiPracticeHeading", text: "Correção de traduções e respostas"}), el("p", {text: "As associações são corrigidas localmente e nunca são enviadas."})]),
-      el("div", {className: "exam-actions"}, [
-        button("Corrigir com IA", () => run(false), "primary", !availability.available || !allGradable || !answered.length),
-        button("Corrigir manualmente", () => root.querySelector(".self-rubric")?.scrollIntoView({behavior: "smooth", block: "center"})),
-        Object.keys(session.aiGrading || {}).length ? button("Corrigir novamente", () => run(true), "", !availability.available || !allGradable || !answered.length) : null
-      ])
-    ]),
-    el("p", {className: "ai-assistive-warning", text: "Correção assistida por IA. A nota só muda quando você aceita cada resultado."}),
-    reason ? el("p", {className: "exam-status", text: reason}) : null,
-    status
+function appendAssessment(container, item, session, onAssessment, answerProvided) {
+  const aiReview = renderPracticeAIItemReview(item, session);
+  if (aiReview) {
+    container.append(aiReview);
+    return;
+  }
+  if (!answerProvided) {
+    container.append(el("p", {className: "muted ai-item-empty", text: "Resposta em branco: 0 ponto."}));
+    return;
+  }
+  appendManualRubric(container, item, session, onAssessment);
+}
+
+function renderPracticeGradingPanel(session, grading = false) {
+  const method = session.gradingMethod;
+  const pending = session.status === "finalizing";
+  const title = grading ? "Corrigindo prática com IA…"
+    : pending ? "Correção pendente"
+    : method === "ai" ? "Correção automática concluída"
+      : method === "local" ? "Correção local concluída" : "Correção manual";
+  const description = grading ? "As respostas estão bloqueadas enquanto o Gemini aplica as rubricas."
+    : pending ? "As respostas estão salvas e bloqueadas. Continue a correção para obter o resultado."
+    : method === "ai" ? "A nota foi aplicada pela IA e não pode ser ajustada. As associações de letras foram corrigidas localmente."
+      : method === "local" ? "Não havia respostas escritas para enviar à IA; respostas em branco receberam zero."
+        : session.gradingMessage || "Use as rubricas para concluir a autoavaliação das respostas escritas.";
+  return el("section", {className: "panel ai-grading-panel", attrs: {"aria-labelledby": "aiPracticeHeading"}}, [
+    el("h2", {id: "aiPracticeHeading", text: title}),
+    el("p", {text: description}),
+    grading ? statusMessage("Corrigindo 0 respostas…", "", "practiceGradingStatus") : null
   ]);
-  return panel;
 }
 
-function renderTranslationBlock(block, session, review, onAnswer, onAssessment, pending) {
+function completeSession(practice, session, method, message = "") {
+  pendingFinalization = null;
+  session.status = "review";
+  session.gradingMethod = method;
+  session.gradingModel = method === "ai" ? GEMINI_MODEL : null;
+  session.gradingMessage = message;
+  const grade = gradePractice(practice, session);
+  saveSession(session);
+  savePracticeHistory(historyRecord(practice, session, grade));
+  renderSession(practice, session);
+}
+
+function completeManually(practice, session, fallback = false, message = "") {
+  session.aiGrading = {};
+  completeSession(practice, session, fallback ? "manual_fallback" : "manual", message);
+}
+
+async function continueFinalization(practice, session) {
+  const availability = aiGradingAvailability();
+  if (availability.code === "unconfigured") {
+    completeManually(practice, session, false, "A chave do Gemini não está configurada. Use as rubricas para concluir a correção manual.");
+    return;
+  }
+  if (["locked", "consent"].includes(availability.code)) {
+    pendingFinalization = {practice, session};
+    window.dispatchEvent(new CustomEvent("medlex-open-ai-settings", {detail: {
+      message: "As respostas foram salvas. Desbloqueie a chave e confirme o consentimento para concluir a correção.",
+      focus: availability.code === "locked" ? "#aiUnlockPassword" : "#aiConsent"
+    }}));
+    return;
+  }
+  if (!availability.available) {
+    console.warn("Correção automática da prática indisponível:", availability.reason);
+    completeManually(practice, session, true, `${availability.reason} Use as rubricas para concluir a correção manual.`);
+    return;
+  }
+
+  const items = buildPracticeAIItems(practice, session);
+  const answered = items.filter(item => String(item.studentAnswer).trim()).length;
+  if (!answered) {
+    session.aiGrading = {};
+    completeSession(practice, session, "local");
+    return;
+  }
+
+  renderSession(practice, session, true);
+  const status = root.querySelector("#practiceGradingStatus");
+  try {
+    const results = await gradeItemsWithAI({
+      parentId: practice.id,
+      contentVersion: practice.contentVersion || practice.schemaVersion,
+      items,
+      feedbackProfile: "learning-coach",
+      feedbackLanguage: "pt-BR",
+      onProgress: (done, total) => {
+        if (status) status.textContent = `Corrigindo ${done} de ${total} respostas…`;
+      }
+    });
+    applyPracticeAIResults(practice, session, results);
+    completeSession(practice, session, "ai");
+  } catch (error) {
+    console.warn("Falha na correção automática da prática; usando correção manual:", error);
+    completeManually(practice, session, true, `${error.message} Use as rubricas para concluir a correção manual.`);
+  }
+}
+
+function renderTranslationBlock(block, session, review, locked, onAnswer, onAssessment, pending) {
   const section = el("section", {className: "practice-block"}, [el("p", {className: "section-instructions", text: block.instructions})]);
   for (const item of block.items) {
     const answerId = `${item.id}-answer`;
-    const textarea = el("textarea", {id: answerId, value: session.answers[item.id] || "", disabled: review, attrs: {rows: "3"}});
+    const answer = session.answers[item.id] || "";
+    const textarea = el("textarea", {id: answerId, value: answer, disabled: locked, attrs: {rows: "3"}});
     const sentence = el("p", {className: "source-sentence"});
     for (const segment of item.segments) sentence.append(segment.target ? el("mark", {text: segment.text}) : document.createTextNode(segment.text));
     const article = el("article", {className: `exam-question open-question ${review && pending.includes(item.id) ? "needs-review" : ""}`.trim()}, [
@@ -353,14 +346,14 @@ function renderTranslationBlock(block, session, review, onAnswer, onAssessment, 
     if (review) {
       article.classList.add("review-answer-layout");
       article.append(el("div", {className: "suggested-answer"}, [el("h3", {text: "Respuesta esperada"}), el("p", {text: item.expectedAnswer})]));
-      appendRubric(article, item, session, onAssessment);
+      appendAssessment(article, item, session, onAssessment, Boolean(String(answer).trim()));
     }
     section.append(article);
   }
   return section;
 }
 
-function renderMatchingBlock(block, session, review, onAnswer, onAssessment, pending) {
+function renderMatchingBlock(block, session, review, locked, onAnswer, onAssessment, pending) {
   const section = el("section", {className: "practice-block"}, [el("p", {className: "section-instructions", text: block.instructions})]);
   const options = el("ol", {className: "matching-options"});
   for (const option of block.options) options.append(el("li", {}, [el("b", {text: `${option.id}. `}), option.text]));
@@ -370,11 +363,11 @@ function renderMatchingBlock(block, session, review, onAnswer, onAssessment, pen
     session.answers[item.id] = answer;
     const selectId = `${item.id}-choice`;
     const translationId = `${item.id}-translation`;
-    const select = el("select", {id: selectId, value: answer.choice, disabled: review});
+    const select = el("select", {id: selectId, value: answer.choice, disabled: locked});
     select.append(el("option", {value: "", text: "Selecione"}));
     for (const option of block.options) select.append(el("option", {value: option.id, text: option.id}));
     select.value = answer.choice;
-    const textarea = el("textarea", {id: translationId, value: answer.translation, disabled: review, attrs: {rows: "3"}});
+    const textarea = el("textarea", {id: translationId, value: answer.translation, disabled: locked, attrs: {rows: "3"}});
     const article = el("article", {className: `exam-question ${review && pending.includes(item.id) ? "needs-review" : ""}`.trim()}, [
       el("h3", {text: item.question}),
       el("div", {className: "matching-answer"}, [
@@ -392,23 +385,28 @@ function renderMatchingBlock(block, session, review, onAnswer, onAssessment, pen
         el("div", {className: "suggested-answer"}, [el("h3", {text: "Traducción sugerida"}), el("p", {text: option.expectedTranslation})])
       );
       if (!correct) article.classList.add("incorrect");
-      const assessment = session.assessment[item.id] || {};
-      session.assessment[item.id] = assessment;
-      const checkId = `${item.id}-translation-ok`;
-      const checkbox = el("input", {id: checkId, type: "checkbox", checked: Boolean(assessment.translation)});
-      checkbox.addEventListener("change", () => { assessment.translation = checkbox.checked; onAssessment(article, item.id); });
-      article.append(el("label", {className: "check-option practice-self-check", htmlFor: checkId}, [checkbox, el("span", {text: "Mi traducción transmite satisfactoriamente la respuesta sugerida."})]));
+      const aiReview = renderPracticeAIItemReview(item, session);
+      if (aiReview) article.append(aiReview);
+      else if (String(answer.translation).trim()) {
+        const assessment = session.assessment[item.id] || {};
+        session.assessment[item.id] = assessment;
+        const checkId = `${item.id}-translation-ok`;
+        const checkbox = el("input", {id: checkId, type: "checkbox", checked: Boolean(assessment.translation)});
+        checkbox.addEventListener("change", () => { assessment.translation = checkbox.checked; onAssessment(article, item.id); });
+        article.append(el("label", {className: "check-option practice-self-check", htmlFor: checkId}, [checkbox, el("span", {text: item.rubric[0].label})]));
+      } else article.append(el("p", {className: "muted ai-item-empty", text: "Tradução em branco: 0 ponto."}));
     }
     section.append(article);
   }
   return section;
 }
 
-function renderOpenBlock(block, session, review, onAnswer, onAssessment, pending) {
+function renderOpenBlock(block, session, review, locked, onAnswer, onAssessment, pending) {
   const section = el("section", {className: "practice-block"}, [el("p", {className: "section-instructions", text: block.instructions})]);
   for (const item of block.items) {
     const answerId = `${item.id}-answer`;
-    const textarea = el("textarea", {id: answerId, value: session.answers[item.id] || "", disabled: review, attrs: {rows: "3"}});
+    const answer = session.answers[item.id] || "";
+    const textarea = el("textarea", {id: answerId, value: answer, disabled: locked, attrs: {rows: "3"}});
     const article = el("article", {className: `exam-question open-question ${review && pending.includes(item.id) ? "needs-review" : ""}`.trim()}, [
       el("p", {className: "source-sentence", text: item.text}),
       el("label", {htmlFor: answerId}, [el("strong", {text: item.question}), textarea])
@@ -417,7 +415,7 @@ function renderOpenBlock(block, session, review, onAnswer, onAssessment, pending
     if (review) {
       article.classList.add("review-answer-layout");
       article.append(el("div", {className: "suggested-answer"}, [el("h3", {text: "Respuesta esperada"}), el("p", {text: item.expectedAnswer})]));
-      appendRubric(article, item, session, onAssessment);
+      appendAssessment(article, item, session, onAssessment, Boolean(String(answer).trim()));
     }
     section.append(article);
   }
@@ -434,6 +432,8 @@ function historyRecord(practice, session, grade) {
     durationMs: session.durationMs,
     percent: grade.percent,
     pendingReview: grade.pendingReview.length,
+    gradingMethod: session.gradingMethod || "manual",
+    gradingModel: session.gradingModel || null,
     grading: Object.fromEntries(Object.entries(session.aiGrading || {}).map(([itemId, result]) => [itemId, {
       gradingMethod: result.gradingMethod,
       aiSuggestedPoints: result.aiSuggestedPoints,
@@ -444,8 +444,10 @@ function historyRecord(practice, session, grade) {
   };
 }
 
-function renderSession(practice, session) {
+function renderSession(practice, session, grading = false) {
   const review = session.status === "review";
+  const finalizing = session.status === "finalizing";
+  const locked = review || finalizing;
   let grade = gradePractice(practice, session);
   const status = statusMessage("Respostas salvas automaticamente.");
   const progressText = el("span", {text: `${grade.completed} de ${grade.totalItems} respondidos`});
@@ -460,8 +462,11 @@ function renderSession(practice, session) {
     try {
       saveSession(session);
       status.textContent = "Respostas salvas neste navegador.";
+      return true;
     } catch {
       status.textContent = "Não foi possível salvar. Exporte um backup antes de sair.";
+      status.className = "exam-status error";
+      return false;
     }
   };
   const updateProgress = () => {
@@ -489,9 +494,9 @@ function renderSession(practice, session) {
       unit.source ? el("p", {className: "muted practice-source", text: unit.source}) : null
     ]);
     for (const block of unit.blocks) {
-      if (block.type === "translation") section.append(renderTranslationBlock(block, session, review, onAnswer, onAssessment, grade.pendingReview));
-      if (block.type === "matching") section.append(renderMatchingBlock(block, session, review, onAnswer, onAssessment, grade.pendingReview));
-      if (block.type === "open") section.append(renderOpenBlock(block, session, review, onAnswer, onAssessment, grade.pendingReview));
+      if (block.type === "translation") section.append(renderTranslationBlock(block, session, review, locked, onAnswer, onAssessment, grade.pendingReview));
+      if (block.type === "matching") section.append(renderMatchingBlock(block, session, review, locked, onAnswer, onAssessment, grade.pendingReview));
+      if (block.type === "open") section.append(renderOpenBlock(block, session, review, locked, onAnswer, onAssessment, grade.pendingReview));
     }
     content.append(section);
   }
@@ -507,6 +512,11 @@ function renderSession(practice, session) {
         renderSelection();
       }, "primary")
     );
+  } else if (finalizing) {
+    actions.append(
+      button("Voltar às práticas", () => renderSelection()),
+      button("Continuar correção", () => continueFinalization(practice, session), "primary", grading)
+    );
   } else {
     actions.append(
       button("Abandonar por agora", () => { persist(); renderSelection("Sessão salva. Você pode continuar depois.", "success"); }),
@@ -515,19 +525,22 @@ function renderSession(practice, session) {
         clearSession(practice.id);
         renderSelection();
       }, "danger-outline"),
-      button("Finalizar prática", () => {
+      button("Finalizar prática", async () => {
+        if (!persist()) return;
         if (!confirm("Finalizar a prática? As respostas originais ficarão bloqueadas para edição.")) return;
-        session.status = "review";
+        session.status = "finalizing";
         session.finalizedAt = Date.now();
         session.durationMs = durationOf(session);
-        grade = gradePractice(practice, session);
-        persist();
-        savePracticeHistory(historyRecord(practice, session, grade));
-        renderSession(practice, session);
+        session.aiGrading = {};
+        if (!persist()) {
+          session.status = "in-progress";
+          return;
+        }
+        await continueFinalization(practice, session);
       }, "primary")
     );
   }
-  replace(header, scoreSlot, ...(review ? [renderPracticeAIGradingPanel(practice, session)] : []), content, status, actions);
+  replace(header, scoreSlot, ...(locked ? [renderPracticeGradingPanel(session, grading)] : []), content, status, actions);
 }
 
 async function init() {
@@ -555,6 +568,13 @@ async function init() {
 
 window.addEventListener("medlex-backup-restored", init);
 window.addEventListener("medlex-ai-state-changed", () => {
+  if (pendingFinalization && aiGradingAvailability().available) {
+    const pending = pendingFinalization;
+    pendingFinalization = null;
+    window.dispatchEvent(new CustomEvent("medlex-switch-view", {detail: {view: "practice"}}));
+    continueFinalization(pending.practice, pending.session);
+    return;
+  }
   const active = catalog.map(item => item.practice).find(practice => practice && getSession(practice.id)?.status === "review");
   if (active && root.closest(".view")?.classList.contains("active")) renderSession(active, getSession(active.id));
 });

@@ -68,7 +68,7 @@ export function parsePracticeBackup(text) {
   const sessionsValid = data?.sessions && typeof data.sessions === "object" && !Array.isArray(data.sessions)
     && Object.values(data.sessions).every(session => session && typeof session.id === "string"
       && typeof session.practiceId === "string" && Array.isArray(session.unitIds)
-      && ["in-progress", "review"].includes(session.status) && session.answers && session.assessment);
+      && ["in-progress", "finalizing", "review"].includes(session.status) && session.answers && session.assessment);
   const historyValid = Array.isArray(data?.history) && data.history.every(item => item
     && typeof item.sessionId === "string" && typeof item.practiceId === "string"
     && Number.isFinite(item.durationMs) && Number.isFinite(item.percent));

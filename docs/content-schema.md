@@ -10,7 +10,9 @@ Para adicionar outra prova, crie o JSON no mesmo schema e acrescente somente sua
 
 ## Práticas
 
-`data/practice/index.json` aponta para conteúdos compostos por `units` e `blocks`. Os tipos aceitos são `translation`, `matching` e `open`. Traduções usam segmentos de texto com `target: true`; associações definem opções e `correctOption`; respostas abertas e traduções usam resolução esperada, `gradingMode: "ai_or_manual"`, `answerLanguage` e rubricas de autoavaliação. O carregador deriva `maxPoints` da soma da rubrica. Associações nunca são enviadas à IA.
+`data/practice/index.json` aponta para conteúdos compostos por `units` e `blocks`. Os tipos aceitos são `translation`, `matching` e `open`. Traduções usam segmentos de texto com `target: true`; respostas abertas e traduções usam resolução esperada, `gradingMode: "ai_or_manual"`, `answerLanguage` e rubricas de autoavaliação. O carregador deriva `maxPoints` da soma da rubrica.
+
+Associações definem opções, `correctOption` e `translationGrading`. A letra é corrigida localmente. A tradução escrita é enviada à IA com o texto e a resolução da opção correta e usa a rubrica explícita de `translationGrading`; no fallback, o mesmo critério permanece disponível para autoavaliação manual.
 
 Uma nova unidade pode ser acrescentada ao array `units` de `ing-forms.json`, com IDs únicos. Uma prática de outra natureza deve receber seu próprio JSON e entrada no índice.
 

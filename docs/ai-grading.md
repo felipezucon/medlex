@@ -1,4 +1,4 @@
-# Correção assistida por IA
+# Correção automática com IA
 
 ## Finalidade e limites
 
@@ -45,7 +45,7 @@ Não são enviados nome, e-mail, estatísticas, histórico, outros simulados, fl
 
 ## Fluxo de correção
 
-Ao finalizar um simulado, as respostas são salvas e bloqueadas antes de qualquer chamada. Com a chave pronta e o consentimento ativo, a correção começa automaticamente e envia somente respostas abertas não vazias, em lotes de no máximo seis. Se a chave estiver bloqueada, a área **Configuração** é aberta e a finalização é retomada após o desbloqueio. Respostas vazias recebem zero localmente e não usam a API.
+Ao finalizar um simulado ou uma prática de formas em `-ing`, as respostas são salvas e bloqueadas antes de qualquer chamada. Com a chave pronta e o consentimento ativo, a correção começa automaticamente e envia somente respostas escritas não vazias, em lotes de no máximo seis. Se a chave estiver bloqueada, a área **Configuração** é aberta e a finalização é retomada após o desbloqueio. Respostas vazias recebem zero localmente e não usam a API.
 
 Na Seção B, o Gemini devolve `graded`, confiança e a classificação `met`, `partial` ou `not_met` para cada critério. O JavaScript valida todos os IDs e campos e calcula os pontos:
 
@@ -53,11 +53,13 @@ Na Seção B, o Gemini devolve `graded`, confiança e a classificação `met`, `
 - `partial`: 50%;
 - `not_met`: 0%.
 
-Na Seção C, o Gemini escolhe um valor permitido pela escala de 0 a 3 com base na consigna, texto e resolução. A nota dos simulados é aplicada automaticamente e não pode ser ajustada. Nas práticas de formas `-ing`, a correção continua assistida: a usuária revisa e aceita ou descarta a sugestão.
+Na Seção C, o Gemini escolhe um valor permitido pela escala de 0 a 3 com base na consigna, texto e resolução. A nota dos simulados é aplicada automaticamente e não pode ser ajustada.
+
+Nas práticas de formas `-ing`, todas as traduções e respostas abertas são corrigidas automaticamente. Nos exercícios de associação, a letra continua local e somente a tradução escrita é enviada, junto com o texto e a resolução da opção correta. A nota da IA é definitiva. A revisão mostra critérios, pontos, explicação do erro ou do acerto, orientação de melhoria e dica de memorização em PT-BR; formas e exemplos acadêmicos permanecem em espanhol ou inglês.
 
 ## Cache
 
-Antes de chamar a API, o site calcula SHA-256 sobre o ID e versão do conteúdo, item, resposta, resolução, variantes, regras de pontuação, modelo e versões de prompt/schema. Uma resposta inalterada reutiliza a classificação local e mostra **Resultado salvo**. Nas práticas, **Corrigir novamente** ignora o cache. Alterar a resposta gera outro hash sem invalidar itens não relacionados.
+Antes de chamar a API, o site calcula SHA-256 sobre o ID e versão do conteúdo, item, resposta, resolução, variantes, regras de pontuação, perfil e idioma da devolutiva, modelo e versões de prompt/schema. Uma resposta inalterada reutiliza a classificação local. Alterar a resposta ou o perfil pedagógico gera outro hash sem invalidar itens não relacionados.
 
 O cache guarda hash, classificação, pontos calculados, modelo, versões, data, confiança e feedback validado. Não guarda chave, senha, cabeçalhos nem payload bruto e fica fora do backup.
 
@@ -67,7 +69,7 @@ As chaves locais são `medlex:ai-key-vault`, `medlex:ai-settings`, `medlex:ai-co
 
 O cliente trata ausência/bloqueio da chave, consentimento, falta de conexão, erros 400/401/403/404/429/500/503, timeout, CORS, resposta vazia/incompleta e JSON inválido. Erros transitórios têm no máximo uma repetição curta; autenticação não é repetida. Uma saída estruturada inválida recebe uma única nova tentativa com saída menor. Não há troca de modelo.
 
-Em qualquer falha, o simulado inteiro entra em correção manual, sem aplicar resultados parciais. Para diagnosticar:
+Em qualquer falha, o simulado ou a prática inteira entra em correção manual, sem aplicar resultados parciais. Para diagnosticar:
 
 1. confirme que a chave está desbloqueada e o consentimento ativo;
 2. use **Testar conexão**;

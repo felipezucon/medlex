@@ -15,7 +15,24 @@ function normalizePractice(practice) {
   practice.contentVersion ||= CONTENT_VERSION;
   for (const unit of practice.units) {
     for (const block of unit.blocks) {
-      if (block.type === "matching") continue;
+      if (block.type === "matching") {
+        block.questions = block.questions.map(item => {
+          const option = block.options.find(entry => entry.id === item.correctOption);
+          return {
+            ...item,
+            gradingMode: block.translationGrading.gradingMode,
+            answerLanguage: block.translationGrading.answerLanguage,
+            gradingQuestion: block.translationGrading.question,
+            sourceText: option.text,
+            expectedAnswer: option.expectedTranslation,
+            acceptedVariants: [],
+            sourceExcerpt: item.question,
+            rubric: block.translationGrading.rubric,
+            maxPoints: block.translationGrading.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0)
+          };
+        });
+        continue;
+      }
       block.items = block.items.map(item => ({
         ...item,
         gradingMode: item.gradingMode || block.gradingMode,
@@ -88,6 +105,10 @@ export function validatePractice(practice, expectedId = practice?.id) {
       if (block.type === "matching") {
         if (!Array.isArray(block.options) || !block.options.length || !uniqueIds(block.options)
           || !block.options.every(option => isText(option?.id) && isText(option?.text) && isText(option?.expectedTranslation))
+          || block.translationGrading?.gradingMode !== "ai_or_manual"
+          || !["es", "en"].includes(block.translationGrading?.answerLanguage)
+          || !isText(block.translationGrading?.question)
+          || !rubricValid(block.translationGrading?.rubric)
           || !items.every(item => isText(item?.id) && isText(item?.question)
             && block.options.some(option => option.id === item.correctOption))) {
           throw new Error(`O bloco ${block.id} contém associações inválidas.`);

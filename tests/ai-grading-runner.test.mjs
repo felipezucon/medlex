@@ -33,15 +33,22 @@ globalThis.fetch = async (url, options) => {
   assert.doesNotMatch(url, new RegExp(credential));
   assert.doesNotMatch(options.body, new RegExp(credential));
   assert.equal(JSON.parse(options.body).store, false);
+  const payload = JSON.parse(options.body);
+  const coaching = payload.response_format.schema.properties.items.items.required.includes("coachingFeedback");
   const output = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     items: [{
       itemId: "open-1",
       status: "graded",
       confidence: "high",
       criteria: [{criterionId: "open-1-r1", status: "partial", feedback: "Parcial."}],
       score: 1,
-      overallFeedback: "Respuesta parcial."
+      overallFeedback: coaching ? "Resposta parcial." : "Respuesta parcial.",
+      ...(coaching ? {coachingFeedback: {
+        explanation: "Faltou completar o critério.",
+        improvementTip: "Compare a resposta com a rubrica.",
+        memoryTip: "Lembre-se do critério central."
+      }} : {})
     }]
   };
   return new Response(JSON.stringify({
@@ -65,15 +72,25 @@ const cached = await grading.gradeItemsWithAI({parentId: "practice", contentVers
 assert.equal(cached[0].cached, true);
 assert.equal(calls, 1);
 
+const coached = await grading.gradeItemsWithAI({
+  parentId: "practice",
+  contentVersion: 1,
+  items: [item],
+  feedbackProfile: "learning-coach",
+  feedbackLanguage: "pt-BR"
+});
+assert.equal(coached[0].coachingFeedback.memoryTip, "Lembre-se do critério central.");
+assert.equal(calls, 2);
+
 const empty = await grading.gradeItemsWithAI({parentId: "practice", contentVersion: 1, items: [{...item, studentAnswer: "  "}]});
 assert.deepEqual(empty, []);
-assert.equal(calls, 1);
+assert.equal(calls, 2);
 
 let invalidCalls = 0;
 globalThis.fetch = async () => {
   invalidCalls++;
   const text = invalidCalls === 1 ? "not-json" : JSON.stringify({
-    schemaVersion: 2,
+    schemaVersion: 3,
     items: [{itemId: "open-1", status: "graded", confidence: "medium", criteria: [{criterionId: "open-1-r1", status: "met", feedback: "Cumplido."}], score: 2, overallFeedback: "Correcto."}]
   });
   return new Response(JSON.stringify({status: "completed", steps: [{type: "model_output", content: [{type: "text", text}]}]}), {status: 200});

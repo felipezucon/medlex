@@ -23,12 +23,16 @@ for (const entry of examIndex.exams) {
 const practiceUrl = new URL("../data/practice/ing-forms.json", import.meta.url);
 const practice = validatePractice(JSON.parse(await readFile(practiceUrl, "utf8")), "ing-forms");
 for (const unit of practice.units) for (const block of unit.blocks) {
-  if (block.type === "matching") objective += block.questions.length;
+  if (block.type === "matching") {
+    objective += block.questions.length;
+    open += block.questions.length;
+    ready += block.questions.filter(item => validateGradableItem(item).gradable).length;
+  }
   else {
     open += block.items.length;
     ready += block.items.filter(item => validateGradableItem(item).gradable).length;
   }
 }
 
-assert.deepEqual({objective, open, ready}, {objective: 77, open: 97, ready: 97});
+assert.deepEqual({objective, open, ready}, {objective: 77, open: 102, ready: 102});
 console.log("ai readiness: ok");

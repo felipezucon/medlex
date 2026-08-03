@@ -34,6 +34,8 @@ assert.doesNotMatch([vault, grading, client, storage, examUI, practiceUI].join("
 assert.doesNotMatch([examUI, practiceUI].join("\n"), /innerHTML/);
 assert.match(examUI, /continueFinalization/);
 assert.doesNotMatch(examUI, /Aceitar correção revisada|Descartar sugestão|Corrigir novamente/);
+assert.match(practiceUI, /continueFinalization/);
+assert.doesNotMatch(practiceUI, /Aceitar correção revisada|Descartar sugestão|Corrigir novamente|Pontuação final \(ajuste humano\)/);
 assert.doesNotMatch([html, vault, grading, client, storage, examUI, practiceUI].join("\n"), /AIza[0-9A-Za-z_-]{20,}/);
 
 console.log("ai security: ok");

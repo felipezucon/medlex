@@ -25,6 +25,9 @@ assert.throws(() => exams.importExamBackup("{}"), /backup de simulados válido/)
 const session = practice.createSession("ing-forms", ["blood"]);
 practice.saveSession(session);
 assert.equal(practice.getSession("ing-forms").id, session.id);
+session.status = "finalizing";
+practice.saveSession(session);
+assert.equal(practice.parsePracticeBackup(practice.exportPracticeBackup()).sessions["ing-forms"].status, "finalizing");
 practice.clearSession("ing-forms");
 assert.equal(practice.getSession("ing-forms"), null);
 assert.throws(() => practice.importPracticeBackup("not json"), /JSON válido/);

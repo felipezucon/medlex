@@ -39,7 +39,8 @@ There is no backend, authentication, database, or build system. The only permitt
 - Never send the API key in a URL, request body, log, backup, grading history, or DOM attribute.
 - Every AI-gradable item must have a stable ID, expected answer, answer language, maximum points, and either a rubric whose points equal that maximum or a source-backed holistic score scale.
 - Exam AI grading runs automatically at finalization and is definitive for that attempt. Keep manual grading available when no key is configured or an API failure occurs.
-- Practice AI output remains advisory and requires human acceptance.
+- Practice AI grading runs automatically at finalization and is definitive for that session. It grades every written answer, including translations in matching exercises, while matching letters remain locally graded. Keep manual grading available when no key is configured or an API failure occurs.
+- Practice AI feedback must explain errors, suggest an improvement and provide a memory tip in Brazilian Portuguese, while preserving academic examples and answers in Spanish or English.
 - Keep Gemini interactions isolated, stateless, with `store: false`, and without grounding, tools, history, or model fallback.
 - Increment `AI_GRADING_PROMPT_VERSION` whenever the grading instruction or payload semantics change.
 - Increment `AI_GRADING_SCHEMA_VERSION` whenever the structured output contract changes.

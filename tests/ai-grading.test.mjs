@@ -62,8 +62,21 @@ assert.equal(validateGradingResponse(response, [item]).items[0].points, 1);
 assert.throws(() => validateGradingResponse({...response, html: "<b>bad</b>"}, [item]), /validar/);
 assert.throws(() => validateGradingResponse({...response, items: [response.items[0], response.items[0]]}, [item]), /validar/);
 assert.throws(() => validateGradingResponse({...response, items: [{...response.items[0], itemId: "unknown"}]}, [item]), /validar/);
-assert.equal(AI_GRADING_PROMPT_VERSION, 2);
-assert.equal(AI_GRADING_SCHEMA_VERSION, 2);
+assert.equal(AI_GRADING_PROMPT_VERSION, 3);
+assert.equal(AI_GRADING_SCHEMA_VERSION, 3);
+
+const coachingRequest = buildGradingRequest([item], {feedbackProfile: "learning-coach", feedbackLanguage: "pt-BR"});
+assert.match(coachingRequest.system_instruction, /portugués de Brasil/);
+assert.ok(coachingRequest.response_format.schema.properties.items.items.required.includes("coachingFeedback"));
+const coachingResponse = structuredClone(response);
+coachingResponse.items[0].coachingFeedback = {
+  explanation: "A resposta deixou uma informação incompleta.",
+  improvementTip: "Confira cada parte da rubrica antes de finalizar.",
+  memoryTip: "Associe A e B como um par."
+};
+assert.equal(validateGradingResponse(coachingResponse, [item], {feedbackProfile: "learning-coach"}).items[0].points, 1);
+coachingResponse.items[0].coachingFeedback.memoryTip = "";
+assert.throws(() => validateGradingResponse(coachingResponse, [item], {feedbackProfile: "learning-coach"}), /validar/);
 
 const withoutRubric = {...item, rubric: []};
 assert.equal(validateGradableItem(withoutRubric).gradable, false);
@@ -86,10 +99,10 @@ const holistic = {
 assert.deepEqual(validateGradableItem(holistic), {gradable: true});
 const holisticRequest = buildGradingRequest([holistic]);
 assert.match(holisticRequest.input, /allowedScoreScale/);
-assert.equal(validateGradingResponse({schemaVersion: 2, items: [{
+assert.equal(validateGradingResponse({schemaVersion: AI_GRADING_SCHEMA_VERSION, items: [{
   itemId: "c", status: "graded", confidence: "high", criteria: [], score: 3, overallFeedback: "Adecuado."
 }]}, [holistic]).items[0].points, 3);
-assert.throws(() => validateGradingResponse({schemaVersion: 2, items: [{
+assert.throws(() => validateGradingResponse({schemaVersion: AI_GRADING_SCHEMA_VERSION, items: [{
   itemId: "c", status: "graded", confidence: "high", criteria: [], score: 2.5, overallFeedback: "Inválido."
 }]}, [holistic]), /validar/);
 

@@ -101,6 +101,18 @@
           "id": "tuberculosis-matching",
           "type": "matching",
           "instructions": "¿Qué punto responde a cada pregunta? Seleccione la letra correspondiente y escriba su traducción antes de finalizar.",
+          "translationGrading": {
+            "gradingMode": "ai_or_manual",
+            "answerLanguage": "es",
+            "question": "Traduzca al español la respuesta en inglés correspondiente.",
+            "rubric": [
+              {
+                "id": "semantic-fidelity",
+                "label": "La traducción transmite correctamente el sentido de la respuesta en inglés.",
+                "points": 1
+              }
+            ]
+          },
           "options": [
             { "id": "a", "text": "TB can affect any organ, and extra pulmonary disease such as lymph node swelling is also frequently seen.", "expectedTranslation": "La TB puede afectar cualquier órgano y muchas veces está acompañada por enfermedad extrapulmonar, como la inflamación de los nódulos linfáticos." },
             { "id": "b", "text": "The chance of the baby getting infected with TB whilst in the womb is very small.", "expectedTranslation": "La probabilidad de que el bebé se contagie TB en el vientre materno es muy baja." },

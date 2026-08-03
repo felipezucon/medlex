@@ -3,8 +3,8 @@ import {createGeminiInteraction, GeminiError} from "./gemini-client.mjs";
 import {gradingHash, hasAIConsent, readAISettings, readCachedGrading, writeAISettings, writeCachedGrading} from "./ai-grading-storage.mjs";
 
 export const GEMINI_MODEL = "gemini-3.5-flash-lite";
-export const AI_GRADING_PROMPT_VERSION = 2;
-export const AI_GRADING_SCHEMA_VERSION = 2;
+export const AI_GRADING_PROMPT_VERSION = 3;
+export const AI_GRADING_SCHEMA_VERSION = 3;
 export const MAX_STUDENT_ANSWER_CHARACTERS = 12000;
 
 const ITEM_STATUSES = ["graded", "needs_review", "not_gradable"];
@@ -30,9 +30,18 @@ Reglas obligatorias:
 12. En ítems holistic, devuelve criteria vacío y asigna score exclusivamente desde allowedScoreScale, considerando adecuación, fidelidad semántica, completitud y cumplimiento de la consigna.
 13. En títulos y subtítulos, evalúa la equivalencia semántica y la adecuación en español, no la traducción literal.
 14. Si falta información indispensable para corregir, devuelve not_gradable.
-15. Escribe la devolución en español.
+15. Sigue exactamente el idioma y el perfil de devolución indicados para la solicitud.
 16. No menciones información que no esté en el material proporcionado.
 17. Devuelve solamente el JSON exigido por el schema.`;
+
+const feedbackInstructions = (profile, language) => profile === "learning-coach"
+  ? `La devolución debe estar en portugués de Brasil. Conserva las formas, ejemplos y respuestas académicas en español o inglés.
+Para cada ítem, completa coachingFeedback con:
+- explanation: explica concretamente por qué la respuesta perdió puntos; si obtuvo la puntuación máxima, destaca lo que acertó sin inventar errores.
+- improvementTip: indica una acción breve y específica para mejorar o acertar una respuesta semejante.
+- memoryTip: ofrece una asociación, contraste o regla mnemotécnica breve para recordar la forma correcta.
+Los feedback de cada criterio y overallFeedback también deben estar en portugués de Brasil.`
+  : `Escribe la devolución en ${language === "pt-BR" ? "portugués de Brasil" : "español"}.`;
 
 export function calculateCriterionPoints(status, maxPoints) {
   const points = Number(maxPoints);
@@ -75,7 +84,7 @@ export function validateGradableItem(item) {
   return valid ? {gradable: true} : {gradable: false, reason: "Faltam dados de correção; use a autoavaliação manual."};
 }
 
-export function gradingResponseSchema(items, compact = false) {
+export function gradingResponseSchema(items, compact = false, feedbackProfile = "standard") {
   const itemIds = items.map(item => item.id);
   const criterionIds = [...new Set(items.flatMap(item => (item.rubric || []).map(criterion => criterion.id)))];
   const maximum = Math.max(...items.map(item => Number(item.maxPoints)));
@@ -92,7 +101,8 @@ export function gradingResponseSchema(items, compact = false) {
         items: {
           type: "object",
           additionalProperties: false,
-          required: ["itemId", "status", "confidence", "criteria", "score", "overallFeedback"],
+          required: ["itemId", "status", "confidence", "criteria", "score", "overallFeedback",
+            ...(feedbackProfile === "learning-coach" ? ["coachingFeedback"] : [])],
           properties: {
             itemId: {type: "string", enum: itemIds},
             status: {type: "string", enum: ITEM_STATUSES},
@@ -111,7 +121,19 @@ export function gradingResponseSchema(items, compact = false) {
               }
             },
             score: {type: "number", minimum: 0, maximum},
-            overallFeedback: {type: "string", ...(compact ? {maxLength: 300} : {})}
+            overallFeedback: {type: "string", ...(compact ? {maxLength: 300} : {})},
+            ...(feedbackProfile === "learning-coach" ? {
+              coachingFeedback: {
+                type: "object",
+                additionalProperties: false,
+                required: ["explanation", "improvementTip", "memoryTip"],
+                properties: {
+                  explanation: {type: "string", ...(compact ? {maxLength: 300} : {})},
+                  improvementTip: {type: "string", ...(compact ? {maxLength: 240} : {})},
+                  memoryTip: {type: "string", ...(compact ? {maxLength: 240} : {})}
+                }
+              }
+            } : {})
           }
         }
       }
@@ -119,7 +141,7 @@ export function gradingResponseSchema(items, compact = false) {
   };
 }
 
-export function buildGradingRequest(items, {compact = false} = {}) {
+export function buildGradingRequest(items, {compact = false, feedbackProfile = "standard", feedbackLanguage = "es"} = {}) {
   const validItems = items.filter(item => validateGradableItem(item).gradable && String(item.studentAnswer || "").trim());
   if (!validItems.length) throw new Error("Não há respostas aptas para corrigir com IA.");
   if (validItems.length > 6) throw new Error("O lote de correção não pode ultrapassar 6 respostas.");
@@ -142,12 +164,12 @@ export function buildGradingRequest(items, {compact = false} = {}) {
   return {
     model: GEMINI_MODEL,
     store: false,
-    system_instruction: AI_GRADING_SYSTEM_INSTRUCTION,
+    system_instruction: `${AI_GRADING_SYSTEM_INSTRUCTION}\n\n${feedbackInstructions(feedbackProfile, feedbackLanguage)}`,
     input: `<grading_data_json>\n${JSON.stringify(data)}\n</grading_data_json>`,
     response_format: {
       type: "text",
       mime_type: "application/json",
-      schema: gradingResponseSchema(validItems, compact)
+      schema: gradingResponseSchema(validItems, compact, feedbackProfile)
     },
     generation_config: {max_output_tokens: compact ? 2048 : 4096, thinking_level: "minimal", thinking_summaries: "none"}
   };
@@ -156,17 +178,24 @@ export function buildGradingRequest(items, {compact = false} = {}) {
 const exactKeys = (value, keys) => value && typeof value === "object" && !Array.isArray(value)
   && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key));
 
-export function validateGradingResponse(value, requestedItems) {
+export function validateGradingResponse(value, requestedItems, {feedbackProfile = "standard"} = {}) {
   if (!exactKeys(value, ["schemaVersion", "items"])
     || value.schemaVersion !== AI_GRADING_SCHEMA_VERSION || !Array.isArray(value.items)
     || value.items.length !== requestedItems.length) throw new Error("Não foi possível validar a resposta da IA.");
   const requested = new Map(requestedItems.map(item => [item.id, item]));
   const seen = new Set();
+  const resultKeys = ["itemId", "status", "confidence", "criteria", "score", "overallFeedback",
+    ...(feedbackProfile === "learning-coach" ? ["coachingFeedback"] : [])];
   const results = value.items.map(result => {
-    if (!exactKeys(result, ["itemId", "status", "confidence", "criteria", "score", "overallFeedback"])
+    const coachingValid = feedbackProfile !== "learning-coach"
+      || (exactKeys(result.coachingFeedback, ["explanation", "improvementTip", "memoryTip"])
+        && [result.coachingFeedback.explanation, result.coachingFeedback.improvementTip, result.coachingFeedback.memoryTip]
+          .every(text => typeof text === "string" && text.trim()));
+    if (!exactKeys(result, resultKeys)
       || !requested.has(result.itemId) || seen.has(result.itemId)
       || !ITEM_STATUSES.includes(result.status) || !CONFIDENCES.includes(result.confidence)
-      || !Number.isFinite(result.score) || typeof result.overallFeedback !== "string" || !Array.isArray(result.criteria)) {
+      || !Number.isFinite(result.score) || typeof result.overallFeedback !== "string" || !Array.isArray(result.criteria)
+      || !coachingValid) {
       throw new Error("Não foi possível validar a resposta da IA.");
     }
     seen.add(result.itemId);
@@ -211,15 +240,15 @@ export function aiGradingAvailability() {
 const validationFailure = error => error?.code === "invalid_response"
   || error?.message === "Não foi possível validar a resposta da IA.";
 
-async function requestValidated(items) {
+async function requestValidated(items, options) {
   try {
-    const raw = await withUnlockedApiKey(apiKey => createGeminiInteraction(apiKey, buildGradingRequest(items)));
-    return validateGradingResponse(raw, items);
+    const raw = await withUnlockedApiKey(apiKey => createGeminiInteraction(apiKey, buildGradingRequest(items, options)));
+    return validateGradingResponse(raw, items, options);
   } catch (error) {
     if (!validationFailure(error)) throw error;
     try {
-      const raw = await withUnlockedApiKey(apiKey => createGeminiInteraction(apiKey, buildGradingRequest(items, {compact: true})));
-      return validateGradingResponse(raw, items);
+      const raw = await withUnlockedApiKey(apiKey => createGeminiInteraction(apiKey, buildGradingRequest(items, {...options, compact: true})));
+      return validateGradingResponse(raw, items, options);
     } catch (retryError) {
       if (validationFailure(retryError)) throw new GeminiError("invalid_response", "Não foi possível validar a resposta da IA.");
       throw retryError;
@@ -227,7 +256,15 @@ async function requestValidated(items) {
   }
 }
 
-export async function gradeItemsWithAI({parentId, contentVersion, items, force = false, onProgress = () => {}}) {
+export async function gradeItemsWithAI({
+  parentId,
+  contentVersion,
+  items,
+  force = false,
+  onProgress = () => {},
+  feedbackProfile = "standard",
+  feedbackLanguage = "es"
+}) {
   const availability = aiGradingAvailability();
   if (!availability.available) throw new Error(availability.reason);
   const eligible = items.filter(item => validateGradableItem(item).gradable && String(item.studentAnswer || "").trim());
@@ -248,6 +285,8 @@ export async function gradeItemsWithAI({parentId, contentVersion, items, force =
       rubric: item.rubric,
       gradingType: item.gradingType || "rubric",
       scoreScale: item.scoreScale || null,
+      feedbackProfile,
+      feedbackLanguage,
       model: GEMINI_MODEL,
       promptVersion: AI_GRADING_PROMPT_VERSION,
       schemaVersion: AI_GRADING_SCHEMA_VERSION
@@ -260,7 +299,7 @@ export async function gradeItemsWithAI({parentId, contentVersion, items, force =
   try {
     for (let offset = 0; offset < pending.length; offset += 6) {
       const batch = pending.slice(offset, offset + 6);
-      const response = await requestValidated(batch);
+      const response = await requestValidated(batch, {feedbackProfile, feedbackLanguage});
       for (const result of response.items) {
         const source = batch.find(item => item.id === result.itemId);
         const stored = {

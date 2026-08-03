@@ -8,6 +8,36 @@ export function practiceItems(practice, unitIds = practice.units.map(unit => uni
   );
 }
 
+export function buildPracticeAIItems(practice, session) {
+  return practiceItems(practice, session.unitIds).map(item => item.type === "matching"
+    ? {
+      ...item,
+      question: item.gradingQuestion,
+      studentAnswer: session.answers[item.id]?.translation || ""
+    }
+    : {...item, studentAnswer: session.answers[item.id] || ""});
+}
+
+export function applyPracticeAIResults(practice, session, results) {
+  const answered = buildPracticeAIItems(practice, session).filter(item => String(item.studentAnswer).trim());
+  const expectedIds = new Set(answered.map(item => item.id));
+  if (results.length !== answered.length || results.some(result => result.status !== "graded")
+    || new Set(results.map(result => result.itemId)).size !== results.length
+    || results.some(result => !expectedIds.has(result.itemId))) {
+    throw new Error("A IA não devolveu uma correção completa.");
+  }
+  session.aiGrading = Object.fromEntries(results.map(result => [result.itemId, {
+    ...result,
+    aiSuggestedPoints: result.points,
+    finalStatuses: Object.fromEntries(result.criteria.map(criterion => [criterion.criterionId, criterion.status])),
+    finalPoints: result.points,
+    gradingMethod: "ai",
+    manuallyAdjusted: false,
+    accepted: true
+  }]));
+  return session.aiGrading;
+}
+
 export function gradePractice(practice, session) {
   const items = practiceItems(practice, session.unitIds);
   let completed = 0;
@@ -32,13 +62,20 @@ export function gradePractice(practice, session) {
       autoTotal++;
       const correct = answer?.choice === item.correctOption;
       if (correct) autoCorrect++;
-      subjectiveTotal++;
+      const possible = Number(item.maxPoints) || 1;
+      const reviewedAI = session.aiGrading?.[item.id];
+      const translationEarned = reviewedAI?.accepted
+        ? Math.min(possible, Math.max(0, Number(reviewedAI.finalPoints) || 0))
+        : assessment.translation ? possible : 0;
+      subjectiveTotal += possible;
       subjectiveItems++;
-      if (assessment.translation) {
-        subjectiveEarned++;
+      if (translationEarned) {
+        subjectiveEarned += translationEarned;
+      }
+      if (translationEarned === possible) {
         satisfactory++;
       }
-      needsReview ||= !correct || !assessment.translation;
+      needsReview ||= !correct || translationEarned < possible;
     } else {
       const possible = item.rubric.reduce((sum, criterion) => sum + Number(criterion.points), 0);
       const reviewedAI = session.aiGrading?.[item.id];

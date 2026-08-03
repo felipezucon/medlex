@@ -59,6 +59,6 @@ node --test tests/*.test.mjs
 
 Os PDFs e documentos de origem não fazem parte do site. O navegador carrega somente os JSONs em `data/exams/` e `data/practice/`. Consulte [docs/content-schema.md](./docs/content-schema.md) para adicionar provas ou unidades.
 
-## Correção opcional com IA
+## Correção automática com IA
 
-A correção usa Gemini somente nas respostas abertas que possuem resolução e regras de pontuação no JSON. Nos simulados, ela é acionada ao finalizar e aplica uma nota definitiva; nas práticas, continua assistida e depende de revisão humana. Ela não altera flashcards nem questões objetivas. Consulte [docs/ai-grading.md](./docs/ai-grading.md) para configuração, privacidade, segurança, manutenção e diagnóstico.
+A correção usa Gemini somente nas respostas escritas que possuem resolução e regras de pontuação no JSON. Nos simulados e nas práticas de formas em `-ing`, ela é acionada ao finalizar e aplica uma nota definitiva. Nas práticas, a devolutiva em PT-BR explica o erro, ensina como melhorar e oferece uma dica de memorização. As letras dos exercícios de associação continuam sendo corrigidas localmente, e a IA não altera flashcards. Consulte [docs/ai-grading.md](./docs/ai-grading.md) para configuração, privacidade, segurança, manutenção e diagnóstico.
